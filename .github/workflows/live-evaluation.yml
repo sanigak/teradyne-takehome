@@ -1,0 +1,28 @@
+name: Live OpenRouter evaluation
+on:
+  workflow_dispatch:
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      DAILY_EVALUATION: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Check configuration
+        run: python -c "import os; assert os.environ.get('OPENROUTER_API_KEY'), 'Set the OPENROUTER_API_KEY repository secret before running this workflow'"
+      - name: Install prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libreoffice
+          python -m pip install -r requirements-lock.txt
+          python -m pip install -e . --no-deps
+      - name: Ingest every source
+        run: python -m app ingest
+      - name: Evaluate live answers and retrieval
+        run: python -m app evaluate

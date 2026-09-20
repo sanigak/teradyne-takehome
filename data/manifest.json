@@ -1,0 +1,515 @@
+{
+  "description": "Fictional Relay AI consulting corpus. No real client information.",
+  "generator": "scripts/generate_corpus.py",
+  "files": [
+    {
+      "filename": "atlas_01_kickoff.md",
+      "title": "Atlas Forge — deployment kickoff",
+      "client": "Atlas Forge",
+      "date": "2026-09-01",
+      "author": "Maya Chen",
+      "attendees": [
+        "Maya Chen",
+        "Theo Haddad",
+        "Sofia Ortiz",
+        "Liam Okafor"
+      ],
+      "domain": "Deployment planning",
+      "priority": "High",
+      "expected_facts": [
+        "Initial October 15 launch is provisional.",
+        "Atlas pilot is advisory and uses maintenance manuals only."
+      ],
+      "sha256": "a11aa21cab530f81294ffa8966d1ca563ef04f8929f623f6887eb84b028ad243",
+      "chunk_count": 11,
+      "warnings": []
+    },
+    {
+      "filename": "atlas_02_architecture.md",
+      "title": "Atlas Forge — private gateway architecture",
+      "client": "Atlas Forge",
+      "date": "2026-09-07",
+      "author": "Sofia Ortiz",
+      "attendees": [
+        "Sofia Ortiz",
+        "Theo Haddad",
+        "Liam Okafor"
+      ],
+      "domain": "Architecture",
+      "priority": "High",
+      "expected_facts": [
+        "Atlas runs in a private VPC in Frankfurt.",
+        "Redaction failure blocks a model request."
+      ],
+      "sha256": "dd9985fce72b976296c092a090c248213368748ee307e80b8ccbdd627e309cc2",
+      "chunk_count": 10,
+      "warnings": []
+    },
+    {
+      "filename": "atlas_03_security_gate.md",
+      "title": "Atlas Forge — security gate and revised launch",
+      "client": "Atlas Forge",
+      "date": "2026-09-10",
+      "author": "Theo Haddad",
+      "attendees": [
+        "Theo Haddad",
+        "Maya Chen",
+        "Sofia Ortiz"
+      ],
+      "domain": "Security and release",
+      "priority": "Critical",
+      "expected_facts": [
+        "November 2, 2026 explicitly supersedes provisional October 15.",
+        "Theo Haddad owns security approval."
+      ],
+      "sha256": "5965e74e37c0156919c56f1130437628c91c6bbea0438e80a8a7e2a9561f77be",
+      "chunk_count": 10,
+      "warnings": []
+    },
+    {
+      "filename": "atlas_04_delivery.md",
+      "title": "Atlas Forge — delivery checkpoint",
+      "client": "Atlas Forge",
+      "date": "2026-09-14",
+      "author": "Maya Chen",
+      "attendees": [
+        "Maya Chen",
+        "Sofia Ortiz",
+        "Liam Okafor"
+      ],
+      "domain": "Delivery operations",
+      "priority": "High",
+      "expected_facts": [
+        "Atlas canary is 5%, then 25%, then full pilot traffic.",
+        "Rollback maintenance window is undocumented."
+      ],
+      "sha256": "9566356ced468f81066d9ec1ad8ef7879b68cb62a600aed8b05a7354c6f7b373",
+      "chunk_count": 10,
+      "warnings": []
+    },
+    {
+      "filename": "beacon_01_discovery.md",
+      "title": "Beacon Route — forecasting discovery",
+      "client": "Beacon Route",
+      "date": "2026-09-02",
+      "author": "Priya Raman",
+      "attendees": [
+        "Priya Raman",
+        "Noah Brooks",
+        "Emma Laurent",
+        "Jules Park"
+      ],
+      "domain": "Product discovery",
+      "priority": "Medium",
+      "expected_facts": [
+        "Beacon is batch staffing forecasting for two depots, not live dispatch."
+      ],
+      "sha256": "eda6c8306a5aaa45c237baf4eb9d8b07b09e242bc80be41d1445f8972968d81b",
+      "chunk_count": 10,
+      "warnings": []
+    },
+    {
+      "filename": "beacon_02_data_review.md",
+      "title": "Beacon Route — connector and vendor data review",
+      "client": "Beacon Route",
+      "date": "2026-09-05",
+      "author": "Noah Brooks",
+      "attendees": [
+        "Noah Brooks",
+        "Priya Raman",
+        "Emma Laurent"
+      ],
+      "domain": "Data engineering",
+      "priority": "High",
+      "expected_facts": [
+        "Central duplicate key is shipment ID plus depot, latest update wins.",
+        "Weather vendor deletion SLA is unknown; Emma Laurent owns follow-up."
+      ],
+      "sha256": "c25ce95cb02ec37862cdef24c77d1924ac81f8990e2005ed09c91e099de03195",
+      "chunk_count": 9,
+      "warnings": []
+    },
+    {
+      "filename": "beacon_03_pilot_acceptance.md",
+      "title": "Beacon Route — pilot acceptance decision",
+      "client": "Beacon Route",
+      "date": "2026-09-11",
+      "author": "Priya Raman",
+      "attendees": [
+        "Priya Raman",
+        "Noah Brooks",
+        "Jules Park"
+      ],
+      "domain": "Model evaluation",
+      "priority": "High",
+      "expected_facts": [
+        "Beacon target is error at most 12%; measured sample error 11.4%; baseline 16%.",
+        "Forecasts due 06:00 local depot time."
+      ],
+      "sha256": "80061c0d9b4441102fba30f801198fef5ea7bed3f63d24eb910d2a20f6a26e9b",
+      "chunk_count": 9,
+      "warnings": []
+    },
+    {
+      "filename": "beacon_04_commercial.md",
+      "title": "Beacon Route — signed pilot commercial decision",
+      "client": "Beacon Route",
+      "date": "2026-09-15",
+      "author": "Emma Laurent",
+      "attendees": [
+        "Emma Laurent",
+        "Priya Raman",
+        "Jules Park"
+      ],
+      "domain": "Commercial decisions",
+      "priority": "High",
+      "expected_facts": [
+        "Signed pilot price USD 48,000 for two depots supersedes unsigned USD 62,000 estimate.",
+        "Approved error thresholds 12 percent versus 10 percent conflict; Priya Raman must reconcile."
+      ],
+      "sha256": "24a0345828d4fcec75c595f15d52c181c9f4fccbd05f59e35db0d129125275ad",
+      "chunk_count": 9,
+      "warnings": []
+    },
+    {
+      "filename": "cedar_01_kickoff.md",
+      "title": "Cedar Vale — policy assistant kickoff",
+      "client": "Cedar Vale",
+      "date": "2026-09-03",
+      "author": "Ines Duarte",
+      "attendees": [
+        "Ines Duarte",
+        "Oscar Bell",
+        "Nina Shah",
+        "Elliot Reed"
+      ],
+      "domain": "Product and privacy",
+      "priority": "High",
+      "expected_facts": [
+        "Cedar is administrative policy search, not patient diagnosis.",
+        "Nina Shah owns policy approval."
+      ],
+      "sha256": "295862a0a066843d56125ba0d54940800aaa00a955b85f026553ae0d3c8c4a88",
+      "chunk_count": 9,
+      "warnings": []
+    },
+    {
+      "filename": "cedar_02_access_review.md",
+      "title": "Cedar Vale — tenant isolation review",
+      "client": "Cedar Vale",
+      "date": "2026-09-08",
+      "author": "Oscar Bell",
+      "attendees": [
+        "Oscar Bell",
+        "Elliot Reed",
+        "Nina Shah"
+      ],
+      "domain": "Identity and access",
+      "priority": "Critical",
+      "expected_facts": [
+        "Cedar filters clinic_id and policy_group before ranking and fails closed on missing claims."
+      ],
+      "sha256": "efe34aa6c890a362779476ade585f13fb928078aabee3f71d5aca839cc00d8e9",
+      "chunk_count": 9,
+      "warnings": []
+    },
+    {
+      "filename": "cedar_03_validation.md",
+      "title": "Cedar Vale — validation and privacy decision",
+      "client": "Cedar Vale",
+      "date": "2026-09-13",
+      "author": "Nina Shah",
+      "attendees": [
+        "Nina Shah",
+        "Ines Duarte",
+        "Elliot Reed",
+        "Oscar Bell"
+      ],
+      "domain": "Evaluation and privacy",
+      "priority": "High",
+      "expected_facts": [
+        "Raw prompt deletion within 24 hours supersedes seven-day draft.",
+        "Parental leave for temporary contractors is undocumented; route to Nina Shah."
+      ],
+      "sha256": "28c95cee0146fd546c711e3843bb23e46b4b53907ad509ca907b771dfc6b9389",
+      "chunk_count": 9,
+      "warnings": []
+    },
+    {
+      "filename": "cedar_04_incident_drill.md",
+      "title": "Cedar Vale — incident tabletop notes",
+      "client": "Cedar Vale",
+      "date": "2026-09-16",
+      "author": "Elliot Reed",
+      "attendees": [
+        "Elliot Reed",
+        "Oscar Bell",
+        "Ines Duarte"
+      ],
+      "domain": "Incident operations",
+      "priority": "Critical",
+      "expected_facts": [
+        "Cedar disclosure response disables endpoint and revokes role cache.",
+        "No signed weekend support SLA exists."
+      ],
+      "sha256": "8711f68a7deacd1b9358f712727a5c03b32bb5e3143dce5894df4b9f1e07e053",
+      "chunk_count": 9,
+      "warnings": []
+    },
+    {
+      "filename": "atlas_security_addendum.docx",
+      "title": "Atlas Forge — security logging addendum",
+      "client": "Atlas Forge",
+      "date": "2026-09-12",
+      "author": "Theo Haddad",
+      "attendees": [
+        "Theo Haddad",
+        "Sofia Ortiz"
+      ],
+      "domain": "Security",
+      "priority": "Critical",
+      "expected_facts": [
+        "Atlas redacted diagnostics retained 30 days in Frankfurt."
+      ],
+      "sha256": "5e75b640a1c9a0f32b652b5f3804d31b9592f132e46d046ea3e3cf30b50bc88b",
+      "chunk_count": 14,
+      "warnings": []
+    },
+    {
+      "filename": "atlas_gateway_design.doc",
+      "title": "Atlas Forge — gateway role matrix",
+      "client": "Atlas Forge",
+      "date": "2026-09-09",
+      "author": "Sofia Ortiz",
+      "attendees": [
+        "Sofia Ortiz",
+        "Theo Haddad",
+        "Liam Okafor"
+      ],
+      "domain": "Architecture",
+      "priority": "High",
+      "expected_facts": [
+        "Gateway principal is read-only for manual index.",
+        "No public-endpoint fallback."
+      ],
+      "sha256": "4ce3d7cc61459c01395e5740a06b034f0da3960394c8532d7a48e242a94a1eb2",
+      "chunk_count": 14,
+      "warnings": [
+        "Original .doc source normalized with LibreOffice; locators describe converted document structure, not printed page numbers."
+      ]
+    },
+    {
+      "filename": "atlas_release_plan.pptx",
+      "title": "Atlas Forge — staged release runbook",
+      "client": "Atlas Forge",
+      "date": "2026-09-14",
+      "author": "Maya Chen",
+      "attendees": [
+        "Maya Chen",
+        "Sofia Ortiz",
+        "Liam Okafor"
+      ],
+      "domain": "Deployment operations",
+      "priority": "High",
+      "expected_facts": [
+        "Atlas rollout stops at p95 >=2.5 seconds or error rate >1% over 15 minutes."
+      ],
+      "sha256": "a9a1fcbd3289124fa68ce366da018db405204d1245d7593159632ffff5758201",
+      "chunk_count": 13,
+      "warnings": []
+    },
+    {
+      "filename": "atlas_latency_budget.xlsx",
+      "title": "Atlas Forge — latency and release budget",
+      "client": "Atlas Forge",
+      "date": "2026-09-14",
+      "author": "Sofia Ortiz",
+      "attendees": [
+        "Sofia Ortiz",
+        "Maya Chen"
+      ],
+      "domain": "Performance engineering",
+      "priority": "Medium",
+      "expected_facts": [
+        "Atlas p95 latency target below 2500 ms."
+      ],
+      "sha256": "17195f65bf3bc6ae0c4b6b57bef9b104911d9866b79620ac57fef61bfff3a76b",
+      "chunk_count": 16,
+      "warnings": [
+        "Register!B6: formula has no cached value; formula text retained and not evaluated."
+      ]
+    },
+    {
+      "filename": "beacon_commercial_terms.docx",
+      "title": "Beacon Route — unsigned three-depot estimate",
+      "client": "Beacon Route",
+      "date": "2026-09-04",
+      "author": "Emma Laurent",
+      "attendees": [
+        "Emma Laurent",
+        "Priya Raman"
+      ],
+      "domain": "Commercial proposal",
+      "priority": "Medium",
+      "expected_facts": [
+        "Unsigned September 4 estimate: USD 62,000 for three depots, later superseded."
+      ],
+      "sha256": "a47b0892d129873a7db4820c70823a582bd230a7979d9feeb750c162e228da6c",
+      "chunk_count": 14,
+      "warnings": []
+    },
+    {
+      "filename": "beacon_pilot_review.ppt",
+      "title": "Beacon Route — forecast evaluation review",
+      "client": "Beacon Route",
+      "date": "2026-09-11",
+      "author": "Noah Brooks",
+      "attendees": [
+        "Noah Brooks",
+        "Priya Raman",
+        "Jules Park"
+      ],
+      "domain": "Model evaluation",
+      "priority": "High",
+      "expected_facts": [
+        "Beacon evaluated error 11.4%, historical baseline 16%, threshold 12%."
+      ],
+      "sha256": "1f07c3e7dee73010d4a8ce27632216356ab3ed958c24d6d7d70844ea091dc916",
+      "chunk_count": 13,
+      "warnings": [
+        "Original .ppt source normalized with LibreOffice; locators describe converted document structure, not printed page numbers."
+      ]
+    },
+    {
+      "filename": "beacon_quality_register.xls",
+      "title": "Beacon Route — data quality register",
+      "client": "Beacon Route",
+      "date": "2026-09-12",
+      "author": "Noah Brooks",
+      "attendees": [
+        "Noah Brooks",
+        "Jules Park",
+        "Priya Raman"
+      ],
+      "domain": "Data quality",
+      "priority": "High",
+      "expected_facts": [
+        "Central duplicate shipment IDs dropped from 37 to 0 in verified sample."
+      ],
+      "sha256": "6cf250a97deab457484801aec8e139b744032a613c2d378ce6fc148576567eff",
+      "chunk_count": 14,
+      "warnings": [
+        "Original .xls source normalized with LibreOffice; locators describe converted document structure, not printed page numbers."
+      ]
+    },
+    {
+      "filename": "beacon_dispatch_handoff.xlsx",
+      "title": "Beacon Route — planner handoff checklist",
+      "client": "Beacon Route",
+      "date": "2026-09-15",
+      "author": "Jules Park",
+      "attendees": [
+        "Jules Park",
+        "Priya Raman",
+        "Noah Brooks"
+      ],
+      "domain": "Operations",
+      "priority": "Medium",
+      "expected_facts": [
+        "Human planners approve Beacon forecasts; missing inputs use warned baseline fallback.",
+        "Approved handoff error threshold is 10 percent, conflicting with unreconciled 12-percent decision."
+      ],
+      "sha256": "d5ba1b8158bf3b833db84d0980d53f54432ce116dc6a743da267456d0962904b",
+      "chunk_count": 15,
+      "warnings": []
+    },
+    {
+      "filename": "cedar_privacy_review.doc",
+      "title": "Cedar Vale — draft privacy review",
+      "client": "Cedar Vale",
+      "date": "2026-09-05",
+      "author": "Nina Shah",
+      "attendees": [
+        "Nina Shah",
+        "Ines Duarte",
+        "Oscar Bell"
+      ],
+      "domain": "Privacy",
+      "priority": "High",
+      "expected_facts": [
+        "Seven-day raw-prompt retention is an unapproved draft, later superseded."
+      ],
+      "sha256": "500488c60cd01552874fe4c991f36688e58ce3992692cf099679a13ec8d398a8",
+      "chunk_count": 14,
+      "warnings": [
+        "Original .doc source normalized with LibreOffice; locators describe converted document structure, not printed page numbers."
+      ]
+    },
+    {
+      "filename": "cedar_access_design.pptx",
+      "title": "Cedar Vale — policy access design",
+      "client": "Cedar Vale",
+      "date": "2026-09-08",
+      "author": "Oscar Bell",
+      "attendees": [
+        "Oscar Bell",
+        "Elliot Reed",
+        "Nina Shah"
+      ],
+      "domain": "Identity architecture",
+      "priority": "Critical",
+      "expected_facts": [
+        "Cedar filters both clinic_id and policy_group before model context."
+      ],
+      "sha256": "e096a0ff035e5dacdf729c7d3728696d1b34d5baa1c07311b852394f2ae4c648",
+      "chunk_count": 12,
+      "warnings": []
+    },
+    {
+      "filename": "cedar_operations.ppt",
+      "title": "Cedar Vale — incident containment runbook",
+      "client": "Cedar Vale",
+      "date": "2026-09-16",
+      "author": "Elliot Reed",
+      "attendees": [
+        "Elliot Reed",
+        "Oscar Bell",
+        "Ines Duarte",
+        "Theo Haddad"
+      ],
+      "domain": "Incident response",
+      "priority": "Critical",
+      "expected_facts": [
+        "Cedar recovery requires revoked-group regression and Theo Haddad security review."
+      ],
+      "sha256": "74f2017fd1a3f3a9e8ebe2e018fbca8030f9f2a3694540e9936de37a6471ac94",
+      "chunk_count": 13,
+      "warnings": [
+        "Original .ppt source normalized with LibreOffice; locators describe converted document structure, not printed page numbers."
+      ]
+    },
+    {
+      "filename": "cedar_eval_scores.xls",
+      "title": "Cedar Vale — frozen policy evaluation scores",
+      "client": "Cedar Vale",
+      "date": "2026-09-13",
+      "author": "Elliot Reed",
+      "attendees": [
+        "Elliot Reed",
+        "Nina Shah",
+        "Oscar Bell"
+      ],
+      "domain": "Answer quality",
+      "priority": "High",
+      "expected_facts": [
+        "Cedar eval: 80 questions; 0/8 cross-clinic disclosures; 58/60 supported answer cases; 12/12 gaps routed."
+      ],
+      "sha256": "840f2e6d2379f075b431de2d4984d55f08d28ca27f3e829f6f423d19a3ca49b6",
+      "chunk_count": 14,
+      "warnings": [
+        "Original .xls source normalized with LibreOffice; locators describe converted document structure, not printed page numbers.",
+        "Register!B5: using saved formula result, which may be stale."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+[
+  {
+    "id": "audit-atlas-private-link-outage",
+    "question": "During the Atlas pilot, the private network link to the gateway stops working. What should the service do, and can it switch to a public endpoint to keep technicians working?",
+    "expected_status": "answered",
+    "expected_sources": [
+      "atlas_gateway_design.doc"
+    ],
+    "required_terms": [],
+    "forbidden_terms": []
+  },
+  {
+    "id": "audit-beacon-duplicate-cleanup",
+    "question": "For Beacon's Central depot, which identifier fields define a duplicate shipment, which record wins, and what did the quality register report before versus after cleanup?",
+    "expected_status": "answered",
+    "expected_sources": [
+      "beacon_02_data_review.md",
+      "beacon_quality_register.xls"
+    ],
+    "required_terms": [
+      "37"
+    ],
+    "forbidden_terms": []
+  },
+  {
+    "id": "audit-cedar-incident-recovery",
+    "question": "A Cedar access incident has been contained. Who owns client communication, who owns triage, and which two checks must pass before access is restored?",
+    "expected_status": "answered",
+    "expected_sources": [
+      "cedar_operations.ppt"
+    ],
+    "required_terms": [
+      "Ines",
+      "Elliot",
+      "Theo"
+    ],
+    "forbidden_terms": []
+  },
+  {
+    "id": "audit-cedar-policy-owner-and-gap",
+    "question": "Who approves changes to Cedar's published policies, and are temporary contractors eligible for paid parental leave under the approved handbook?",
+    "expected_status": "partial",
+    "expected_sources": [
+      "cedar_access_design.pptx",
+      "cedar_privacy_review.doc"
+    ],
+    "required_terms": [
+      "Nina"
+    ],
+    "forbidden_terms": []
+  },
+  {
+    "id": "audit-atlas-provider-contract-gap",
+    "question": "What binding retention period and deletion guarantee are in Atlas's executed model-provider addendum?",
+    "expected_status": "needs_routing",
+    "expected_sources": [
+      "atlas_03_security_gate.md"
+    ],
+    "required_terms": [],
+    "forbidden_terms": []
+  },
+  {
+    "id": "audit-unrelated-recipe",
+    "question": "What ingredients and oven temperature should I use to bake a lemon tart?",
+    "expected_status": "needs_routing",
+    "expected_sources": [],
+    "required_terms": [],
+    "forbidden_terms": []
+  }
+]

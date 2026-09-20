@@ -1,0 +1,5 @@
+{
+  "status": "aborted",
+  "error_category": "raw_ssl_transport",
+  "reason": "A Python3.14 ssl.SSLError BAD_RECORD_MAC escaped the HTTPX wrapper. No aggregate result persisted. Subsequent provider patch handles raw SSL transport errors with bounded retries and preserves certificate validation."
+}

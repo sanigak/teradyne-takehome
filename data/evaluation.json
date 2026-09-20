@@ -1,0 +1,157 @@
+[
+  {
+    "id": "atlas-current-date",
+    "question": "What is Atlas Forge's current launch date, and did it change from the kickoff assumption?",
+    "expected_status": "answered",
+    "expected_sources": [
+      "atlas_03_security_gate.md"
+    ],
+    "required_terms": [
+      "November",
+      "October"
+    ],
+    "forbidden_terms": []
+  },
+  {
+    "id": "beacon-conflicting-threshold",
+    "question": "What is Beacon Route's approved forecast error threshold? Explain the conflicting acceptance records and who must resolve them.",
+    "expected_status": "partial",
+    "expected_sources": [
+      "beacon_03_pilot_acceptance.md",
+      "beacon_dispatch_handoff.xlsx"
+    ],
+    "required_terms": [
+      "10",
+      "12",
+      "Priya"
+    ],
+    "forbidden_terms": []
+  },
+  {
+    "id": "beacon-vendor-gap",
+    "question": "What is the weather vendor's signed deletion SLA for Beacon Route?",
+    "expected_status": "needs_routing",
+    "expected_sources": [
+      "beacon_02_data_review.md",
+      "beacon_quality_register.xls"
+    ],
+    "required_terms": [],
+    "forbidden_terms": [
+      "72 hours"
+    ]
+  },
+  {
+    "id": "atlas-logging",
+    "question": "How long can Atlas keep diagnostic logs, where are they kept, and may they contain raw prompts?",
+    "expected_status": "answered",
+    "expected_sources": [
+      "atlas_security_addendum.docx"
+    ],
+    "required_terms": [
+      "30",
+      "Frankfurt"
+    ],
+    "forbidden_terms": []
+  },
+  {
+    "id": "atlas-mixed-release",
+    "question": "Explain Atlas's staged rollout and the latency stop condition, including whether the workbook contains measured latency.",
+    "expected_status": "answered",
+    "expected_sources": [
+      "atlas_release_plan.pptx",
+      "atlas_latency_budget.xlsx"
+    ],
+    "required_terms": [
+      "5",
+      "25"
+    ],
+    "forbidden_terms": []
+  },
+  {
+    "id": "atlas-window-gap",
+    "question": "What exact rollback maintenance window has the Atlas factory approved?",
+    "expected_status": "needs_routing",
+    "expected_sources": [
+      "atlas_04_delivery.md"
+    ],
+    "required_terms": [],
+    "forbidden_terms": [
+      "02:00-04:00"
+    ]
+  },
+  {
+    "id": "beacon-price-change",
+    "question": "Which Beacon pilot price is signed, and why does an older proposal have a different figure?",
+    "expected_status": "answered",
+    "expected_sources": [
+      "beacon_04_commercial.md",
+      "beacon_commercial_terms.docx"
+    ],
+    "required_terms": [
+      "48",
+      "62"
+    ],
+    "forbidden_terms": []
+  },
+  {
+    "id": "beacon-paraphrase",
+    "question": "If a required feed does not arrive before Beacon's morning planning run, what should the planner receive?",
+    "expected_status": "answered",
+    "expected_sources": [
+      "beacon_dispatch_handoff.xlsx"
+    ],
+    "required_terms": [
+      "baseline",
+      "warning"
+    ],
+    "forbidden_terms": []
+  },
+  {
+    "id": "cedar-retention-change",
+    "question": "Is Cedar's seven-day raw-prompt retention proposal still valid? State the approved rule and its owner.",
+    "expected_status": "answered",
+    "expected_sources": [
+      "cedar_03_validation.md",
+      "cedar_privacy_review.doc"
+    ],
+    "required_terms": [
+      "24",
+      "Nina"
+    ],
+    "forbidden_terms": []
+  },
+  {
+    "id": "cedar-controls",
+    "question": "How does Cedar prevent staff from seeing another clinic's policies, and what happens when identity claims are absent?",
+    "expected_status": "answered",
+    "expected_sources": [
+      "cedar_access_design.pptx"
+    ],
+    "required_terms": [
+      "clinic",
+      "policy"
+    ],
+    "forbidden_terms": []
+  },
+  {
+    "id": "unrelated-abstention",
+    "question": "What was the winning time in the 1978 lunar yacht championship?",
+    "expected_status": "needs_routing",
+    "expected_sources": [],
+    "required_terms": [],
+    "forbidden_terms": []
+  },
+  {
+    "id": "cedar-eval-results",
+    "question": "What were Cedar's offline policy evaluation results for missing policies and cross-clinic access attempts?",
+    "expected_status": "answered",
+    "expected_sources": [
+      "cedar_eval_scores.xls"
+    ],
+    "required_terms": [
+      "12",
+      "8"
+    ],
+    "forbidden_terms": []
+  }
+]
