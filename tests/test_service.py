@@ -107,7 +107,7 @@ async def test_incomplete_verification_is_an_operational_error(settings, store, 
     original = provider.structured
     async def incomplete(schema, system, content, **kwargs):
         if schema is SupportCheck:
-            return SupportCheck(checks=[])
+            return SupportCheck(checks=[], answer_complete=True)
         return await original(schema, system, content, **kwargs)
     provider.structured = incomplete
     with pytest.raises(ProviderError, match="verification response was incomplete"):

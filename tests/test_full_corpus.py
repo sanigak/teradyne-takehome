@@ -34,7 +34,7 @@ async def test_all_24_sources_ingest_with_originals_and_attribution(settings, st
     assert outcomes["failed"] == 0, outcomes
     assert outcomes["ingested"] == 24
     app = create_app(settings, provider=provider)
-    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://testserver") as client:
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://localhost") as client:
         health = (await client.get("/api/health")).json()
         assert health["ready"] is True
         assert health["document_count"] == 24

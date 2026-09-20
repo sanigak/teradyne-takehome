@@ -1,0 +1,106 @@
+{
+  "started_at": "2026-09-20T02:23:31.881Z",
+  "completed_at": "2026-09-20T02:23:43.847Z",
+  "app_url": "http://127.0.0.1:8000",
+  "marker": "Adversarial UI rehearsal 2026-09-20T02-23-31-881Z",
+  "mode": "Live built application; no mocked routes or network responses",
+  "status": "passed",
+  "flows": {
+    "answer_review": {
+      "query_id": "eab6b1ffcf154b28984c69ac1d839629",
+      "question": "What is Atlas Forge's current launch date, and did it change from the kickoff assumption?",
+      "status": "answered",
+      "duration_ms": 5046,
+      "first_source": {
+        "filename": "atlas_03_security_gate.md",
+        "author": "Theo Haddad",
+        "attendees": [
+          "Theo Haddad",
+          "Maya Chen",
+          "Sofia Ortiz"
+        ],
+        "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+        "document_id": "c937b89c7d214fb6be551b72b191b0de"
+      },
+      "visible_attribution_before_click": true,
+      "evidence_inspected": true,
+      "original_download_filename": "atlas_03_security_gate.md",
+      "original_download_bytes": 1649,
+      "review_id": "00dc3b9b41cf4976a8dc3224a573f7f5",
+      "feedback_id": "00dc3b9b41cf4976a8dc3224a573f7f5",
+      "correction_count": 1,
+      "review_count": 1,
+      "original_snapshot_unchanged": true,
+      "resolved_with_note": true,
+      "resolution_note_survived_navigation": true
+    },
+    "gap_outbox": {
+      "query_id": "d4718394dcc84cc288babbddbd77dc9e",
+      "question": "What is the weather vendor's signed deletion SLA for Beacon Route?",
+      "status": "needs_routing",
+      "duration_ms": 1457,
+      "suggested_recipient": "Emma Laurent",
+      "edited_recipient": "Emma Laurent — vendor follow-up (Adversarial UI rehearsal 2026-09-20T02-23-31-881Z)",
+      "subject": "Adversarial UI rehearsal 2026-09-20T02-23-31-881Z: Beacon signed deletion SLA",
+      "outbox_id": "46227fb2ca28472a85fd559dc675d0ae",
+      "gap_review_id": "223ea2695c6847fea9eaa18a9a91aab9",
+      "outbox_count": 1,
+      "gap_count": 1,
+      "evidence_ids": [
+        "09d99120d77a4c2b8d92c77beab967a5",
+        "534486cbaf054b7db8fcb1aee5604905"
+      ],
+      "all_three_fields_edited_and_persisted": true,
+      "persisted_after_reload": true,
+      "originating_query_snapshot_unchanged": true,
+      "simulated_status": "simulated"
+    }
+  },
+  "browser_errors": [],
+  "browser_console_errors": [],
+  "mutation_requests": [
+    {
+      "method": "POST",
+      "path": "/api/query"
+    },
+    {
+      "method": "POST",
+      "path": "/api/feedback"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/review/00dc3b9b41cf4976a8dc3224a573f7f5"
+    },
+    {
+      "method": "POST",
+      "path": "/api/query"
+    },
+    {
+      "method": "POST",
+      "path": "/api/outbox"
+    }
+  ],
+  "no_real_email": "Application outbox is simulated; no email-delivery action is implemented or exercised.",
+  "health": {
+    "ready": true,
+    "document_count": 24,
+    "chunk_count": 36,
+    "model": "openai/gpt-4.1-mini",
+    "review_model": "openai/gpt-4.1"
+  },
+  "counts_before": {
+    "feedback": 1,
+    "review": 2,
+    "outbox": 1
+  },
+  "counts_after": {
+    "feedback": 2,
+    "review": 4,
+    "outbox": 2
+  },
+  "counts_added": {
+    "feedback": 1,
+    "review": 2,
+    "outbox": 1
+  }
+}

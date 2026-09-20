@@ -18,3 +18,5 @@
 | Public repository submission | Full source, data, tests, instructions, and reusable development artifacts | Clone public repository and run setup |
 
 The outbox deliberately simulates sending, as selected during planning. Real email delivery is not claimed.
+
+Adversarial verification exposed limitations in semantic support judgments despite valid citation IDs and quotations. The final strict development review passed 12 of 15 difficult cases; three findings remain open and visible in quality monitoring. See [the audit](ADVERSARIAL_TESTING.md) and [the hands-on UI/CX queue](UI_REVIEW_QUEUE.md). This map identifies the implemented behavior; it does not certify every possible answer as correct.

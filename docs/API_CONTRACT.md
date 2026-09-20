@@ -2,6 +2,8 @@
 
 All endpoints are same-origin under `/api`. Errors use `{detail: string}` with an appropriate non-2xx status. API credentials never leave the backend.
 
+The local server accepts exact loopback Host names (`localhost`, `127.0.0.1`, `::1`); `ALLOWED_HOSTS` can configure an explicit JSON list. Browser mutations must originate from the same scheme, host, and port. CLI requests without an Origin header remain supported. API bodies are bounded to 64 KiB, including streamed requests. These controls do not add authentication or authorize public hosting.
+
 ## Queries
 
 `POST /query` takes `{question: string}`. Its response is:
@@ -41,6 +43,8 @@ type QueryResult = {
 `GET /health` returns `{configured: boolean, ready: boolean, document_count: number, chunk_count: number, model: string, review_model: string, warnings: string[]}`. Missing credentials or an empty corpus make `ready` false.
 
 `GET /quality` returns `{latest: object|null, alerts: string[]}`. `GET /metrics` returns operational counters and rejection/correction rate. Health remains callable when credentials are absent.
+
+Health warnings name sources excluded because their content attempts to control the answering model. The originals remain downloadable for inspection. A corpus containing only excluded sources is not ready and queries return an operational error rather than creating a knowledge gap. Partial/abstaining response messages identify missing requested components when available. Quality alerts retain unresolved full-suite failures even after a passing daily canary.
 
 ## Extractor boundary
 

@@ -2,6 +2,7 @@ import asyncio
 import json
 from contextlib import asynccontextmanager, suppress
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
@@ -12,9 +13,89 @@ from .config import Settings
 from .evaluation import daily_evaluation_loop, quality
 from .models import Feedback, OutboxDraft, Question, QueryResult, ReviewUpdate
 from .provider import OpenRouter, ProviderError
-from .retrieval import evidence_from_row
+from .retrieval import evidence_from_row, quarantined_documents
 from .service import KnowledgeService
 from .store import Store, encode, identifier, now
+
+
+class LocalRequestBoundary:
+    """Protect the unauthenticated local API from browser rebinding and large bodies."""
+    max_body_bytes = 64 * 1024
+
+    def __init__(self, app, allowed_hosts):
+        self.app = app
+        self.allowed_hosts = {host.lower() for host in allowed_hosts}
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http":
+            return await self.app(scope, receive, send)
+        headers = {}
+        for name, value in scope["headers"]:
+            headers.setdefault(name.lower(), []).append(value.decode("latin-1"))
+
+        async def reject(status, detail):
+            await JSONResponse({"detail": detail}, status_code=status)(scope, receive, send)
+
+        hosts = headers.get(b"host", [])
+        try:
+            if len(hosts) != 1:
+                raise ValueError("Missing or duplicate Host")
+            host = urlsplit("//" + hosts[0])
+            if (host.hostname not in self.allowed_hosts or host.username or host.password
+                    or host.path or host.query or host.fragment):
+                raise ValueError("Untrusted host")
+            port = host.port or (443 if scope.get("scheme") == "https" else 80)
+        except ValueError:
+            return await reject(400, "Untrusted host. Open the workspace using localhost or 127.0.0.1.")
+
+        if scope["method"] in {"POST", "PUT", "PATCH", "DELETE", "OPTIONS"}:
+            origins = headers.get(b"origin", [])
+            try:
+                if len(origins) > 1:
+                    raise ValueError("Duplicate origin")
+                if origins:
+                    origin = urlsplit(origins[0])
+                    origin_port = origin.port or (443 if origin.scheme == "https" else 80)
+                    if (origin.scheme != scope.get("scheme") or origin.hostname != host.hostname
+                            or origin_port != port or origin.path or origin.query or origin.fragment
+                            or origin.username or origin.password):
+                        raise ValueError("Cross-origin request")
+                elif headers.get(b"sec-fetch-site") == ["cross-site"]:
+                    raise ValueError("Cross-site browser request")
+            except ValueError:
+                return await reject(403, "Cross-origin requests are not allowed. Use the workspace's own browser tab.")
+
+        if scope.get("path", "").startswith("/api/"):
+            lengths = headers.get(b"content-length", [])
+            try:
+                if len(lengths) > 1 or (lengths and (not lengths[0].isdigit())):
+                    raise ValueError("Invalid Content-Length")
+                if lengths and int(lengths[0]) > self.max_body_bytes:
+                    return await reject(413, "Request body exceeds the 64 KiB limit. Shorten the submitted text.")
+            except ValueError:
+                return await reject(400, "Invalid request body length.")
+            body = bytearray()
+            while True:
+                message = await receive()
+                if message["type"] == "http.disconnect":
+                    return
+                part = message.get("body", b"")
+                if len(body) + len(part) > self.max_body_bytes:
+                    return await reject(413, "Request body exceeds the 64 KiB limit. Shorten the submitted text.")
+                body.extend(part)
+                if not message.get("more_body", False):
+                    break
+            delivered = False
+
+            async def bounded_receive():
+                nonlocal delivered
+                if not delivered:
+                    delivered = True
+                    return {"type": "http.request", "body": bytes(body), "more_body": False}
+                return await receive()
+
+            return await self.app(scope, bounded_receive, send)
+        return await self.app(scope, receive, send)
 
 
 def create_app(settings: Settings | None = None, *, provider=None):
@@ -34,6 +115,7 @@ def create_app(settings: Settings | None = None, *, provider=None):
         await provider.close()
 
     app = FastAPI(title="AI Consulting Knowledge Workspace", version="0.1.0", lifespan=lifespan)
+    app.add_middleware(LocalRequestBoundary, allowed_hosts=settings.allowed_hosts)
     app.state.store, app.state.service, app.state.settings = store, service, settings
 
     @app.exception_handler(ProviderError)
@@ -56,6 +138,10 @@ def create_app(settings: Settings | None = None, *, provider=None):
             rows = conn.execute("SELECT filename,metadata FROM documents WHERE active=1").fetchall()
             models = {row[0] for row in conn.execute("SELECT DISTINCT c.embedding_model FROM chunks c JOIN documents d ON c.document_id=d.id WHERE d.active=1")}
             outcomes = conn.execute("SELECT payload FROM events WHERE kind='ingestion' ORDER BY id DESC LIMIT 100").fetchall()
+            source_chunks = conn.execute("SELECT c.document_id,c.text,d.filename FROM chunks c JOIN documents d ON d.id=c.document_id WHERE d.active=1").fetchall()
+        quarantined = quarantined_documents(source_chunks)
+        filenames = {row["document_id"]: row["filename"] for row in source_chunks}
+        warnings.extend(f"{filenames[doc_id]}: excluded from answers and routing; " + "; ".join(reasons) for doc_id, reasons in quarantined.items())
         for row in rows:
             warnings.extend(f"{row['filename']}: {warning}" for warning in json.loads(row["metadata"])["warnings"])
         seen = set()
@@ -68,7 +154,7 @@ def create_app(settings: Settings | None = None, *, provider=None):
         model_matches = (not models or models == {settings.openrouter_embedding_model}) and all(json.loads(row["metadata"]).get("embedding_dimensions") == settings.openrouter_embedding_dimensions for row in rows)
         if not model_matches:
             warnings.append("Embedding model or dimensions changed; run python -m app ingest again.")
-        return {"configured": settings.configured, "ready": settings.configured and docs > 0 and model_matches,
+        return {"configured": settings.configured, "ready": settings.configured and docs > len(quarantined) and model_matches,
                 "document_count": docs, "chunk_count": chunks, "model": settings.openrouter_model,
                 "review_model": settings.openrouter_review_model, "warnings": warnings}
 

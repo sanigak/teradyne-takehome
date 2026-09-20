@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     corpus_dir: Path = ROOT / "data" / "corpus"
     evaluation_path: Path = ROOT / "data" / "evaluation.json"
     frontend_dist: Path = ROOT / "frontend" / "dist"
+    allowed_hosts: list[str] = ["localhost", "127.0.0.1", "::1"]
     soffice_path: str | None = None
     daily_evaluation: bool = True
     provider_timeout_seconds: float = 40

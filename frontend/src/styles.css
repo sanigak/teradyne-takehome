@@ -409,6 +409,13 @@ nav {
   border-radius: 5px;
   background: #f7f9f2;
 }
+.status-top.quality-warning,
+.sidebar-status.quality-warning {
+  color: #795816;
+  border: 1px solid #e4cc8e;
+  border-radius: 5px;
+  background: #fff6df;
+}
 .page-content {
   max-width: 1510px;
   padding: 45px 48px 26px;
@@ -2339,17 +2346,24 @@ nav {
   }
   .nav-item {
     justify-content: center;
-    gap: 7px;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
     padding: 12px 6px;
     font-size: 10px;
     border-radius: 6px 6px 0 0;
-    white-space: nowrap;
+    white-space: normal;
   }
   .nav-item svg {
     width: 15px;
   }
   .nav-count {
     margin-left: 0;
+    position: absolute;
+    top: 5px;
+    right: 5px;
     font-size: 8px;
     padding: 1px 4px;
   }

@@ -1,0 +1,175 @@
+{
+  "created_at": "2026-09-20T02:16:53.972863+00:00",
+  "passed": true,
+  "live_provider": "OpenRouter",
+  "enrichment_model": "openai/gpt-4.1-mini",
+  "embedding_model": "openai/text-embedding-3-small",
+  "first_ingestion": {
+    "ingested": 24,
+    "unchanged": 0,
+    "failed": 0,
+    "retired": 0,
+    "skipped": 0
+  },
+  "first_provider_requests": 24,
+  "repeat_ingestion": {
+    "ingested": 0,
+    "unchanged": 24,
+    "failed": 0,
+    "retired": 0,
+    "skipped": 0
+  },
+  "repeat_provider_requests": 0,
+  "active_documents": 24,
+  "active_chunks": 36,
+  "historical_versions_checked": 48,
+  "all_archived_original_hashes_match": true,
+  "archive_failures": [],
+  "previous_document_history_preserved": true,
+  "files": [
+    {
+      "filename": "atlas_01_kickoff.md",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "atlas_02_architecture.md",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "atlas_03_security_gate.md",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "atlas_04_delivery.md",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "beacon_01_discovery.md",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "beacon_02_data_review.md",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "beacon_03_pilot_acceptance.md",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "beacon_04_commercial.md",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "cedar_01_kickoff.md",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "cedar_02_access_review.md",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "cedar_03_validation.md",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "cedar_04_incident_drill.md",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "atlas_security_addendum.docx",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "atlas_gateway_design.doc",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "atlas_release_plan.pptx",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "atlas_latency_budget.xlsx",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "beacon_commercial_terms.docx",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "beacon_pilot_review.ppt",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "beacon_quality_register.xls",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "beacon_dispatch_handoff.xlsx",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "cedar_privacy_review.doc",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "cedar_access_design.pptx",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "cedar_operations.ppt",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    },
+    {
+      "filename": "cedar_eval_scores.xls",
+      "sha256_matches_manifest": true,
+      "attribution_matches_manifest": true,
+      "attribution_matches_previous_version": true
+    }
+  ]
+}

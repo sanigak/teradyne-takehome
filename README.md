@@ -51,6 +51,8 @@ Use `PYTHON=/path/to/python3.14 bash scripts/setup.sh` when necessary. `SOFFICE_
 
 ## Try the workflow
 
+For an ordered hands-on rehearsal, use the [25–40 minute UI/CX review queue](docs/UI_REVIEW_QUEUE.md). The [adversarial testing record](docs/ADVERSARIAL_TESTING.md) separates reproduced failures, fixes, automated checks, and live-model limitations.
+
 1. Ask **“What is Atlas Forge's current launch date, and what changed from kickoff?”** Open a citation to compare source dates and the changed decision.
 2. Ask **“Explain Atlas's staged rollout and latency stop condition, including whether the workbook contains measured latency.”** Inspect the presentation and workbook evidence.
 3. Ask **“What is the weather vendor's signed deletion SLA for Beacon Route?”** Review the missing information and evidence-backed routing, edit the message, and save it to the simulated outbox.
@@ -83,6 +85,8 @@ The committed corpus contains 24 distinct files: 12 Markdown transcripts and two
 The Python service extracts structured locations, preserves author/attendee identities, enriches all formats with the same model instructions, and stores versioned records in SQLite. Full-text retrieval and embeddings retrieve candidate passages. An assessment first checks which requested facts are available without seeing a proposed answer; generation then selects source spans and writes cited claims, followed by a separate support check. Quotations come directly from stored source text. Generation/enrichment use `openai/gpt-4.1-mini`; coverage and verification use configurable `openai/gpt-4.1`, chosen after live testing. Model-based checking reduces errors but is not a proof of factual accuracy.
 
 Original files and query snapshots are retained under `.runtime`. Updating a source creates a new active version without breaking earlier citations. Re-ingestion skips unchanged content under the same extraction, prompt, and model profile. It reports failures per file and keeps previously successful versions available.
+
+An explicit folder ingestion synchronizes that folder: deleted or renamed paths are retired from active retrieval, while their historical evidence and archived downloads remain available. Sources with recognizable instructions aimed at controlling the answering model are excluded from answers and routing, with visible health warnings. This conservative screening is not a general guarantee against poisoned source facts.
 
 Read [architecture and tradeoffs](docs/ARCHITECTURE.md), [evaluation approach](docs/EVALUATION.md), [AI development record](docs/AI_WORKFLOW.md), and the [exercise checklist](docs/EXERCISES.md).
 

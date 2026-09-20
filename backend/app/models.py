@@ -4,7 +4,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class StrictModel(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", strict=True)
 
 
 class Enrichment(StrictModel):
@@ -66,6 +66,7 @@ class ComponentCoverage(StrictModel):
 
 class SupportCheck(StrictModel):
     checks: list[ClaimCheck]
+    answer_complete: bool = Field(description="Whether supported proposed claims address every substantive requested component that the evidence establishes, including qualifications and conflicting alternatives. False when an answer omits an available requested fact.")
 
 
 class CoverageAssessment(StrictModel):

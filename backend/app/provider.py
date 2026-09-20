@@ -1,6 +1,7 @@
 import asyncio
 import json
 import math
+import re
 import ssl
 import time
 from typing import TypeVar
@@ -12,6 +13,20 @@ from .config import Settings
 from .store import Store
 
 T = TypeVar("T", bound=BaseModel)
+
+
+def unique_object(pairs):
+    """Ambiguous duplicate JSON keys must not change a verifier's decision."""
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("Duplicate JSON key")
+        result[key] = value
+    return result
+
+
+def invalid_constant(value):
+    raise ValueError("Non-finite JSON number")
 
 
 class ProviderError(Exception):
@@ -51,24 +66,30 @@ class OpenRouter:
                 if response.status_code == 429 or response.status_code >= 500:
                     retryable = True
                     try:
-                        delay = min(max(float(response.headers.get("retry-after", delay)), delay), 5)
+                        requested_delay = float(response.headers.get("retry-after", delay))
+                        if math.isfinite(requested_delay):
+                            delay = min(max(requested_delay, delay), 5)
                     except ValueError:
                         pass
                     raise ProviderError("OpenRouter is temporarily unavailable or rate limited. Retry shortly.", category="unavailable", status_code=503)
                 if response.is_error:
                     raise ProviderError("OpenRouter rejected the request. Verify configured model names and provider support for structured output.", category="request")
                 try:
-                    data = response.json()
-                except ValueError:
+                    data = response.json(object_pairs_hook=unique_object, parse_constant=invalid_constant)
+                except (ValueError, RecursionError):
                     raise ProviderError("OpenRouter returned an unreadable response. Retry the request.", category="invalid_response") from None
-                if not isinstance(data, dict) or data.get("error"):
+                if not isinstance(data, dict):
+                    raise ProviderError("OpenRouter returned an unreadable response. Retry the request.", category="invalid_response")
+                if data.get("error"):
                     raise ProviderError("OpenRouter returned an error response. Retry or check account and model availability.", category="body_error")
                 usage = data.get("usage")
                 tokens = usage.get("total_tokens", 0) if isinstance(usage, dict) else 0
                 event.update(success=True, total_tokens=tokens if isinstance(tokens, int) and tokens >= 0 else 0)
                 # Only provider IDs, never response text, question content, or credentials.
-                if isinstance(data.get("id"), str):
-                    event["request_id"] = data["id"][:160]
+                request_id = data.get("id")
+                if (isinstance(request_id, str) and re.fullmatch(r"(?:gen|emb)-[A-Za-z0-9_-]{1,150}", request_id)
+                        and self.settings.openrouter_api_key.get_secret_value() not in request_id):
+                    event["request_id"] = request_id
                 return data
             except ssl.SSLCertVerificationError:
                 error = ProviderError("OpenRouter TLS certificate validation failed. Check the system trust configuration and network proxy.", category="tls_verification", status_code=503)
@@ -98,11 +119,18 @@ class OpenRouter:
         }
         data = await self.request("chat/completions", payload)
         try:
+            if not isinstance(data.get("choices"), list) or not data["choices"]:
+                raise ValueError("Missing choices")
             choice = data["choices"][0]
-            if choice.get("finish_reason") in ("length", "error") or choice["message"].get("refusal"):
+            if not isinstance(choice, dict) or not isinstance(choice.get("message"), dict):
+                raise ValueError("Malformed choice")
+            if choice.get("finish_reason") != "stop" or choice["message"].get("refusal"):
                 raise ValueError("Incomplete or refused")
-            return schema.model_validate_json(choice["message"]["content"])
-        except (KeyError, IndexError, TypeError, ValueError, ValidationError):
+            if not isinstance(choice["message"].get("content"), str):
+                raise ValueError("Malformed content")
+            decoded = json.loads(choice["message"]["content"], object_pairs_hook=unique_object, parse_constant=invalid_constant)
+            return schema.model_validate(decoded)
+        except (KeyError, IndexError, TypeError, ValueError, ValidationError, RecursionError):
             self.store.event("validation_failure", {"schema": schema.__name__})
             raise ProviderError("The model returned an invalid or incomplete structured response. Retry the request.", category="invalid_response") from None
 
@@ -111,6 +139,13 @@ class OpenRouter:
             return []
         data = await self.request("embeddings", {"model": self.settings.openrouter_embedding_model, "input": texts, "encoding_format": "float", "dimensions": self.settings.openrouter_embedding_dimensions})
         try:
+            if not isinstance(data.get("data"), list) or any(
+                not isinstance(item, dict) or type(item.get("index")) is not int
+                or not isinstance(item.get("embedding"), list)
+                or any(type(value) not in (int, float) for value in item["embedding"])
+                for item in data["data"]
+            ):
+                raise ValueError("Malformed embedding data")
             entries = sorted(data["data"], key=lambda item: item["index"])
             if [item["index"] for item in entries] != list(range(len(texts))):
                 raise ValueError("Embedding count mismatch")
@@ -119,5 +154,5 @@ class OpenRouter:
             if dimensions != {self.settings.openrouter_embedding_dimensions} or not all(v and all(math.isfinite(x) for x in v) and any(v) for v in vectors):
                 raise ValueError("Invalid embedding")
             return vectors
-        except (KeyError, TypeError, ValueError):
+        except (KeyError, TypeError, ValueError, OverflowError):
             raise ProviderError("The embedding provider returned invalid vectors. Retry the request.", category="invalid_embedding") from None

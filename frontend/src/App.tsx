@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { FormEvent, ReactNode } from "react";
+import type { FormEvent, ReactNode, Ref } from "react";
 import {
   ArrowDownToLine,
   ArrowRight,
@@ -210,11 +210,13 @@ function EvidencePanel({
   evidence,
   onSelect,
   onClose,
+  panelRef,
 }: {
   selection: EvidenceSelection | null;
   evidence: Evidence[];
   onSelect: (e: EvidenceSelection) => void;
   onClose: () => void;
+  panelRef?: Ref<HTMLElement>;
 }) {
   if (!selection)
     return (
@@ -256,7 +258,7 @@ function EvidencePanel({
     );
   const e = selection.evidence;
   return (
-    <aside className="evidence-panel" aria-label="Source evidence">
+    <aside ref={panelRef} tabIndex={-1} className="evidence-panel" aria-label="Source evidence">
       <div className="panel-heading">
         <BookOpen size={17} />
         <h3>Source evidence</h3>
@@ -668,6 +670,10 @@ function ReviewView({
     (item) => filter === "all" || item.status === filter,
   );
   const selected = items.find((item) => item.id === selectedId);
+  useEffect(() => {
+    setNote(selected?.resolution_note || "");
+    setLocalError("");
+  }, [selected?.id]);
   async function resolve() {
     if (!selected) return;
     setBusy(true);
@@ -757,6 +763,7 @@ function ReviewView({
               <button
                 key={item.id}
                 className={`review-row ${selected?.id === item.id ? "active" : ""}`}
+                disabled={busy}
                 onClick={() => {
                   setSelectedId(item.id);
                   setNote(item.resolution_note || "");
@@ -1014,6 +1021,7 @@ export default function App() {
   const [view, setView] = useState<View>("ask");
   const [health, setHealth] = useState<Health | null>(null);
   const [quality, setQuality] = useState<Quality | null>(null);
+  const [qualityError, setQualityError] = useState("");
   const [healthError, setHealthError] = useState("");
   const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
   const [outboxItems, setOutboxItems] = useState<OutboxItem[]>([]);
@@ -1033,40 +1041,69 @@ export default function App() {
   const [showStatus, setShowStatus] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const resultRef = useRef<HTMLDivElement>(null);
+  const evidencePanelRef = useRef<HTMLElement>(null);
+  const evidenceTrigger = useRef<HTMLElement | null>(null);
+  const focusEvidence = useRef(false);
+  const queryGeneration = useRef(0);
+  const statusGeneration = useRef(0);
+  const reviewGeneration = useRef(0);
+  const outboxGeneration = useRef(0);
+
+  function showEvidence(next: EvidenceSelection) {
+    evidenceTrigger.current = document.activeElement as HTMLElement | null;
+    focusEvidence.current = true;
+    setSelection(next);
+  }
+  useEffect(() => {
+    if (selection && focusEvidence.current) {
+      focusEvidence.current = false;
+      evidencePanelRef.current?.focus({ preventScroll: true });
+      evidencePanelRef.current?.scrollIntoView({ block: "start", behavior: "instant" });
+    }
+  }, [selection]);
 
   async function loadStatus() {
+    const generation = ++statusGeneration.current;
     const [h, q] = await Promise.allSettled([
       api<Health>("/health"),
       api<Quality>("/quality"),
     ]);
+    if (generation !== statusGeneration.current) return;
     if (h.status === "fulfilled") {
       setHealth(h.value);
       setHealthError("");
     } else setHealthError((h.reason as Error).message);
-    if (q.status === "fulfilled") setQuality(q.value);
+    if (q.status === "fulfilled") {
+      setQuality(q.value);
+      setQualityError("");
+    } else setQualityError((q.reason as Error).message);
   }
   async function loadReviews() {
+    const generation = ++reviewGeneration.current;
     setReviewLoading(true);
     try {
       const data = await api<{ items: ReviewItem[] }>("/review");
+      if (generation !== reviewGeneration.current) return;
       setReviewItems(data.items);
       setReviewError("");
     } catch (e) {
-      setReviewError((e as Error).message);
+      if (generation === reviewGeneration.current) setReviewError((e as Error).message);
     } finally {
-      setReviewLoading(false);
+      if (generation === reviewGeneration.current) setReviewLoading(false);
     }
   }
   async function loadOutbox() {
+    const generation = ++outboxGeneration.current;
     setOutboxLoading(true);
     try {
       const data = await api<{ items: OutboxItem[] }>("/outbox");
+      if (generation !== outboxGeneration.current) return;
       setOutboxItems(data.items);
       setOutboxError("");
     } catch (e) {
-      setOutboxError((e as Error).message);
+      if (generation === outboxGeneration.current) setOutboxError((e as Error).message);
     } finally {
-      setOutboxLoading(false);
+      if (generation === outboxGeneration.current) setOutboxLoading(false);
     }
   }
   useEffect(() => {
@@ -1107,10 +1144,11 @@ export default function App() {
       window.removeEventListener("keydown", listener);
       previous?.focus();
     };
-  }, [reviewEvidence, showStatus]);
+  }, [!!reviewEvidence, showStatus]);
   async function ask(event: FormEvent) {
     event.preventDefault();
-    if (!question.trim() || loading) return;
+    if (!question.trim() || loading || !health?.ready || healthError) return;
+    const generation = ++queryGeneration.current;
     setLoading(true);
     setQueryError("");
     setResult(null);
@@ -1119,6 +1157,7 @@ export default function App() {
       const answer = await post<QueryResult>("/query", {
         question: question.trim(),
       });
+      if (generation !== queryGeneration.current) return;
       setResult(answer);
       const firstId = answer.claims[0]?.citations[0]?.chunk_id;
       const first =
@@ -1132,12 +1171,13 @@ export default function App() {
       void loadReviews();
       void loadStatus();
     } catch (e) {
-      setQueryError((e as Error).message);
+      if (generation === queryGeneration.current) setQueryError((e as Error).message);
     } finally {
-      setLoading(false);
+      if (generation === queryGeneration.current) setLoading(false);
     }
   }
   async function openQuery(id: string) {
+    const generation = ++queryGeneration.current;
     setLoading(true);
     setQueryError("");
     setView("ask");
@@ -1145,16 +1185,20 @@ export default function App() {
     setSelection(null);
     try {
       const answer = await api<QueryResult>(`/query/${encodeURIComponent(id)}`);
+      if (generation !== queryGeneration.current) return;
       setResult(answer);
       setQuestion(answer.question);
       if (answer.evidence[0]) setSelection({ evidence: answer.evidence[0] });
     } catch (e) {
-      setQueryError((e as Error).message);
+      if (generation === queryGeneration.current) setQueryError((e as Error).message);
     } finally {
-      setLoading(false);
+      if (generation === queryGeneration.current) setLoading(false);
     }
   }
   const pending = reviewItems.filter((item) => item.status === "open").length;
+  const hasQualityWarning = !!qualityError || (quality?.alerts.length || 0) > 0;
+  const statusReady = !!health?.ready && !healthError && !hasQualityWarning;
+  const visibleQualityWarning = !!health?.ready && !healthError && hasQualityWarning;
   const statusText = healthError
     ? "Server unavailable"
     : !health
@@ -1163,7 +1207,11 @@ export default function App() {
         ? "Setup needed"
         : !health.ready
           ? "Ingestion needed"
-          : "Workspace ready";
+          : qualityError
+            ? "Evaluation unavailable"
+            : hasQualityWarning
+              ? "Quality needs review"
+              : "Workspace ready";
   const displayWarning = health && !health.ready;
   return (
     <div className="app-shell">
@@ -1230,9 +1278,9 @@ export default function App() {
           <p>Your team’s knowledge, connected to the work ahead.</p>
           <span className="note-rule" />
         </div>
-        <button className="sidebar-status" onClick={() => setShowStatus(true)}>
+        <button className={`sidebar-status ${visibleQualityWarning ? "quality-warning" : ""}`} onClick={() => setShowStatus(true)}>
           <span
-            className={`status-dot ${health?.ready && !healthError ? "ready" : "warning"}`}
+            className={`status-dot ${statusReady ? "ready" : "warning"}`}
           />
           <span>{statusText}</span>
           <ChevronRight size={14} />
@@ -1253,11 +1301,11 @@ export default function App() {
             <ChevronRight size={13} />
             <strong>{viewTitles[view]}</strong>
           </div>
-          <button className="status-top" onClick={() => setShowStatus(true)}>
+          <button className={`status-top ${visibleQualityWarning ? "quality-warning" : ""}`} onClick={() => setShowStatus(true)}>
             <span
-              className={`status-dot ${health?.ready && !healthError ? "ready" : "warning"}`}
+              className={`status-dot ${statusReady ? "ready" : "warning"}`}
             />
-            {statusText}
+            <span aria-live="polite">{statusText}</span>
             <ChevronDown size={12} />
           </button>
         </header>
@@ -1439,7 +1487,7 @@ export default function App() {
                         </span>
                       </div>
                       <h2>{result.question}</h2>
-                      <AnswerClaims result={result} onEvidence={setSelection} />
+                      <AnswerClaims result={result} onEvidence={showEvidence} />
                       {result.evidence.length > 0 && (
                         <div className="all-evidence">
                           <span className="eyebrow">Explore the evidence</span>
@@ -1448,7 +1496,7 @@ export default function App() {
                               <button
                                 key={e.chunk_id}
                                 className={`evidence-tab ${selection?.evidence.chunk_id === e.chunk_id ? "active" : ""}`}
-                                onClick={() => setSelection({ evidence: e })}
+                                onClick={() => showEvidence({ evidence: e })}
                               >
                                 <span>{i + 1}</span>
                                 <FileText size={13} />
@@ -1471,7 +1519,7 @@ export default function App() {
                         key={result.query_id}
                         result={result}
                         onSaved={() => void loadOutbox()}
-                        onEvidence={setSelection}
+                        onEvidence={showEvidence}
                       />
                     )}
                     <button
@@ -1490,10 +1538,14 @@ export default function App() {
                 )}
               </div>
               <EvidencePanel
+                panelRef={evidencePanelRef}
                 selection={selection}
                 evidence={result?.evidence || []}
                 onSelect={setSelection}
-                onClose={() => setSelection(null)}
+                onClose={() => {
+                  setSelection(null);
+                  evidenceTrigger.current?.focus();
+                }}
               />
             </div>
             <footer className="page-footer">
@@ -1564,6 +1616,7 @@ export default function App() {
             </div>
             <h2 id="status-title">{statusText}</h2>
             {healthError && <ErrorNotice>{healthError}</ErrorNotice>}
+            {qualityError && <ErrorNotice>Evaluation status is unavailable: {qualityError}</ErrorNotice>}
             {health && (
               <>
                 <div className="health-stats">
@@ -1577,6 +1630,10 @@ export default function App() {
                   </div>
                 </div>
                 <dl className="source-metadata">
+                  <div>
+                    <dt>Service</dt>
+                    <dd>{health.ready ? "Ready to answer" : "Setup or ingestion needed"}</dd>
+                  </div>
                   <div>
                     <dt>Model</dt>
                     <dd>{health.model}</dd>
@@ -1592,7 +1649,9 @@ export default function App() {
                   <div>
                     <dt>Evaluation</dt>
                     <dd>
-                      {quality?.latest
+                      {qualityError
+                        ? "Evaluation status unavailable"
+                        : quality?.latest
                         ? "Results available"
                         : "No evaluation has run yet"}
                     </dd>

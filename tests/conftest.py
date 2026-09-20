@@ -42,7 +42,7 @@ class FakeProvider:
                 raise ProviderError("Temporary provider failure.", category="unavailable", status_code=503)
             return Enrichment(domain="Atlas release governance", priority=None, decisions=["Retain audit logs for 90 days."], action_items=["Marcus Chen: document rollback procedure."])
         if schema is SupportCheck:
-            return SupportCheck(checks=[{"claim_index": claim["claim_index"], "supported": self.supported} for claim in content["claims"]])
+            return SupportCheck(checks=[{"claim_index": claim["claim_index"], "supported": self.supported} for claim in content["claims"]], answer_complete=True)
         if schema is CoverageAssessment:
             ids = [] if self.mode == "unrelated" else [content["evidence"][0]["chunk_id"]]
             missing = self.mode in {"unrelated", "gap"}

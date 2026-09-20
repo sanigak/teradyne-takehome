@@ -14,11 +14,14 @@ import re
 import shutil
 import subprocess
 import tempfile
+import zipfile
 
 
 SUPPORTED_EXTENSIONS = frozenset({".md", ".doc", ".docx", ".ppt", ".pptx", ".xls", ".xlsx"})
 LEGACY_TARGETS = {".doc": "docx", ".ppt": "pptx", ".xls": "xlsx"}
 _DEFAULT_AUTHORS = {"", "unknown", "unknown author", "author", "python-docx", "python-pptx", "openpyxl", "microsoft office user", "microsoft office", "microsoft word", "microsoft excel", "microsoft powerpoint", "libreoffice", "user"}
+MAX_SOURCE_BYTES = 32 * 1024 * 1024
+MAX_OFFICE_EXPANDED_BYTES = 64 * 1024 * 1024
 
 
 @dataclass
@@ -149,15 +152,21 @@ def _sheets(path: Path) -> tuple[list[ExtractedChunk], str | None, str | None, l
     warnings: list[str] = []
     try:
         for sheet in workbook.worksheets:
-            for row in sheet.iter_rows():
+            # OOXML can declare an enormous used range with only a few bytes of
+            # XML. Refuse it before iter_rows allocates/visits that range.
+            if (sheet.max_row or 0) * (sheet.max_column or 0) > 200_000:
+                raise ExtractionError(f"Sheet '{sheet.title}' exceeds the 200,000-cell extraction limit; remove unused formatting or split the workbook.")
+            # Stream the formula and cached-value views together. Random cell
+            # lookups in read-only worksheets repeatedly reparse earlier rows.
+            for row, cached_row in zip(sheet.iter_rows(), cached[sheet.title].iter_rows()):
                 values: list[str] = []
                 coordinates: list[str] = []
-                for cell in row:
+                for cell, cached_cell in zip(row, cached_row):
                     if cell.value is None:
                         continue
                     value = cell.value
                     if cell.data_type == "f":
-                        saved_value = cached[sheet.title][cell.coordinate].value
+                        saved_value = cached_cell.value
                         if saved_value is None:
                             warnings.append(f"{sheet.title}!{cell.coordinate}: formula has no cached value; formula text retained and not evaluated.")
                             value = f"{value} [cached result unavailable]"
@@ -175,13 +184,26 @@ def _sheets(path: Path) -> tuple[list[ExtractedChunk], str | None, str | None, l
 
 
 def _metadata(chunks: list[ExtractedChunk], title: str | None, core_author: str | None, stem: str, warnings: list[str]) -> ExtractedDocument:
-    # Authored headers are more reliable than filesystem times or Office creation dates.
-    # Cell-address labels allow the same visible metadata convention in spreadsheets.
+    # Only the leading metadata block is attribution. A quoted Author: line in
+    # meeting dialogue, tables, notes, or a later slide cannot become an expert.
+    # Cell-address labels allow the same visible convention in spreadsheets.
     source = "\n".join(chunk.text for chunk in chunks[:30])
     source = re.sub(r"(?m)^\$?[A-Z]{1,3}\$?\d+:\s*", "", source)
     fields: dict[str, str] = {}
-    for match in re.finditer(r"(?mi)^(?:\*\*)?(Title|Author|Date|Attendees)(?:\*\*)?\s*:\s*([^\n|]+)", source):
-        fields.setdefault(match.group(1).lower(), match.group(2).strip().strip("*"))
+    normalize_title = lambda value: re.sub(r"[^\w]", "", value or "").casefold()
+    for index, line in enumerate(source.splitlines()):
+        if not line.strip():
+            continue
+        match = re.fullmatch(r"(?:\*\*)?(Title|Author|Date|Attendees|Client|Domain|Priority|Classification)(?:\*\*)?\s*:\s*([^|]+)", line.strip(), flags=re.I)
+        if match:
+            key, value = match.group(1).lower(), match.group(2).strip().strip("*")
+            if key in fields and fields[key] != value:
+                warnings.append(f"Conflicting {key} values in source metadata; first header value retained.")
+            fields.setdefault(key, value)
+        elif index == 0 and (line.startswith("# ") or (title and normalize_title(line) == normalize_title(title))):
+            continue
+        else:
+            break
     author = fields.get("author") or core_author
     if author and author.strip().lower() in _DEFAULT_AUTHORS:
         author = None
@@ -211,6 +233,13 @@ def extract_document(path: Path, *, soffice_path: str | None = None) -> Extracte
     if not path.is_file():
         raise ExtractionError(f"Source file does not exist: {path.name}")
     try:
+        if path.stat().st_size > MAX_SOURCE_BYTES:
+            raise ExtractionError("Source exceeds the 32 MiB extraction limit; split the source before ingestion.")
+        if extension in {".docx", ".pptx", ".xlsx"}:
+            with zipfile.ZipFile(path) as archive:
+                entries = archive.infolist()
+                if len(entries) > 10_000 or sum(entry.file_size for entry in entries) > MAX_OFFICE_EXPANDED_BYTES:
+                    raise ExtractionError("Office archive exceeds extraction limits (10,000 entries / 64 MiB expanded); split the source before ingestion.")
         if extension in LEGACY_TARGETS:
             executable = discover_soffice(soffice_path)
             target = LEGACY_TARGETS[extension]

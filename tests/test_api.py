@@ -12,7 +12,7 @@ from conftest import SOURCE_TEXT
 @pytest.fixture
 async def client(settings, provider):
     app = create_app(settings, provider=provider)
-    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://testserver") as client:
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://localhost") as client:
         yield client
 
 
@@ -20,7 +20,7 @@ async def test_missing_key_health_and_actionable_query(tmp_path, provider):
     from app.config import Settings
     settings = Settings(_env_file=None, openrouter_api_key="", data_dir=tmp_path, daily_evaluation=False)
     app = create_app(settings, provider=provider)
-    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://testserver") as client:
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://localhost") as client:
         health = await client.get("/api/health")
         assert health.status_code == 200
         assert not health.json()["configured"]

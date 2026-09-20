@@ -10,10 +10,20 @@ from .store import encode, identifier, now
 
 def quality(store):
     with store.connect() as conn:
-        row = conn.execute("SELECT payload FROM evaluations ORDER BY created_at DESC LIMIT 1").fetchone()
+        rows = conn.execute("SELECT payload FROM evaluations ORDER BY created_at DESC").fetchall()
         failure = conn.execute("SELECT created_at FROM events WHERE kind='evaluation_failure' ORDER BY id DESC LIMIT 1").fetchone()
-    latest = json.loads(row[0]) if row else None
-    alerts = list(latest.get("alerts", [])) if latest else ["No evaluation has run yet. Run python -m app evaluate after ingestion."]
+    reports = [json.loads(row[0]) for row in rows]
+    latest = reports[0] if reports else None
+    alerts = [] if latest else ["No evaluation has run yet. Run python -m app evaluate after ingestion."]
+    seen = set()
+    for report in reports:
+        # A passing three-question canary must not clear an unresolved full-suite
+        # failure, nor may an unrelated audit hide failures in the main suite.
+        key = (report.get("dataset", "default"), report.get("suite", "held-out-full"))
+        if key in seen:
+            continue
+        seen.add(key)
+        alerts.extend(f"{key[0]} ({key[1]}): {alert}" for alert in report.get("alerts", []))
     if failure and (not latest or failure[0] > latest["created_at"]):
         alerts.append("Scheduled evaluation failed. Check the evaluation dataset and run python -m app evaluate to diagnose it.")
     return {"latest": latest, "alerts": alerts}
@@ -50,12 +60,28 @@ async def evaluate(service, *, limit=None):
             citations = [citation for claim in answer.claims for citation in claim.citations]
             valid_citations = sum(citation.chunk_id in evidence and normalized(citation.quote) in normalized(evidence[citation.chunk_id].text) for citation in citations)
             status_match = answer.status == case["expected_status"]
-            passed = status_match and not forbidden_found and (recall is None or recall == 1) and (fact_coverage is None or fact_coverage == 1) and valid_citations == len(citations)
+            behavioral_failures = []
+            if answer.status in {"answered", "partial"} and not answer.claims:
+                behavioral_failures.append("Substantive answer has no claims.")
+            if answer.status == "needs_routing" and answer.claims:
+                behavioral_failures.append("Abstention contains substantive claims.")
+            if case.get("expect_no_evidence") and answer.evidence:
+                behavioral_failures.append("Unrelated question exposed irrelevant evidence.")
+            if case.get("expect_no_routing") and answer.routing:
+                behavioral_failures.append("Unrelated question suggested a recipient.")
+            expected_people = set(case.get("expected_routing_any", []))
+            if expected_people and not expected_people.intersection(route.recipient for route in answer.routing):
+                behavioral_failures.append("Expected source-backed routing recipient is absent.")
+            for route in answer.routing:
+                if not route.evidence_ids or any(chunk_id not in evidence or route.recipient not in {evidence[chunk_id].author, *evidence[chunk_id].attendees} for chunk_id in route.evidence_ids):
+                    behavioral_failures.append("Routing recipient is not attributed to every referenced source.")
+            passed = status_match and not forbidden_found and not behavioral_failures and (recall is None or recall == 1) and (fact_coverage is None or fact_coverage == 1) and valid_citations == len(citations)
             records.append({"id": case["id"], "query_id": answer.query_id, "passed": passed, "status": answer.status,
                             "expected_status": case["expected_status"], "status_match": status_match,
                             "retrieval_recall": recall, "expected_fact_coverage": fact_coverage,
                             "citation_count": len(citations), "valid_citations": valid_citations,
-                            "verified_claim_count": len(answer.claims), "forbidden_terms_found": forbidden_found})
+                            "verified_claim_count": len(answer.claims), "forbidden_terms_found": forbidden_found,
+                            "behavioral_failures": behavioral_failures})
         except ProviderError as exc:
             records.append({"id": case["id"], "passed": False, "expected_status": case["expected_status"], "status_match": False,
                             "retrieval_recall": 0 if case.get("expected_sources") else None,

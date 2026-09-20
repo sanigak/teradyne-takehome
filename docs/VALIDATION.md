@@ -2,6 +2,14 @@
 
 Validation took place on Windows with Python 3.14.7, Node.js 24.19.0, and LibreOffice 26.8.0.3. Tool installations, rendered QA pages, runtime data, and test artifacts are excluded from Git.
 
+## Subsequent adversarial audit
+
+The later audit supersedes the earlier test counts below: **314 Python tests passed, 1 skipped** in 145.71 seconds; **28 Chromium browser tests passed** and the production TypeScript/Vite build passed. The Windows skip requires symlink creation privileges and is not counted as a pass. All real Office formats were exercised with LibreOffice. The complete [adversarial record](ADVERSARIAL_TESTING.md) identifies reproduced defects, fixes, and remaining semantic failures.
+
+Final automatic live results were **12/12** for the original regression set, **6/6** for the earlier audit set, **15/15** for the new adversarial set, and **2/2** for the malicious-source rerun. The 6-case and injection runs preceded the final bounded-support-repair addition; the 12- and 15-case runs exercised it. The independent Codex agent's inspection of the final 15 answers was **12/15**, with three open citation/scope findings. These are not independently human-labeled accuracy results. The support-reviewer control experiment also retained false positives. The semantic report is persisted in `/api/quality` and produces a visible amber quality badge; passing automated checks do not clear it.
+
+Both real UI flows passed without fixtures, including the original-file download, correction/resolution, edited simulated send, reload persistence, and unchanged snapshots. Live reingestion preserved all 24 source identities, 36 chunks, and 48 archived versions; repeating it required zero provider calls. Refer to [the review queue](UI_REVIEW_QUEUE.md) for the user's separate hands-on checks.
+
 ## Completed
 
 - Python runtime dependencies installed from the checked-in requirements and the application installed as an editable package.
