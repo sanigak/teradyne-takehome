@@ -140,7 +140,28 @@ def _slides(path: Path) -> tuple[list[ExtractedChunk], str | None, str | None, l
             if notes is not None:
                 _append(chunks, notes.text, f"Slide {index}, speaker notes")
     props = presentation.core_properties
-    return chunks, props.title or None, props.author or None, []
+    title = props.title or None
+    if presentation.slides and (not title or title.strip().casefold() == "powerpoint presentation"):
+        first_slide = presentation.slides[0]
+        title_shape = first_slide.shapes.title
+        if title_shape is not None and title_shape.text.strip():
+            title = title_shape.text.strip()
+        else:
+            # Some LibreOffice versions discard legacy PPT core properties and
+            # convert title textboxes to ordinary auto-shapes. Recognize a
+            # visibly styled title followed immediately by the metadata block;
+            # arbitrary opening body text must not be skipped as a title.
+            text_shapes = [shape for shape in first_slide.shapes if shape.has_text_frame and shape.text.strip()]
+            if len(text_shapes) >= 2:
+                heading, header = text_shapes[:2]
+                sizes = [font.size.pt for paragraph in heading.text_frame.paragraphs
+                         for font in [paragraph.font, *(run.font for run in paragraph.runs)] if font.size is not None]
+                if ("\n" not in heading.text.strip() and len(heading.text.strip()) <= 250
+                        and heading.top < header.top and heading.top < presentation.slide_height / 3
+                        and sizes and max(sizes) >= 24
+                        and re.match(r"^(?:Title|Author|Date|Attendees)\s*:", header.text.strip(), re.I)):
+                    title = heading.text.strip()
+    return chunks, title, props.author or None, []
 
 
 def _sheets(path: Path) -> tuple[list[ExtractedChunk], str | None, str | None, list[str]]:
@@ -187,7 +208,10 @@ def _metadata(chunks: list[ExtractedChunk], title: str | None, core_author: str 
     # Only the leading metadata block is attribution. A quoted Author: line in
     # meeting dialogue, tables, notes, or a later slide cannot become an expert.
     # Cell-address labels allow the same visible convention in spreadsheets.
-    source = "\n".join(chunk.text for chunk in chunks[:30])
+    header_chunks = chunks[:30]
+    if chunks and chunks[0].locator.startswith("Slide "):
+        header_chunks = [chunk for chunk in header_chunks if chunk.locator.startswith("Slide 1,") and "speaker notes" not in chunk.locator]
+    source = "\n".join(chunk.text for chunk in header_chunks)
     source = re.sub(r"(?m)^\$?[A-Z]{1,3}\$?\d+:\s*", "", source)
     fields: dict[str, str] = {}
     normalize_title = lambda value: re.sub(r"[^\w]", "", value or "").casefold()

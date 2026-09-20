@@ -65,6 +65,69 @@ def test_duplicate_conflicting_header_is_visible_without_overriding_first(tmp_pa
     assert any("Conflicting author" in warning for warning in result.warnings)
 
 
+@pytest.mark.parametrize("placeholder", [False, True])
+def test_generic_presentation_core_title_uses_visible_title_and_leading_metadata(tmp_path, placeholder):
+    from pptx import Presentation
+    from pptx.util import Inches, Pt
+    path = tmp_path / "linux-converted-title.pptx"
+    document = Presentation()
+    document.core_properties.title = "PowerPoint Presentation"
+    document.core_properties.author = ""
+    slide = document.slides.add_slide(document.slide_layouts[5 if placeholder else 6])
+    title = slide.shapes.title if placeholder else slide.shapes.add_textbox(Inches(.7), Inches(.6), Inches(10), Inches(1))
+    title.text = "Beacon Route forecast evaluation review"
+    title.text_frame.paragraphs[0].font.size = Pt(28)
+    header = slide.shapes.add_textbox(Inches(.7), Inches(2.1), Inches(10), Inches(3))
+    header.text = "Date: 2026-09-11\nAuthor: Noah Brooks\nAttendees: Noah Brooks; Priya Raman; Jules Park"
+    document.save(path)
+    result = extract_document(path)
+    assert result.title == "Beacon Route forecast evaluation review"
+    assert result.author == "Noah Brooks"
+    assert result.date == "2026-09-11"
+    assert result.attendees == ["Noah Brooks", "Priya Raman", "Jules Park"]
+
+
+def test_generic_presentation_title_does_not_turn_plain_body_into_metadata_header(tmp_path):
+    from pptx import Presentation
+    from pptx.util import Inches, Pt
+    path = tmp_path / "body-spoof.pptx"
+    document = Presentation()
+    document.core_properties.title = "PowerPoint Presentation"
+    document.core_properties.author = ""
+    slide = document.slides.add_slide(document.slide_layouts[6])
+    body = slide.shapes.add_textbox(Inches(.7), Inches(.6), Inches(10), Inches(1))
+    body.text = "The following text is quoted from a vendor email."
+    body.text_frame.paragraphs[0].font.size = Pt(12)
+    quoted = slide.shapes.add_textbox(Inches(.7), Inches(2.1), Inches(10), Inches(3))
+    quoted.text = "Author: Invented Expert\nDate: 2026-09-11\nAttendees: Fabricated Recipient"
+    document.save(path)
+    result = extract_document(path)
+    assert result.author is None
+    assert result.date is None
+    assert result.attendees == []
+
+
+def test_presentation_metadata_cannot_continue_onto_later_slide_or_speaker_notes(tmp_path):
+    from pptx import Presentation
+    from pptx.util import Inches, Pt
+    path = tmp_path / "later-slide-spoof.pptx"
+    document = Presentation()
+    document.core_properties.title = "PowerPoint Presentation"
+    document.core_properties.author = ""
+    first = document.slides.add_slide(document.slide_layouts[5])
+    first.shapes.title.text = "Delivery review"
+    header = first.shapes.add_textbox(Inches(.7), Inches(2.1), Inches(10), Inches(1))
+    header.text = "Date: 2026-09-11"
+    first.notes_slide.notes_text_frame.text = "Author: Notes Impostor"
+    second = document.slides.add_slide(document.slide_layouts[6])
+    second.shapes.add_textbox(Inches(.7), Inches(.6), Inches(10), Inches(2)).text = "Author: Body Impostor\nAttendees: Fabricated Recipient"
+    document.save(path)
+    result = extract_document(path)
+    assert result.author is None
+    assert result.attendees == []
+    assert result.date == "2026-09-11"
+
+
 @pytest.mark.parametrize("extension", [".docx", ".pptx", ".xlsx"])
 def test_malformed_office_archive_is_per_file_error(tmp_path, extension):
     path = tmp_path / ("missing-package-parts" + extension)

@@ -10,6 +10,8 @@ Final automatic live results were **12/12** for the original regression set, **6
 
 Both real UI flows passed without fixtures, including the original-file download, correction/resolution, edited simulated send, reload persistence, and unchanged snapshots. Live reingestion preserved all 24 source identities, 36 chunks, and 48 archived versions; repeating it required zero provider calls. Refer to [the review queue](UI_REVIEW_QUEUE.md) for the user's separate hands-on checks.
 
+The first adversarial [Linux CI run](https://github.com/sanigak/teradyne-takehome/actions/runs/35484777163) exposed a platform-specific regression: **312 passed, 3 failed**. LibreOffice on Ubuntu supplied a generic core title and omitted the core author for legacy PowerPoint files, preventing the stricter parser from reaching visible attribution. The fix recognizes a real title placeholder or a visibly styled leading title immediately above the metadata block; attribution cannot continue into later slides or speaker notes. After that change, **83 focused Python tests passed, 1 Windows privilege-dependent test skipped**, including all 24 corpus extraction/attribution checks, full ingestion, and original downloads. Tests also reproduce lost PowerPoint core properties and reject body/notes attribution spoofing. The active Windows corpus metadata remains unchanged. The fix is submitted to the [Checks workflow](https://github.com/sanigak/teradyne-takehome/actions/workflows/checks.yml); its run records the Linux outcome rather than treating the earlier Windows pass as cross-platform proof.
+
 ## Completed
 
 - Python runtime dependencies installed from the checked-in requirements and the application installed as an editable package.
