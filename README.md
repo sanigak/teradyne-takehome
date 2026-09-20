@@ -51,7 +51,7 @@ Use `PYTHON=/path/to/python3.14 bash scripts/setup.sh` when necessary. `SOFFICE_
 
 ## Try the workflow
 
-For an ordered hands-on rehearsal, use the [25–40 minute UI/CX review queue](docs/UI_REVIEW_QUEUE.md). The [adversarial testing record](docs/ADVERSARIAL_TESTING.md) separates reproduced failures, fixes, automated checks, and live-model limitations.
+For an ordered hands-on rehearsal, use the [30–45 minute UI/CX review queue](docs/UI_REVIEW_QUEUE.md). The [adversarial testing record](docs/ADVERSARIAL_TESTING.md) separates reproduced failures, fixes, automated checks, and live-model limitations.
 
 1. Ask **“What is Atlas Forge's current launch date, and what changed from kickoff?”** Open a citation to compare source dates and the changed decision.
 2. Ask **“Explain Atlas's staged rollout and latency stop condition, including whether the workbook contains measured latency.”** Inspect the presentation and workbook evidence.
