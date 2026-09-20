@@ -1,0 +1,421 @@
+{
+  "packets": [
+    "docs/evaluation-results/model-benchmark-enrichment-initial-blinded.json",
+    "docs/evaluation-results/model-benchmark-enrichment-completion-blinded.json"
+  ],
+  "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+  "reviewer": "Codex independent ingestion/provenance agent",
+  "review_mode": "Manual source-by-source review before inspecting model mapping, automated verdicts, latency, or costs.",
+  "standard": "Explicit Decision/Action commitments and labeled acceptance rules must survive. Conditional draft requirements must retain draft scope. Source background measurements and standing ownership are not automatically mandatory action items. No invented tasks, completed outcomes, approvals, or globally broadened conditional policies. Topic must match the source and priority must match its stated value.",
+  "checks": {
+    "records_reviewed": 48,
+    "passed": 41,
+    "failed": 7,
+    "source_hashes_stable": 48,
+    "attributions_stable": 48,
+    "priorities_stable": 48,
+    "model_mapping_inspected": false,
+    "live_provider_calls": 0
+  },
+  "records": [
+    {
+      "anonymous_id": "answer-b4ba61b0",
+      "filename": "atlas_01_kickoff.md",
+      "pass": false,
+      "reasons": [
+        "Omits the explicit kickoff decision that an unanswered question should go to an accountable manual owner."
+      ]
+    },
+    {
+      "anonymous_id": "answer-00fd0a3d",
+      "filename": "atlas_01_kickoff.md",
+      "pass": true,
+      "reasons": [
+        "Captures manual-only scope, owner routing, explicit dated actions, and security/identity prerequisites. Does not promote the provisional launch date into a commitment."
+      ]
+    },
+    {
+      "anonymous_id": "answer-946f2414",
+      "filename": "atlas_02_architecture.md",
+      "pass": false,
+      "reasons": [
+        "Global 'Application logs retain only a diagnostic code and request ID' loses the redaction-blocked-request scope."
+      ]
+    },
+    {
+      "anonymous_id": "answer-b9aec2ae",
+      "filename": "atlas_02_architecture.md",
+      "pass": false,
+      "reasons": [
+        "Global 'The system will retain only a diagnostic code and request ID in application logs' loses blocked-request scope even though the preceding separate entry discusses blocked-request UX."
+      ]
+    },
+    {
+      "anonymous_id": "answer-61662b69",
+      "filename": "atlas_03_security_gate.md",
+      "pass": true,
+      "reasons": [
+        "Captures revised conditional launch date, supersession, all three release gates, redaction patch/replay deadline, sponsor notice, and request for unconfirmed provider contract."
+      ]
+    },
+    {
+      "anonymous_id": "answer-e75b046d",
+      "filename": "atlas_03_security_gate.md",
+      "pass": true,
+      "reasons": [
+        "Preserves the revised date and security dependencies across decisions/actions; captures explicit owners, patch deadline, sponsor notice, and pending-contract request."
+      ]
+    },
+    {
+      "anonymous_id": "answer-2fdea137",
+      "filename": "atlas_04_delivery.md",
+      "pass": true,
+      "reasons": [
+        "Captures staged canary decision and budget conditions, identity escalation deadline, stop-condition deck commitment, and request/routing for unapproved rollback window."
+      ]
+    },
+    {
+      "anonymous_id": "answer-fd975327",
+      "filename": "atlas_04_delivery.md",
+      "pass": true,
+      "reasons": [
+        "Captures staged canary decision and conditions, identity escalation deadline, stop-condition deck commitment, and unapproved-window request/routing."
+      ]
+    },
+    {
+      "anonymous_id": "answer-9e5f94e1",
+      "filename": "atlas_gateway_design.doc",
+      "pass": true,
+      "reasons": [
+        "Faithfully extracts the identity and fail-closed policy requirements; no provisioning assertion is invented."
+      ],
+      "ambiguities": [
+        "Standing ownership descriptions were not treated as mandatory new tasks when no explicit action or future commitment is stated; they remain in source provenance."
+      ]
+    },
+    {
+      "anonymous_id": "answer-73396ae2",
+      "filename": "atlas_gateway_design.doc",
+      "pass": true,
+      "reasons": [
+        "Faithfully extracts read-only identity, fail-closed and endpoint-outage requirements, plus source-backed standing ownership. No provisioning assertion."
+      ]
+    },
+    {
+      "anonymous_id": "answer-65234968",
+      "filename": "atlas_latency_budget.xlsx",
+      "pass": true,
+      "reasons": [
+        "Preserves strictly-below 2500ms release threshold and Sofia's performance verification ownership; does not describe planning allocations as measured latency."
+      ]
+    },
+    {
+      "anonymous_id": "answer-012ab66c",
+      "filename": "atlas_latency_budget.xlsx",
+      "pass": true,
+      "reasons": [
+        "Preserves strictly-below 2500ms release threshold and verification ownership; no fabricated measurement."
+      ]
+    },
+    {
+      "anonymous_id": "answer-f33fcf4a",
+      "filename": "atlas_release_plan.pptx",
+      "pass": true,
+      "reasons": [
+        "Captures conditional launch, staged planned rollout, inclusive latency stop, error-window stop, unauthorized immediate stop, and rollback responsibilities. Does not assert a maintenance window was approved."
+      ]
+    },
+    {
+      "anonymous_id": "answer-55491880",
+      "filename": "atlas_release_plan.pptx",
+      "pass": true,
+      "reasons": [
+        "Preserves planned conditional rollout, all exact stop boundaries, named responsibilities, and unapproved operating-window status."
+      ]
+    },
+    {
+      "anonymous_id": "answer-7b8b5b37",
+      "filename": "atlas_security_addendum.docx",
+      "pass": true,
+      "reasons": [
+        "Preserves complete diagnostic allowlist/prohibitions,30-day Frankfurt retention, daily deletion, owners, and conditional security gate. No signed-provider-contract invention."
+      ]
+    },
+    {
+      "anonymous_id": "answer-85300d97",
+      "filename": "atlas_security_addendum.docx",
+      "pass": true,
+      "reasons": [
+        "Preserves logging policy,30-day Frankfurt retention,daily deletion,owners,and all three launch prerequisites."
+      ]
+    },
+    {
+      "anonymous_id": "answer-476c7c2d",
+      "filename": "beacon_01_discovery.md",
+      "pass": true,
+      "reasons": [
+        "Captures batch/manual/no-dispatch decision, planner rejection option, feed profiling deadline, conditional SOW negotiation,and missing-holiday handling."
+      ]
+    },
+    {
+      "anonymous_id": "answer-1822d926",
+      "filename": "beacon_01_discovery.md",
+      "pass": true,
+      "reasons": [
+        "Captures all explicit pilot decisions and dated/conditional actions; correctly retains missing-holiday non-invention rule."
+      ]
+    },
+    {
+      "anonymous_id": "answer-53ef0d78",
+      "filename": "beacon_02_data_review.md",
+      "pass": true,
+      "reasons": [
+        "Captures explicit Central verification gate, continued North evaluation, static-vendor fallback and activation condition, dated sample/test work, holiday validation,contract request,and measurement logging."
+      ]
+    },
+    {
+      "anonymous_id": "answer-3549d3a3",
+      "filename": "beacon_02_data_review.md",
+      "pass": true,
+      "reasons": [
+        "Captures composite deduplication rule,Central/North split,contract-dependent feed activation,and all explicit work commitments and dates."
+      ]
+    },
+    {
+      "anonymous_id": "answer-6aeec740",
+      "filename": "beacon_03_pilot_acceptance.md",
+      "pass": true,
+      "reasons": [
+        "Captures full conjunctive acceptance policy,manual approval/gap explanation,holdout isolation,workbook deadline,five rehearsals,and separate commercial gate."
+      ]
+    },
+    {
+      "anonymous_id": "answer-e046de4a",
+      "filename": "beacon_03_pilot_acceptance.md",
+      "pass": true,
+      "reasons": [
+        "Captures both explicit acceptance/manual-approval decisions including fallback explanations,and both explicit dated/work-count actions. Background measurements are appropriately not turned into decisions."
+      ]
+    },
+    {
+      "anonymous_id": "answer-5300a88b",
+      "filename": "beacon_04_commercial.md",
+      "pass": true,
+      "reasons": [
+        "Preserves signed-vs-unsigned price/scope,excluded depot/dispatch,priced change request,unreconciled acceptance limits with owner,and scope-summary/vendor-clarification actions."
+      ]
+    },
+    {
+      "anonymous_id": "answer-084f98ba",
+      "filename": "beacon_04_commercial.md",
+      "pass": true,
+      "reasons": [
+        "Captures explicit depot/dispatch/change-request decisions and clarification/circulation/resolution actions without claiming the pilot signature settles vendor terms."
+      ]
+    },
+    {
+      "anonymous_id": "answer-d9fd924e",
+      "filename": "beacon_commercial_terms.docx",
+      "pass": true,
+      "reasons": [
+        "Retains unsigned/unaccepted proposal scope and the conditional requirement to revise scope/price if reducing depots; does not invent an accepted purchase commitment."
+      ]
+    },
+    {
+      "anonymous_id": "answer-49558d0b",
+      "filename": "beacon_commercial_terms.docx",
+      "pass": false,
+      "reasons": [
+        "Both lists are empty, omitting the explicit conditional requirement that a reduction to two depots requires revised scope and price. It should be captured with draft/proposal scope, not promoted to an approved purchase."
+      ]
+    },
+    {
+      "anonymous_id": "answer-115ed9a6",
+      "filename": "beacon_dispatch_handoff.xlsx",
+      "pass": true,
+      "reasons": [
+        "Captures labeled handoff acceptance requirement and every row's action/owner/trigger,including manual staffing and signed-term vendor gate."
+      ],
+      "ambiguities": [
+        "Drops the source's explicit 'differs from September11 approval' annotation. It does not assert reconciliation or supersession, but preserving this conflict notice would make the metadata safer to read alone."
+      ]
+    },
+    {
+      "anonymous_id": "answer-a52ab66c",
+      "filename": "beacon_dispatch_handoff.xlsx",
+      "pass": true,
+      "reasons": [
+        "Preserves no-dispatch boundary,the explicitly conflicting approved handoff threshold,and all required actions/owners/triggers."
+      ]
+    },
+    {
+      "anonymous_id": "answer-6d3eb03e",
+      "filename": "beacon_pilot_review.ppt",
+      "pass": true,
+      "reasons": [
+        "Captures all acceptance thresholds,timing,fallback,manual-approval and dispatch-boundary policies. No offline observation is invented as a business outcome."
+      ]
+    },
+    {
+      "anonymous_id": "answer-b4d29cab",
+      "filename": "beacon_pilot_review.ppt",
+      "pass": true,
+      "reasons": [
+        "Captures all pilot acceptance/human-control policies and separate commercial/vendor gates,with source-backed responsibilities."
+      ]
+    },
+    {
+      "anonymous_id": "answer-e50b11c0",
+      "filename": "beacon_quality_register.xls",
+      "pass": true,
+      "reasons": [
+        "Correctly extracts labeled acceptance rules and the explicit holiday-validation deadline; observed sample values are not recast as targets."
+      ]
+    },
+    {
+      "anonymous_id": "answer-fd7177ad",
+      "filename": "beacon_quality_register.xls",
+      "pass": false,
+      "reasons": [
+        "Empty decisions omit labeled acceptance rules: zero duplicate shipment IDs using shipment ID plus depot,at least12 complete history weeks,and signed terms before the ongoing vendor feed. Only ownership and holiday-validation work survive."
+      ]
+    },
+    {
+      "anonymous_id": "answer-9a079f76",
+      "filename": "cedar_01_kickoff.md",
+      "pass": true,
+      "reasons": [
+        "Captures explicit administrative-clinic scope and missing-policy escalation; preserves pending draft retention and source-backed safety/access/evaluation commitments."
+      ]
+    },
+    {
+      "anonymous_id": "answer-19004b95",
+      "filename": "cedar_01_kickoff.md",
+      "pass": true,
+      "reasons": [
+        "Captures explicit administrative-clinic scope,owner escalation and no substitute policy; added tasks preserve draft retention and source-required safeguards."
+      ]
+    },
+    {
+      "anonymous_id": "answer-4369c767",
+      "filename": "cedar_02_access_review.md",
+      "pass": true,
+      "reasons": [
+        "Captures fail-closed/no-global-fallback and human policy approval,plus all explicit dated tests and retained evidence requirements."
+      ]
+    },
+    {
+      "anonymous_id": "answer-0c268ea4",
+      "filename": "cedar_02_access_review.md",
+      "pass": true,
+      "reasons": [
+        "Captures explicit fail-closed/no-global-fallback decision and all dated identity-test/evidence-record commitments with source ownership."
+      ]
+    },
+    {
+      "anonymous_id": "answer-f15fbe1c",
+      "filename": "cedar_03_validation.md",
+      "pass": true,
+      "reasons": [
+        "Captures complete approved retention/superseded-draft distinction,analytics boundary,labeled acceptance rules,and deletion/monitoring/eligibility-routing commitments."
+      ]
+    },
+    {
+      "anonymous_id": "answer-01e8b9fd",
+      "filename": "cedar_03_validation.md",
+      "pass": true,
+      "reasons": [
+        "Captures raw-prompt and counter retention separately,draft supersession,all acceptance rules,and explicit deletion/monitoring/owner-routing work."
+      ]
+    },
+    {
+      "anonymous_id": "answer-9c889a5c",
+      "filename": "cedar_04_incident_drill.md",
+      "pass": true,
+      "reasons": [
+        "Captures all explicit containment/privacy decisions,conditional restoration,and worksheet/evidence/coverage-routing actions without claiming an observed real breach or contractual response time."
+      ],
+      "ambiguities": [
+        "Decision entries omit the tabletop label retained in the source's deterministic title. They describe decisions/procedures rather than asserting a real incident occurred; explicitly prefixing tabletop would be clearer."
+      ]
+    },
+    {
+      "anonymous_id": "answer-4d124ff3",
+      "filename": "cedar_04_incident_drill.md",
+      "pass": true,
+      "reasons": [
+        "Captures explicit containment/privacy decisions,conditional restoration,and worksheet/evidence/coverage-routing work; added ownership matches source."
+      ],
+      "ambiguities": [
+        "The deterministic source title supplies tabletop context; decision entries should ideally repeat it to prevent standalone misreading, but they do not assert an actual breach."
+      ]
+    },
+    {
+      "anonymous_id": "answer-b475e290",
+      "filename": "cedar_access_design.pptx",
+      "pass": true,
+      "reasons": [
+        "Preserves two identity filters before ranking/context,all deny-access triggers,no global fallback,human policy approval,and review rather than silent source rewriting."
+      ]
+    },
+    {
+      "anonymous_id": "answer-f36c2643",
+      "filename": "cedar_access_design.pptx",
+      "pass": true,
+      "reasons": [
+        "Preserves filter timing and both dimensions,all fail-closed triggers,no global fallback,and human review/approval boundary."
+      ]
+    },
+    {
+      "anonymous_id": "answer-dab3bb11",
+      "filename": "cedar_eval_scores.xls",
+      "pass": false,
+      "reasons": [
+        "Empty decisions omit the expressly labeled acceptance thresholds: at least95% supported claims,all known gaps routed,and zero disclosures. These are policy requirements distinct from observed results."
+      ]
+    },
+    {
+      "anonymous_id": "answer-f862691c",
+      "filename": "cedar_eval_scores.xls",
+      "pass": false,
+      "reasons": [
+        "Empty decisions omit labeled acceptance thresholds for supported claims,routing all known gaps,and zero cross-clinic disclosures. The source is not merely background measurements."
+      ]
+    },
+    {
+      "anonymous_id": "answer-85732af3",
+      "filename": "cedar_operations.ppt",
+      "pass": true,
+      "reasons": [
+        "Captures conditional suspected-disclosure containment,redacted evidence,restoration gates,source-backed owners,and contractual-coverage routing without inventing an SLA."
+      ],
+      "ambiguities": [
+        "Explicit tabletop/non-real-incident framing is not repeated in the output; no actual incident or measured guarantee is claimed."
+      ]
+    },
+    {
+      "anonymous_id": "answer-2d9a8946",
+      "filename": "cedar_operations.ppt",
+      "pass": true,
+      "reasons": [
+        "Captures conditional containment/restoration,owners,coverage routing,and explicit prohibition on describing the drill as real."
+      ]
+    },
+    {
+      "anonymous_id": "answer-5f599e0b",
+      "filename": "cedar_privacy_review.doc",
+      "pass": true,
+      "reasons": [
+        "Captures patient-record exclusion,redaction-before-model and no raw-prompt analytics policies; preserves future retention decision and unresolved eligibility ownership rather than approving seven days."
+      ]
+    },
+    {
+      "anonymous_id": "answer-2f7b404d",
+      "filename": "cedar_privacy_review.doc",
+      "pass": true,
+      "reasons": [
+        "Captures data-use limits and redaction-before-model work; clearly leaves retention for future review and eligibility for owner clarification."
+      ]
+    }
+  ]
+}

@@ -3,6 +3,9 @@
 *.md text eol=lf
 *.py text eol=lf
 *.json text eol=lf
+# Evaluation records contain byte-level SHA bindings; preserve captured bytes.
+data/model_evaluation_gold.json -text
+docs/evaluation-results/*.json -text
 *.yml text eol=lf
 *.doc binary
 *.docx binary

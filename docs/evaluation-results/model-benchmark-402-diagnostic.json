@@ -1,0 +1,40 @@
+{
+  "created_at": "2026-09-20T17:27:32.032428+00:00",
+  "purpose": "One authorized exact-configuration coverage replay after402; no full-answer rerun.",
+  "model": "openai/gpt-6-astra",
+  "case_id": "inclusive-stop-boundary",
+  "result": {
+    "coverage": [
+      {
+        "requested_component": "Whether the Atlas rollout should pause or continue at exactly 2.5 seconds p95 latency, according to the runbook.",
+        "provided_value": "Pause. The runbook requires pausing when p95 end-to-end latency is 2.5 seconds or greater, so exactly 2.5 seconds triggers the stop condition.",
+        "evidence_state": "present",
+        "supporting_chunk_ids": [
+          "6a7562079f064f00936a7f15d4510227"
+        ]
+      }
+    ],
+    "relevant_chunk_ids": [
+      "6a7562079f064f00936a7f15d4510227",
+      "dbc78539646f47428ba13f4142e424da",
+      "ca7f41c9ecde4cd4b956c1bbf98f6ab5"
+    ]
+  },
+  "diagnostics": [
+    {
+      "http_status": 200,
+      "message": "",
+      "limit_source": null,
+      "reason": null
+    }
+  ],
+  "attempts": 1,
+  "spend": {
+    "limit_usd": 40.0,
+    "accounted_usd": 14.07528,
+    "reserved_for_followup_usd": 5,
+    "reported_cost_usd": 12.963313,
+    "attempts": 501,
+    "unknown_cost_attempts": 4
+  }
+}

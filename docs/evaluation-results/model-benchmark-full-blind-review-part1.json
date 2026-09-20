@@ -1,0 +1,394 @@
+{
+  "packet": "docs/evaluation-results/model-benchmark-full-blinded-part1.json",
+  "packet_sha256": "662bdcb487ccb21918f0b7a0211249f8c42aa1f49b29e8999f4e31a69d5cd044",
+  "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+  "reviewer": "Codex root agent",
+  "review_mode": "Manual own-quotation semantic review before inspecting model mappings, automatic verdicts, latency or cost. Table-header interpretation independently adjudicated by ingestion agent.",
+  "standard": "Frozen required facts, own-citation entailment including source conditions, completeness, appropriate status and relevant source-backed routing. Correct stored author/date metadata may establish attribution. Uncited neighboring prose or headers cannot establish added factual claims.",
+  "checks": {
+    "records_reviewed": 45,
+    "completed_answers": 44,
+    "passed": 40,
+    "failed": 5,
+    "semantic_failures": 4,
+    "operational_failures": 1,
+    "selected_quotations_checked": 216,
+    "routing_recipients_checked": 33,
+    "invalid_citation_ids_or_nonmatching_quotations": 0,
+    "unattributed_routing_recipients": 0,
+    "model_mapping_inspected": false,
+    "live_provider_calls": 0
+  },
+  "answers": [
+    {
+      "anonymous_id": "answer-61cbf3d3",
+      "case_id": "audit-beacon-duplicate-cleanup",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Composite shipment/depot key, newest timestamp, and 37 to 0 cleanup are supported; header is selected."
+    },
+    {
+      "anonymous_id": "answer-24774d3d",
+      "case_id": "beacon-vendor-gap",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Vendor signature is explicitly unknown and Emma is a relevant documented owner."
+    },
+    {
+      "anonymous_id": "answer-15c4606a",
+      "case_id": "cedar-retention-change",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Superseded seven-day draft, approved 24 hours, Nina ownership and 30-day redacted counters are supported."
+    },
+    {
+      "anonymous_id": "answer-03eae065",
+      "case_id": "beacon-vendor-gap",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "No vendor signature invented; documented commercial owner is suggested."
+    },
+    {
+      "anonymous_id": "answer-f5c08286",
+      "case_id": "atlas-mixed-release",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "All three rollout stages and durations, inclusive latency stop boundary, and planning-only workbook interpretation are supported. Relevant additional launch/security context is supported."
+    },
+    {
+      "anonymous_id": "answer-86b6d59d",
+      "case_id": "cedar-controls",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Pre-context filtering, token claims and no global fallback are supported; test observation is not generalized into a universal guarantee."
+    },
+    {
+      "anonymous_id": "answer-e7a7367a",
+      "case_id": "beacon-price-change",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Signed two-depot USD48000 versus unsigned three-depot USD62000 is correctly explained and cited."
+    },
+    {
+      "anonymous_id": "answer-1ade0347",
+      "case_id": "cedar-retention-change",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Approved retention change, superseded draft and final owner are supported."
+    },
+    {
+      "anonymous_id": "answer-ec923ae7",
+      "case_id": "beacon-conflicting-threshold",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Both 12 and 10 percent approvals, unresolved discrepancy and Priya responsibility are supported."
+    },
+    {
+      "anonymous_id": "answer-efe9ce92",
+      "case_id": "beacon-paraphrase",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Seasonal fallback by06:00 with missing-input and depot warning plus human approval are supported."
+    },
+    {
+      "anonymous_id": "answer-715af5a7",
+      "case_id": "audit-atlas-private-link-outage",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Private-route availability error and no unapproved public fallback are supported."
+    },
+    {
+      "anonymous_id": "answer-75e8db7f",
+      "case_id": "cedar-eval-results",
+      "pass": false,
+      "failure_kind": "semantic",
+      "failures": [
+        "Base results are correct, but claims0/1 add acceptance-threshold comparisons without selecting the header identifying column D as Acceptance threshold."
+      ],
+      "supported": "Base factual results and exact quote IDs/text are valid; the additional acceptance comparison is unsupported by its selected quotes."
+    },
+    {
+      "anonymous_id": "answer-50c08efe",
+      "case_id": "atlas-current-date",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Conditional November2 target and superseded October15 date are supported."
+    },
+    {
+      "anonymous_id": "answer-b187ab44",
+      "case_id": "atlas-logging",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Thirty-day Frankfurt diagnostics and raw-prompt prohibition are supported; the blocked-request quote is not used to invent a global two-field rule."
+    },
+    {
+      "anonymous_id": "answer-33ca2b20",
+      "case_id": "unrelated-abstention",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Unrelated query correctly has no claims, evidence or invented recipient."
+    },
+    {
+      "anonymous_id": "answer-bf174130",
+      "case_id": "atlas-window-gap",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Exact approved rollback window is absent; Maya/Liam are supported contacts, with Sofia a relevant technical rollback owner."
+    },
+    {
+      "anonymous_id": "answer-3bb3024f",
+      "case_id": "beacon-vendor-gap",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Missing vendor signature is handled as a knowledge gap with source-backed recipients."
+    },
+    {
+      "anonymous_id": "answer-40321495",
+      "case_id": "atlas-current-date",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Conditional current launch target and superseded date are correctly established."
+    },
+    {
+      "anonymous_id": "answer-36ec4ec6",
+      "case_id": "audit-cedar-policy-owner-and-gap",
+      "pass": false,
+      "failure_kind": "operational",
+      "failures": [
+        "No completed answer: invalid_verification reported unknown coverage evidence. Operational failure, not a semantic pass."
+      ],
+      "supported": ""
+    },
+    {
+      "anonymous_id": "answer-1df77e54",
+      "case_id": "beacon-paraphrase",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Missing-feed paraphrase is answered with the supported seasonal fallback and warning behavior."
+    },
+    {
+      "anonymous_id": "answer-a9d51300",
+      "case_id": "atlas-current-date",
+      "pass": false,
+      "failure_kind": "semantic",
+      "failures": [
+        "All requested launch-date facts are correctly supported, but the answer is falsely partial and asks for clarification. Its first routing reason concerns diagnostic retention/deletion alerts rather than the launch decision."
+      ],
+      "supported": "Returned factual claims are correctly supported; failure concerns answer status and unnecessary clarification."
+    },
+    {
+      "anonymous_id": "answer-8e10330a",
+      "case_id": "atlas-mixed-release",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Rollout percentages/durations, inclusive latency stop and planning-only workbook interpretation are supported."
+    },
+    {
+      "anonymous_id": "answer-0e1d281e",
+      "case_id": "audit-atlas-private-link-outage",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Unavailable private route does not authorize an unapproved public endpoint."
+    },
+    {
+      "anonymous_id": "answer-c65d7d4d",
+      "case_id": "cedar-controls",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Access controls and scoped test observation are supported; an explicit acceptance statement is quoted here, unlike the table-header failures."
+    },
+    {
+      "anonymous_id": "answer-133b29a5",
+      "case_id": "audit-beacon-duplicate-cleanup",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Composite key/newest timestamp and explicit 37-before/0-after data-row wording are supported without needing column interpretation."
+    },
+    {
+      "anonymous_id": "answer-c96d23e1",
+      "case_id": "beacon-paraphrase",
+      "pass": false,
+      "failure_kind": "semantic",
+      "failures": [
+        "All requested missing-feed fallback and warning facts are correctly supported, but the answer is falsely partial with no actual missing fact or conflict established for this question."
+      ],
+      "supported": "Returned factual claims are correctly supported; failure concerns answer status and unnecessary clarification."
+    },
+    {
+      "anonymous_id": "answer-61586fe7",
+      "case_id": "audit-cedar-incident-recovery",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Client communication/triage owners and both recovery checks are correctly separated and supported."
+    },
+    {
+      "anonymous_id": "answer-301c32a8",
+      "case_id": "beacon-price-change",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Signed price, previous estimate and reduction in depot scope are supported."
+    },
+    {
+      "anonymous_id": "answer-5228bb0b",
+      "case_id": "cedar-eval-results",
+      "pass": false,
+      "failure_kind": "semantic",
+      "failures": [
+        "Base results are correct, but added acceptance-threshold comparisons rely on the uncited table header to interpret column D."
+      ],
+      "supported": "Base factual results and exact quote IDs/text are valid; the additional acceptance comparison is unsupported by its selected quotes."
+    },
+    {
+      "anonymous_id": "answer-4fe0c189",
+      "case_id": "cedar-controls",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Access-control protocol and zero disclosures across eight offline attempts are supported; no uncited acceptance-threshold comparison is added."
+    },
+    {
+      "anonymous_id": "answer-f26f03a9",
+      "case_id": "audit-cedar-incident-recovery",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Ines communication, Elliot triage, revoked-group regression and independent Theo review are supported."
+    },
+    {
+      "anonymous_id": "answer-407276d8",
+      "case_id": "atlas-window-gap",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Exact factory rollback window is absent; documented responsible contacts are suggested."
+    },
+    {
+      "anonymous_id": "answer-92c8adf6",
+      "case_id": "atlas-logging",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Thirty-day Frankfurt retention, prohibited raw prompts and four permitted diagnostic fields are supported."
+    },
+    {
+      "anonymous_id": "answer-6cfe2388",
+      "case_id": "unrelated-abstention",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Unrelated query correctly has no factual claims, evidence or invented expert."
+    },
+    {
+      "anonymous_id": "answer-11f009ae",
+      "case_id": "cedar-retention-change",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Seven-day proposal is correctly superseded by24hours, with Nina owning final privacy decision."
+    },
+    {
+      "anonymous_id": "answer-c7aaeaa7",
+      "case_id": "atlas-mixed-release",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Complete rollout stages, strict release target/inclusive stop, and absence of measured workbook latency are supported. Additional dated context has its own evidence."
+    },
+    {
+      "anonymous_id": "answer-3978a728",
+      "case_id": "atlas-window-gap",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Exact approved window is missing; source-backed rollback contacts are appropriate."
+    },
+    {
+      "anonymous_id": "answer-919a037b",
+      "case_id": "beacon-conflicting-threshold",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Both conflicting approvals, no reconciled threshold and Priya resolution responsibility are supported."
+    },
+    {
+      "anonymous_id": "answer-b73b4958",
+      "case_id": "beacon-conflicting-threshold",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Conflicting approved thresholds and their dates are preserved; later handoff is not silently treated as resolved truth."
+    },
+    {
+      "anonymous_id": "answer-e172508f",
+      "case_id": "audit-unrelated-recipe",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Unrelated recipe query yields no recipe, irrelevant evidence or invented colleague."
+    },
+    {
+      "anonymous_id": "answer-f6a0577c",
+      "case_id": "audit-cedar-incident-recovery",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Communication/triage ownership and both restoration gates are supported."
+    },
+    {
+      "anonymous_id": "answer-dcace41a",
+      "case_id": "beacon-price-change",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Signed two-depot price versus unsigned three-depot proposal and scope reduction are supported."
+    },
+    {
+      "anonymous_id": "answer-12de79a2",
+      "case_id": "atlas-logging",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Thirty-day Frankfurt retention and no original/raw prompt logging are supported; no global two-field limit invented."
+    },
+    {
+      "anonymous_id": "answer-5e2ab7fd",
+      "case_id": "unrelated-abstention",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Unrelated lunar query correctly abstains with no evidence or recipients."
+    },
+    {
+      "anonymous_id": "answer-53311cb4",
+      "case_id": "audit-beacon-duplicate-cleanup",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Duplicate composite key, newest record and 37-before/0-after cleanup observation are supported."
+    }
+  ]
+}

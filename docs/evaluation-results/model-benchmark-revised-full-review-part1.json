@@ -1,0 +1,142 @@
+{
+  "packet": "docs/evaluation-results/model-benchmark-revised-full-blinded-part1.json",
+  "packet_sha256": "8bf356397ac754b2a475214be1311ba03158ed7d198772a82d6ca5bc1f267596",
+  "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+  "reviewer": "Codex root agent",
+  "review_mode": "Independent semantic regression adjudication against frozen gold and each claim's own quotations. Packet hides model names, timings, costs and automatic verdicts, but the selected recipe is known from coordination; this is not fully model-blind comparative selection or human ground truth.",
+  "standard": "All requested facts, exact own-quotation entailment including source conditions and table context, appropriate status, and relevant attributable routing. Dates/authorship may use stored metadata; uncited neighboring text cannot add facts.",
+  "checks": {
+    "records_reviewed": 15,
+    "completed_answers": 15,
+    "passed": 15,
+    "failed": 0,
+    "selected_quotations_checked": 109,
+    "routing_recipients_checked": 9,
+    "routing_source_associations_checked": 31,
+    "invalid_citations": 0,
+    "invalid_routing_associations": 0,
+    "live_provider_calls": 0
+  },
+  "answers": [
+    {
+      "anonymous_id": "answer-f8c54009",
+      "case_id": "beacon-vendor-gap",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Signed deletion duration is explicitly absent; no duration is invented. Emma is first with the quoted commercial follow-up; alternatives are relevant meeting participants."
+    },
+    {
+      "anonymous_id": "answer-61d54909",
+      "case_id": "beacon-price-change",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Signed two-depot USD48000 versus unsigned three-depot USD62000, named depots, tax exclusion and supersession are supported by each claim's own selected quotes."
+    },
+    {
+      "anonymous_id": "answer-32e36450",
+      "case_id": "beacon-paraphrase",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Seasonal fallback by06:00, freshness information and visible missing-input/depot warning are supported; selected workbook header identifies required action."
+    },
+    {
+      "anonymous_id": "answer-aeffa630",
+      "case_id": "audit-cedar-incident-recovery",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Ines communication, Elliot triage, revoked-group regression and independent Theo review are separated accurately and cited."
+    },
+    {
+      "anonymous_id": "answer-ee8d50be",
+      "case_id": "atlas-logging",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Thirty-day redacted diagnostics in Frankfurt and raw-prompt prohibition are supported. The conditional architecture passage is not generalized into a two-field global rule."
+    },
+    {
+      "anonymous_id": "answer-9c93d508",
+      "case_id": "audit-beacon-duplicate-cleanup",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Composite shipment/depot key, newest timestamp, and observed37-before/0-after cleanup are supported; the selected table header distinguishes observations from thresholds."
+    },
+    {
+      "anonymous_id": "answer-2c72ed62",
+      "case_id": "audit-atlas-private-link-outage",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "The private-link outage requires an availability error and prohibits unapproved public fallback; complete answered status is appropriate."
+    },
+    {
+      "anonymous_id": "answer-1d734ded",
+      "case_id": "atlas-mixed-release",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "All three rollout stages/durations, conditional security gates, inclusive2.5-second latency stop, and planning-only workbook interpretation are supported. The15-minute window is correctly limited to the error-rate condition. Additional rollout/security context remains relevant; date-specific claims have their own attribution."
+    },
+    {
+      "anonymous_id": "answer-c317b150",
+      "case_id": "unrelated-abstention",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Unrelated lunar query produces no factual claims, evidence, or suggested recipient."
+    },
+    {
+      "anonymous_id": "answer-2cf43a56",
+      "case_id": "cedar-controls",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Pre-ranking/pre-context clinic and policy-group filters use token values; missing claims deny access without global fallback. The restricted-chunk result remains explicitly one named test observation."
+    },
+    {
+      "anonymous_id": "answer-e0fd9d7c",
+      "case_id": "atlas-window-gap",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Exact approved rollback window is absent; no time is invented. Maya/Liam are documented contacts and Sofia is a relevant technical rollback owner."
+    },
+    {
+      "anonymous_id": "answer-2d69acb8",
+      "case_id": "cedar-retention-change",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "September13 decision supersedes the unapproved seven-day draft with24-hour deletion; Nina ownership,30-day redacted counters and excluded analytics identifiers are supported."
+    },
+    {
+      "anonymous_id": "answer-8d697b51",
+      "case_id": "cedar-eval-results",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "All12 missing policies routed and8 cross-clinic attempts with0disclosures are supported. Each acceptance comparison now includes the exact threshold header and complete preceding row context; offline/date/production-limit claim has its own evidence."
+    },
+    {
+      "anonymous_id": "answer-d39ca140",
+      "case_id": "atlas-current-date",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Current November2 target is paired with the explicit security condition and approval prerequisites; provisional October15 and its explicit dated supersession are supported. No deployment completion is asserted."
+    },
+    {
+      "anonymous_id": "answer-6893e47f",
+      "case_id": "beacon-conflicting-threshold",
+      "pass": true,
+      "failure_kind": null,
+      "failures": [],
+      "supported": "Both approved12% and10% records and their dates are supported, with no invented reconciliation. Priya owns resolution; partial status and relevant documented alternatives are appropriate."
+    }
+  ]
+}

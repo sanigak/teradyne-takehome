@@ -1,0 +1,465 @@
+{
+  "created_at": "2026-09-20T17:56:40.337632+00:00",
+  "reviewer": "Independent Codex agent /root/adversarial_ui",
+  "review_type": "Source-by-source semantic review of revised enrichment",
+  "source_packet": "docs/evaluation-results/model-benchmark-revised-enrichment-blinded.json",
+  "source_packet_sha256": "a84517521dd95e4ce2b2a220e225e350c64409a0eb4fba1edd0f63c995e9d72a",
+  "blinding_limitations": "The supplied packet uses anonymous IDs and no model mapping, prices, timings or unblinded result reports were inspected. A preceding coordination message identified the revised candidate family, so this enrichment review was not fully blind to candidate identity.",
+  "method": "Read every full source, frozen decision/action gold and actual enrichment. Check topic and priority, faithful explicit requirements and commitments, conjunctive conditions, exact boundaries, owners/deadlines and draft/pending/historical/rehearsal scope. Background facts and standing roles are not automatically required entries. Independently SHA256-hash all24 canonical original files and re-extract author/date/attendees for all7 formats, including LibreOffice conversion of all6 genuine legacy files; compare each against frozen gold. No provider calls.",
+  "summary": {
+    "total": 24,
+    "passed": 24,
+    "failed": 0,
+    "operational_failures": 0,
+    "original_hash_checks_passed": 24,
+    "author_checks_passed": 24,
+    "date_checks_passed": 24,
+    "attendee_checks_passed": 24,
+    "priority_checks_passed": 24,
+    "nonblocking_categorization_notes": 1
+  },
+  "categorization_notes": [
+    {
+      "anonymous_id": "answer-64192313",
+      "filename": "beacon_03_pilot_acceptance.md",
+      "field": "action_items",
+      "exact_text": "Noah Brooks owns measuring forecast error and freshness for the Beacon Route pilot.",
+      "original_concern": "This is standing ownership alone, which the revised ENRICH_PROMPT explicitly says not to turn into a task; the two actual next steps (workbook and five rehearsals) are otherwise correctly captured.",
+      "adjudication": "Pass with categorization note. The source explicitly assigns this concrete ongoing measuring activity to Noah, and the output retains owns without inventing a new deadline, completed work, or future task. An assigned ongoing activity differs from a job title or role alone. Root supplied this narrower distinction after the initial concern; the independent reviewer agrees. No factual business claim is changed."
+    }
+  ],
+  "records": [
+    {
+      "anonymous_id": "answer-cb4ba6d9",
+      "filename": "cedar_operations.ppt",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves tabletop containment, both recovery prerequisites, Oscar containment responsibility, Ines routing, and the absence of a guaranteed weekend response.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-d12e8bfd",
+      "filename": "beacon_dispatch_handoff.xlsx",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Captures every handoff row requirement, including the approved 10-percent threshold disagreement, manual approval, missing-feed fallback, 06:00 delivery, and conditional vendor agreement work.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-5729df69",
+      "filename": "cedar_eval_scores.xls",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Extracts the four labeled acceptance requirements rather than converting observed outcomes into tasks or production guarantees; frozen offline scope remains explicit.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-4f70974f",
+      "filename": "atlas_04_delivery.md",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Captures the conditional canary sequence, pending verification permission, Liam September16 escalation, exact-stop-condition deck task, and written rollback-window follow-up without inventing an approved window.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-65ad5a42",
+      "filename": "beacon_01_discovery.md",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves manual two-depot batch forecasting, excluded dispatch, 06:00 delivery, required history, Noah profiling deadline, conditional commercial negotiation and missing-holiday handling.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-695ead32",
+      "filename": "beacon_commercial_terms.docx",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves the unsigned and unaccepted proposal status for the conditional scope/price requirement and exclusions, without inventing an accepted fee or signed vendor terms.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-032810d8",
+      "filename": "cedar_02_access_review.md",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Captures fail-closed requirements, pre-ranking identity filtering, human policy review, evaluation evidence retention, and Elliot deadline-bearing test work; standing ownership alone need not be duplicated as a new task.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-ae64d4df",
+      "filename": "atlas_latency_budget.xlsx",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves the strictly-below-2500ms acceptance boundary and Sofia responsibility; component amounts are explicitly planning allocations rather than measured latency.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-7a51839c",
+      "filename": "atlas_01_kickoff.md",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Captures manual-only scope, advisory limits, source redaction/access prerequisites, Frankfurt and tenant labels, deadlines, provisional launch dependency and unassigned-principal blocker without inventing provisioning.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-89f3f341",
+      "filename": "atlas_security_addendum.docx",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Captures every allowed/prohibited logging field, 30-day Frankfurt retention, daily deletion and ownership, and all three launch prerequisites; explicitly leaves the external zero-retention contract unconfirmed.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-e81d4cf1",
+      "filename": "atlas_gateway_design.doc",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves read-only gateway scope, pending production provisioning, deny-before-model behavior, redaction blocking and no unapproved public-endpoint fallback.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-899a1184",
+      "filename": "cedar_access_design.pptx",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves both identity filters, their ordering, expired/revoked/missing-claim fail-closed behavior, Oscar responsibility and Nina publication approval/review boundaries.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-3fb70ab7",
+      "filename": "cedar_03_validation.md",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves approved24-hour raw-prompt deletion versus superseded seven-day draft, separate30-day redacted counters, acceptance requirements, Oscar monitoring work, and the unknown contractor policy routed to Nina.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-45438f69",
+      "filename": "atlas_release_plan.pptx",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves planned canary stages, both exact numerical stop boundaries, immediate unauthorized-retrieval stop and conditional November2 launch; no approved factory window is invented.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-208ed272",
+      "filename": "beacon_02_data_review.md",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Captures composite-key/latest-update deduplication, Central backtest gate, unresolved-vendor feed boundary, Noah and Jules assigned work and deadlines, and measurement-versus-threshold separation.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-423498b6",
+      "filename": "beacon_quality_register.xls",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Extracts each labeled acceptance rule and responsible person while not inventing remediation from historical measured results; Jules missing-annotation work remains explicit.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-9183b515",
+      "filename": "atlas_03_security_gate.md",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves conditional November2 supersession, all three release prerequisites, patch deadline and replay evidence, Theo sign-off and contract request, Maya sponsor communication, and the unconfirmed provider contract.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-1e114023",
+      "filename": "atlas_02_architecture.md",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Correctly limits codes-and-ID-only logging to redaction-blocked requests. Keeps security-gated pilot approval, all redaction requirements, Sofia role-matrix deadline, and the proposed canary pending confirmation.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-3eabe032",
+      "filename": "beacon_pilot_review.ppt",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Captures the12-percent threshold, 06:00 timing, warning plus seasonal fallback, human approval and excluded dispatch, while keeping observed results offline and approvals separate.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-b1ceec09",
+      "filename": "cedar_04_incident_drill.md",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves rehearsal scope, P1 classification, containment and evidence preservation, both restoration prerequisites, Nina approval, Elliot and Oscar follow-ups and Ines contractual routing.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-64192313",
+      "filename": "beacon_03_pilot_acceptance.md",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Captures all conjunctive acceptance conditions, frozen holdout exclusion from training, manual approval, missing-input/depot explanation, Noah workbook deadline and Jules five rehearsals. Ownership-only list placement is noted separately.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-15619b26",
+      "filename": "cedar_privacy_review.doc",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves the unapproved seven-day draft and Nina decision after privacy review, while retaining patient-record exclusion, pre-model redaction, analytics prohibition and unknown contractor eligibility.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-63fac453",
+      "filename": "cedar_01_kickoff.md",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Captures administrative East/Harbor-only scope, no treatment/diagnosis, source and input privacy boundaries, pre-context access filtering, Nina gap escalation and unfinished retention review.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    },
+    {
+      "anonymous_id": "answer-7f4564d3",
+      "filename": "beacon_04_commercial.md",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves signed two-depot price and payment terms versus superseded unsigned estimate, depot exclusions/change request, unreconciled12-versus10 acceptance, Priya resolution task, dated Emma circulation and unanswered vendor SLA.",
+      "findings": [],
+      "verification": {
+        "source_sha256_matches_gold": true,
+        "author_matches_gold": true,
+        "date_matches_gold": true,
+        "attendees_match_gold": true,
+        "enrichment_priority_matches_gold": true,
+        "packet_attribution_stable": true,
+        "packet_source_hash_stable": true
+      }
+    }
+  ]
+}

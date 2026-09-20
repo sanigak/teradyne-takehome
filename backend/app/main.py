@@ -10,7 +10,9 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from .config import Settings
+from .documents_api import create_documents_router
 from .evaluation import daily_evaluation_loop, quality
+from .extractors import MAX_SOURCE_BYTES
 from .models import Feedback, OutboxDraft, Question, QueryResult, ReviewUpdate
 from .provider import OpenRouter, ProviderError
 from .retrieval import evidence_from_row, quarantined_documents
@@ -66,14 +68,29 @@ class LocalRequestBoundary:
                 return await reject(403, "Cross-origin requests are not allowed. Use the workspace's own browser tab.")
 
         if scope.get("path", "").startswith("/api/"):
+            upload = scope["method"] == "POST" and scope.get("path") == "/api/documents/upload"
+            maximum = MAX_SOURCE_BYTES if upload else self.max_body_bytes
+            limit_message = "Upload exceeds the 32 MiB file limit." if upload else "Request body exceeds the 64 KiB limit. Shorten the submitted text."
             lengths = headers.get(b"content-length", [])
             try:
                 if len(lengths) > 1 or (lengths and (not lengths[0].isdigit())):
                     raise ValueError("Invalid Content-Length")
-                if lengths and int(lengths[0]) > self.max_body_bytes:
-                    return await reject(413, "Request body exceeds the 64 KiB limit. Shorten the submitted text.")
+                if lengths and int(lengths[0]) > maximum:
+                    return await reject(413, limit_message)
             except ValueError:
                 return await reject(400, "Invalid request body length.")
+            if upload:
+                received = 0
+
+                async def upload_receive():
+                    nonlocal received
+                    message = await receive()
+                    received += len(message.get("body", b""))
+                    if received > maximum:
+                        raise HTTPException(413, limit_message)
+                    return message
+
+                return await self.app(scope, upload_receive, send)
             body = bytearray()
             while True:
                 message = await receive()
@@ -133,7 +150,7 @@ def create_app(settings: Settings | None = None, *, provider=None):
         if not settings.configured:
             warnings.append("Set OPENROUTER_API_KEY in the server environment or project-root .env and restart the service.")
         if not docs:
-            warnings.append("No documents are ingested. Run python -m app ingest.")
+            warnings.append("No documents are indexed. Add a file in Documents or run python -m app ingest.")
         with store.connect() as conn:
             rows = conn.execute("SELECT filename,metadata FROM documents WHERE active=1").fetchall()
             models = {row[0] for row in conn.execute("SELECT DISTINCT c.embedding_model FROM chunks c JOIN documents d ON c.document_id=d.id WHERE d.active=1")}
@@ -172,8 +189,17 @@ def create_app(settings: Settings | None = None, *, provider=None):
     @app.get("/api/sources")
     def sources():
         with store.connect() as conn:
-            rows = conn.execute("SELECT d.*,count(c.id) AS chunk_count FROM documents d LEFT JOIN chunks c ON c.document_id=d.id WHERE d.active=1 GROUP BY d.id ORDER BY d.filename").fetchall()
-        return {"items": [{"document_id": row["id"], "filename": row["filename"], "created_at": row["created_at"], "chunk_count": row["chunk_count"], **json.loads(row["metadata"])} for row in rows]}
+            rows = conn.execute("SELECT d.*,count(c.id) AS chunk_count,(SELECT count(*) FROM documents versions WHERE versions.source_path=d.source_path) AS version_count FROM documents d LEFT JOIN chunks c ON c.document_id=d.id WHERE d.active=1 GROUP BY d.id ORDER BY d.filename").fetchall()
+            chunks = conn.execute("SELECT c.document_id,c.text FROM chunks c JOIN documents d ON d.id=c.document_id WHERE d.active=1").fetchall()
+        quarantined = quarantined_documents(chunks)
+        items = []
+        for row in rows:
+            metadata = json.loads(row["metadata"])
+            metadata["warnings"] = [*metadata["warnings"], *(["Excluded from answers and search: " + "; ".join(quarantined[row["id"]])] if row["id"] in quarantined else [])]
+            items.append({"document_id": row["id"], "filename": row["filename"], "created_at": row["created_at"],
+                          "sha256": row["sha256"], "chunk_count": row["chunk_count"], "version_count": row["version_count"],
+                          "origin": "uploaded" if Path(row["source_path"]).is_relative_to(store.data_dir / "uploads") else "corpus", **metadata})
+        return {"items": items}
 
     def source_row(document_id):
         with store.connect() as conn:
@@ -187,8 +213,11 @@ def create_app(settings: Settings | None = None, *, provider=None):
         row = source_row(document_id)
         with store.connect() as conn:
             chunks = conn.execute("SELECT c.*,d.filename,d.metadata FROM chunks c JOIN documents d ON d.id=c.document_id WHERE c.document_id=? ORDER BY c.rowid", (document_id,)).fetchall()
+            versions = conn.execute("SELECT id AS document_id,filename,sha256,active,created_at FROM documents WHERE source_path=? ORDER BY created_at DESC", (row["source_path"],)).fetchall()
         return {"document_id": document_id, "filename": row["filename"], "active": bool(row["active"]),
                 "sha256": row["sha256"], "created_at": row["created_at"], **json.loads(row["metadata"]),
+                "origin": "uploaded" if Path(row["source_path"]).is_relative_to(store.data_dir / "uploads") else "corpus",
+                "version_count": len(versions), "versions": [{**dict(version), "active": bool(version["active"])} for version in versions],
                 "chunks": [evidence_from_row(chunk).model_dump() for chunk in chunks]}
 
     @app.get("/api/sources/{document_id}/file")
@@ -258,6 +287,8 @@ def create_app(settings: Settings | None = None, *, provider=None):
     @app.get("/api/metrics")
     def metrics():
         return store.metrics()
+
+    app.include_router(create_documents_router(settings, store, provider))
 
     @app.api_route("/api/{unknown:path}", methods=["GET", "POST", "PATCH", "DELETE", "PUT"])
     def unknown_api(unknown: str):

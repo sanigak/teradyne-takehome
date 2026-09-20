@@ -4,8 +4,24 @@ import json
 from datetime import datetime, timezone
 
 from .provider import ProviderError
-from .service import normalized
+from .service import ANSWER_PIPELINE_VERSION, ANSWER_PROMPT, CHECK_PROMPT, COVERAGE_PROMPT, normalized
 from .store import encode, identifier, now
+
+
+def evaluation_identity(service, dataset_bytes):
+    settings = service.settings
+    options = {model: settings.openrouter_model_options[model].model_dump()
+               for model in sorted({settings.openrouter_model, settings.openrouter_review_model})
+               if model in settings.openrouter_model_options}
+    profile = {"model": settings.openrouter_model, "review_model": settings.openrouter_review_model,
+               "model_options": options, "embedding_model": settings.openrouter_embedding_model,
+               "embedding_dimensions": settings.openrouter_embedding_dimensions,
+               "answer_pipeline_version": ANSWER_PIPELINE_VERSION,
+               "prompts": [ANSWER_PROMPT, COVERAGE_PROMPT, CHECK_PROMPT]}
+    return {"dataset_sha256": hashlib.sha256(dataset_bytes).hexdigest(),
+            "profile_sha256": hashlib.sha256(encode(profile).encode()).hexdigest(),
+            "model": settings.openrouter_model, "review_model": settings.openrouter_review_model,
+            "model_options": options}
 
 
 def quality(store):
@@ -16,6 +32,9 @@ def quality(store):
     latest = reports[0] if reports else None
     alerts = [] if latest else ["No evaluation has run yet. Run python -m app evaluate after ingestion."]
     seen = set()
+    suites = []
+    open_findings = 0
+    count_known = True
     for report in reports:
         # A passing three-question canary must not clear an unresolved full-suite
         # failure, nor may an unrelated audit hide failures in the main suite.
@@ -24,9 +43,21 @@ def quality(store):
             continue
         seen.add(key)
         alerts.extend(f"{key[0]} ({key[1]}): {alert}" for alert in report.get("alerts", []))
+        total, passed = report.get("case_count"), report.get("passed")
+        valid_counts = type(total) is int and type(passed) is int and 0 <= passed <= total
+        failed = total - passed if valid_counts else None
+        suites.append({"dataset": key[0], "suite": key[1], "created_at": report.get("created_at"),
+                       "case_count": total if valid_counts else None, "passed": passed if valid_counts else None,
+                       "failed_cases": failed, "alerts": report.get("alerts", []),
+                       "model": report.get("model"), "review_model": report.get("review_model")})
+        if failed is not None:
+            open_findings += failed
+        elif report.get("alerts"):
+            count_known = False
     if failure and (not latest or failure[0] > latest["created_at"]):
         alerts.append("Scheduled evaluation failed. Check the evaluation dataset and run python -m app evaluate to diagnose it.")
-    return {"latest": latest, "alerts": alerts}
+    return {"latest": latest, "alerts": alerts, "suites": suites,
+            "open_finding_count": open_findings if count_known else None}
 
 
 async def evaluate(service, *, limit=None):
@@ -35,12 +66,19 @@ async def evaluate(service, *, limit=None):
         raise ValueError(f"Evaluation dataset not found: {path}")
     dataset_bytes = path.read_bytes()
     dataset = json.loads(dataset_bytes.decode("utf-8-sig"))
+    if isinstance(dataset, dict):
+        dataset = dataset.get("cases")
     if not isinstance(dataset, list) or not dataset:
         raise ValueError("Evaluation dataset must be a nonempty JSON list.")
     if limit is not None:
         dataset = dataset[:limit]
     suite = "daily-canary" if limit else "held-out-full"
-    dataset_sha256 = hashlib.sha256(dataset_bytes).hexdigest()
+    identity = evaluation_identity(service, dataset_bytes)
+    dataset_sha256 = identity["dataset_sha256"]
+    # Persist the attempt before paid requests. An interrupted full run must not
+    # restart every minute, and a report for another dataset is not this run.
+    store_event = {**identity, "suite": suite}
+    service.store.event("evaluation_started", store_event)
     baseline_key = hashlib.sha256(encode({"dataset_sha256": dataset_sha256, "case_ids": [case["id"] for case in dataset]}).encode()).hexdigest()
     with service.store.connect() as conn:
         row = conn.execute("SELECT payload FROM evaluations WHERE json_extract(payload,'$.suite')=? AND json_extract(payload,'$.baseline_key')=? ORDER BY created_at DESC LIMIT 1", (suite, baseline_key)).fetchone()
@@ -95,6 +133,7 @@ async def evaluate(service, *, limit=None):
               "dataset": path.name, "dataset_sha256": dataset_sha256, "baseline_key": baseline_key,
               "model": service.settings.openrouter_model, "embedding_model": service.settings.openrouter_embedding_model,
               "review_model": service.settings.openrouter_review_model,
+              "model_options": identity["model_options"], "profile_sha256": identity["profile_sha256"],
               "case_count": len(records), "passed": sum(r["passed"] for r in records),
               "pass_rate": sum(r["passed"] for r in records) / len(records),
               "retrieval_recall": sum(recalls) / len(recalls) if recalls else None,
@@ -102,7 +141,7 @@ async def evaluate(service, *, limit=None):
               "citation_validity": sum(r.get("valid_citations", 0) for r in records) / citation_count if citation_count else None,
               "abstention_accuracy": sum(r["status_match"] for r in expected_abstentions) / len(expected_abstentions) if expected_abstentions else None,
               "verified_claim_count": sum(r.get("verified_claim_count", 0) for r in records),
-              "support_measurement": "Returned claims passed a separate model support check; expected-fact assertions supplement this non-independent judge.",
+              "support_measurement": "Automated monitoring: exact references, status, expected-source recall and lexical assertions, plus the application's model support check. Semantic gold facts and scope guards require separate independent review; automatic passes are not semantic accuracy certification.",
               "cases": records, "alerts": []}
     if result["pass_rate"] < 1:
         result["alerts"].append(f"{len(records) - result['passed']} of {len(records)} evaluation cases failed. Inspect the case results before release.")
@@ -115,13 +154,32 @@ async def evaluate(service, *, limit=None):
     return result
 
 
+def claim_daily_evaluation(service):
+    """Claim a due full run atomically across local server instances."""
+    identity = evaluation_identity(service, service.settings.evaluation_path.read_bytes())
+    with service.store.connect() as conn:
+        conn.execute("BEGIN IMMEDIATE")
+        current = conn.execute(
+            "SELECT created_at FROM events WHERE kind IN ('evaluation_started','evaluation_schedule_claim') "
+            "AND json_extract(payload,'$.dataset_sha256')=? "
+            "AND json_extract(payload,'$.suite')='held-out-full' "
+            "AND json_extract(payload,'$.profile_sha256')=? ORDER BY id DESC LIMIT 1",
+            (identity["dataset_sha256"], identity["profile_sha256"]),
+        ).fetchone()
+        age = (datetime.now(timezone.utc) - datetime.fromisoformat(current[0])).total_seconds() if current else float("inf")
+        if age < 86400:
+            return False
+        conn.execute("INSERT INTO events(kind,payload,created_at) VALUES(?,?,?)",
+                     ("evaluation_schedule_claim", encode({**identity, "suite": "held-out-full"}), now()))
+    return True
+
+
 async def daily_evaluation_loop(service):
     while True:
         try:
-            current = quality(service.store)["latest"]
-            age = (datetime.now(timezone.utc) - datetime.fromisoformat(current["created_at"])).total_seconds() if current else float("inf")
-            if service.settings.configured and service.store.counts()[0] and age >= 86400 and service.settings.evaluation_path.is_file():
-                await evaluate(service, limit=3)
+            if service.settings.configured and service.store.counts()[0] and service.settings.evaluation_path.is_file():
+                if claim_daily_evaluation(service):
+                    await evaluate(service)
         except asyncio.CancelledError:
             raise
         except Exception:

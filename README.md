@@ -51,12 +51,14 @@ Use `PYTHON=/path/to/python3.14 bash scripts/setup.sh` when necessary. `SOFFICE_
 
 ## Try the workflow
 
-For an ordered hands-on rehearsal, use the [30–45 minute UI/CX review queue](docs/UI_REVIEW_QUEUE.md). The [adversarial testing record](docs/ADVERSARIAL_TESTING.md) separates reproduced failures, fixes, automated checks, and live-model limitations.
+For an ordered hands-on rehearsal, use the [40–55 minute UI/CX review queue](docs/UI_REVIEW_QUEUE.md). The [adversarial testing record](docs/ADVERSARIAL_TESTING.md) separates reproduced failures, fixes, automated checks, and live-model limitations.
 
 1. Ask **“What is Atlas Forge's current launch date, and what changed from kickoff?”** Open a citation to compare source dates and the changed decision.
 2. Ask **“Explain Atlas's staged rollout and latency stop condition, including whether the workbook contains measured latency.”** Inspect the presentation and workbook evidence.
 3. Ask **“What is the weather vendor's signed deletion SLA for Beacon Route?”** Review the missing information and evidence-backed routing, edit the message, and save it to the simulated outbox.
 4. Correct or reject an answer with a comment. Open **Review Queue**, inspect the original answer and citations, then resolve it with a note.
+5. Open **Documents** to browse all 24 sources. Download either optional Juniper Harbor transcript and upload it to add a new engagement; repeat the upload to see an unchanged outcome. These two samples are outside the initial index.
+6. Open **Developer tools** to run retrieval-only Search or the full Answer API, inspect JSON, and copy a POSIX curl or PowerShell command. Search does not create a question or review item.
 
 The application calls OpenRouter; it does not substitute canned answers when credentials are absent. Without configuration the interface remains accessible and explains what is missing. Sending to the outbox does **not** deliver email.
 
@@ -82,13 +84,13 @@ See [API contract](docs/API_CONTRACT.md) for response shapes and feedback, sourc
 
 The committed corpus contains 24 distinct files: 12 Markdown transcripts and two of each `.doc`, `.docx`, `.ppt`, `.pptx`, `.xls`, and `.xlsx`. It spans Atlas Forge, Beacon Route, and Cedar Vale. Source attribution is embedded in the documents and checked against a manifest. The corpus specification and generator are committed so reviewers can inspect and reproduce the fictional material.
 
-The Python service extracts structured locations, preserves author/attendee identities, enriches all formats with the same model instructions, and stores versioned records in SQLite. Full-text retrieval and embeddings retrieve candidate passages. An assessment first checks which requested facts are available without seeing a proposed answer; generation then selects source spans and writes cited claims, followed by a separate support check. Quotations come directly from stored source text. Generation/enrichment use `openai/gpt-4.1-mini`; coverage and verification use configurable `openai/gpt-4.1`, chosen after live testing. Model-based checking reduces errors but is not a proof of factual accuracy.
+The Python service extracts structured locations, preserves author/attendee identities, enriches all formats with shared instructions, and stores versioned records in SQLite. Full-text search and embeddings retrieve candidate passages. An assessment checks which requested facts are available before seeing a proposed answer; generation then selects source spans and writes cited claims, followed by a separate support check. Quotations come directly from stored source text. The default is `openai/gpt-6-astra` with high reasoning and an 8,000-token output limit, selected through an accuracy-first comparison. Generation and review models remain separately configurable. Model checking is not a proof of factual accuracy; consult the [measured results](docs/MODEL_SELECTION.md).
 
 Original files and query snapshots are retained under `.runtime`. Updating a source creates a new active version without breaking earlier citations. Re-ingestion skips unchanged content under the same extraction, prompt, and model profile. It reports failures per file and keeps previously successful versions available.
 
 An explicit folder ingestion synchronizes that folder: deleted or renamed paths are retired from active retrieval, while their historical evidence and archived downloads remain available. Sources with recognizable instructions aimed at controlling the answering model are excluded from answers and routing, with visible health warnings. This conservative screening is not a general guarantee against poisoned source facts.
 
-Read [architecture and tradeoffs](docs/ARCHITECTURE.md), [evaluation approach](docs/EVALUATION.md), [AI development record](docs/AI_WORKFLOW.md), and the [exercise checklist](docs/EXERCISES.md).
+Read [architecture and tradeoffs](docs/ARCHITECTURE.md), [model-selection evidence](docs/MODEL_SELECTION.md), [evaluation approach](docs/EVALUATION.md), [AI development record](docs/AI_WORKFLOW.md), and the [exercise checklist](docs/EXERCISES.md).
 
 ## Verify
 
@@ -110,6 +112,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run.ps1 evaluate
 ```
 
 Direct Python invocations require a terminal that has inherited the key, or a local `.env`. The live evaluation exits unsuccessfully if its assertions fail. Deterministic CI runs without credentials; a separate manually triggered GitHub Actions workflow can run live evaluation using a repository secret.
+
+With `DAILY_EVALUATION=true`, the running service executes all 45 configured evaluation questions once per day using live credits. The initial Astra 45-case comparison cost approximately USD 8.91, excluding ingestion; actual daily cost varies. Disable scheduling with `DAILY_EVALUATION=false`. Automated monitoring checks citations, status, retrieval and factual assertions; independently reviewing complete answers remains part of the release process.
+
+The latest complete independent regression review scored **44/45** and exposed a missing rehearsal-context quotation. The final citation-context fix has targeted live verification recorded in [validation](docs/VALIDATION.md); a fresh complete 45-question run after that fix remains pending. Historical failures remain visible in the local quality history. The development server temporarily has daily evaluation disabled to respect the approved validation budget; the normal setup default remains enabled.
 
 ## First 30 days
 

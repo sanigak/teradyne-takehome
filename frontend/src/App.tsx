@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent, ReactNode, Ref } from "react";
 import {
+  AboutView,
+  DeveloperView,
+  DocumentsView,
+  EvaluationDetails,
+  FullDocument,
+  Modal,
+} from "./WorkspaceTools";
+import {
   ArrowDownToLine,
   ArrowRight,
   ArrowUpRight,
@@ -12,19 +20,15 @@ import {
   CircleAlert,
   CircleCheck,
   FileText,
-  FolderOpen,
   Inbox,
   Layers3,
   LoaderCircle,
   MessageSquareText,
-  PanelRightClose,
   PencilLine,
   Plus,
   RefreshCw,
-  Search,
   Send,
   ShieldCheck,
-  Sparkles,
   ThumbsDown,
   ThumbsUp,
   X,
@@ -39,12 +43,18 @@ import type {
   ReviewItem,
 } from "./api";
 
-type View = "ask" | "review" | "outbox";
-type EvidenceSelection = { evidence: Evidence; quote?: string };
+type View = "ask" | "documents" | "review" | "outbox" | "about" | "developer";
+type EvidenceSelection = {
+  evidence: Evidence;
+  citations?: QueryResult["claims"][number]["citations"];
+};
 const viewTitles: Record<View, string> = {
   ask: "Ask the workspace",
   review: "Review queue",
   outbox: "Outbox",
+  documents: "Documents",
+  about: "About this workspace",
+  developer: "Developer tools",
 };
 const samples = [
   {
@@ -130,7 +140,7 @@ function StatusPill({ status }: { status: QueryResult["status"] }) {
         <CircleAlert size={13} />
       )}
       {status === "answered"
-        ? "Source-grounded answer"
+        ? "Answered"
         : status === "partial"
           ? "Partial answer"
           : "More context needed"}
@@ -155,20 +165,23 @@ function AnswerClaims({
           <div>
             <p>{claim.text}</p>
             <div className="citation-row">
-              {claim.citations.map((citation, i) => {
-                const source = result.evidence.find(
-                  (e) => e.chunk_id === citation.chunk_id,
-                );
+              {[
+                ...new Set(claim.citations.map((citation) => citation.chunk_id)),
+              ].map((chunkId) => {
+                const source = result.evidence.find((e) => e.chunk_id === chunkId);
                 const number =
-                  result.evidence.findIndex(
-                    (e) => e.chunk_id === citation.chunk_id,
-                  ) + 1;
+                  result.evidence.findIndex((e) => e.chunk_id === chunkId) + 1;
+                const passageCount = new Set(
+                  claim.citations
+                    .filter((citation) => citation.chunk_id === chunkId)
+                    .map((citation) => citation.quote),
+                ).size;
                 return source ? (
                   <button
                     className="citation citation-attributed"
-                    key={`${citation.chunk_id}-${i}`}
+                    key={chunkId}
                     onClick={() =>
-                      onEvidence({ evidence: source, quote: citation.quote })
+                      onEvidence({ evidence: source, citations: claim.citations })
                     }
                     title={`${source.filename} · ${source.locator}`}
                   >
@@ -183,6 +196,7 @@ function AnswerClaims({
                           : source.attendees.length > 0
                             ? `Attendees: ${source.attendees.join(", ")}`
                             : "Attribution not recorded"}
+                        {passageCount > 1 && ` · ${passageCount} passages`}
                       </small>
                     </span>
                     <ArrowUpRight size={11} />
@@ -209,7 +223,6 @@ function EvidencePanel({
   selection,
   evidence,
   onSelect,
-  onClose,
   panelRef,
 }: {
   selection: EvidenceSelection | null;
@@ -218,57 +231,25 @@ function EvidencePanel({
   onClose: () => void;
   panelRef?: Ref<HTMLElement>;
 }) {
-  if (!selection)
-    return (
-      <aside className="evidence-panel placeholder-panel">
-        <div className="panel-heading">
-          <BookOpen size={17} />
-          <h3>Evidence, in context</h3>
-        </div>
-        <div className="evidence-empty-art">
-          <div className="paper paper-back" />
-          <div className="paper paper-front">
-            <span />
-            <span />
-            <span />
-            <div>
-              <ShieldCheck size={22} />
-            </div>
-            <span />
-          </div>
-          <div className="art-orbit" />
-        </div>
-        <h3>Every answer has a paper trail.</h3>
-        <p>
-          Ask a question to see the original source, who contributed, and the
-          exact passage behind each answer.
-        </p>
-        <div className="evidence-principles">
-          <div>
-            <Check size={14} /> Original documents, preserved
-          </div>
-          <div>
-            <Check size={14} /> Citations you can inspect
-          </div>
-          <div>
-            <Check size={14} /> Clear when context is missing
-          </div>
-        </div>
-      </aside>
-    );
+  if (!selection) return null;
   const e = selection.evidence;
+  const passages = [
+    ...new Set(
+      selection.citations
+        ?.filter((citation) => citation.chunk_id === e.chunk_id)
+        .map((citation) => citation.quote) || [],
+    ),
+  ];
   return (
-    <aside ref={panelRef} tabIndex={-1} className="evidence-panel" aria-label="Source evidence">
+    <aside
+      ref={panelRef}
+      tabIndex={-1}
+      className="evidence-panel"
+      aria-label="Source evidence"
+    >
       <div className="panel-heading">
         <BookOpen size={17} />
-        <h3>Source evidence</h3>
-        <button
-          className="icon-button"
-          onClick={onClose}
-          aria-label="Close evidence"
-        >
-          <PanelRightClose size={17} />
-        </button>
+        <h3>Evidence details</h3>
       </div>
       {evidence.length > 1 && (
         <div className="source-select">
@@ -281,7 +262,7 @@ function EvidencePanel({
                 const found = evidence.find(
                   (item) => item.chunk_id === event.target.value,
                 );
-                if (found) onSelect({ evidence: found });
+                if (found) onSelect({ ...selection, evidence: found });
               }}
             >
               {evidence.map((item, i) => (
@@ -329,18 +310,32 @@ function EvidencePanel({
         <div className="source-excerpt">
           <div className="eyebrow">
             <span className="tiny-line" />
-            {selection.quote ? "Cited passage" : "Source passage"}
+            {passages.length > 1
+              ? `Cited passages (${passages.length})`
+              : passages.length === 1
+                ? "Cited passage"
+                : "Source passage"}
           </div>
-          <blockquote>{selection.quote || e.text}</blockquote>
+          {passages.length > 0 ? (
+            passages.map((passage, index) => (
+              <blockquote key={passage} aria-label={`Cited passage ${index + 1}`}>
+                {passage}
+              </blockquote>
+            ))
+          ) : (
+            <blockquote>{e.text}</blockquote>
+          )}
         </div>
-        {selection.quote && selection.quote !== e.text && (
-          <details className="full-context">
-            <summary>
-              View surrounding context <ChevronDown size={13} />
-            </summary>
-            <p>{e.text}</p>
-          </details>
-        )}
+        {passages.length > 0 &&
+          (passages.length > 1 || passages[0] !== e.text) && (
+            <details className="full-context">
+              <summary>
+                View surrounding context <ChevronDown size={13} />
+              </summary>
+              <p>{e.text}</p>
+            </details>
+          )}
+        <FullDocument documentId={e.document_id} />
         <a
           className="button button-outline download"
           href={`/api/sources/${encodeURIComponent(e.document_id)}/file`}
@@ -537,8 +532,8 @@ function RoutingDraft({
           <Send size={16} />
         </span>
         <div>
-          <h3>Take the question to the right person</h3>
-          <p>A suggested handoff, based on your sources.</p>
+          <h3>Ask a source contact</h3>
+          <p>The contact and supporting content come from relevant sources.</p>
         </div>
       </div>
       {saved ? (
@@ -697,11 +692,8 @@ function ReviewView({
     <div className="page-content">
       <div className="page-heading">
         <div>
-          <span className="eyebrow">Human judgment, in the loop</span>
-          <h1>
-            Review queue<span className="heading-period">.</span>
-          </h1>
-          <p>Close knowledge gaps and turn feedback into better answers.</p>
+          <h1>Review queue</h1>
+          <p>Unanswered questions and answer feedback.</p>
         </div>
         <button
           className="button button-outline"
@@ -911,11 +903,8 @@ function OutboxView({
     <div className="page-content">
       <div className="page-heading">
         <div>
-          <span className="eyebrow">Keep the conversation moving</span>
-          <h1>
-            Outbox<span className="heading-period">.</span>
-          </h1>
-          <p>Your saved handoffs, with the evidence that started them.</p>
+          <h1>Outbox</h1>
+          <p>Saved messages and their originating questions.</p>
         </div>
         <button
           className="button button-outline"
@@ -1040,27 +1029,14 @@ export default function App() {
   const [queryError, setQueryError] = useState("");
   const [showStatus, setShowStatus] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const resultRef = useRef<HTMLDivElement>(null);
-  const evidencePanelRef = useRef<HTMLElement>(null);
-  const evidenceTrigger = useRef<HTMLElement | null>(null);
-  const focusEvidence = useRef(false);
   const queryGeneration = useRef(0);
   const statusGeneration = useRef(0);
   const reviewGeneration = useRef(0);
   const outboxGeneration = useRef(0);
 
   function showEvidence(next: EvidenceSelection) {
-    evidenceTrigger.current = document.activeElement as HTMLElement | null;
-    focusEvidence.current = true;
     setSelection(next);
   }
-  useEffect(() => {
-    if (selection && focusEvidence.current) {
-      focusEvidence.current = false;
-      evidencePanelRef.current?.focus({ preventScroll: true });
-      evidencePanelRef.current?.scrollIntoView({ block: "start", behavior: "instant" });
-    }
-  }, [selection]);
 
   async function loadStatus() {
     const generation = ++statusGeneration.current;
@@ -1087,7 +1063,8 @@ export default function App() {
       setReviewItems(data.items);
       setReviewError("");
     } catch (e) {
-      if (generation === reviewGeneration.current) setReviewError((e as Error).message);
+      if (generation === reviewGeneration.current)
+        setReviewError((e as Error).message);
     } finally {
       if (generation === reviewGeneration.current) setReviewLoading(false);
     }
@@ -1101,7 +1078,8 @@ export default function App() {
       setOutboxItems(data.items);
       setOutboxError("");
     } catch (e) {
-      if (generation === outboxGeneration.current) setOutboxError((e as Error).message);
+      if (generation === outboxGeneration.current)
+        setOutboxError((e as Error).message);
     } finally {
       if (generation === outboxGeneration.current) setOutboxLoading(false);
     }
@@ -1111,40 +1089,6 @@ export default function App() {
     void loadReviews();
     void loadOutbox();
   }, []);
-  useEffect(() => {
-    if (!reviewEvidence && !showStatus) return;
-    const previous = document.activeElement as HTMLElement | null;
-    const dialog = document.querySelector<HTMLElement>('[role="dialog"]');
-    const focusable = () => [
-      ...(dialog?.querySelectorAll<HTMLElement>(
-        'button:not(:disabled), a[href], input, select, textarea, summary, [tabindex="0"]',
-      ) || []),
-    ];
-    focusable()[0]?.focus();
-    const listener = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setReviewEvidence(null);
-        setShowStatus(false);
-      }
-      if (event.key === "Tab") {
-        const elements = focusable();
-        const first = elements[0];
-        const last = elements[elements.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault();
-          last?.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first?.focus();
-        }
-      }
-    };
-    window.addEventListener("keydown", listener);
-    return () => {
-      window.removeEventListener("keydown", listener);
-      previous?.focus();
-    };
-  }, [!!reviewEvidence, showStatus]);
   async function ask(event: FormEvent) {
     event.preventDefault();
     if (!question.trim() || loading || !health?.ready || healthError) return;
@@ -1159,19 +1103,11 @@ export default function App() {
       });
       if (generation !== queryGeneration.current) return;
       setResult(answer);
-      const firstId = answer.claims[0]?.citations[0]?.chunk_id;
-      const first =
-        answer.evidence.find((e) => e.chunk_id === firstId) ||
-        answer.evidence[0];
-      if (first)
-        setSelection({
-          evidence: first,
-          quote: answer.claims[0]?.citations[0]?.quote,
-        });
       void loadReviews();
       void loadStatus();
     } catch (e) {
-      if (generation === queryGeneration.current) setQueryError((e as Error).message);
+      if (generation === queryGeneration.current)
+        setQueryError((e as Error).message);
     } finally {
       if (generation === queryGeneration.current) setLoading(false);
     }
@@ -1188,61 +1124,60 @@ export default function App() {
       if (generation !== queryGeneration.current) return;
       setResult(answer);
       setQuestion(answer.question);
-      if (answer.evidence[0]) setSelection({ evidence: answer.evidence[0] });
     } catch (e) {
-      if (generation === queryGeneration.current) setQueryError((e as Error).message);
+      if (generation === queryGeneration.current)
+        setQueryError((e as Error).message);
     } finally {
       if (generation === queryGeneration.current) setLoading(false);
     }
   }
   const pending = reviewItems.filter((item) => item.status === "open").length;
-  const hasQualityWarning = !!qualityError || (quality?.alerts.length || 0) > 0;
-  const statusReady = !!health?.ready && !healthError && !hasQualityWarning;
-  const visibleQualityWarning = !!health?.ready && !healthError && hasQualityWarning;
   const statusText = healthError
     ? "Server unavailable"
     : !health
-      ? "Connecting…"
+      ? "Connecting..."
       : !health.configured
         ? "Setup needed"
         : !health.ready
           ? "Ingestion needed"
-          : qualityError
-            ? "Evaluation unavailable"
-            : hasQualityWarning
-              ? "Quality needs review"
-              : "Workspace ready";
+          : "Ready";
+  const evaluationText = qualityError
+    ? "Answer evaluations unavailable"
+    : quality?.alerts.length
+      ? typeof quality.open_finding_count === "number" &&
+        quality.open_finding_count > 0
+        ? `Answer evaluations: ${quality.open_finding_count} failed cases`
+        : "Answer evaluations: attention needed"
+      : quality?.latest
+        ? "Answer evaluations: no current alerts"
+        : "Answer evaluations: not run";
+  const evaluationWarning = !!qualityError || !!quality?.alerts.length;
   const displayWarning = health && !health.ready;
+  const activeEvidence = reviewEvidence || selection;
+  const activeSources = reviewEvidence
+    ? drawerEvidence
+    : result?.evidence || [];
+  const closeEvidence = () => {
+    setSelection(null);
+    setReviewEvidence(null);
+  };
   return (
     <div className="app-shell">
       <aside className="sidebar">
         <button
           className="brand"
           onClick={() => setView("ask")}
-          aria-label="Relay AI home"
+          aria-label="Relay home"
         >
-          <span className="brand-mark">
-            <span />
-            <span />
-            <span />
-          </span>
-          <span>
-            relay<span className="brand-ai">ai</span>
-          </span>
+          <Layers3 size={23} />
+          <span>Relay</span>
         </button>
-        <div className="workspace-label">
-          <span className="workspace-monogram">R</span>
-          <div>
-            <strong>Delivery workspace</strong>
-            <span>Internal knowledge</span>
-          </div>
-          <span className="workspace-dot" />
-        </div>
-        <div className="nav-caption">Workspace</div>
+        <span className="workspace-label">Delivery workspace</span>
         <nav aria-label="Main navigation">
           {(
             [
-              { id: "ask", label: "Ask the workspace", icon: Search },
+              { id: "ask", label: "Ask", icon: MessageSquareText },
+              { id: "documents", label: "Documents", icon: FileText },
               { id: "review", label: "Review queue", icon: Inbox },
               { id: "outbox", label: "Outbox", icon: Send },
             ] as const
@@ -1250,13 +1185,14 @@ export default function App() {
             <button
               key={item.id}
               className={`nav-item ${view === item.id ? "active" : ""}`}
+              aria-current={view === item.id ? "page" : undefined}
               onClick={() => {
                 setView(item.id);
                 if (item.id === "review") void loadReviews();
                 if (item.id === "outbox") void loadOutbox();
               }}
             >
-              <item.icon size={18} strokeWidth={1.7} />
+              <item.icon size={18} />
               <span>{item.label}</span>
               {item.id === "review" && pending > 0 && (
                 <span className="nav-count">{pending}</span>
@@ -1267,65 +1203,59 @@ export default function App() {
             </button>
           ))}
         </nav>
-        <div className="sidebar-note">
-          <span className="note-spark">
-            <Sparkles size={18} />
-          </span>
-          <h3>
-            A little less searching.
-            <br />A lot more knowing.
-          </h3>
-          <p>Your team’s knowledge, connected to the work ahead.</p>
-          <span className="note-rule" />
-        </div>
-        <button className={`sidebar-status ${visibleQualityWarning ? "quality-warning" : ""}`} onClick={() => setShowStatus(true)}>
-          <span
-            className={`status-dot ${statusReady ? "ready" : "warning"}`}
-          />
-          <span>{statusText}</span>
-          <ChevronRight size={14} />
-        </button>
-        <div className="sidebar-footer">
-          <span className="avatar user-avatar">DT</span>
-          <div>
-            <strong>Delivery team</strong>
-            <span>Local workspace</span>
-          </div>
+        <div className="secondary-nav">
+          <button
+            className={view === "about" ? "active" : ""}
+            onClick={() => setView("about")}
+          >
+            About this workspace
+          </button>
+          <button
+            className={view === "developer" ? "active" : ""}
+            onClick={() => setView("developer")}
+          >
+            Developer tools
+          </button>
+          <button onClick={() => setShowStatus(true)}>Service details</button>
+          <span>Local workspace | no email delivery</span>
         </div>
       </aside>
       <main className="main-content">
         <header className="topbar">
-          <div>
-            <FolderOpen size={15} />
-            <span>Workspace</span>
-            <ChevronRight size={13} />
-            <strong>{viewTitles[view]}</strong>
+          <strong>{viewTitles[view]}</strong>
+          <div className="workspace-indicators">
+            <button className="status-top" onClick={() => setShowStatus(true)}>
+              <span
+                className={`status-dot ${health?.ready && !healthError ? "ready" : "warning"}`}
+              />
+              {statusText}
+            </button>
+            <button
+              className={`evaluation-status ${evaluationWarning ? "quality-warning" : ""}`}
+              onClick={() => setShowStatus(true)}
+            >
+              <span aria-live="polite">{evaluationText}</span>
+            </button>
           </div>
-          <button className={`status-top ${visibleQualityWarning ? "quality-warning" : ""}`} onClick={() => setShowStatus(true)}>
-            <span
-              className={`status-dot ${statusReady ? "ready" : "warning"}`}
-            />
-            <span aria-live="polite">{statusText}</span>
-            <ChevronDown size={12} />
-          </button>
         </header>
+        <div hidden={view !== "documents"}>
+          <DocumentsView
+            configured={!!health?.configured}
+            onChanged={() => void loadStatus()}
+          />
+        </div>
         {view === "ask" ? (
           <div className="page-content ask-page">
             <div className="ask-heading">
-              <span className="eyebrow">
-                <span className="tiny-line" />
-                Your collective know-how
-              </span>
-              <h1>
-                Good answers start with
-                <br />
-                the right <em>evidence.</em>
-              </h1>
-              <p>Turn your team’s documents into answers you can trace.</p>
+              <h1>Ask the workspace</h1>
+              <p>One question. Answers with source evidence.</p>
+              <button className="text-link" onClick={() => setView("about")}>
+                About this workspace
+              </button>
             </div>
             {(healthError || displayWarning) && (
               <div className="setup-warning">
-                <CircleAlert size={19} />
+                <CircleAlert size={20} />
                 <div>
                   <strong>
                     {healthError
@@ -1338,222 +1268,177 @@ export default function App() {
                     {healthError ||
                       (!health?.configured
                         ? "Set OPENROUTER_API_KEY in the backend .env file and restart the server. Your key stays on the server."
-                        : "Run the ingestion command from the README to index your corpus, then refresh the workspace.")}
+                        : "Add documents or run the ingestion command to index your sources, then refresh.")}
                   </p>
                 </div>
                 <button
-                  className="button button-outline button-small"
+                  className="button button-outline"
                   onClick={() => void loadStatus()}
                 >
-                  <RefreshCw size={14} />
                   Refresh
                 </button>
               </div>
             )}
-            <div className="ask-layout">
-              <div className="ask-column">
-                <form
-                  className={`question-card ${loading ? "is-loading" : ""}`}
-                  onSubmit={ask}
+            <form className="question-card" onSubmit={ask}>
+              <label className="question-label" htmlFor="question">
+                Question
+              </label>
+              <textarea
+                ref={inputRef}
+                id="question"
+                aria-label="What would you like to know?"
+                value={question}
+                onChange={(event) => setQuestion(event.target.value)}
+                placeholder="Ask about a decision, owner, or project."
+                maxLength={3000}
+                rows={3}
+                disabled={loading}
+                onKeyDown={(event) => {
+                  if (
+                    (event.ctrlKey || event.metaKey) &&
+                    event.key === "Enter"
+                  ) {
+                    event.preventDefault();
+                    event.currentTarget.form?.requestSubmit();
+                  }
+                }}
+              />
+              <div className="question-footer">
+                <span>Each question is independent.</span>
+                <button
+                  className="button button-primary"
+                  disabled={
+                    question.trim().length < 3 ||
+                    loading ||
+                    !!displayWarning ||
+                    !!healthError ||
+                    !health
+                  }
                 >
-                  <label className="question-label" htmlFor="question">
-                    <Search size={18} />
-                    <span>What would you like to know?</span>
-                  </label>
-                  <textarea
-                    ref={inputRef}
-                    id="question"
-                    value={question}
-                    onChange={(e) => setQuestion(e.target.value)}
-                    placeholder="Ask about a decision, a project, or what comes next…"
-                    maxLength={4000}
-                    rows={3}
-                    disabled={loading}
-                    onKeyDown={(e) => {
-                      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
-                        e.preventDefault();
-                        e.currentTarget.form?.requestSubmit();
-                      }
-                    }}
-                  />
-                  <div className="question-footer">
-                    <span>
-                      <ShieldCheck size={14} /> Grounded in your sources
-                    </span>
+                  {loading ? (
+                    <LoaderCircle size={16} className="spin" />
+                  ) : (
+                    <ArrowRight size={16} />
+                  )}
+                  {loading ? "Checking sources..." : "Ask workspace"}
+                </button>
+              </div>
+            </form>
+            {queryError && (
+              <ErrorNotice onClose={() => setQueryError("")}>
+                {queryError}
+              </ErrorNotice>
+            )}
+            {loading && (
+              <div className="search-progress" role="status">
+                <LoaderCircle className="spin" size={18} />
+                <div>
+                  <strong>Finding and checking evidence</strong>
+                  <p>Checking sources and preparing the answer.</p>
+                </div>
+              </div>
+            )}
+            {!result && !loading && (
+              <section className="starting-points">
+                <h2>A few starting points</h2>
+                <div className="sample-questions">
+                  {samples.map((sample) => (
                     <button
-                      className="button button-primary"
-                      disabled={
-                        !question.trim() ||
-                        loading ||
-                        !!displayWarning ||
-                        !!healthError ||
-                        !health
-                      }
-                    >
-                      {loading ? (
-                        <LoaderCircle size={16} className="spin" />
-                      ) : null}
-                      {loading ? "Finding evidence…" : "Ask workspace"}
-                      {!loading && <ArrowRight size={16} />}
-                    </button>
-                  </div>
-                </form>
-                {queryError && (
-                  <ErrorNotice onClose={() => setQueryError("")}>
-                    {queryError}
-                  </ErrorNotice>
-                )}
-                {loading && (
-                  <div className="search-progress" role="status">
-                    <div className="search-orb">
-                      <Sparkles size={20} />
-                    </div>
-                    <div>
-                      <strong>Connecting the dots</strong>
-                      <p>
-                        Finding relevant passages and checking the evidence
-                        behind each claim.
-                      </p>
-                    </div>
-                    <div className="loading-dots">
-                      <span />
-                      <span />
-                      <span />
-                    </div>
-                  </div>
-                )}
-                {!result && !loading && (
-                  <>
-                    <div className="section-heading">
-                      <h2>A few starting points</h2>
-                      <span>Make the question your own</span>
-                    </div>
-                    <div className="sample-questions">
-                      {samples.map((sample) => (
-                        <button
-                          key={sample.label}
-                          onClick={() => {
-                            setQuestion(sample.question);
-                            inputRef.current?.focus();
-                          }}
-                        >
-                          <span className="sample-icon">
-                            <sample.icon size={18} />
-                          </span>
-                          <div>
-                            <span>{sample.label}</span>
-                            <p>{sample.question}</p>
-                          </div>
-                          <ArrowUpRight size={16} />
-                        </button>
-                      ))}
-                    </div>
-                    <div className="knowledge-strip">
-                      <div className="knowledge-icon">
-                        <Layers3 size={21} />
-                      </div>
-                      <div>
-                        <strong>
-                          {health
-                            ? `${health.document_count} documents`
-                            : "Your shared knowledge"}
-                        </strong>
-                        <span>Meetings, documents, decks & spreadsheets</span>
-                      </div>
-                      <span className="live-label">
-                        <span
-                          className={`status-dot ${health?.ready ? "ready" : "warning"}`}
-                        />
-                        {health?.ready ? "Indexed" : "Awaiting setup"}
-                      </span>
-                    </div>
-                    <div className="trust-caption">
-                      <BookOpen size={14} />
-                      <span>
-                        If the sources don’t know, we’ll say so—and help you
-                        find who does.
-                      </span>
-                    </div>
-                  </>
-                )}
-                {result && (
-                  <div ref={resultRef} className="result-area">
-                    <section className="answer-card">
-                      <div className="answer-heading">
-                        <StatusPill status={result.status} />
-                        <span>
-                          {result.evidence.length} passage
-                          {result.evidence.length === 1 ? "" : "s"} retrieved
-                        </span>
-                      </div>
-                      <h2>{result.question}</h2>
-                      <AnswerClaims result={result} onEvidence={showEvidence} />
-                      {result.evidence.length > 0 && (
-                        <div className="all-evidence">
-                          <span className="eyebrow">Explore the evidence</span>
-                          <div>
-                            {result.evidence.map((e, i) => (
-                              <button
-                                key={e.chunk_id}
-                                className={`evidence-tab ${selection?.evidence.chunk_id === e.chunk_id ? "active" : ""}`}
-                                onClick={() => showEvidence({ evidence: e })}
-                              >
-                                <span>{i + 1}</span>
-                                <FileText size={13} />
-                                {e.filename}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      {result.claims.length > 0 && (
-                        <Feedback
-                          key={result.query_id}
-                          result={result}
-                          onSaved={() => void loadReviews()}
-                        />
-                      )}
-                    </section>
-                    {result.status !== "answered" && (
-                      <RoutingDraft
-                        key={result.query_id}
-                        result={result}
-                        onSaved={() => void loadOutbox()}
-                        onEvidence={showEvidence}
-                      />
-                    )}
-                    <button
-                      className="text-button new-question"
+                      key={sample.label}
                       onClick={() => {
-                        setResult(null);
-                        setSelection(null);
-                        setQuestion("");
+                        setQuestion(sample.question);
                         inputRef.current?.focus();
                       }}
                     >
-                      <Plus size={15} />
-                      Start a new question
+                      <span>{sample.label}</span>
+                      <p>{sample.question}</p>
+                      <ArrowUpRight size={16} />
                     </button>
+                  ))}
+                </div>
+                <p className="muted corpus-count">
+                  {health
+                    ? `${health.document_count} indexed documents`
+                    : "Loading workspace..."}{" "}
+                  | meetings, Word, PowerPoint, and Excel
+                </p>
+              </section>
+            )}
+            {result && (
+              <div className="result-area">
+                <section className="answer-card">
+                  <div className="answer-heading">
+                    <h2>Answer</h2>
+                    <StatusPill status={result.status} />
                   </div>
+                  <h3 className="answered-question">{result.question}</h3>
+                  <AnswerClaims result={result} onEvidence={showEvidence} />
+                  {result.evidence.length > 0 && (
+                    <section className="all-evidence">
+                      <h3>Evidence</h3>
+                      <div>
+                        {result.evidence.map((e, i) => (
+                          <button
+                            key={e.chunk_id}
+                            className="evidence-tab"
+                            onClick={() => showEvidence({ evidence: e })}
+                          >
+                            <FileText size={14} />
+                            <span>
+                              {i + 1}. {e.filename}
+                            </span>
+                            <small>
+                              {e.author ||
+                                e.attendees.join(", ") ||
+                                "Attribution not recorded"}{" "}
+                              | {e.locator}
+                            </small>
+                          </button>
+                        ))}
+                      </div>
+                    </section>
+                  )}
+                  {result.claims.length > 0 && (
+                    <Feedback
+                      key={result.query_id}
+                      result={result}
+                      onSaved={() => void loadReviews()}
+                    />
+                  )}
+                </section>
+                {result.status !== "answered" && (
+                  <RoutingDraft
+                    key={result.query_id}
+                    result={result}
+                    onSaved={() => void loadOutbox()}
+                    onEvidence={showEvidence}
+                  />
                 )}
+                <button
+                  className="text-button new-question"
+                  onClick={() => {
+                    setResult(null);
+                    setSelection(null);
+                    setQuestion("");
+                    inputRef.current?.focus();
+                  }}
+                >
+                  <Plus size={15} />
+                  Start a new question
+                </button>
               </div>
-              <EvidencePanel
-                panelRef={evidencePanelRef}
-                selection={selection}
-                evidence={result?.evidence || []}
-                onSelect={setSelection}
-                onClose={() => {
-                  setSelection(null);
-                  evidenceTrigger.current?.focus();
-                }}
-              />
-            </div>
-            <footer className="page-footer">
-              <span>RELAY AI</span>
-              <span>Team knowledge. Clearer decisions.</span>
-              <span>AI answers deserve human judgment.</span>
-            </footer>
+            )}
           </div>
+        ) : view === "documents" ? null : view === "about" ? (
+          <AboutView />
+        ) : view === "developer" ? (
+          <DeveloperView
+            ready={!!health?.ready && !healthError}
+            onChanged={() => {
+              void loadReviews();
+              void loadStatus();
+            }}
+          />
         ) : view === "review" ? (
           <ReviewView
             items={reviewItems}
@@ -1577,111 +1462,89 @@ export default function App() {
           />
         )}
       </main>
-      {reviewEvidence && (
-        <div className="drawer-overlay" onClick={() => setReviewEvidence(null)}>
-          <div
-            className="drawer"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Review source evidence"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <EvidencePanel
-              selection={reviewEvidence}
-              evidence={drawerEvidence}
-              onSelect={setReviewEvidence}
-              onClose={() => setReviewEvidence(null)}
-            />
-          </div>
-        </div>
+      {activeEvidence && (
+        <Modal
+          title={reviewEvidence ? "Review source evidence" : "Source evidence"}
+          wide
+          onClose={closeEvidence}
+        >
+          <EvidencePanel
+            selection={activeEvidence}
+            evidence={activeSources}
+            onSelect={reviewEvidence ? setReviewEvidence : setSelection}
+            onClose={closeEvidence}
+          />
+        </Modal>
       )}
       {showStatus && (
-        <div className="modal-overlay" onClick={() => setShowStatus(false)}>
-          <section
-            className="status-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="status-title"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="detail-heading">
-              <span className="eyebrow">Workspace health</span>
-              <button
-                className="icon-button"
-                onClick={() => setShowStatus(false)}
-                aria-label="Close status"
-              >
-                <X size={18} />
-              </button>
+        <Modal title="Service details" onClose={() => setShowStatus(false)}>
+          <dl className="source-metadata">
+            <div>
+              <dt>Service</dt>
+              <dd>{statusText}</dd>
             </div>
-            <h2 id="status-title">{statusText}</h2>
-            {healthError && <ErrorNotice>{healthError}</ErrorNotice>}
-            {qualityError && <ErrorNotice>Evaluation status is unavailable: {qualityError}</ErrorNotice>}
-            {health && (
-              <>
-                <div className="health-stats">
-                  <div>
-                    <strong>{health.document_count}</strong>
-                    <span>Source documents</span>
-                  </div>
-                  <div>
-                    <strong>{health.chunk_count}</strong>
-                    <span>Indexed passages</span>
-                  </div>
-                </div>
-                <dl className="source-metadata">
-                  <div>
-                    <dt>Service</dt>
-                    <dd>{health.ready ? "Ready to answer" : "Setup or ingestion needed"}</dd>
-                  </div>
-                  <div>
-                    <dt>Model</dt>
-                    <dd>{health.model}</dd>
-                  </div>
-                  <div>
-                    <dt>Provider</dt>
-                    <dd>
-                      {health.configured
-                        ? "Configured securely on server"
-                        : "OPENROUTER_API_KEY is missing"}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>Evaluation</dt>
-                    <dd>
-                      {qualityError
-                        ? "Evaluation status unavailable"
-                        : quality?.latest
-                        ? "Results available"
-                        : "No evaluation has run yet"}
-                    </dd>
-                  </div>
-                </dl>
-                {[...health.warnings, ...(quality?.alerts || [])].map(
-                  (warning, i) => (
-                    <div key={i} className="notice warning">
-                      <CircleAlert size={16} />
-                      <span>{warning}</span>
-                    </div>
-                  ),
-                )}
-                {quality?.latest && (
-                  <details className="quality-details">
-                    <summary>Latest evaluation details</summary>
-                    <pre>{JSON.stringify(quality.latest, null, 2)}</pre>
-                  </details>
-                )}
-              </>
-            )}
-            <button
-              className="button button-outline"
-              onClick={() => void loadStatus()}
-            >
-              <RefreshCw size={15} />
-              Check again
-            </button>
-          </section>
-        </div>
+            <div>
+              <dt>Documents</dt>
+              <dd>{health?.document_count ?? "Unavailable"}</dd>
+            </div>
+            <div>
+              <dt>Passages</dt>
+              <dd>{health?.chunk_count ?? "Unavailable"}</dd>
+            </div>
+            <div>
+              <dt>Answer model</dt>
+              <dd>{health?.model || "Unavailable"}</dd>
+            </div>
+            <div>
+              <dt>Provider</dt>
+              <dd>
+                {health?.configured
+                  ? "Configured on server"
+                  : "OPENROUTER_API_KEY is missing"}
+              </dd>
+            </div>
+          </dl>
+          {healthError && <ErrorNotice>{healthError}</ErrorNotice>}
+          <h3 className="service-section">Ingestion notices</h3>
+          <p className="muted">
+            Indexing is automatic. Notices apply to specific files or service
+            setup.
+          </p>
+          {health?.warnings.length ? (
+            health.warnings.map((warning, i) => (
+              <p className="notice warning" key={i}>
+                {warning}
+              </p>
+            ))
+          ) : (
+            <p>No ingestion notices.</p>
+          )}
+          <h3 className="service-section">Answer evaluations</h3>
+          <p className="muted">
+            These check generated answers, not manual approval of each document.
+          </p>
+          {qualityError && (
+            <ErrorNotice>
+              Evaluation status is unavailable: {qualityError}
+            </ErrorNotice>
+          )}
+          {quality?.alerts.map((warning, i) => (
+            <p key={i} className="notice warning">
+              {warning}
+            </p>
+          ))}
+          {!qualityError && !quality?.latest && (
+            <p>No evaluation has run yet.</p>
+          )}
+          {quality?.latest && <EvaluationDetails quality={quality} />}
+          <button
+            className="button button-outline"
+            onClick={() => void loadStatus()}
+          >
+            <RefreshCw size={15} />
+            Check again
+          </button>
+        </Modal>
       )}
     </div>
   );

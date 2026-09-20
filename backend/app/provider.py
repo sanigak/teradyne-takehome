@@ -9,7 +9,7 @@ from typing import TypeVar
 import httpx
 from pydantic import BaseModel, ValidationError
 
-from .config import Settings
+from .config import ModelOptions, Settings
 from .store import Store
 
 T = TypeVar("T", bound=BaseModel)
@@ -27,6 +27,24 @@ def unique_object(pairs):
 
 def invalid_constant(value):
     raise ValueError("Non-finite JSON number")
+
+
+def payment_limit_metadata(response: httpx.Response) -> dict[str, str]:
+    """Keep documented classifications only; provider error text can contain secrets."""
+    try:
+        data = response.json(object_pairs_hook=unique_object, parse_constant=invalid_constant)
+        error = data.get("error") if isinstance(data, dict) else None
+        metadata = error.get("metadata") if isinstance(error, dict) else None
+    except (ValueError, RecursionError):
+        return {}
+    if not isinstance(metadata, dict):
+        return {}
+    allowed = {
+        "limit_source": ("openrouter_in_flight_budget", "openrouter_key_limit", "openrouter_credits"),
+        "reason": ("in_flight_budget_exhausted", "weight_exceeds_budget"),
+    }
+    return {key: value for key, choices in allowed.items()
+            if isinstance(value := metadata.get(key), str) and value in choices}
 
 
 class ProviderError(Exception):
@@ -62,7 +80,23 @@ class OpenRouter:
                 if response.status_code in (401, 403):
                     raise ProviderError("OpenRouter rejected the credentials. Check OPENROUTER_API_KEY and account access.", category="credentials", status_code=503)
                 if response.status_code == 402:
-                    raise ProviderError("OpenRouter requires account credits. Add credits and retry.", category="credits", status_code=503)
+                    metadata = payment_limit_metadata(response)
+                    event.update(metadata)
+                    if metadata.get("limit_source") == "openrouter_in_flight_budget":
+                        retryable = True
+                        delay = 2 * (2 ** attempt)
+                        try:
+                            requested_delay = float(response.headers.get("retry-after", delay))
+                            if math.isfinite(requested_delay):
+                                delay = min(max(requested_delay, delay), 60)
+                        except ValueError:
+                            pass
+                        raise ProviderError("OpenRouter's temporary request budget is busy or settling. Retry shortly; available credits may still be positive.", category="capacity", status_code=503)
+                    if metadata.get("limit_source") == "openrouter_key_limit":
+                        raise ProviderError("OpenRouter rejected the API key's spending allowance. Check this key's limit in OpenRouter, then retry.", category="key_limit", status_code=503)
+                    if metadata.get("limit_source") == "openrouter_credits" and metadata.get("reason") == "weight_exceeds_budget":
+                        raise ProviderError("OpenRouter estimates this request exceeds its available budget. Check the account budget or lower the configured output limit before retrying.", category="request_budget", status_code=503)
+                    raise ProviderError("OpenRouter rejected the request's funding allowance. Check account credits and the API key's spending limit; recently completed requests may also be awaiting settlement.", category="credits", status_code=503)
                 if response.status_code == 429 or response.status_code >= 500:
                     retryable = True
                     try:
@@ -85,6 +119,21 @@ class OpenRouter:
                 usage = data.get("usage")
                 tokens = usage.get("total_tokens", 0) if isinstance(usage, dict) else 0
                 event.update(success=True, total_tokens=tokens if isinstance(tokens, int) and tokens >= 0 else 0)
+                if isinstance(usage, dict):
+                    for name in ("prompt_tokens", "completion_tokens"):
+                        value = usage.get(name)
+                        if type(value) is int and value >= 0:
+                            event[name] = value
+                    value = usage.get("cost")
+                    if type(value) in (int, float):
+                        try:
+                            if math.isfinite(value) and value >= 0:
+                                event["cost_usd"] = value
+                        except OverflowError:
+                            pass
+                    details = usage.get("completion_tokens_details")
+                    if isinstance(details, dict) and type(details.get("reasoning_tokens")) is int and details["reasoning_tokens"] >= 0:
+                        event["reasoning_tokens"] = details["reasoning_tokens"]
                 # Only provider IDs, never response text, question content, or credentials.
                 request_id = data.get("id")
                 if (isinstance(request_id, str) and re.fullmatch(r"(?:gen|emb)-[A-Za-z0-9_-]{1,150}", request_id)
@@ -110,13 +159,29 @@ class OpenRouter:
         raise AssertionError("Unreachable")
 
     async def structured(self, schema: type[T], system: str, content: dict, *, model: str | None = None) -> T:
+        model_id = model or self.settings.openrouter_model
+        options = self.settings.openrouter_model_options.get(model_id, ModelOptions(temperature=0))
+        # Validate model_copy/programmatic overrides too. No arbitrary provider
+        # payload or headers can be injected through model configuration.
+        if not isinstance(options, ModelOptions):
+            options = ModelOptions.model_validate(options)
         payload = {
-            "model": model or self.settings.openrouter_model,
-            "temperature": 0, "max_tokens": 4000, "stream": False,
+            "model": model_id,
+            "max_tokens": options.max_output_tokens, "stream": False,
             "provider": {"require_parameters": True},
             "response_format": {"type": "json_schema", "json_schema": {"name": schema.__name__, "strict": True, "schema": schema.model_json_schema()}},
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": json.dumps(content, ensure_ascii=False)}],
         }
+        if options.temperature is not None:
+            payload["temperature"] = options.temperature
+        if options.reasoning_effort is not None:
+            payload["reasoning"] = {"effort": options.reasoning_effort}
+        if options.provider_order:
+            payload["provider"]["order"] = options.provider_order
+        if options.provider_ignore:
+            payload["provider"]["ignore"] = options.provider_ignore
+        if not options.allow_fallbacks:
+            payload["provider"]["allow_fallbacks"] = False
         data = await self.request("chat/completions", payload)
         try:
             if not isinstance(data.get("choices"), list) or not data["choices"]:

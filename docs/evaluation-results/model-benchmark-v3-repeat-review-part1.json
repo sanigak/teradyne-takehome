@@ -1,0 +1,112 @@
+{
+  "review_type": "Independent semantic regression adjudication",
+  "reviewer": "Codex root agent",
+  "source_packet": "model-benchmark-v3-repeat-blinded.json",
+  "packet_sha256": "07d7d38c55d66f4f9855e1f926cd884ded96fb96a72b34e68ae99a332646260a",
+  "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+  "record_indexes": [
+    0,
+    1,
+    2
+  ],
+  "known_recipe_disclosure": "The Astra recipe and native-title citation-context v3 change were known before review. Candidate labels, costs, latency and automatic verdicts were hidden. This is an independent regression review of familiar cases, not a new fully blind comparison, untouched holdout or external human review. Other reviewers examined disjoint records.",
+  "method": "Read question, frozen gold, actual claims, each claim own selected quotations and adjacent context. Several selected blocks may jointly support a claim; neighboring text can restrict scope but cannot add missing evidence. Validate exact quotes and recipient associations separately from semantic support.",
+  "summary": {
+    "reviewed": 3,
+    "passed": 3,
+    "semantic_failures": 0,
+    "operational_failures": 0,
+    "claims_reviewed": 11,
+    "exact_citations_checked": 84,
+    "invalid_citations": 0,
+    "routing_suggestions": 9,
+    "routing_source_associations_checked": 33
+  },
+  "answers": {
+    "answer-fecb66ef": {
+      "record_index": 0,
+      "case_id": "threshold-conflict-applied",
+      "pass": true,
+      "failure_kind": null,
+      "findings": [],
+      "adjudication": "Both conflicting approved thresholds are preserved, the 11.4 percent observation is compared correctly against each, and partial status avoids an invented reconciled acceptance verdict. Priya is first and explicitly owns resolving the discrepancy; Jules and Noah are relevant source-attributed participants. Own selected quotations support every claim. The extra table rows retain context without being presented as newly asserted facts.",
+      "claim_checks": [
+        {
+          "claim_index": 0,
+          "supported": true,
+          "reason": "Own observation and September 11 decision/review quotations establish 11.4 percent and the inclusive 12 percent criterion, so the arithmetic comparison is supported."
+        },
+        {
+          "claim_index": 1,
+          "supported": true,
+          "reason": "Own observation and complete handoff table context establish the approved inclusive 10 percent requirement; 11.4 exceeds it."
+        },
+        {
+          "claim_index": 2,
+          "supported": true,
+          "reason": "Own exact commercial title, date and discrepancy paragraph establish the attributed signed-decision document and the two approved unreconciled records."
+        },
+        {
+          "claim_index": 3,
+          "supported": true,
+          "reason": "Own quotations of both criteria and the explicit unresolved discrepancy support withholding a single acceptance verdict. No additional acceptance condition is claimed satisfied."
+        }
+      ]
+    },
+    "answer-11502f2c": {
+      "record_index": 1,
+      "case_id": "threshold-conflict-applied",
+      "pass": true,
+      "failure_kind": null,
+      "findings": [],
+      "adjudication": "Both conflicting approved thresholds are preserved, the 11.4 percent observation is compared correctly against each, and partial status avoids an invented reconciled acceptance verdict. Priya is first and explicitly owns resolving the discrepancy; Jules and Noah are relevant source-attributed participants. Own selected quotations support every claim. The extra table rows retain context without being presented as newly asserted facts.",
+      "claim_checks": [
+        {
+          "claim_index": 0,
+          "supported": true,
+          "reason": "Own observation and both September 11 decision/review quotations support 11.4 satisfying the inclusive 12 percent error limit."
+        },
+        {
+          "claim_index": 1,
+          "supported": true,
+          "reason": "Own observation and complete handoff row/header context support 11.4 failing the approved inclusive 10 percent error limit."
+        },
+        {
+          "claim_index": 2,
+          "supported": true,
+          "reason": "Own dated commercial discrepancy paragraph, exact title and both approved criteria establish that no single agreed criterion or definitive overall verdict is available."
+        }
+      ]
+    },
+    "answer-1ebe7a97": {
+      "record_index": 2,
+      "case_id": "threshold-conflict-applied",
+      "pass": true,
+      "failure_kind": null,
+      "findings": [],
+      "adjudication": "Both conflicting approved thresholds are preserved, the 11.4 percent observation is compared correctly against each, and partial status avoids an invented reconciled acceptance verdict. Priya is first and explicitly owns resolving the discrepancy; Jules and Noah are relevant source-attributed participants. Own selected quotations support every claim. The extra table rows retain context without being presented as newly asserted facts.",
+      "claim_checks": [
+        {
+          "claim_index": 0,
+          "supported": true,
+          "reason": "Own observation and September 11 decision quotations support the inclusive 12 percent error-criterion comparison."
+        },
+        {
+          "claim_index": 1,
+          "supported": true,
+          "reason": "Own dated forecast-review title and acceptance paragraph directly corroborate the at-most-12 percent threshold."
+        },
+        {
+          "claim_index": 2,
+          "supported": true,
+          "reason": "Own observation and complete planner-handoff row/header context support failing the approved inclusive 10 percent requirement."
+        },
+        {
+          "claim_index": 3,
+          "supported": true,
+          "reason": "Own exact commercial title and explicit unreconciled-records paragraph support the attributed decision and withholding an overall agreed-limit verdict."
+        }
+      ]
+    }
+  }
+}

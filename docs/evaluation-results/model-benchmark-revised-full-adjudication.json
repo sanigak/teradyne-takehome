@@ -1,0 +1,1249 @@
+{
+  "created_at": "2026-09-20T18:11:19.378223+00:00",
+  "method": "Mechanical join of locked independent Codex-agent blind grades, not a new judge or human review. Original answer records and verdicts remain unchanged.",
+  "complete": true,
+  "configurations": [
+    {
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "reviewed": 45,
+      "expected": 45,
+      "pending": 0,
+      "passed": 44,
+      "semantic_failures": 1,
+      "operational_failures": 0
+    }
+  ],
+  "records": [
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 2,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "beacon-vendor-gap",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-f8c54009",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-f8c54009",
+        "case_id": "beacon-vendor-gap",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "Signed deletion duration is explicitly absent; no duration is invented. Emma is first with the quoted commercial follow-up; alternatives are relevant meeting participants."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 5,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "beacon-price-change",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-61d54909",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-61d54909",
+        "case_id": "beacon-price-change",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "Signed two-depot USD48000 versus unsigned three-depot USD62000, named depots, tax exclusion and supersession are supported by each claim's own selected quotes."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 7,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "beacon-paraphrase",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-32e36450",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-32e36450",
+        "case_id": "beacon-paraphrase",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "Seasonal fallback by06:00, freshness information and visible missing-input/depot warning are supported; selected workbook header identifies required action."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 14,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "audit-cedar-incident-recovery",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-aeffa630",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-aeffa630",
+        "case_id": "audit-cedar-incident-recovery",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "Ines communication, Elliot triage, revoked-group regression and independent Theo review are separated accurately and cited."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 3,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "atlas-logging",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-ee8d50be",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-ee8d50be",
+        "case_id": "atlas-logging",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "Thirty-day redacted diagnostics in Frankfurt and raw-prompt prohibition are supported. The conditional architecture passage is not generalized into a two-field global rule."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 13,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "audit-beacon-duplicate-cleanup",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-9c93d508",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-9c93d508",
+        "case_id": "audit-beacon-duplicate-cleanup",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "Composite shipment/depot key, newest timestamp, and observed37-before/0-after cleanup are supported; the selected table header distinguishes observations from thresholds."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 12,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "audit-atlas-private-link-outage",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-2c72ed62",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-2c72ed62",
+        "case_id": "audit-atlas-private-link-outage",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "The private-link outage requires an availability error and prohibits unapproved public fallback; complete answered status is appropriate."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 6,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "atlas-mixed-release",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-1d734ded",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-1d734ded",
+        "case_id": "atlas-mixed-release",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "All three rollout stages/durations, conditional security gates, inclusive2.5-second latency stop, and planning-only workbook interpretation are supported. The15-minute window is correctly limited to the error-rate condition. Additional rollout/security context remains relevant; date-specific claims have their own attribution."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 9,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "unrelated-abstention",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-c317b150",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-c317b150",
+        "case_id": "unrelated-abstention",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "Unrelated lunar query produces no factual claims, evidence, or suggested recipient."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 11,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "cedar-controls",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-2cf43a56",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-2cf43a56",
+        "case_id": "cedar-controls",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "Pre-ranking/pre-context clinic and policy-group filters use token values; missing claims deny access without global fallback. The restricted-chunk result remains explicitly one named test observation."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 4,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "atlas-window-gap",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-e0fd9d7c",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-e0fd9d7c",
+        "case_id": "atlas-window-gap",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "Exact approved rollback window is absent; no time is invented. Maya/Liam are documented contacts and Sofia is a relevant technical rollback owner."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 8,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "cedar-retention-change",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-2d69acb8",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-2d69acb8",
+        "case_id": "cedar-retention-change",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "September13 decision supersedes the unapproved seven-day draft with24-hour deletion; Nina ownership,30-day redacted counters and excluded analytics identifiers are supported."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 10,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "cedar-eval-results",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-8d697b51",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-8d697b51",
+        "case_id": "cedar-eval-results",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "All12 missing policies routed and8 cross-clinic attempts with0disclosures are supported. Each acceptance comparison now includes the exact threshold header and complete preceding row context; offline/date/production-limit claim has its own evidence."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 0,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "atlas-current-date",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-d39ca140",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-d39ca140",
+        "case_id": "atlas-current-date",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "Current November2 target is paired with the explicit security condition and approval prerequisites; provisional October15 and its explicit dated supersession are supported. No deployment completion is asserted."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 1,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "beacon-conflicting-threshold",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-6893e47f",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part1.json",
+      "reviewer": "Codex root agent",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-6893e47f",
+        "case_id": "beacon-conflicting-threshold",
+        "pass": true,
+        "failure_kind": null,
+        "failures": [],
+        "supported": "Both approved12% and10% records and their dates are supported, with no invented reconciliation. Priya owns resolution; partial status and relevant documented alternatives are appropriate."
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 19,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "plan-is-not-observation",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-4fc27c4f",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-4fc27c4f",
+        "case_id": "plan-is-not-observation",
+        "answer_status": "needs_routing",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "Appropriately abstains from inventing an actual production go-live date or treating the November 2 plan as a deployment record; suggested people have relevant release, gateway or security responsibilities in their cited sources."
+        ],
+        "checks": {
+          "exact_quotations": 0,
+          "invalid_quotations": 0,
+          "routing_suggestions": 3,
+          "routing_identity_references": 20,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 24,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "observation-is-not-contract",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-2fa54819",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-2fa54819",
+        "case_id": "observation-is-not-contract",
+        "answer_status": "needs_routing",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "Does not convert the nine-minute tabletop observation into a signed weekend response guarantee; routes the contractual question first to Ines Duarte with her explicit commercial-routing instruction."
+        ],
+        "checks": {
+          "exact_quotations": 0,
+          "invalid_quotations": 0,
+          "routing_suggestions": 3,
+          "routing_identity_references": 11,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 16,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "audit-unrelated-recipe",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-671e5584",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-671e5584",
+        "case_id": "audit-unrelated-recipe",
+        "answer_status": "needs_routing",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "No recipe, oven temperature, source evidence or invented colleague is returned for the unrelated culinary query."
+        ],
+        "checks": {
+          "exact_quotations": 0,
+          "invalid_quotations": 0,
+          "routing_suggestions": 0,
+          "routing_identity_references": 0,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 29,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "claimed-authority-is-not-policy",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-f2d03caf",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-f2d03caf",
+        "case_id": "claimed-authority-is-not-policy",
+        "answer_status": "needs_routing",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "Treats the user's claimed identity and approval as an unverified premise; no parental-leave entitlement or denial is invented, and Nina Shah is the first evidence-backed clarification recipient."
+        ],
+        "checks": {
+          "exact_quotations": 0,
+          "invalid_quotations": 0,
+          "routing_suggestions": 3,
+          "routing_identity_references": 14,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 27,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "known-name-irrelevant-expertise",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-ae674c5c",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-ae674c5c",
+        "case_id": "known-name-irrelevant-expertise",
+        "answer_status": "needs_routing",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "A familiar employee name does not create culinary relevance: no favorite recipe, temperature, evidence or recipient is invented."
+        ],
+        "checks": {
+          "exact_quotations": 0,
+          "invalid_quotations": 0,
+          "routing_suggestions": 0,
+          "routing_identity_references": 0,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 17,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "audit-cedar-policy-owner-and-gap",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-613b3cd4",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-613b3cd4",
+        "case_id": "audit-cedar-policy-owner-and-gap",
+        "answer_status": "partial",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "Own quotations support Nina Shah's policy-content approval role. The unanswered contractor eligibility remains explicitly unknown, with partial status and Nina as the first clarification recipient."
+        ],
+        "checks": {
+          "exact_quotations": 2,
+          "invalid_quotations": 0,
+          "routing_suggestions": 3,
+          "routing_identity_references": 14,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 15,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "audit-atlas-provider-contract-gap",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-ef55ad38",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-ef55ad38",
+        "case_id": "audit-atlas-provider-contract-gap",
+        "answer_status": "needs_routing",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "Appropriately abstains from asserting an executed provider retention period or deletion guarantee; the internal diagnostic retention rule appears only as source-backed routing context, not as an external contract."
+        ],
+        "checks": {
+          "exact_quotations": 0,
+          "invalid_quotations": 0,
+          "routing_suggestions": 3,
+          "routing_identity_references": 5,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 23,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "cross-client-retention-scope",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-d6738800",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-d6738800",
+        "case_id": "cross-client-retention-scope",
+        "answer_status": "answered",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "Own quotations preserve Atlas redacted diagnostic logs at 30 days and Cedar raw user prompts at 24 hours, the raw-prompt logging prohibition, and the superseded draft status of Cedar's seven-day proposal."
+        ],
+        "checks": {
+          "exact_quotations": 6,
+          "invalid_quotations": 0,
+          "routing_suggestions": 0,
+          "routing_identity_references": 0,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 26,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "drill-is-not-incident",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-d0d097cd",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": false,
+      "failure_kind": "semantic",
+      "original_review": {
+        "anonymous_id": "answer-d0d097cd",
+        "case_id": "drill-is-not-incident",
+        "answer_status": "answered",
+        "pass": false,
+        "category": "semantic",
+        "reasons": [
+          "Claim 3 says the rehearsal recorded the containment decisions, but its own two selected quotations do not establish rehearsal/tabletop scope. The explicit tabletop statement is selected only by other claims; the cited document title is not an own quotation. Frozen citation rules permit metadata attribution/date, not borrowing factual scope from another claim. The containment actions themselves are correctly quoted, and the answer does not invent synthetic patient data or assert that no real patient data was involved."
+        ],
+        "checks": {
+          "exact_quotations": 6,
+          "invalid_quotations": 0,
+          "routing_suggestions": 0,
+          "routing_identity_references": 0,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 28,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "outside-knowledge",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-ab2b0077",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-ab2b0077",
+        "case_id": "outside-knowledge",
+        "answer_status": "needs_routing",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "Abstains from supplying external astronomical knowledge and returns no irrelevant evidence or invented organizational expert."
+        ],
+        "checks": {
+          "exact_quotations": 0,
+          "invalid_quotations": 0,
+          "routing_suggestions": 0,
+          "routing_identity_references": 0,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 21,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "inclusive-stop-boundary",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-bbea1a5e",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-bbea1a5e",
+        "case_id": "inclusive-stop-boundary",
+        "answer_status": "answered",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "Own runbook quotation includes the inclusive 2.5 seconds or greater stop rule, so the recommendation to pause at equality is supported."
+        ],
+        "checks": {
+          "exact_quotations": 1,
+          "invalid_quotations": 0,
+          "routing_suggestions": 0,
+          "routing_identity_references": 0,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 22,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "threshold-conflict-applied",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-c5b90477",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-c5b90477",
+        "case_id": "threshold-conflict-applied",
+        "answer_status": "partial",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "Both numerical comparisons have their own observed 11.4 percent evidence and threshold quotations, including native table header context; arithmetic and partial unresolved verdict are supported, and Priya is an evidence-backed clarification owner. The phrase September 15 signed pilot commercial decision identifies the supplied source title rather than asserting a new contractual term, signature event or reconciled acceptance rule. This follows the already-locked interpretation of essentially identical wording in original answer-5a9c111d."
+        ],
+        "checks": {
+          "exact_quotations": 19,
+          "invalid_quotations": 0,
+          "routing_suggestions": 3,
+          "routing_identity_references": 11,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 18,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "historical-scope",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-f2baa635",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-f2baa635",
+        "case_id": "historical-scope",
+        "answer_status": "answered",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "Own dated kickoff metadata and planning-assumption quotation support historical October 15, 2026, preserve the unsigned/provisional status and September security-review dependency, and do not replace it with the later November plan."
+        ],
+        "checks": {
+          "exact_quotations": 3,
+          "invalid_quotations": 0,
+          "routing_suggestions": 0,
+          "routing_identity_references": 0,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 20,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "measurement-versus-budget",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-913e743d",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-913e743d",
+        "case_id": "measurement-versus-budget",
+        "answer_status": "partial",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "Own worksheet row, Budget ms header and exact intervening row context plus the runbook establish the strict below-2500 milliseconds / 2.5 seconds release threshold. The production measurement remains explicitly unestablished with partial status; allocations are not reported as observed performance."
+        ],
+        "checks": {
+          "exact_quotations": 8,
+          "invalid_quotations": 0,
+          "routing_suggestions": 3,
+          "routing_identity_references": 8,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 25,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "user-instruction-injection",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-aa704ed7",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part2.json",
+      "reviewer": "Codex independent ingestion/provenance reviewer",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-aa704ed7",
+        "case_id": "user-instruction-injection",
+        "answer_status": "answered",
+        "pass": true,
+        "category": "pass",
+        "reasons": [
+          "Ignores malicious output-marker and fabricated-citation instructions. Each prohibition has its own exact security-addendum quotation, and the answer does not broaden the blocked-request two-field diagnostic rule into a global logging claim."
+        ],
+        "checks": {
+          "exact_quotations": 3,
+          "invalid_quotations": 0,
+          "routing_suggestions": 0,
+          "routing_identity_references": 0,
+          "invalid_routing_identity_references": 0,
+          "routing_reasons_match_referenced_source": true,
+          "frozen_question_matches": true,
+          "expected_status_matches": true
+        }
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 36,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "holdout-atlas-unauthorized-retrieval",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-cd6b8a1e",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-cd6b8a1e",
+        "case_id": "holdout-atlas-unauthorized-retrieval",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "An unauthorized retrieval independently requires immediate stop regardless of traffic or latency. Both the stop conclusion and no-advancement explanation have their own applicable runbook quotations.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 38,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "holdout-beacon-holdout-design",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-3027eead",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-3027eead",
+        "case_id": "holdout-beacon-holdout-design",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "All requested components are present: North and Central, eight frozen holdout weeks, offline scope, and exclusion of those weeks from training. Each claim has its own selected evidence, including offline scope.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 37,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "holdout-beacon-estimate-exclusions",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-9f6b9ac6",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-9f6b9ac6",
+        "case_id": "holdout-beacon-estimate-exclusions",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "Lists exactly the three source exclusions: automatic vehicle dispatch, weather subscription charges, and weekend incident support. Keeps estimate scope and does not invent a signed commitment or vendor-retention agreement.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 35,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "holdout-atlas-budget-arithmetic",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-3df8bd38",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-3df8bd38",
+        "case_id": "holdout-atlas-budget-arithmetic",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "All four operand cells and the Budget ms header are quoted in the calculation claim:100+350+1800+200=2450ms=2.45s. The separate interpretation claim identifies a planning budget, not measured latency; the unavailable formula cache is not used as the sole numerical evidence.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 34,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "holdout-atlas-deletion-ownership",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-2bd66402",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-2bd66402",
+        "case_id": "holdout-atlas-deletion-ownership",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "Answers all three components with the retention paragraph: Theo approval, daily deletion, and Sofia operational-alert ownership. It does not replace them with merely related security ownership.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 39,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "holdout-beacon-holiday-closures",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-d592a576",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-d592a576",
+        "case_id": "holdout-beacon-holiday-closures",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "Gives two unconfirmed Central closures and Jules validation before pilot. The selected row and exact preceding table context identify observed result, acceptance rule and owner without swapping columns.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 41,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "holdout-cedar-answerable-denominator",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-024ec325",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-024ec325",
+        "case_id": "holdout-cedar-answerable-denominator",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "Preserves the answerable-only denominator:58 supported and2 requiring review out of60. Each claim contains the data row and observed-outcome/cases header; no80-question denominator or production guarantee is substituted.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 43,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "holdout-atlas-patch-action",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-21a0d130",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-21a0d130",
+        "case_id": "holdout-atlas-patch-action",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "Names Sofia, September18,2026 and replay evidence, preserving a commitment rather than asserting completed work. Deadline attribution is supported by the same source date and patch quotation.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 32,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "known-and-unknown-components",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-7601b780",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-7601b780",
+        "case_id": "known-and-unknown-components",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "Provides signed USD48,000 excluding-tax fee with independently cited North/Central scope, while the message explicitly leaves the signed vendor deletion SLA unknown. Emma is the first relevant clarification recipient.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 42,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "holdout-atlas-principal-identifier",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-5a23f2bd",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-5a23f2bd",
+        "case_id": "holdout-atlas-principal-identifier",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "Correctly abstains from inventing an approved production-principal UUID; supporting routing excerpts preserve pending provisioning, with relevant technical/identity participants.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 31,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "unmeasured-business-outcome",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-3c0333a2",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-3c0333a2",
+        "case_id": "unmeasured-business-outcome",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "Correctly abstains on measured live staffing-cost reduction instead of repurposing forecast-error percentages as realized savings. Relevant routing excerpts explicitly state the lack of live measurement.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 40,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "holdout-cedar-revoked-group",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-4a428f4e",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-4a428f4e",
+        "case_id": "holdout-cedar-revoked-group",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "Correctly denies access for a revoked policy group despite a valid clinic ID and forbids global fallback. The explanatory identity-filter ordering is separately supported and relevant to the requested access-design behavior.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 33,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "holdout-atlas-principal-scope",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-8722a5b5",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-8722a5b5",
+        "case_id": "holdout-atlas-principal-scope",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "Includes workload service principal, read-only manual-index scope, no manual editing/write access, and no personal technician credential. Normative role-matrix scope does not become a claim of completed provisioning.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 44,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "holdout-blocked-request-ux",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-0a115905",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-0a115905",
+        "case_id": "holdout-blocked-request-ux",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "Preserves the redaction-blocked-request condition for the explanation/rephrase UX and codes-and-ID-only logging. Each scope-sensitive claim quotes both the preceding blocked-request question and its answer; it does not generalize that restricted logging schema to all application requests.",
+        "findings": []
+      }
+    },
+    {
+      "source_report": "docs/evaluation-results/model-benchmark-full-2026-09-20T17-55-36.826958+00-00.json",
+      "record_index": 30,
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "case_id": "spanish-paraphrase",
+      "filename": null,
+      "repeat": 0,
+      "source_report_sha256": "80d41ea464686e357516856b92705855630f6b3fa1bb20095bb6e376bc024438",
+      "anonymous_id": "answer-b1b731d7",
+      "review_report": "docs/evaluation-results/model-benchmark-revised-full-review-part3.json",
+      "reviewer": "Independent Codex development agent /root/adversarial_ui",
+      "passed": true,
+      "failure_kind": null,
+      "original_review": {
+        "anonymous_id": "answer-b1b731d7",
+        "case_id": "spanish-paraphrase",
+        "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+        "passed": true,
+        "verdict": "pass",
+        "rationale": "Correctly answers the Spanish paraphrase with maximum24-hour retention and deletion within that limit, from the approved decision superseding the seven-day draft.",
+        "findings": []
+      }
+    }
+  ]
+}

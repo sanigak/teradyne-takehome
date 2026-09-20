@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-09-20T18:21:07.008870+00:00",
+  "completed_at": "2026-09-20T18:37:14.153421+00:00",
+  "mode": "serve",
+  "live_provider": "OpenRouter",
+  "enrichment_model": "openai/gpt-6-astra",
+  "review_model": "openai/gpt-6-astra",
+  "embedding_model": "openai/text-embedding-3-small",
+  "passed": null,
+  "message": "Server session ended; individual UI/API assertions are recorded separately.",
+  "canonical_documents_at_start": 24,
+  "shared_budget": {
+    "limit_usd": 40.0,
+    "accounted_usd": 33.871351,
+    "reserved_for_followup_usd": 0,
+    "reported_cost_usd": 32.759384,
+    "attempts": 823,
+    "unknown_cost_attempts": 4
+  }
+}

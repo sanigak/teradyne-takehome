@@ -1,0 +1,2133 @@
+{
+  "created_at": "2026-09-20T18:22:49.193854+00:00",
+  "review_mode": "Independent regression review of actual main24 after completed live re-enrichment. Selected recipe is known; no automatic semantic grade or paid calls are included.",
+  "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+  "corpus_snapshot_sha256": "16b53022a9f15b84adb5ccad3da75e7e00d1475e29d978df3842cc087df96b62",
+  "source_snapshot": "docs/evaluation-results/release-main-enrichment-snapshot.json",
+  "records": [
+    {
+      "filename": "atlas_01_kickoff.md",
+      "document_id": "404ab6eb1c9b4df295f696f73f07240a",
+      "gold": {
+        "filename": "atlas_01_kickoff.md",
+        "sha256": "a11aa21cab530f81294ffa8966d1ca563ef04f8929f623f6887eb84b028ad243",
+        "author": "Maya Chen",
+        "attendees": [
+          "Maya Chen",
+          "Theo Haddad",
+          "Sofia Ortiz",
+          "Liam Okafor"
+        ],
+        "date": "2026-09-01",
+        "domain": "Deployment planning",
+        "priority": "High",
+        "source_background_facts": [
+          "Initial October 15 launch is provisional.",
+          "Atlas pilot is advisory and uses maintenance manuals only."
+        ],
+        "explicit_decision_gold": [
+          "Liam Okafor: Decision: the first pilot includes only maintenance manuals, not incident tickets. That keeps the initial data scope manageable. An unanswered question should go to an accountable manual owner."
+        ],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Atlas Forge — deployment kickoff",
+        "author": "Maya Chen",
+        "attendees": [
+          "Maya Chen",
+          "Theo Haddad",
+          "Sofia Ortiz",
+          "Liam Okafor"
+        ],
+        "date": "2026-09-01",
+        "domain": "Atlas Forge — deployment planning for an internal maintenance-manual assistant for technicians",
+        "priority": "High",
+        "decisions": [
+          "The Atlas Forge pilot may recommend a cited procedure but cannot command a machine or close a work order.",
+          "Atlas Forge manuals should contain no customer contact details.",
+          "Use the Frankfurt region and retain tenant identifiers on every indexed chunk.",
+          "The deployment team requires permission to create the private endpoint; permission is still outstanding.",
+          "Do not send raw telemetry or operator names to the external model provider.",
+          "A written redaction test and an access review are required before production use.",
+          "The first Atlas Forge pilot includes only maintenance manuals, not incident tickets.",
+          "An unanswered question should go to an accountable manual owner."
+        ],
+        "action_items": [
+          "Liam supplies the Atlas Forge manual inventory by September 4.",
+          "Sofia documents the proposed private-gateway design in the client's existing VPC by September 7.",
+          "Theo schedules the Atlas security review for September 10.",
+          "Maya will update the planning note if the September security-review closure dependency changes; October 15, 2026 is an unsigned pilot-launch planning target, not a commitment.",
+          "Sofia will track the client's unassigned service principal as a blocker and will not silently substitute a shared account."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "738acf99adae4fedb7538692e315b2cd",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Atlas Forge — deployment kickoff\n\nDate: 2026-09-01\nAuthor: Maya Chen\nAttendees: Maya Chen; Theo Haddad; Sofia Ortiz; Liam Okafor\nClient: Atlas Forge\nDomain: Deployment planning\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nMaya Chen: We are building an internal maintenance-manual assistant for Atlas Forge technicians. This pilot can recommend a cited procedure, but it cannot command a machine or close a work order.\n\nLiam Okafor: The service team has 400 manuals and 22 volunteer technicians. Manuals contain serial numbers but should contain no customer contact details. I own the approved manual list and technician onboarding.\n\nSofia Ortiz: I propose a private gateway in the client's existing VPC. We will use the Frankfurt region and retain tenant identifiers on every indexed chunk. The deployment team still needs permission to create the private endpoint.\n\nMaya Chen: Planning assumption, not a signed commitment: target October 15, 2026 for the pilot launch. The date assumes the security review closes in September. I will update this note if that dependency changes.\n\nTheo Haddad: I own the Atlas security sign-off. Do not send raw telemetry or operator names to the external model provider. We need a written redaction test and an access review before production use.",
+          "text_sha256": "f080e0d805ad704fc6047aa88c41ff23742fd44b01de7a21da454c32e9eb4a81",
+          "embedding_model": "openai/text-embedding-3-small"
+        },
+        {
+          "chunk_id": "ca31a1399bcc476cb826589ecd4a17ed",
+          "locator": "Lines 23-23; Lines 25-25; Lines 27-27",
+          "text": "Liam Okafor: Decision: the first pilot includes only maintenance manuals, not incident tickets. That keeps the initial data scope manageable. An unanswered question should go to an accountable manual owner.\n\nMaya Chen: Actions: Liam supplies the manual inventory by September 4. Sofia documents the gateway design by September 7. Theo schedules the security review for September 10.\n\nSofia Ortiz: Open point: the client's identity team has not yet assigned the service principal. I will track that as a blocker, not silently substitute a shared account.",
+          "text_sha256": "8b135e04b49f659cdf487e5256531e0a8bb04a06b79c3eed4ea8b7a65ee7a02e",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_02_architecture.md",
+      "document_id": "22c8b7d33a2441a29642edac7060d941",
+      "gold": {
+        "filename": "atlas_02_architecture.md",
+        "sha256": "dd9985fce72b976296c092a090c248213368748ee307e80b8ccbdd627e309cc2",
+        "author": "Sofia Ortiz",
+        "attendees": [
+          "Sofia Ortiz",
+          "Theo Haddad",
+          "Liam Okafor"
+        ],
+        "date": "2026-09-07",
+        "domain": "Architecture",
+        "priority": "High",
+        "source_background_facts": [
+          "Atlas runs in a private VPC in Frankfurt.",
+          "Redaction failure blocks a model request."
+        ],
+        "explicit_decision_gold": [
+          "Theo Haddad: Decision: model-bound requests must remove operator names, email addresses, and raw device telemetry. A redaction failure must block the request. No best-effort bypass is permitted."
+        ],
+        "explicit_action_gold": [
+          "Sofia Ortiz: Action: I will deliver the role matrix by September 9. The private endpoint request is pending with Atlas identity engineering. Liam can coordinate that team, but I own the technical integration."
+        ],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Atlas Forge — private gateway architecture",
+        "author": "Sofia Ortiz",
+        "attendees": [
+          "Sofia Ortiz",
+          "Theo Haddad",
+          "Liam Okafor"
+        ],
+        "date": "2026-09-07",
+        "domain": "Atlas Forge — private gateway architecture",
+        "priority": "High",
+        "decisions": [
+          "Atlas model-bound requests must remove operator names, email addresses, and raw device telemetry. Redaction failures must block requests; no best-effort bypass is permitted.",
+          "When redaction blocks an Atlas request, technicians must receive a request-blocked explanation and be able to rephrase their question, keeping the maintenance workflow understandable.",
+          "For redaction-blocked Atlas requests, application logs must retain only a diagnostic code and request ID, not the original prompt.",
+          "The Atlas gateway architecture is approved for the pilot, subject to the security gate. Theo Haddad still requires the least-privilege role matrix and proof that redaction tests include serial-number variants."
+        ],
+        "action_items": [
+          "Sofia Ortiz will deliver the Atlas least-privilege role matrix by September 9.",
+          "Maya will confirm the Atlas release sequence with operations; the suggested five-percent canary remains a proposal, not an approved release decision."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "cc097d0d0a4f4370963c2d51ad88530b",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Atlas Forge — private gateway architecture\n\nDate: 2026-09-07\nAuthor: Sofia Ortiz\nAttendees: Sofia Ortiz; Theo Haddad; Liam Okafor\nClient: Atlas Forge\nDomain: Architecture\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nSofia Ortiz: The Atlas gateway design is ready. The application runs inside the Atlas private VPC in Frankfurt. Requests carry an authenticated tenant claim, and the retriever filters chunks by that claim before ranking.\n\nTheo Haddad: Decision: model-bound requests must remove operator names, email addresses, and raw device telemetry. A redaction failure must block the request. No best-effort bypass is permitted.\n\nLiam Okafor: What does a technician see when redaction blocks a request? The maintenance workflow must stay understandable.\n\nSofia Ortiz: They see a request-blocked explanation and can rephrase the question. The system will retain only a diagnostic code and request ID in application logs. It will not log the original prompt.\n\nTheo Haddad: The architecture decision is approved for the pilot, subject to the security gate. I still need the least-privilege role matrix and proof that the redaction tests include serial-number variants.",
+          "text_sha256": "7122c6a94a9bfcd1ca34e9e1f930007e3e7a6a5b9440adeaf1eaa944c57297a3",
+          "embedding_model": "openai/text-embedding-3-small"
+        },
+        {
+          "chunk_id": "d54ec99a093b4acabb21d6fa5cd0a7ac",
+          "locator": "Lines 23-23; Lines 25-25",
+          "text": "Sofia Ortiz: Action: I will deliver the role matrix by September 9. The private endpoint request is pending with Atlas identity engineering. Liam can coordinate that team, but I own the technical integration.\n\nLiam Okafor: We should include a five-percent canary in the release plan. That is a proposal today; Maya will confirm the release sequence with operations.",
+          "text_sha256": "c0fef681bb4a98bc03e4800910746e4405e6930f42a57da653008a83f28b0b07",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_03_security_gate.md",
+      "document_id": "7994c43e97764312933ced3e7faf8948",
+      "gold": {
+        "filename": "atlas_03_security_gate.md",
+        "sha256": "5965e74e37c0156919c56f1130437628c91c6bbea0438e80a8a7e2a9561f77be",
+        "author": "Theo Haddad",
+        "attendees": [
+          "Theo Haddad",
+          "Maya Chen",
+          "Sofia Ortiz"
+        ],
+        "date": "2026-09-10",
+        "domain": "Security and release",
+        "priority": "Critical",
+        "source_background_facts": [
+          "November 2, 2026 explicitly supersedes provisional October 15.",
+          "Theo Haddad owns security approval."
+        ],
+        "explicit_decision_gold": [
+          "Maya Chen: Decision: the Atlas pilot launch moves to November 2, 2026. This explicitly supersedes the provisional October 15, 2026 target recorded at kickoff on September 1."
+        ],
+        "explicit_action_gold": [
+          "Maya Chen: Action: I will tell the Atlas sponsor that November 2 is the agreed launch date, conditional on this gate. We are not accepting extra incident-ticket ingestion in the current pilot."
+        ],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Atlas Forge — security gate and revised launch",
+        "author": "Theo Haddad",
+        "attendees": [
+          "Theo Haddad",
+          "Maya Chen",
+          "Sofia Ortiz"
+        ],
+        "date": "2026-09-10",
+        "domain": "Atlas Forge — Security and release",
+        "priority": "Critical",
+        "decisions": [
+          "Atlas Forge's October pilot will not be approved while the two operator-name redaction cases fail; Theo Haddad owns the approval decision.",
+          "Atlas Forge's pilot launch moves to November 2, 2026, conditional on the release gate. This explicitly supersedes the provisional October 15, 2026 target recorded at the September 1 kickoff.",
+          "Atlas Forge's release gate requires all redaction test cases to pass, approval of the least-privilege role matrix, and client security owner acknowledgement of the runbook.",
+          "Extra incident-ticket ingestion is not accepted in Atlas Forge's current pilot.",
+          "Atlas Forge's telemetry retention details belong in the security addendum; operational diagnostics must not be confused with raw prompts, which are prohibited in logs.",
+          "The provider's zero-retention contractual addendum is unconfirmed and must not be represented as an existing agreement."
+        ],
+        "action_items": [
+          "Sofia Ortiz owns the Atlas Forge redaction fix and will land the normalization patch by September 18 and attach replay evidence.",
+          "Theo Haddad will record Atlas Forge release sign-off only after all redaction tests pass, the least-privilege role matrix is approved, and the client security owner acknowledges the runbook.",
+          "Maya Chen will tell the Atlas sponsor that November 2, 2026 is the agreed launch date, conditional on passing all redaction tests, approval of the least-privilege role matrix, and client security owner acknowledgement of the runbook.",
+          "Theo Haddad will request the provider's zero-retention contractual addendum."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Atlas Forge — security gate and revised launch\n\nDate: 2026-09-10\nAuthor: Theo Haddad\nAttendees: Theo Haddad; Maya Chen; Sofia Ortiz\nClient: Atlas Forge\nDomain: Security and release\nPriority: Critical\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nTheo Haddad: The security review found that two operator-name formats escaped redaction. We will not approve the October pilot while those cases fail. Sofia owns the fix and I own the approval decision.\n\nMaya Chen: Decision: the Atlas pilot launch moves to November 2, 2026. This explicitly supersedes the provisional October 15, 2026 target recorded at kickoff on September 1.\n\nSofia Ortiz: I can land the redaction patch by September 18 and attach replay evidence. The issue is in normalization before policy evaluation, not the tenant filter.\n\nTheo Haddad: Release gate: all redaction test cases must pass, the least-privilege role matrix must be approved, and the client security owner must acknowledge the runbook. I will record sign-off only after all three conditions hold.\n\nMaya Chen: Action: I will tell the Atlas sponsor that November 2 is the agreed launch date, conditional on this gate. We are not accepting extra incident-ticket ingestion in the current pilot.",
+          "text_sha256": "653d0ab570e8e526276c0fca184699b0ccc62e060b85db257bb17cce7fa1f25f",
+          "embedding_model": "openai/text-embedding-3-small"
+        },
+        {
+          "chunk_id": "4e300ba24443483d895f0b60d35f256a",
+          "locator": "Lines 23-23; Lines 25-25",
+          "text": "Sofia Ortiz: Telemetry retention details belong in the security addendum. We should not confuse operational diagnostics with raw prompts; the latter are prohibited in logs.\n\nTheo Haddad: Open question: nobody has confirmed the provider's zero-retention contractual addendum. I will request it; do not claim that agreement exists.",
+          "text_sha256": "14d4fbfa780484c52934d7e487461ad4e2f327ffc2a3d70c9daae1a4a2bf62bd",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_04_delivery.md",
+      "document_id": "83d34fd7239a459db339570223c2ab2b",
+      "gold": {
+        "filename": "atlas_04_delivery.md",
+        "sha256": "9566356ced468f81066d9ec1ad8ef7879b68cb62a600aed8b05a7354c6f7b373",
+        "author": "Maya Chen",
+        "attendees": [
+          "Maya Chen",
+          "Sofia Ortiz",
+          "Liam Okafor"
+        ],
+        "date": "2026-09-14",
+        "domain": "Delivery operations",
+        "priority": "High",
+        "source_background_facts": [
+          "Atlas canary is 5%, then 25%, then full pilot traffic.",
+          "Rollback maintenance window is undocumented."
+        ],
+        "explicit_decision_gold": [
+          "Maya Chen: Decision: approve a five-percent canary for one business day, then twenty-five percent for one business day, then full pilot traffic only if latency and error budgets pass. The release deck will carry the exact stop conditions."
+        ],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Atlas Forge — delivery checkpoint",
+        "author": "Maya Chen",
+        "attendees": [
+          "Maya Chen",
+          "Sofia Ortiz",
+          "Liam Okafor"
+        ],
+        "date": "2026-09-14",
+        "domain": "Atlas Forge — Delivery operations",
+        "priority": "High",
+        "decisions": [
+          "Atlas Forge's pilot remains November 2, 2026 under the revised security decision; redaction replay evidence and the identity service principal remain open launch blockers.",
+          "Approve an Atlas Forge canary at five percent for one business day, then twenty-five percent for one business day, then full pilot traffic only if latency and error budgets pass.",
+          "Atlas Forge's latency workbook sets a p95 target below 2.5 seconds. Estimated budgets must not be presented as measured results; end-to-end production timings are not yet available.",
+          "Sofia cannot run Atlas Forge's production private-endpoint verification until Atlas identity engineering grants the scoped role; the service principal ticket remains pending."
+        ],
+        "action_items": [
+          "Liam Okafor will escalate Atlas Forge's service principal ticket with Atlas identity engineering by September 16.",
+          "Include the exact stop conditions in Atlas Forge's release deck.",
+          "Route Atlas Forge's rollback maintenance-window question to Maya Chen and Liam Okafor, who coordinates the factory owner; no approved window exists in the current documents.",
+          "Request a written Atlas Forge rollback maintenance window at the operations review."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "4af9f448f6b246b1bc14c073e5e5e7f1",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Atlas Forge — delivery checkpoint\n\nDate: 2026-09-14\nAuthor: Maya Chen\nAttendees: Maya Chen; Sofia Ortiz; Liam Okafor\nClient: Atlas Forge\nDomain: Delivery operations\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nMaya Chen: Checkpoint for Atlas: the pilot remains November 2, 2026 under the revised security decision. Redaction replay evidence and the identity service principal are the two open launch blockers.\n\nSofia Ortiz: The service principal ticket is still pending. I can test the gateway locally but cannot run the production private-endpoint verification until Atlas identity engineering grants the scoped role.\n\nLiam Okafor: I will escalate the service principal ticket with Atlas identity engineering by September 16. Sofia remains the owner of the gateway and integration tests.\n\nMaya Chen: Decision: approve a five-percent canary for one business day, then twenty-five percent for one business day, then full pilot traffic only if latency and error budgets pass. The release deck will carry the exact stop conditions.\n\nSofia Ortiz: The latency workbook sets a p95 target below 2.5 seconds. Do not turn an estimated budget into a measured result; end-to-end production timings are not available yet.",
+          "text_sha256": "55e893ccb4b6df6dcbdb0583f582ca17c2ba037e3432c779bc774c888d442454",
+          "embedding_model": "openai/text-embedding-3-small"
+        },
+        {
+          "chunk_id": "3c4dd0c176324a69bc32f507d48f5f53",
+          "locator": "Lines 23-23; Lines 25-25",
+          "text": "Liam Okafor: Do we know the permitted maintenance window for a rollback? I have not seen that agreed by the factory team.\n\nMaya Chen: No approved rollback maintenance window exists in our current documents. Route that question to me and Liam, who coordinates the factory owner. Action: request a written window at the operations review.",
+          "text_sha256": "f177946c036cef139e8350e4b3a1bb8ce081ce36ca04e55cc84883eee647bca7",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_gateway_design.doc",
+      "document_id": "780d6379cece40968b7dded257c604e5",
+      "gold": {
+        "filename": "atlas_gateway_design.doc",
+        "sha256": "4ce3d7cc61459c01395e5740a06b034f0da3960394c8532d7a48e242a94a1eb2",
+        "author": "Sofia Ortiz",
+        "attendees": [
+          "Sofia Ortiz",
+          "Theo Haddad",
+          "Liam Okafor"
+        ],
+        "date": "2026-09-09",
+        "domain": "Architecture",
+        "priority": "High",
+        "source_background_facts": [
+          "Gateway principal is read-only for manual index.",
+          "No public-endpoint fallback."
+        ],
+        "explicit_decision_gold": [],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Atlas Forge — gateway role matrix",
+        "author": "Sofia Ortiz",
+        "attendees": [
+          "Sofia Ortiz",
+          "Theo Haddad",
+          "Liam Okafor"
+        ],
+        "date": "2026-09-09",
+        "domain": "Atlas Forge — gateway architecture and identity/access design",
+        "priority": "High",
+        "decisions": [
+          "Atlas Forge gateway uses a workload service principal with read-only manual-index scope; the requested production principal is pending, and this design is not proof of provisioning.",
+          "Atlas Forge gateway must not grant write access to source manuals or use a technician's personal credential.",
+          "A missing or mismatched tenant claim must deny Atlas Forge gateway retrieval before the model is called.",
+          "A redaction failure must block the Atlas Forge gateway request.",
+          "A private endpoint outage must show an availability error; Atlas Forge gateway must not fall back to an unapproved public endpoint."
+        ],
+        "action_items": [],
+        "warnings": [
+          "Original .doc source normalized with LibreOffice; locators describe converted document structure, not printed page numbers."
+        ],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "a7b825ffe83e46338220cf5bf4878eef",
+          "locator": "Paragraph 1; Paragraph 2; Paragraph 3; Paragraph 4; Paragraph 5; Paragraph 6; Paragraph 7; Paragraph 8; Paragraph 9; Paragraph 10; Paragraph 11; Paragraph 12; Paragraph 13; Paragraph 14",
+          "text": "Atlas Forge gateway role matrix\n\nDate: 2026-09-09\n\nAuthor: Sofia Ortiz\n\nAttendees: Sofia Ortiz; Theo Haddad; Liam Okafor\n\nClient: Atlas Forge\n\nDomain: Architecture\n\nPriority: High\n\nClassification: SYNTHETIC — fictional evaluation material\n\nIdentity design\n\nThe Atlas gateway uses a workload service principal with a read-only manual-index scope. It must not grant write access to source manuals or use a technician's personal credential.\n\nFailure handling\n\nA missing or mismatched tenant claim denies retrieval before the model is called. A redaction failure blocks the request. A private endpoint outage shows an availability error and must not fall back to an unapproved public endpoint.\n\nOwnership and status\n\nSofia Ortiz owns gateway integration. Liam Okafor coordinates Atlas identity engineering. The requested production service principal is pending; this design document is not proof of provisioning.",
+          "text_sha256": "a66eaf5585dad0ebc456ee6169e7ff8b9ef62b0833efa1c83b84caa3ad0e1d4f",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_latency_budget.xlsx",
+      "document_id": "475beecbcb6e449f8dccad670576682d",
+      "gold": {
+        "filename": "atlas_latency_budget.xlsx",
+        "sha256": "17195f65bf3bc6ae0c4b6b57bef9b104911d9866b79620ac57fef61bfff3a76b",
+        "author": "Sofia Ortiz",
+        "attendees": [
+          "Sofia Ortiz",
+          "Maya Chen"
+        ],
+        "date": "2026-09-14",
+        "domain": "Performance engineering",
+        "priority": "Medium",
+        "source_background_facts": [
+          "Atlas p95 latency target below 2500 ms."
+        ],
+        "explicit_decision_gold": [],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Atlas Forge — latency and release budget",
+        "author": "Sofia Ortiz",
+        "attendees": [
+          "Sofia Ortiz",
+          "Maya Chen"
+        ],
+        "date": "2026-09-14",
+        "domain": "Atlas Forge — performance engineering: latency and release budgeting",
+        "priority": "Medium",
+        "decisions": [
+          "Atlas Forge's planning allocations are 100 ms for authentication, 350 ms for retrieval, 1800 ms for model generation, and 200 ms for rendering and transport; these are not observed end-to-end measurements.",
+          "Atlas Forge release acceptance requires observed p95 latency strictly below 2500 milliseconds. Sofia Ortiz owns performance verification."
+        ],
+        "action_items": [],
+        "warnings": [
+          "Register!B6: formula has no cached value; formula text retained and not evaluated."
+        ],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "90b4953525e94f0ab35cf0d82a7d1bdf",
+          "locator": "Sheet 'Read me', cells A1:A1; Sheet 'Read me', cells A2:A2; Sheet 'Read me', cells A3:A3; Sheet 'Read me', cells A4:A4; Sheet 'Read me', cells A5:A5; Sheet 'Read me', cells A6:A6; Sheet 'Read me', cells A7:A7; Sheet 'Read me', cells A8:A8; Sheet 'Read me', cells A10:A10; Sheet 'Register', cells A1:C1; Sheet 'Register', cells A2:C2; Sheet 'Register', cells A3:C3; Sheet 'Register', cells A4:C4; Sheet 'Register', cells A5:C5; Sheet 'Register', cells A6:C6; Sheet 'Register', cells A7:C7",
+          "text": "A1: Title: Atlas Forge — latency and release budget\n\nA2: Date: 2026-09-14\n\nA3: Author: Sofia Ortiz\n\nA4: Attendees: Sofia Ortiz; Maya Chen\n\nA5: Client: Atlas Forge\n\nA6: Domain: Performance engineering\n\nA7: Priority: Medium\n\nA8: Classification: SYNTHETIC — fictional evaluation material\n\nA10: Interpretation: Budgets are planning allocations, not observed end-to-end measurements. The p95 release target is strictly below 2500 milliseconds. Sofia Ortiz owns performance verification.\n\nA1: Component | B1: Budget ms | C1: Evidence status\n\nA2: Authentication | B2: 100 | C2: Planning allocation\n\nA3: Retrieval | B3: 350 | C3: Planning allocation\n\nA4: Model generation | B4: 1800 | C4: Planning allocation\n\nA5: Rendering and transport | B5: 200 | C5: Planning allocation\n\nA6: Total allocation | B6: =SUM(B2:B5) [cached result unavailable] | C6: Calculated planning budget; not measured latency\n\nA7: Release p95 threshold | B7: 2500 | C7: Observed p95 must be strictly below threshold",
+          "text_sha256": "cdd64c6eeda670f0d93de953dde7f4f18eb28c6572d32fca5051dc9e46961122",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_release_plan.pptx",
+      "document_id": "24435eab8a0c4380a389d321595835e9",
+      "gold": {
+        "filename": "atlas_release_plan.pptx",
+        "sha256": "a9a1fcbd3289124fa68ce366da018db405204d1245d7593159632ffff5758201",
+        "author": "Maya Chen",
+        "attendees": [
+          "Maya Chen",
+          "Sofia Ortiz",
+          "Liam Okafor"
+        ],
+        "date": "2026-09-14",
+        "domain": "Deployment operations",
+        "priority": "High",
+        "source_background_facts": [
+          "Atlas rollout stops at p95 >=2.5 seconds or error rate >1% over 15 minutes."
+        ],
+        "explicit_decision_gold": [],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Atlas Forge — staged release runbook",
+        "author": "Maya Chen",
+        "attendees": [
+          "Maya Chen",
+          "Sofia Ortiz",
+          "Liam Okafor"
+        ],
+        "date": "2026-09-14",
+        "domain": "Atlas Forge — Deployment operations",
+        "priority": "High",
+        "decisions": [
+          "Atlas Forge's planned launch targets November 2, 2026, after security sign-off.",
+          "Stage Atlas Forge's planned release at 5 percent of pilot users for one business day, then 25 percent for one business day, then 100 percent only while release gates pass. These percentages are not observed production adoption.",
+          "Pause Atlas Forge's rollout if p95 end-to-end latency is 2.5 seconds or greater, request error rate exceeds 1 percent over a 15-minute window, or any unauthorized retrieval is detected. Unauthorized retrieval requires an immediate stop regardless of traffic volume.",
+          "Do not represent Atlas Forge's rollback maintenance window as agreed; the factory operating window is not yet approved."
+        ],
+        "action_items": [],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "8b5b35f9e00e4d39bf36886253344e5a",
+          "locator": "Slide 1, shape 1; Slide 1, shape 2; Slide 1, shape 3; Slide 2, shape 1; Slide 2, shape 2; Slide 2, shape 3; Slide 3, shape 1; Slide 3, shape 2; Slide 3, shape 3; Slide 4, shape 1; Slide 4, shape 2; Slide 4, shape 3; Slide 4, speaker notes",
+          "text": "Atlas Forge — staged release runbook\n\nDate: 2026-09-14\nAuthor: Maya Chen\nAttendees: Maya Chen; Sofia Ortiz; Liam Okafor\nClient: Atlas Forge\nDomain: Deployment operations\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nRELAY AI  /  ATLAS FORGE  /  SYNTHETIC DATA  /  1\n\nRelease sequence\n\nLaunch target: November 2, 2026 after security sign-off. Start with 5 percent of pilot users for one business day, then 25 percent for one business day, then 100 percent only while release gates pass.\n\nRELAY AI  /  ATLAS FORGE  /  SYNTHETIC DATA  /  2\n\nStop conditions\n\nPause rollout when p95 end-to-end latency is 2.5 seconds or greater, request error rate exceeds 1 percent over a 15-minute window, or any unauthorized retrieval is detected. Unauthorized retrieval triggers an immediate stop regardless of traffic volume.\n\nRELAY AI  /  ATLAS FORGE  /  SYNTHETIC DATA  /  3\n\nRollback ownership\n\nSofia Ortiz owns technical rollback to the prior gateway version. Maya Chen owns sponsor communication. Liam Okafor coordinates the factory operating window, which is not yet approved.\n\nRELAY AI  /  ATLAS FORGE  /  SYNTHETIC DATA  /  4\n\nThe canary percentages describe a planned release, not observed production adoption. Do not claim a rollback maintenance window has been agreed.",
+          "text_sha256": "5456cf8aa744e36122e37ad03ab4b11d0bcd4ca6be761dcbe9e6ce0ff78e1137",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_security_addendum.docx",
+      "document_id": "a5c08765af4e4167be1312f3c7dec385",
+      "gold": {
+        "filename": "atlas_security_addendum.docx",
+        "sha256": "5e75b640a1c9a0f32b652b5f3804d31b9592f132e46d046ea3e3cf30b50bc88b",
+        "author": "Theo Haddad",
+        "attendees": [
+          "Theo Haddad",
+          "Sofia Ortiz"
+        ],
+        "date": "2026-09-12",
+        "domain": "Security",
+        "priority": "Critical",
+        "source_background_facts": [
+          "Atlas redacted diagnostics retained 30 days in Frankfurt."
+        ],
+        "explicit_decision_gold": [],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Atlas Forge — security logging addendum",
+        "author": "Theo Haddad",
+        "attendees": [
+          "Theo Haddad",
+          "Sofia Ortiz"
+        ],
+        "date": "2026-09-12",
+        "domain": "Atlas Forge — security logging",
+        "priority": "Critical",
+        "decisions": [
+          "Approved Atlas diagnostic logs contain only request IDs, error codes, duration, and redaction outcome.",
+          "Raw prompts, operator names, email addresses, and raw device telemetry must never be written to Atlas application logs.",
+          "Retain Atlas redacted diagnostic logs for 30 days in Frankfurt. The deletion job runs daily; Sofia Ortiz owns its operational alert.",
+          "Theo Haddad owns approval of any Atlas diagnostic-log retention change.",
+          "Atlas launch remains conditional on all redaction tests passing, an approved least-privilege role matrix, and client acknowledgment of the runbook. The addendum does not attest that the open provider zero-retention contract is signed."
+        ],
+        "action_items": [],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "1a9058a1c1d54987a3bb504f245da119",
+          "locator": "Paragraph 1; Paragraph 2; Paragraph 3; Paragraph 4; Paragraph 5; Paragraph 6; Paragraph 7; Paragraph 8; Paragraph 9; Paragraph 10; Paragraph 11; Paragraph 12; Paragraph 13; Paragraph 14",
+          "text": "Atlas Forge security logging addendum\n\nDate: 2026-09-12\n\nAuthor: Theo Haddad\n\nAttendees: Theo Haddad; Sofia Ortiz\n\nClient: Atlas Forge\n\nDomain: Security\n\nPriority: Critical\n\nClassification: SYNTHETIC — fictional evaluation material\n\nApproved logging boundaries\n\nAtlas diagnostic logs contain request IDs, error codes, duration, and redaction outcome only. Raw prompts, operator names, email addresses, and raw device telemetry must never be written to application logs.\n\nRetention and location\n\nRetain redacted diagnostic logs for 30 days in Frankfurt. Theo Haddad owns approval of any retention change. The deletion job runs daily and Sofia Ortiz owns its operational alert.\n\nSecurity gate\n\nLaunch remains conditional on all redaction tests passing, an approved least-privilege role matrix, and client acknowledgment of the runbook. This addendum does not attest that the open provider zero-retention contract is signed.",
+          "text_sha256": "88d28b2ec86cd082d7c9b557b38eed000d7c280374d5fffd8175ab676c727b61",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_01_discovery.md",
+      "document_id": "88feb7a1946c4ee4a0131ea13e9595c2",
+      "gold": {
+        "filename": "beacon_01_discovery.md",
+        "sha256": "eda6c8306a5aaa45c237baf4eb9d8b07b09e242bc80be41d1445f8972968d81b",
+        "author": "Priya Raman",
+        "attendees": [
+          "Priya Raman",
+          "Noah Brooks",
+          "Emma Laurent",
+          "Jules Park"
+        ],
+        "date": "2026-09-02",
+        "domain": "Product discovery",
+        "priority": "Medium",
+        "source_background_facts": [
+          "Beacon is batch staffing forecasting for two depots, not live dispatch."
+        ],
+        "explicit_decision_gold": [
+          "Priya Raman: Decision: ship a batch forecast with manual planner approval. No live dispatch integration belongs in this pilot. A planner can reject a forecast and retain the existing staffing plan."
+        ],
+        "explicit_action_gold": [
+          "Noah Brooks: Action: I will profile the shipment feed by September 5. We have no confirmed retention terms for the external weather vendor yet."
+        ],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Beacon Route — forecasting discovery",
+        "author": "Priya Raman",
+        "attendees": [
+          "Priya Raman",
+          "Noah Brooks",
+          "Emma Laurent",
+          "Jules Park"
+        ],
+        "date": "2026-09-02",
+        "domain": "Beacon Route — product discovery for a next-day depot volume forecasting pilot at the North and Central depots",
+        "priority": "Medium",
+        "decisions": [
+          "The Beacon Route pilot will provide daily batch forecasts for the North and Central depots with manual planner approval; automatic vehicle dispatch and live dispatch integration are excluded.",
+          "Planners must receive forecasts by 06:00 local depot time, with a visible reason when data is incomplete.",
+          "A planner may reject a forecast and retain the existing staffing plan.",
+          "The pilot requires at least twelve weeks of shipment counts, weather flags, and depot closures; individual driver names are outside scope.",
+          "Missing holiday annotations must not be filled with guessed labels."
+        ],
+        "action_items": [
+          "Noah Brooks will profile the shipment feed by September 5.",
+          "Emma Laurent will negotiate the pilot statement of work once Priya Raman freezes the two-depot scope.",
+          "Record incomplete holiday annotations in the closure calendars as a known data quality issue."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "c9bbc31f9a5e48b28fa12ba3f1b5a680",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Beacon Route — forecasting discovery\n\nDate: 2026-09-02\nAuthor: Priya Raman\nAttendees: Priya Raman; Noah Brooks; Emma Laurent; Jules Park\nClient: Beacon Route\nDomain: Product discovery\nPriority: Medium\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nPriya Raman: Beacon wants a next-day depot volume forecast so planners can allocate staff. The first pilot is a daily planning aid for the North and Central depots. It will not automatically dispatch vehicles.\n\nJules Park: The current baseline is a seasonal spreadsheet. Planners need the forecast by 06:00 local depot time and a visible reason when data is incomplete.\n\nNoah Brooks: I own the data connector and model evaluation. We need at least twelve weeks of shipment counts, weather flags, and depot closures; individual driver names are outside scope.\n\nEmma Laurent: I own commercial approval. The early cost estimate is not a signed price. I will negotiate the pilot statement of work once Priya freezes the two-depot scope.\n\nPriya Raman: Decision: ship a batch forecast with manual planner approval. No live dispatch integration belongs in this pilot. A planner can reject a forecast and retain the existing staffing plan.",
+          "text_sha256": "3f4fa7600506a3c4174c1a72d92ed5d7133f4524bf7d394ff010cfd98411cd2f",
+          "embedding_model": "openai/text-embedding-3-small"
+        },
+        {
+          "chunk_id": "95301061e0e44474af4b63822d57a5c4",
+          "locator": "Lines 23-23; Lines 25-25",
+          "text": "Noah Brooks: Action: I will profile the shipment feed by September 5. We have no confirmed retention terms for the external weather vendor yet.\n\nJules Park: I can supply closure calendars, but holiday annotations are incomplete. Mark that as a known data quality issue rather than fill missing holidays with guessed labels.",
+          "text_sha256": "4905d2e9fafef02066bee0dc9dac052d462060b288ec159b4eb9160293c790e1",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_02_data_review.md",
+      "document_id": "e682808f26984c8e8b62ad63bea47323",
+      "gold": {
+        "filename": "beacon_02_data_review.md",
+        "sha256": "c25ce95cb02ec37862cdef24c77d1924ac81f8990e2005ed09c91e099de03195",
+        "author": "Noah Brooks",
+        "attendees": [
+          "Noah Brooks",
+          "Priya Raman",
+          "Emma Laurent"
+        ],
+        "date": "2026-09-05",
+        "domain": "Data engineering",
+        "priority": "High",
+        "source_background_facts": [
+          "Central duplicate key is shipment ID plus depot, latest update wins.",
+          "Weather vendor deletion SLA is unknown; Emma Laurent owns follow-up."
+        ],
+        "explicit_decision_gold": [
+          "Priya Raman: Decision: block the Central backtest until deduplication is verified. North can continue through offline evaluation. This is a data acceptance gate, not a reason to invent missing records."
+        ],
+        "explicit_action_gold": [
+          "Noah Brooks: Action: I will add the composite-key test and produce a clean twelve-week sample by September 9. Jules owns the depot closure calendar and will validate the holiday flags."
+        ],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Beacon Route — connector and vendor data review",
+        "author": "Noah Brooks",
+        "attendees": [
+          "Noah Brooks",
+          "Priya Raman",
+          "Emma Laurent"
+        ],
+        "date": "2026-09-05",
+        "domain": "Beacon Route — data engineering: shipment connector quality, depot backtests, and weather vendor data review",
+        "priority": "High",
+        "decisions": [
+          "For Beacon Route's Central depot retry duplicates, deduplicate by shipment ID plus depot, keeping the most recent update timestamp.",
+          "Block Beacon Route's Central backtest until deduplication is verified; North may continue offline evaluation. This data acceptance gate does not permit inventing missing records.",
+          "Beacon Route may evaluate with a static weather extract while contracts remain unresolved. Do not activate the ongoing vendor feed until Emma Laurent confirms the agreement.",
+          "Beacon Route's quality register must distinguish thresholds from observed measurements so targets cannot be mistaken for passing results."
+        ],
+        "action_items": [
+          "Noah Brooks will add the composite-key test and produce a clean twelve-week shipment sample for Beacon Route by September 9.",
+          "Jules will validate the holiday flags for Beacon Route's depot closure calendar.",
+          "Noah Brooks will log Beacon Route's row counts and freshness checks in the quality register."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "a996e8c12f464bda9b96127e94fbb66e",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Beacon Route — connector and vendor data review\n\nDate: 2026-09-05\nAuthor: Noah Brooks\nAttendees: Noah Brooks; Priya Raman; Emma Laurent\nClient: Beacon Route\nDomain: Data engineering\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nNoah Brooks: The shipment connector is healthy for North depot, but Central has duplicate shipment IDs after retries. I counted 37 duplicates in the sample. Deduplicate on shipment ID plus depot, keeping the most recent update timestamp.\n\nPriya Raman: Decision: block the Central backtest until deduplication is verified. North can continue through offline evaluation. This is a data acceptance gate, not a reason to invent missing records.\n\nNoah Brooks: Action: I will add the composite-key test and produce a clean twelve-week sample by September 9. Jules owns the depot closure calendar and will validate the holiday flags.\n\nEmma Laurent: The weather vendor has not answered the retention and data-processing questions. I own the contract request. There is no signed data-processing addendum and no documented deletion SLA yet.\n\nPriya Raman: We can evaluate with a static weather extract while contracts are unresolved. Do not activate the ongoing vendor feed until Emma confirms the agreement.",
+          "text_sha256": "f4c0f84d324a2e66ca760e89483a660b60b8952aabc678bfc787f7f50781d5f7",
+          "embedding_model": "openai/text-embedding-3-small"
+        },
+        {
+          "chunk_id": "f35680ffc7d04d9c9eacc4622dd2597c",
+          "locator": "Lines 23-23",
+          "text": "Noah Brooks: I will log row counts and freshness checks in the quality register. The register should distinguish a threshold from an observed measurement so reviewers cannot confuse a target with a passing result.",
+          "text_sha256": "34da03c82f215e30c084fdb9ffaabef89d8e7477c4e45ff67a8e9f315d2564e7",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_03_pilot_acceptance.md",
+      "document_id": "4c1917d3bb2e4eaabf49126591b0bef9",
+      "gold": {
+        "filename": "beacon_03_pilot_acceptance.md",
+        "sha256": "80061c0d9b4441102fba30f801198fef5ea7bed3f63d24eb910d2a20f6a26e9b",
+        "author": "Priya Raman",
+        "attendees": [
+          "Priya Raman",
+          "Noah Brooks",
+          "Jules Park"
+        ],
+        "date": "2026-09-11",
+        "domain": "Model evaluation",
+        "priority": "High",
+        "source_background_facts": [
+          "Beacon target is error at most 12%; measured sample error 11.4%; baseline 16%.",
+          "Forecasts due 06:00 local depot time."
+        ],
+        "explicit_decision_gold": [
+          "Priya Raman: Decision: accept the Beacon pilot only when mean absolute percentage error is at most 12 percent, forecasts arrive by 06:00 local depot time, and missing-input runs fall back to the seasonal baseline with a warning.",
+          "Jules Park: Decision: every forecast requires manual planner approval. An abstention or fallback should explain which inputs are missing and name the depot."
+        ],
+        "explicit_action_gold": [
+          "Priya Raman: Action: Noah posts the acceptance workbook before September 13. Jules leads five morning rehearsals. Commercial signature remains separate from technical acceptance."
+        ],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Beacon Route — pilot acceptance decision",
+        "author": "Priya Raman",
+        "attendees": [
+          "Priya Raman",
+          "Noah Brooks",
+          "Jules Park"
+        ],
+        "date": "2026-09-11",
+        "domain": "Beacon Route — forecast-model evaluation and pilot acceptance",
+        "priority": "High",
+        "decisions": [
+          "Accept the Beacon Route pilot only when mean absolute percentage error is at most 12%, forecasts arrive by 06:00 local depot time, and missing-input runs fall back to the seasonal baseline with a warning.",
+          "Beacon Route's evaluation set is frozen at eight holdout weeks; training must not include those weeks.",
+          "Every Beacon Route forecast requires manual planner approval.",
+          "A Beacon Route abstention or fallback should explain which inputs are missing and name the depot.",
+          "Beacon Route commercial signature remains separate from technical acceptance."
+        ],
+        "action_items": [
+          "Noah Brooks owns measuring Beacon Route forecast error and freshness.",
+          "Noah Brooks must post the Beacon Route acceptance workbook before September 13.",
+          "Jules Park must lead five Beacon Route morning rehearsals."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "c40571d4197c4e5f8fc798afefd84d89",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Beacon Route — pilot acceptance decision\n\nDate: 2026-09-11\nAuthor: Priya Raman\nAttendees: Priya Raman; Noah Brooks; Jules Park\nClient: Beacon Route\nDomain: Model evaluation\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nNoah Brooks: After deduplication, the held-out forecast error is 11.4 percent on the two-depot sample. The historical seasonal spreadsheet baseline was 16 percent. These are percentage MAE results, not classification accuracy.\n\nJules Park: Planners can work with that if the run arrives on time. A perfect model after the morning staffing decision is useless.\n\nPriya Raman: Decision: accept the Beacon pilot only when mean absolute percentage error is at most 12 percent, forecasts arrive by 06:00 local depot time, and missing-input runs fall back to the seasonal baseline with a warning.\n\nNoah Brooks: I own measuring forecast error and freshness. The evaluation set is frozen at eight holdout weeks; training must not include those weeks. We have not measured live operational savings yet.\n\nJules Park: Decision: every forecast requires manual planner approval. An abstention or fallback should explain which inputs are missing and name the depot.",
+          "text_sha256": "80c33407f5ca216a20b416e5ab68457dbc8916fa93d43a9afc94b4a1ee1ff8f0",
+          "embedding_model": "openai/text-embedding-3-small"
+        },
+        {
+          "chunk_id": "b01885c870cb483da97e0afe769526f8",
+          "locator": "Lines 23-23",
+          "text": "Priya Raman: Action: Noah posts the acceptance workbook before September 13. Jules leads five morning rehearsals. Commercial signature remains separate from technical acceptance.",
+          "text_sha256": "fe294550947d245bbf956d305eb927bad1d1b53b37e77b1d93871834bafbbd13",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_04_commercial.md",
+      "document_id": "07b4763333ab4f7c92bc49d41c27030a",
+      "gold": {
+        "filename": "beacon_04_commercial.md",
+        "sha256": "24a0345828d4fcec75c595f15d52c181c9f4fccbd05f59e35db0d129125275ad",
+        "author": "Emma Laurent",
+        "attendees": [
+          "Emma Laurent",
+          "Priya Raman",
+          "Jules Park"
+        ],
+        "date": "2026-09-15",
+        "domain": "Commercial decisions",
+        "priority": "High",
+        "source_background_facts": [
+          "Signed pilot price USD 48,000 for two depots supersedes unsigned USD 62,000 estimate.",
+          "Approved error thresholds 12 percent versus 10 percent conflict; Priya Raman must reconcile."
+        ],
+        "explicit_decision_gold": [
+          "Jules Park: Decision: North and Central are the only pilot depots. South depot and automatic dispatch remain excluded. A third depot needs a priced change request."
+        ],
+        "explicit_action_gold": [
+          "Emma Laurent: Action: I will circulate the signed scope summary today. The weather vendor deletion SLA is still unanswered and should be routed to me for vendor clarification; the signed pilot price does not settle that contract question."
+        ],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Beacon Route — signed pilot commercial decision",
+        "author": "Emma Laurent",
+        "attendees": [
+          "Emma Laurent",
+          "Priya Raman",
+          "Jules Park"
+        ],
+        "date": "2026-09-15",
+        "domain": "Beacon Route — two-depot pilot commercial decisions",
+        "priority": "High",
+        "decisions": [
+          "Beacon Route's signed two-depot pilot SOW sets a fixed fee of USD 48,000 excluding tax, payable 50% at kickoff and 50% after the acceptance review.",
+          "The signed USD 48,000 two-depot agreement supersedes the September 4 unsigned USD 62,000 three-depot estimate for the Beacon Route pilot.",
+          "Only North and Central depots are included in the Beacon Route pilot; South depot and automatic dispatch remain excluded. A third depot requires a priced change request.",
+          "Beacon Route model acceptance remains unreconciled: the approved September 11 decision allows at most 12 percent error, while the approved September 15 planner handoff allows at most 10 percent. No reconciled decision exists.",
+          "Beacon Route's morning delivery requirement remains unchanged at delivery by 06:00."
+        ],
+        "action_items": [
+          "Explain the Beacon Route price difference so the sponsor does not see two unexplained prices: USD 62,000 was an unsigned three-depot estimate; USD 48,000 is the signed two-depot pilot agreement.",
+          "Priya Raman will resolve the conflicting Beacon Route model acceptance thresholds before pilot acceptance.",
+          "Emma Laurent will circulate the signed Beacon Route scope summary today.",
+          "Route the unanswered weather-vendor deletion SLA to Emma Laurent for vendor clarification; the signed Beacon Route pilot price does not settle that contract question."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "b4a79704f69741bf8c7aa2143c308a38",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Beacon Route — signed pilot commercial decision\n\nDate: 2026-09-15\nAuthor: Emma Laurent\nAttendees: Emma Laurent; Priya Raman; Jules Park\nClient: Beacon Route\nDomain: Commercial decisions\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nEmma Laurent: The two-depot Beacon pilot statement of work is signed. The fixed pilot fee is USD 48,000 excluding tax. Payment is fifty percent at kickoff and fifty percent after the acceptance review.\n\nPriya Raman: Please call out why the earlier document says USD 62,000. I do not want the sponsor seeing two prices with no explanation.\n\nEmma Laurent: The September 4 commercial terms document is an unsigned estimate for three depots at USD 62,000. Today's signed USD 48,000 agreement covers two depots and supersedes that estimate for the pilot.\n\nJules Park: Decision: North and Central are the only pilot depots. South depot and automatic dispatch remain excluded. A third depot needs a priced change request.\n\nPriya Raman: Two approved records currently disagree about model acceptance: our September 11 decision says at most 12 percent error, while the September 15 planner handoff says at most 10 percent. No reconciled decision exists yet. I own resolving this discrepancy before pilot acceptance. Morning delivery by 06:00 is unchanged.",
+          "text_sha256": "00c64095d413fb2b34da6d100219b16e1a9239415bef3d3fd40bbba32bce849e",
+          "embedding_model": "openai/text-embedding-3-small"
+        },
+        {
+          "chunk_id": "7a914da238274811b403eece37678873",
+          "locator": "Lines 23-23",
+          "text": "Emma Laurent: Action: I will circulate the signed scope summary today. The weather vendor deletion SLA is still unanswered and should be routed to me for vendor clarification; the signed pilot price does not settle that contract question.",
+          "text_sha256": "1fb8ebe4d24c16b0f880e55b70fbac7ca00e8100e658be48d17fb9edb9547263",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_commercial_terms.docx",
+      "document_id": "b30774497e7b47ffbeecd9280337d090",
+      "gold": {
+        "filename": "beacon_commercial_terms.docx",
+        "sha256": "a47b0892d129873a7db4820c70823a582bd230a7979d9feeb750c162e228da6c",
+        "author": "Emma Laurent",
+        "attendees": [
+          "Emma Laurent",
+          "Priya Raman"
+        ],
+        "date": "2026-09-04",
+        "domain": "Commercial proposal",
+        "priority": "Medium",
+        "source_background_facts": [
+          "Unsigned September 4 estimate: USD 62,000 for three depots, later superseded."
+        ],
+        "explicit_decision_gold": [],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Beacon Route — unsigned three-depot estimate",
+        "author": "Emma Laurent",
+        "attendees": [
+          "Emma Laurent",
+          "Priya Raman"
+        ],
+        "date": "2026-09-04",
+        "domain": "Beacon Route — commercial proposal for North, Central, and South depots",
+        "priority": "Medium",
+        "decisions": [
+          "Under Beacon Route's unsigned, unaccepted three-depot proposal, any reduction to two depots requires a revised scope and price; the proposal is not a purchase commitment.",
+          "Beacon Route's unsigned estimate excludes automatic vehicle dispatch, weather vendor subscription charges, and weekend incident support. These exclusions do not establish that separate vendor retention terms have been agreed."
+        ],
+        "action_items": [],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "48d2089711924de395f0e6503a3bfc18",
+          "locator": "Paragraph 1; Paragraph 2; Paragraph 3; Paragraph 4; Paragraph 5; Paragraph 6; Paragraph 7; Paragraph 8; Paragraph 9; Paragraph 10; Paragraph 11; Paragraph 12; Paragraph 13; Paragraph 14",
+          "text": "Beacon Route unsigned three depot estimate\n\nDate: 2026-09-04\n\nAuthor: Emma Laurent\n\nAttendees: Emma Laurent; Priya Raman\n\nClient: Beacon Route\n\nDomain: Commercial proposal\n\nPriority: Medium\n\nClassification: SYNTHETIC — fictional evaluation material\n\nDraft status\n\nUNSIGNED ESTIMATE. This September 4 proposal assumes North, Central, and South depots. It has not been accepted by Beacon Route and is not a purchase commitment.\n\nProposed fee\n\nThe estimated fixed fee for three depots is USD 62,000 excluding tax. Emma Laurent owns commercial negotiation. Any reduction to two depots requires a revised scope and price.\n\nExclusions\n\nAutomatic vehicle dispatch, weather vendor subscription charges, and weekend incident support are excluded from this estimate. These exclusions are not evidence that separate vendor retention terms have been agreed.",
+          "text_sha256": "f73aca476d215731c805f12921fec2bbf21e5f5d0e74adcc311c59899730d4e2",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_dispatch_handoff.xlsx",
+      "document_id": "ba75cc93abdc44319b62a48bee520e46",
+      "gold": {
+        "filename": "beacon_dispatch_handoff.xlsx",
+        "sha256": "d5ba1b8158bf3b833db84d0980d53f54432ce116dc6a743da267456d0962904b",
+        "author": "Jules Park",
+        "attendees": [
+          "Jules Park",
+          "Priya Raman",
+          "Noah Brooks"
+        ],
+        "date": "2026-09-15",
+        "domain": "Operations",
+        "priority": "Medium",
+        "source_background_facts": [
+          "Human planners approve Beacon forecasts; missing inputs use warned baseline fallback.",
+          "Approved handoff error threshold is 10 percent, conflicting with unreconciled 12-percent decision."
+        ],
+        "explicit_decision_gold": [],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Beacon Route — planner handoff checklist",
+        "author": "Jules Park",
+        "attendees": [
+          "Jules Park",
+          "Priya Raman",
+          "Noah Brooks"
+        ],
+        "date": "2026-09-15",
+        "domain": "Beacon Route — Operations: forecast handoff for manual staffing planning at North and Central depots",
+        "priority": "Medium",
+        "decisions": [
+          "Beacon Route’s handoff checklist supports manual staffing planning at North and Central depots; it does not authorize automatic vehicle dispatch.",
+          "Approved Beacon Route holdout acceptance requirement: error at most 10 percent, owned by Priya Raman. This differs from the September 11 approval."
+        ],
+        "action_items": [
+          "Noah Brooks must publish Beacon Route’s forecast and input freshness by 06:00 local depot time.",
+          "If any required Beacon Route feed is absent, Noah Brooks must warn the planner and use the seasonal baseline.",
+          "Before Beacon Route staffing changes, Jules Park must manually approve or reject the forecast.",
+          "For Beacon Route vendor feed activation, Emma Laurent must obtain a retention agreement after signed terms."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "d7e41155717d4c47b16e232767da47d2",
+          "locator": "Sheet 'Read me', cells A1:A1; Sheet 'Read me', cells A2:A2; Sheet 'Read me', cells A3:A3; Sheet 'Read me', cells A4:A4; Sheet 'Read me', cells A5:A5; Sheet 'Read me', cells A6:A6; Sheet 'Read me', cells A7:A7; Sheet 'Read me', cells A8:A8; Sheet 'Read me', cells A10:A10; Sheet 'Register', cells A1:D1; Sheet 'Register', cells A2:D2; Sheet 'Register', cells A3:D3; Sheet 'Register', cells A4:D4; Sheet 'Register', cells A5:D5; Sheet 'Register', cells A6:D6",
+          "text": "A1: Title: Beacon Route — planner handoff checklist\n\nA2: Date: 2026-09-15\n\nA3: Author: Jules Park\n\nA4: Attendees: Jules Park; Priya Raman; Noah Brooks\n\nA5: Client: Beacon Route\n\nA6: Domain: Operations\n\nA7: Priority: Medium\n\nA8: Classification: SYNTHETIC — fictional evaluation material\n\nA10: Handoff boundaries: This checklist supports manual staffing planning at North and Central depots. It does not authorize automatic vehicle dispatch. Jules Park coordinates morning rehearsals.\n\nA1: Step | B1: Due or trigger | C1: Required action | D1: Owner\n\nA2: Forecast delivery | B2: 06:00 local depot time | C2: Publish forecast and input freshness | D2: Noah Brooks\n\nA3: Missing input | B3: Any required feed absent | C3: Warn planner and use seasonal baseline | D3: Noah Brooks\n\nA4: Planner decision | B4: Before staffing changes | C4: Approve or reject forecast manually | D4: Jules Park\n\nA5: Holdout acceptance | B5: Approved handoff requirement | C5: Error at most 10 percent; differs from September 11 approval | D5: Priya Raman\n\nA6: Vendor feed activation | B6: After signed terms | C6: Obtain retention agreement | D6: Emma Laurent",
+          "text_sha256": "daf05ee2658d71ae3d129adfe646e0db23d9836f61149c5cc584049e2ddd37a5",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_pilot_review.ppt",
+      "document_id": "f47a9d5362ff403a9bbc6a63116b9890",
+      "gold": {
+        "filename": "beacon_pilot_review.ppt",
+        "sha256": "1f07c3e7dee73010d4a8ce27632216356ab3ed958c24d6d7d70844ea091dc916",
+        "author": "Noah Brooks",
+        "attendees": [
+          "Noah Brooks",
+          "Priya Raman",
+          "Jules Park"
+        ],
+        "date": "2026-09-11",
+        "domain": "Model evaluation",
+        "priority": "High",
+        "source_background_facts": [
+          "Beacon evaluated error 11.4%, historical baseline 16%, threshold 12%."
+        ],
+        "explicit_decision_gold": [],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Beacon Route — forecast evaluation review",
+        "author": "Noah Brooks",
+        "attendees": [
+          "Noah Brooks",
+          "Priya Raman",
+          "Jules Park"
+        ],
+        "date": "2026-09-11",
+        "domain": "Beacon Route — model evaluation for depot forecasting and staffing",
+        "priority": "High",
+        "decisions": [
+          "Beacon Route's agreed pilot acceptance threshold is at most 12 percent forecast error.",
+          "Beacon Route pilot forecasts must arrive by 06:00 local depot time.",
+          "Beacon Route missing-input runs must show a warning and fall back to the seasonal baseline.",
+          "A human planner must approve every Beacon Route pilot forecast before staffing changes.",
+          "Live vehicle dispatch remains outside the Beacon Route pilot.",
+          "Beacon Route's observed evaluation result is offline; commercial and vendor approvals are separate gates."
+        ],
+        "action_items": [],
+        "warnings": [
+          "Original .ppt source normalized with LibreOffice; locators describe converted document structure, not printed page numbers."
+        ],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "47ee42df188a443cbf1209bea2b1124d",
+          "locator": "Slide 1, shape 1; Slide 1, shape 2; Slide 1, shape 3; Slide 2, shape 1; Slide 2, shape 2; Slide 2, shape 3; Slide 3, shape 1; Slide 3, shape 2; Slide 3, shape 3; Slide 4, shape 1; Slide 4, shape 2; Slide 4, shape 3; Slide 4, speaker notes",
+          "text": "Beacon Route — forecast evaluation review\n\nDate: 2026-09-11\nAuthor: Noah Brooks\nAttendees: Noah Brooks; Priya Raman; Jules Park\nClient: Beacon Route\nDomain: Model evaluation\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nRELAY AI  /  BEACON ROUTE  /  SYNTHETIC DATA  /  1\n\nBaseline and holdout\n\nThe seasonal spreadsheet baseline had 16 percent mean absolute percentage error. The deduplicated model achieved 11.4 percent on eight frozen holdout weeks across North and Central depots. No live labor-cost savings have been measured.\n\nRELAY AI  /  BEACON ROUTE  /  SYNTHETIC DATA  /  2\n\nAcceptance\n\nThe agreed pilot threshold is at most 12 percent forecast error. Forecasts must arrive by 06:00 local depot time. Missing-input runs must show a warning and fall back to the seasonal baseline.\n\nRELAY AI  /  BEACON ROUTE  /  SYNTHETIC DATA  /  3\n\nHuman control\n\nJules Park leads planner rehearsals. A human planner approves every forecast before staffing changes. Live vehicle dispatch remains outside this pilot.\n\nRELAY AI  /  BEACON ROUTE  /  SYNTHETIC DATA  /  4\n\nNoah Brooks owns error measurement. The observed result is offline; commercial and vendor approvals are separate gates.",
+          "text_sha256": "b5cb1dfca3b63b3e1c0dc7ef09b113f742a44e14ac4daf2e7a4d2a54cb507d7f",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_quality_register.xls",
+      "document_id": "aaf09f29d2b94e97b57d7fec8e71c1ed",
+      "gold": {
+        "filename": "beacon_quality_register.xls",
+        "sha256": "6cf250a97deab457484801aec8e139b744032a613c2d378ce6fc148576567eff",
+        "author": "Noah Brooks",
+        "attendees": [
+          "Noah Brooks",
+          "Jules Park",
+          "Priya Raman"
+        ],
+        "date": "2026-09-12",
+        "domain": "Data quality",
+        "priority": "High",
+        "source_background_facts": [
+          "Central duplicate shipment IDs dropped from 37 to 0 in verified sample."
+        ],
+        "explicit_decision_gold": [],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Beacon Route — data quality register",
+        "author": "Noah Brooks",
+        "attendees": [
+          "Noah Brooks",
+          "Jules Park",
+          "Priya Raman"
+        ],
+        "date": "2026-09-12",
+        "domain": "Beacon Route — Data quality",
+        "priority": "High",
+        "decisions": [
+          "Beacon Route central shipment data must have 0 duplicates using shipment ID plus depot; owner: Noah Brooks.",
+          "Beacon Route history coverage must include at least 12 complete weeks; owner: Noah Brooks.",
+          "Beacon Route requires signed weather vendor deletion SLA terms before an ongoing feed; owner: Emma Laurent."
+        ],
+        "action_items": [
+          "Jules Park must validate Beacon Route's missing central holiday annotations before the pilot."
+        ],
+        "warnings": [
+          "Original .xls source normalized with LibreOffice; locators describe converted document structure, not printed page numbers."
+        ],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "1a198c41f641442f95c1dbcdbe0b8e77",
+          "locator": "Sheet 'Read me', cells A1:A1; Sheet 'Read me', cells A2:A2; Sheet 'Read me', cells A3:A3; Sheet 'Read me', cells A4:A4; Sheet 'Read me', cells A5:A5; Sheet 'Read me', cells A6:A6; Sheet 'Read me', cells A7:A7; Sheet 'Read me', cells A8:A8; Sheet 'Read me', cells A10:A10; Sheet 'Register', cells A1:D1; Sheet 'Register', cells A2:D2; Sheet 'Register', cells A3:D3; Sheet 'Register', cells A4:D4; Sheet 'Register', cells A5:D5",
+          "text": "A1: Title: Beacon Route — data quality register\n\nA2: Date: 2026-09-12\n\nA3: Author: Noah Brooks\n\nA4: Attendees: Noah Brooks; Jules Park; Priya Raman\n\nA5: Client: Beacon Route\n\nA6: Domain: Data quality\n\nA7: Priority: High\n\nA8: Classification: SYNTHETIC — fictional evaluation material\n\nA10: Register interpretation: This register distinguishes measured sample results from acceptance thresholds. Noah Brooks owns the connector and data-quality evidence. Jules Park owns closure calendars.\n\nA1: Check | B1: Observed result | C1: Acceptance rule | D1: Owner\n\nA2: Central duplicate shipment IDs | B2: 0 after cleanup; 37 before | C2: 0 duplicates using shipment ID plus depot | D2: Noah Brooks\n\nA3: History coverage | B3: 12 complete weeks | C3: At least 12 complete weeks | D3: Noah Brooks\n\nA4: Central holiday annotations | B4: 2 unconfirmed closures | C4: Jules validates missing annotations before pilot | D4: Jules Park\n\nA5: Weather vendor deletion SLA | B5: Unknown; vendor response pending | C5: Signed terms required before ongoing feed | D5: Emma Laurent",
+          "text_sha256": "53bcf5af7ef25ba46a56dc69fbbbb3a0c2a957b9d024a3d996c9d29871ffe621",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_01_kickoff.md",
+      "document_id": "5a006d32ab774fe68ec440914866fc8e",
+      "gold": {
+        "filename": "cedar_01_kickoff.md",
+        "sha256": "295862a0a066843d56125ba0d54940800aaa00a955b85f026553ae0d3c8c4a88",
+        "author": "Ines Duarte",
+        "attendees": [
+          "Ines Duarte",
+          "Oscar Bell",
+          "Nina Shah",
+          "Elliot Reed"
+        ],
+        "date": "2026-09-03",
+        "domain": "Product and privacy",
+        "priority": "High",
+        "source_background_facts": [
+          "Cedar is administrative policy search, not patient diagnosis.",
+          "Nina Shah owns policy approval."
+        ],
+        "explicit_decision_gold": [
+          "Ines Duarte: Decision: pilot only with administrative users in East and Harbor clinics. Escalate missing policy answers to Nina; do not generate a substitute policy."
+        ],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Cedar Vale — policy assistant kickoff",
+        "author": "Ines Duarte",
+        "attendees": [
+          "Ines Duarte",
+          "Oscar Bell",
+          "Nina Shah",
+          "Elliot Reed"
+        ],
+        "date": "2026-09-03",
+        "domain": "Cedar Vale — Product and privacy: internal policy-search assistant for clinic administrators",
+        "priority": "High",
+        "decisions": [
+          "Limit the pilot to administrative users in East and Harbor clinics.",
+          "The assistant must not diagnose patients or recommend treatment.",
+          "Provide a clear input warning and reliable redaction for accidental patient identifiers in staff questions.",
+          "Exclude patient records from the policy corpus.",
+          "Elliot Reed called for citations on each policy claim; the assistant's stated reference is the approved handbook.",
+          "Escalate missing policy answers to Nina Shah; do not generate substitute policies.",
+          "Retention remains under review; no one should represent the draft privacy review as a final retention decision."
+        ],
+        "action_items": [
+          "Oscar Bell's access-control implementation will attach clinic and policy access-group metadata to each chunk and filter before model context assembly, not after answer generation.",
+          "Elliot Reed said evaluation should test that a user cannot see another clinic's restricted policies.",
+          "The draft privacy review will propose a retention period."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "7098990a09d74aa39c23088d770b1f18",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Cedar Vale — policy assistant kickoff\n\nDate: 2026-09-03\nAuthor: Ines Duarte\nAttendees: Ines Duarte; Oscar Bell; Nina Shah; Elliot Reed\nClient: Cedar Vale\nDomain: Product and privacy\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nInes Duarte: Cedar Vale is piloting an internal policy-search assistant for clinic administrators. It answers questions about staff policies and cites the approved handbook. It must not diagnose patients or recommend treatment.\n\nNina Shah: I own policy content approval. Staff may paste accidental patient identifiers into questions, so we need a clear input warning and reliable redaction. The corpus itself must exclude patient records.\n\nOscar Bell: I own access-control implementation. Each chunk will carry the clinic and policy access group. Filtering occurs before model context assembly, not after an answer is generated.\n\nElliot Reed: I own evaluation and incident triage. We should test one user's inability to see another clinic's restricted policies and require citations on each policy claim.\n\nInes Duarte: Decision: pilot only with administrative users in East and Harbor clinics. Escalate missing policy answers to Nina; do not generate a substitute policy.",
+          "text_sha256": "9da55ef388f06829041b45fadb68605ae2b8a1c54c26619d38ad6fdeb302c882",
+          "embedding_model": "openai/text-embedding-3-small"
+        },
+        {
+          "chunk_id": "de8e035a5bf04f028574fe24272a449e",
+          "locator": "Lines 23-23",
+          "text": "Nina Shah: Retention is still under review. The draft privacy review will propose a period, but no one should represent that draft as a final decision.",
+          "text_sha256": "6a5366f3430c68b5b37de9c7a86003a99f02c727154c3a1563ab9630b7ab133a",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_02_access_review.md",
+      "document_id": "b6f65667a0924d5980da5a8812905c0c",
+      "gold": {
+        "filename": "cedar_02_access_review.md",
+        "sha256": "efe34aa6c890a362779476ade585f13fb928078aabee3f71d5aca839cc00d8e9",
+        "author": "Oscar Bell",
+        "attendees": [
+          "Oscar Bell",
+          "Elliot Reed",
+          "Nina Shah"
+        ],
+        "date": "2026-09-08",
+        "domain": "Identity and access",
+        "priority": "Critical",
+        "source_background_facts": [
+          "Cedar filters clinic_id and policy_group before ranking and fails closed on missing claims."
+        ],
+        "explicit_decision_gold": [
+          "Oscar Bell: Decision: missing clinic or policy-group claims fail closed with a forbidden response. We do not fall back to a global collection. I own the middleware and the access regression tests."
+        ],
+        "explicit_action_gold": [
+          "Elliot Reed: Action: I will add an identity-expiration case and a revoked-group case by September 12. Every evaluation record should keep the tested document version and retrieval evidence."
+        ],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Cedar Vale — tenant isolation review",
+        "author": "Oscar Bell",
+        "attendees": [
+          "Oscar Bell",
+          "Elliot Reed",
+          "Nina Shah"
+        ],
+        "date": "2026-09-08",
+        "domain": "Cedar Vale — identity and access, tenant isolation",
+        "priority": "Critical",
+        "decisions": [
+          "Cedar Vale applies clinic_id and policy_group filters before retrieval ranking. Both claims must come from the authenticated identity token; users cannot select an arbitrary clinic through a query parameter.",
+          "Cedar Vale requests missing clinic or policy-group claims must fail closed with a forbidden response, without fallback to a global collection. Oscar Bell owns the middleware and access regression tests.",
+          "Cedar Vale policy publication requires human approval; user corrections go into review, not directly into the policy corpus.",
+          "Every Cedar Vale evaluation record should retain the tested document version and retrieval evidence.",
+          "Oscar Bell cannot commit to a staffed weekend response time for Cedar Vale; an on-call weekend rota is not yet documented."
+        ],
+        "action_items": [
+          "Add a missing-claim test for Cedar Vale tenant isolation.",
+          "Elliot Reed will add an identity-expiration case and a revoked-group case for Cedar Vale by September 12."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "784d479b6991430f951e08bd90e5e3c9",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Cedar Vale — tenant isolation review\n\nDate: 2026-09-08\nAuthor: Oscar Bell\nAttendees: Oscar Bell; Elliot Reed; Nina Shah\nClient: Cedar Vale\nDomain: Identity and access\nPriority: Critical\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nOscar Bell: Cedar now applies clinic_id and policy_group filters before retrieval ranking. Both claims must come from the authenticated identity token; the user cannot select an arbitrary clinic in a query parameter.\n\nElliot Reed: I tested an East-clinic user against Harbor-only policy text. The restricted chunks never reached model context. We also need a missing-claim test.\n\nOscar Bell: Decision: missing clinic or policy-group claims fail closed with a forbidden response. We do not fall back to a global collection. I own the middleware and the access regression tests.\n\nNina Shah: Policy publication remains a human approval process. A user correction goes into review, not directly into the policy corpus. Otherwise a well-intentioned correction could become an unapproved rule.\n\nElliot Reed: Action: I will add an identity-expiration case and a revoked-group case by September 12. Every evaluation record should keep the tested document version and retrieval evidence.",
+          "text_sha256": "b5fb15d081d46d1bfaac414281711e70daeffd314c43117899d80e4a4af9923e",
+          "embedding_model": "openai/text-embedding-3-small"
+        },
+        {
+          "chunk_id": "a0feaf90d7ef47328ec63b67a6dd0ac8",
+          "locator": "Lines 23-23",
+          "text": "Oscar Bell: An on-call weekend rota is not documented yet. I can discuss access failures but cannot promise a staffed weekend response time.",
+          "text_sha256": "8f81a75dd76cb34e737b99291d429a5bf69fedf771f3a7ddfcefe738a67c2711",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_03_validation.md",
+      "document_id": "42c2b2b0ad264d409be86fb1531fe2a8",
+      "gold": {
+        "filename": "cedar_03_validation.md",
+        "sha256": "28c95cee0146fd546c711e3843bb23e46b4b53907ad509ca907b771dfc6b9389",
+        "author": "Nina Shah",
+        "attendees": [
+          "Nina Shah",
+          "Ines Duarte",
+          "Elliot Reed",
+          "Oscar Bell"
+        ],
+        "date": "2026-09-13",
+        "domain": "Evaluation and privacy",
+        "priority": "High",
+        "source_background_facts": [
+          "Raw prompt deletion within 24 hours supersedes seven-day draft.",
+          "Parental leave for temporary contractors is undocumented; route to Nina Shah."
+        ],
+        "explicit_decision_gold": [
+          "Nina Shah: Decision: delete raw user prompts within 24 hours. This supersedes the seven-day proposal in the September 5 privacy review. Keep only redacted operational counters for 30 days; no patient identifiers belong in analytics."
+        ],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Cedar Vale — validation and privacy decision",
+        "author": "Nina Shah",
+        "attendees": [
+          "Nina Shah",
+          "Ines Duarte",
+          "Elliot Reed",
+          "Oscar Bell"
+        ],
+        "date": "2026-09-13",
+        "domain": "Cedar Vale — Evaluation and privacy",
+        "priority": "High",
+        "decisions": [
+          "Cedar Vale's final privacy decision, owned by Nina Shah, requires deleting raw user prompts within 24 hours. It supersedes the September 5 seven-day proposal, which was a draft, not an active production policy. This retention rule is separate from signed source-policy documents.",
+          "Cedar Vale will keep only redacted operational counters for 30 days; patient identifiers are prohibited in analytics.",
+          "Acceptance for Cedar Vale's frozen policy test set requires zero cross-clinic disclosures, at least 95 percent supported claims on answerable questions, and routing for deliberately absent policies."
+        ],
+        "action_items": [
+          "Oscar Bell will implement Cedar Vale's scheduled raw-prompt deletion.",
+          "Oscar Bell will add deletion-job monitoring and verify that a record older than 24 hours cannot be retrieved from Cedar Vale's raw-prompt store.",
+          "Route Cedar Vale's unresolved question about paid parental leave eligibility for temporary contractors to Nina Shah because approved handbook extracts do not define it; do not borrow rules from another employer."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "70ec498f718d4f9bb05630c2890ca98a",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19",
+          "text": "# Cedar Vale — validation and privacy decision\n\nDate: 2026-09-13\nAuthor: Nina Shah\nAttendees: Nina Shah; Ines Duarte; Elliot Reed; Oscar Bell\nClient: Cedar Vale\nDomain: Evaluation and privacy\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nElliot Reed: The frozen policy test set contains 80 questions: 60 answerable policy questions, 12 deliberately missing policies, and 8 cross-clinic access attempts. We scored claim support separately from retrieval coverage.\n\nNina Shah: Decision: delete raw user prompts within 24 hours. This supersedes the seven-day proposal in the September 5 privacy review. Keep only redacted operational counters for 30 days; no patient identifiers belong in analytics.\n\nInes Duarte: To confirm, the seven-day period was a draft, not an active production policy. Nina owns this final privacy decision and Oscar will implement the scheduled deletion.\n\nOscar Bell: I will add deletion job monitoring and verify a record older than 24 hours cannot be retrieved from the raw-prompt store. This retention rule is separate from the signed source-policy documents.",
+          "text_sha256": "8b427c5480856b1714b9d5e7fcab91188153783741fc51f3e663a1ad3a7bcb3c",
+          "embedding_model": "openai/text-embedding-3-small"
+        },
+        {
+          "chunk_id": "e498e55ba11b4777bbf84b7bffc3d1d9",
+          "locator": "Lines 21-21; Lines 23-23",
+          "text": "Elliot Reed: Acceptance requires zero cross-clinic disclosures, at least 95 percent supported claims on answerable questions, and routing for deliberately absent policies. The score workbook records observed results and remaining review items.\n\nNina Shah: Open issue: paid parental leave eligibility for temporary contractors is not defined in our approved handbook extracts. Route that policy question to me rather than borrowing rules from another employer.",
+          "text_sha256": "cff8b711515c57e01a17baf9b922e620fb4c576508e29aee5b303a15295fdd93",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_04_incident_drill.md",
+      "document_id": "4b8241c8aa06471387d63262955dd672",
+      "gold": {
+        "filename": "cedar_04_incident_drill.md",
+        "sha256": "8711f68a7deacd1b9358f712727a5c03b32bb5e3143dce5894df4b9f1e07e053",
+        "author": "Elliot Reed",
+        "attendees": [
+          "Elliot Reed",
+          "Oscar Bell",
+          "Ines Duarte"
+        ],
+        "date": "2026-09-16",
+        "domain": "Incident operations",
+        "priority": "Critical",
+        "source_background_facts": [
+          "Cedar disclosure response disables endpoint and revokes role cache.",
+          "No signed weekend support SLA exists."
+        ],
+        "explicit_decision_gold": [
+          "Oscar Bell: Decision: disable the Cedar assistant endpoint, revoke the affected role cache, and preserve redacted audit evidence. Do not copy raw patient identifiers into an incident chat."
+        ],
+        "explicit_action_gold": [
+          "Ines Duarte: Action: Elliot updates the incident worksheet; Oscar attaches cache-invalidation evidence. If a user asks who guarantees a fifteen-minute weekend response, route to me for a commercial answer instead of inventing coverage."
+        ],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Cedar Vale — incident tabletop notes",
+        "author": "Elliot Reed",
+        "attendees": [
+          "Elliot Reed",
+          "Oscar Bell",
+          "Ines Duarte"
+        ],
+        "date": "2026-09-16",
+        "domain": "Cedar Vale — incident operations; incident-response tabletop",
+        "priority": "Critical",
+        "decisions": [
+          "The Cedar Vale runbook assigns P1 severity to suspected cross-clinic disclosure; this exercise was a tabletop, not a real incident.",
+          "For the Cedar Vale tabletop scenario, disable the Cedar assistant endpoint, revoke the affected role cache, and preserve redacted audit evidence.",
+          "Do not copy raw patient identifiers into an incident chat.",
+          "Oscar owns Cedar Vale access restoration, which is permitted only after the revoked-group regression test passes and Theo's independent security review is complete.",
+          "Nina approves any Cedar Vale policy-content changes after the incident."
+        ],
+        "action_items": [
+          "Elliot updates the Cedar Vale incident worksheet following the tabletop.",
+          "Oscar attaches cache-invalidation evidence for the Cedar Vale tabletop.",
+          "If a user asks who guarantees a fifteen-minute weekend response, route the question to Ines for a commercial answer instead of inventing coverage."
+        ],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "c3cb19633f4a429184197aaefe6e4c71",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Cedar Vale — incident tabletop notes\n\nDate: 2026-09-16\nAuthor: Elliot Reed\nAttendees: Elliot Reed; Oscar Bell; Ines Duarte\nClient: Cedar Vale\nDomain: Incident operations\nPriority: Critical\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nElliot Reed: Tabletop, not a real incident: a stale role cache lets a revoked administrator request restricted snippets. The runbook severity is P1 for suspected cross-clinic disclosure.\n\nOscar Bell: Decision: disable the Cedar assistant endpoint, revoke the affected role cache, and preserve redacted audit evidence. Do not copy raw patient identifiers into an incident chat.\n\nInes Duarte: I own client incident communication. Oscar owns containment and access restoration; Elliot owns triage and the evidence timeline. Nina approves any policy-content changes after the incident.\n\nElliot Reed: The drill took nine minutes to disable the endpoint. That is a rehearsal observation, not a contractual response-time guarantee. No signed weekend support SLA exists in this corpus.\n\nOscar Bell: Restore only after the revoked-group regression test passes and Theo's independent security review is complete. Theo is a reviewer on the runbook, although not an attendee at today's drill.",
+          "text_sha256": "abad1103855a118d6843125650e392c1a8795630f474fbcb893fc25867842bec",
+          "embedding_model": "openai/text-embedding-3-small"
+        },
+        {
+          "chunk_id": "bd9bb7c7b82c4fffa8b1c5466b5c5074",
+          "locator": "Lines 23-23",
+          "text": "Ines Duarte: Action: Elliot updates the incident worksheet; Oscar attaches cache-invalidation evidence. If a user asks who guarantees a fifteen-minute weekend response, route to me for a commercial answer instead of inventing coverage.",
+          "text_sha256": "b85a209c77a0982b1327ed6060ebf6f3f45c293f387449a1be1c38fce4302a41",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_access_design.pptx",
+      "document_id": "c035ce5fdb1c4a588d55de59ca61fcd1",
+      "gold": {
+        "filename": "cedar_access_design.pptx",
+        "sha256": "e096a0ff035e5dacdf729c7d3728696d1b34d5baa1c07311b852394f2ae4c648",
+        "author": "Oscar Bell",
+        "attendees": [
+          "Oscar Bell",
+          "Elliot Reed",
+          "Nina Shah"
+        ],
+        "date": "2026-09-08",
+        "domain": "Identity architecture",
+        "priority": "Critical",
+        "source_background_facts": [
+          "Cedar filters both clinic_id and policy_group before model context."
+        ],
+        "explicit_decision_gold": [],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Cedar Vale — policy access design",
+        "author": "Oscar Bell",
+        "attendees": [
+          "Oscar Bell",
+          "Elliot Reed",
+          "Nina Shah"
+        ],
+        "date": "2026-09-08",
+        "domain": "Cedar Vale — identity architecture for policy access",
+        "priority": "Critical",
+        "decisions": [
+          "Every Cedar Vale policy chunk carries clinic_id and policy_group. Apply both filters using allowed values from the authenticated identity token before retrieval ranking and before model context assembly.",
+          "Deny Cedar Vale policy access for missing identity claims, expired credentials, or a revoked policy group. Never retry against a global collection. Oscar Bell owns access middleware and regressions.",
+          "Nina Shah is the approver for published Cedar Vale policy content.",
+          "Cedar Vale corrections and unanswered questions must enter a human review queue and must not silently rewrite approved source documents."
+        ],
+        "action_items": [],
+        "warnings": [],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "08676dd7b37a440b9adf7078728bae97",
+          "locator": "Slide 1, shape 1; Slide 1, shape 2; Slide 1, shape 3; Slide 2, shape 1; Slide 2, shape 2; Slide 2, shape 3; Slide 3, shape 1; Slide 3, shape 2; Slide 3, shape 3; Slide 4, shape 1; Slide 4, shape 2; Slide 4, shape 3",
+          "text": "Cedar Vale — policy access design\n\nDate: 2026-09-08\nAuthor: Oscar Bell\nAttendees: Oscar Bell; Elliot Reed; Nina Shah\nClient: Cedar Vale\nDomain: Identity architecture\nPriority: Critical\nClassification: SYNTHETIC — fictional evaluation material\n\nRELAY AI  /  CEDAR VALE  /  SYNTHETIC DATA  /  1\n\nClaims and source labels\n\nEvery policy chunk carries clinic_id and policy_group. The authenticated identity token supplies the user's allowed values. Apply both filters before retrieval ranking and before model context assembly.\n\nRELAY AI  /  CEDAR VALE  /  SYNTHETIC DATA  /  2\n\nFail closed\n\nMissing identity claims, expired credentials, and a revoked policy group deny access. Never retry against a global collection. Oscar Bell owns access middleware and regressions.\n\nRELAY AI  /  CEDAR VALE  /  SYNTHETIC DATA  /  3\n\nPolicy approval boundary\n\nNina Shah approves published policy content. Corrections and unanswered questions enter a human review queue. They must not silently rewrite approved source documents.\n\nRELAY AI  /  CEDAR VALE  /  SYNTHETIC DATA  /  4",
+          "text_sha256": "ec8d60b6f974c9a8f952d1a32f252c174e4ea4d72e87ca2d06c92b0aef48e06d",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_eval_scores.xls",
+      "document_id": "8038df8685a84c738a6874ab7388cb52",
+      "gold": {
+        "filename": "cedar_eval_scores.xls",
+        "sha256": "840f2e6d2379f075b431de2d4984d55f08d28ca27f3e829f6f423d19a3ca49b6",
+        "author": "Elliot Reed",
+        "attendees": [
+          "Elliot Reed",
+          "Nina Shah",
+          "Oscar Bell"
+        ],
+        "date": "2026-09-13",
+        "domain": "Answer quality",
+        "priority": "High",
+        "source_background_facts": [
+          "Cedar eval: 80 questions; 0/8 cross-clinic disclosures; 58/60 supported answer cases; 12/12 gaps routed."
+        ],
+        "explicit_decision_gold": [],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Cedar Vale — frozen policy evaluation scores",
+        "author": "Elliot Reed",
+        "attendees": [
+          "Elliot Reed",
+          "Nina Shah",
+          "Oscar Bell"
+        ],
+        "date": "2026-09-13",
+        "domain": "Cedar Vale — Answer quality: frozen offline policy evaluation",
+        "priority": "High",
+        "decisions": [
+          "Cedar Vale's frozen offline evaluation against approved policy versions requires at least 95 percent supported claims for answerable policy questions.",
+          "Cedar Vale's frozen offline evaluation requires all known gaps to be routed in deliberately missing-policy cases.",
+          "Cedar Vale's frozen offline evaluation requires zero disclosures for cross-clinic access attempts.",
+          "Cedar Vale's frozen offline evaluation requires a total of 80 questions."
+        ],
+        "action_items": [],
+        "warnings": [
+          "Original .xls source normalized with LibreOffice; locators describe converted document structure, not printed page numbers.",
+          "Register!B5: using saved formula result, which may be stale."
+        ],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "4e7dcd9e35d347a58babf6d602b88e68",
+          "locator": "Sheet 'Read me', cells A1:A1; Sheet 'Read me', cells A2:A2; Sheet 'Read me', cells A3:A3; Sheet 'Read me', cells A4:A4; Sheet 'Read me', cells A5:A5; Sheet 'Read me', cells A6:A6; Sheet 'Read me', cells A7:A7; Sheet 'Read me', cells A8:A8; Sheet 'Read me', cells A10:A10; Sheet 'Register', cells A1:D1; Sheet 'Register', cells A2:D2; Sheet 'Register', cells A3:D3; Sheet 'Register', cells A4:D4; Sheet 'Register', cells A5:D5",
+          "text": "A1: Title: Cedar Vale — frozen policy evaluation scores\n\nA2: Date: 2026-09-13\n\nA3: Author: Elliot Reed\n\nA4: Attendees: Elliot Reed; Nina Shah; Oscar Bell\n\nA5: Client: Cedar Vale\n\nA6: Domain: Answer quality\n\nA7: Priority: High\n\nA8: Classification: SYNTHETIC — fictional evaluation material\n\nA10: Evaluation protocol: Elliot Reed evaluated a frozen set of 80 questions against approved policy versions. These are offline evaluation results, not a guarantee about production behavior.\n\nA1: Category | B1: Cases | C1: Observed outcome | D1: Acceptance threshold\n\nA2: Answerable policy questions | B2: 60 | C2: 58 supported; 2 need review | D2: At least 95 percent supported claims\n\nA3: Deliberately missing policies | B3: 12 | C3: 12 routed for clarification | D3: All known gaps routed\n\nA4: Cross-clinic access attempts | B4: 8 | C4: 0 disclosures | D4: Zero disclosures\n\nA5: Total question count | B5: 80 [formula: =SUM(B2:B4); cached value may be stale] | C5: Frozen before evaluation | D5: 80 questions",
+          "text_sha256": "75ad80d69585997e48125368918ae0da29ce2ff7aeb140a7733f477b6146b0f4",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_operations.ppt",
+      "document_id": "067946f4b11048348e940f3f2bfde852",
+      "gold": {
+        "filename": "cedar_operations.ppt",
+        "sha256": "74f2017fd1a3f3a9e8ebe2e018fbca8030f9f2a3694540e9936de37a6471ac94",
+        "author": "Elliot Reed",
+        "attendees": [
+          "Elliot Reed",
+          "Oscar Bell",
+          "Ines Duarte",
+          "Theo Haddad"
+        ],
+        "date": "2026-09-16",
+        "domain": "Incident response",
+        "priority": "Critical",
+        "source_background_facts": [
+          "Cedar recovery requires revoked-group regression and Theo Haddad security review."
+        ],
+        "explicit_decision_gold": [],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Cedar Vale — incident containment runbook",
+        "author": "Elliot Reed",
+        "attendees": [
+          "Elliot Reed",
+          "Oscar Bell",
+          "Ines Duarte",
+          "Theo Haddad"
+        ],
+        "date": "2026-09-16",
+        "domain": "Cedar Vale — incident response; tabletop containment runbook",
+        "priority": "Critical",
+        "decisions": [
+          "Under Cedar Vale’s tabletop runbook, restore only after the revoked-group regression passes and Theo Haddad completes an independent security review.",
+          "Cedar Vale’s drill must never be described as a real patient-data incident."
+        ],
+        "action_items": [
+          "For suspected cross-clinic disclosure under Cedar Vale’s tabletop runbook, Oscar Bell owns containment: disable the assistant endpoint, invalidate the role cache, and preserve redacted request IDs and policy-version evidence.",
+          "Route Cedar Vale contractual coverage questions to Ines Duarte; no signed weekend support SLA or staffed on-call rota is documented, and the tabletop’s nine-minute endpoint shutdown is an observation, not a guaranteed response time."
+        ],
+        "warnings": [
+          "Original .ppt source normalized with LibreOffice; locators describe converted document structure, not printed page numbers."
+        ],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "13cbfd84bf4d43b09dd60f1db07bae0f",
+          "locator": "Slide 1, shape 1; Slide 1, shape 2; Slide 1, shape 3; Slide 2, shape 1; Slide 2, shape 2; Slide 2, shape 3; Slide 3, shape 1; Slide 3, shape 2; Slide 3, shape 3; Slide 4, shape 1; Slide 4, shape 2; Slide 4, shape 3; Slide 4, speaker notes",
+          "text": "Cedar Vale — incident containment runbook\n\nDate: 2026-09-16\nAuthor: Elliot Reed\nAttendees: Elliot Reed; Oscar Bell; Ines Duarte; Theo Haddad\nClient: Cedar Vale\nDomain: Incident response\nPriority: Critical\nClassification: SYNTHETIC — fictional evaluation material\n\nRELAY AI  /  CEDAR VALE  /  SYNTHETIC DATA  /  1\n\nP1 containment\n\nFor suspected cross-clinic disclosure, disable the assistant endpoint, invalidate the role cache, and preserve redacted request IDs and policy-version evidence. Oscar Bell owns containment.\n\nRELAY AI  /  CEDAR VALE  /  SYNTHETIC DATA  /  2\n\nCommunication and recovery\n\nInes Duarte owns client communication. Elliot Reed owns triage. Restore only after the revoked-group regression passes and Theo Haddad completes an independent security review.\n\nRELAY AI  /  CEDAR VALE  /  SYNTHETIC DATA  /  3\n\nCoverage limitation\n\nNo signed weekend support SLA or staffed on-call rota is documented. The nine-minute endpoint shutdown in the tabletop is an observation, not a guaranteed response time. Route contractual coverage questions to Ines Duarte.\n\nRELAY AI  /  CEDAR VALE  /  SYNTHETIC DATA  /  4\n\nThis is a tabletop runbook. Never describe the drill as a real patient-data incident.",
+          "text_sha256": "7d13611ec02312302a1469500a316fc0ebf19125c108b83aed3124646a98a428",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_privacy_review.doc",
+      "document_id": "b489f58151a64877baa79e62dfe725d9",
+      "gold": {
+        "filename": "cedar_privacy_review.doc",
+        "sha256": "500488c60cd01552874fe4c991f36688e58ce3992692cf099679a13ec8d398a8",
+        "author": "Nina Shah",
+        "attendees": [
+          "Nina Shah",
+          "Ines Duarte",
+          "Oscar Bell"
+        ],
+        "date": "2026-09-05",
+        "domain": "Privacy",
+        "priority": "High",
+        "source_background_facts": [
+          "Seven-day raw-prompt retention is an unapproved draft, later superseded."
+        ],
+        "explicit_decision_gold": [],
+        "explicit_action_gold": [],
+        "enrichment_rubric": "Source background facts are context, not mandatory enrichment fields. Topic must match source/client. Priority must equal stated priority. Decisions and actions must capture explicit decisions/actions faithfully, preserving draft/pending/observed distinctions and named responsibility; do not invent decisions from descriptive background. Sources without explicit Decision/Action labels still require faithful stated policy/commitment extraction; empty lists are valid when none exist. Attribution is deterministic and outside model output."
+      },
+      "metadata": {
+        "title": "Cedar Vale — draft privacy review",
+        "author": "Nina Shah",
+        "attendees": [
+          "Nina Shah",
+          "Ines Duarte",
+          "Oscar Bell"
+        ],
+        "date": "2026-09-05",
+        "domain": "Cedar Vale — Privacy",
+        "priority": "High",
+        "decisions": [
+          "Cedar Vale’s proposed raw-prompt retention period is seven days; this draft is for review and is not approved policy.",
+          "Cedar Vale’s policy-search corpus excludes patient records.",
+          "Cedar Vale input prompts must be redacted before model access because they may accidentally contain identifiers.",
+          "Do not use Cedar Vale raw prompts to populate analytics dashboards.",
+          "Retrieval cannot manufacture paid parental leave eligibility for Cedar Vale temporary contractors: approved handbook extracts do not define it, and Nina Shah owns the unresolved policy clarification."
+        ],
+        "action_items": [
+          "Nina Shah will decide on Cedar Vale’s proposed seven-day raw-prompt retention period after the privacy review."
+        ],
+        "warnings": [
+          "Original .doc source normalized with LibreOffice; locators describe converted document structure, not printed page numbers."
+        ],
+        "ingestion_profile": "1a8237e6ff4fe54bbc55d8a1061f0398aaaa142b0f5bc305ff92d2662ee7e742",
+        "embedding_model": "openai/text-embedding-3-small",
+        "embedding_dimensions": 1536,
+        "enrichment_model": "openai/gpt-6-astra",
+        "enrichment_options": {
+          "temperature": null,
+          "reasoning_effort": "high",
+          "max_output_tokens": 8000,
+          "provider_order": null,
+          "provider_ignore": [
+            "openai/flex"
+          ],
+          "allow_fallbacks": true
+        }
+      },
+      "chunks": [
+        {
+          "chunk_id": "2007d94032a84c5b9feb4ed5361fdf01",
+          "locator": "Paragraph 1; Paragraph 2; Paragraph 3; Paragraph 4; Paragraph 5; Paragraph 6; Paragraph 7; Paragraph 8; Paragraph 9; Paragraph 10; Paragraph 11; Paragraph 12; Paragraph 13; Paragraph 14",
+          "text": "Cedar Vale draft privacy review\n\nDate: 2026-09-05\n\nAuthor: Nina Shah\n\nAttendees: Nina Shah; Ines Duarte; Oscar Bell\n\nClient: Cedar Vale\n\nDomain: Privacy\n\nPriority: High\n\nClassification: SYNTHETIC — fictional evaluation material\n\nDraft proposal\n\nDRAFT FOR REVIEW. The proposed raw-prompt retention period is seven days. This draft is not an approved policy. Nina Shah will decide after the privacy review.\n\nData limits\n\nThe policy-search corpus excludes patient records. Input prompts may accidentally contain identifiers, so redaction must occur before model access. Do not use raw prompts to populate analytics dashboards.\n\nUnresolved policy\n\nThe approved handbook extracts do not define paid parental leave eligibility for temporary contractors. Nina Shah owns that policy clarification; retrieval cannot manufacture an eligibility rule.",
+          "text_sha256": "55a0d7d409f0f1764d55fcdf8c42ffcf0f8b2fbafff927bd88287d82d9026102",
+          "embedding_model": "openai/text-embedding-3-small"
+        }
+      ],
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    }
+  ]
+}

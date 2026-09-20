@@ -1,0 +1,71 @@
+{
+  "method": "Latency covers one selected final attempt per frozen case, including returned semantic failures and the two Luna operational failures. Costs include all HTTP attempts in the full-stage report time windows, including original 402 failures and their credit-only retries. Enrichment, screen, and diagnostic replay costs are separate. Provider queueing/concurrency and user credit addition confound cross-model latency: Luna concurrency4; Astra/hybrid initially4 then2 for42 resumed cases. No throughput or repeated-run confidence interval is inferred.",
+  "configurations": [
+    {
+      "model": "openai/gpt-5.6-luna",
+      "review_model": "openai/gpt-5.6-luna",
+      "cases": 45,
+      "passed": 39,
+      "operational_failures": 2,
+      "median_seconds": 13.367,
+      "p95_seconds": 27.433,
+      "max_seconds": 86.936,
+      "reported_cost_usd": 0.17828015,
+      "accounted_cost_usd": 0.17828015,
+      "http_attempts": 139,
+      "http_402_attempts": 0,
+      "regression": {
+        "passed": 30,
+        "cases": 33
+      },
+      "holdout": {
+        "passed": 9,
+        "cases": 12
+      }
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "review_model": "openai/gpt-6-astra",
+      "cases": 45,
+      "passed": 41,
+      "operational_failures": 0,
+      "median_seconds": 20.816,
+      "p95_seconds": 64.444,
+      "max_seconds": 85.389,
+      "reported_cost_usd": 6.25646527,
+      "accounted_cost_usd": 6.25646527,
+      "http_attempts": 144,
+      "http_402_attempts": 21,
+      "regression": {
+        "passed": 30,
+        "cases": 33
+      },
+      "holdout": {
+        "passed": 11,
+        "cases": 12
+      }
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "review_model": "openai/gpt-6-astra",
+      "cases": 45,
+      "passed": 43,
+      "operational_failures": 0,
+      "median_seconds": 24.811,
+      "p95_seconds": 56.517,
+      "max_seconds": 75.522,
+      "reported_cost_usd": 8.9119227,
+      "accounted_cost_usd": 8.9119227,
+      "http_attempts": 163,
+      "http_402_attempts": 21,
+      "regression": {
+        "passed": 32,
+        "cases": 33
+      },
+      "holdout": {
+        "passed": 11,
+        "cases": 12
+      }
+    }
+  ]
+}

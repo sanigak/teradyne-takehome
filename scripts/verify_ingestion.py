@@ -5,6 +5,7 @@ submission; the complete per-file run is retained only in ignored runtime data.
 """
 
 import asyncio
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -29,6 +30,10 @@ def documents(store, *, active=False):
 
 
 async def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--report", type=Path, default=ROOT / "docs/evaluation-results/adversarial-reingestion.json",
+                        help="Sanitized output report; choose a new filename to preserve earlier audits.")
+    args = parser.parse_args()
     settings = Settings(daily_evaluation=False)
     store = Store(settings.data_dir)
     provider = CountingOpenRouter(settings, store)
@@ -71,7 +76,8 @@ async def main():
                   "repeat_provider_requests": repeat_requests, "active_documents": document_count, "active_chunks": chunk_count,
                   "historical_versions_checked": len(all_documents), "all_archived_original_hashes_match": not archive_failures,
                   "archive_failures": archive_failures, "previous_document_history_preserved": history_preserved, "files": checks}
-        (ROOT / "docs/evaluation-results/adversarial-reingestion.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        args.report.parent.mkdir(parents=True, exist_ok=True)
+        args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(json.dumps({key: value for key, value in report.items() if key != "files"}, indent=2), flush=True)
         if not passed:
             raise RuntimeError("Live ingestion audit failed; inspect sanitized report.")

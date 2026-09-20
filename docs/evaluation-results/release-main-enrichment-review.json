@@ -1,0 +1,623 @@
+{
+  "created_at": "2026-09-20T18:25:34.261126+00:00",
+  "packet": "docs/evaluation-results/release-main-enrichment-review-packet.json",
+  "packet_sha256": "49378c7dc4cc2dfe312affc7fe6b92c7c6f120e7fe8b16e4723b15a143dcf84f",
+  "corpus_snapshot": "docs/evaluation-results/release-main-enrichment-snapshot.json",
+  "corpus_snapshot_sha256": "16b53022a9f15b84adb5ccad3da75e7e00d1475e29d978df3842cc087df96b62",
+  "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+  "reviewer": "Codex independent ingestion/provenance reviewer",
+  "review_mode": "Independent regression adjudication of actual main24 after the completed live re-enrichment. Selected recipe was known through coordination. Every source was freshly extracted from its immutable archived original and compared with its frozen source gold and actual stored enrichment. No paid calls or main database writes were performed by this review. This is not a new blinded model comparison or an answer-quality evaluation.",
+  "standard": "Explicit decisions, action commitments, policy and labeled acceptance requirements must survive with their conditional, draft, historical, client and data-type scope. Background observations and standing ownership are not all mandatory output fields. Stated ownership does not itself imply newly assigned/completed work. Model-generated metadata cannot override deterministic attribution.",
+  "checks": {
+    "documents": 24,
+    "chunks": 36,
+    "passed": 24,
+    "semantic_failures": 0,
+    "deterministic_failures": 0,
+    "deterministic_checks_passed": 264,
+    "decisions_reviewed": 105,
+    "actions_reviewed": 47
+  },
+  "records": [
+    {
+      "filename": "atlas_01_kickoff.md",
+      "document_id": "404ab6eb1c9b4df295f696f73f07240a",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Captures the manual-only pilot and accountable-owner routing, all assigned inventory/design/review tasks, blocked service principal and the conditional unsigned planning date without inventing deployment."
+      ],
+      "decision_count": 8,
+      "action_count": 5,
+      "metadata_sha256": "a08c2f8a69161d4de7c9cc3147ac51b441943e60dbe2c184e8a16acfa42299e2",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_02_architecture.md",
+      "document_id": "22c8b7d33a2441a29642edac7060d941",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves mandatory redaction and no bypass, technician feedback, the blocked-request-only two-field logging scope, conditional pilot approval, role-matrix deadline and proposed canary status."
+      ],
+      "decision_count": 4,
+      "action_count": 2,
+      "metadata_sha256": "72f0aee65105122a316864f931c10922af03e5cf1b3b284024ba25267405c0f4",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_03_security_gate.md",
+      "document_id": "7994c43e97764312933ced3e7faf8948",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves November 2 supersession, all three conjunctive security gates, conditional sponsor communication, redaction replay work and unconfirmed external addendum follow-up."
+      ],
+      "decision_count": 6,
+      "action_count": 4,
+      "metadata_sha256": "91dcccc288a776e73541b32492388f254c314c583db3a9b4e5fb78de865db840",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_04_delivery.md",
+      "document_id": "83d34fd7239a459db339570223c2ab2b",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves staged canary durations, budget conditions and unmeasured production latency, pending identity role, escalation deadline and written-window/routing actions without claiming approval."
+      ],
+      "decision_count": 4,
+      "action_count": 4,
+      "metadata_sha256": "9668cb301095095b93c54cfbefbc479ed5bfac2240cc47605e223912711ecd5e",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_gateway_design.doc",
+      "document_id": "780d6379cece40968b7dded257c604e5",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Captures read-only principal and credential limits, tenant/redaction failures, no public-endpoint fallback and pending provisioning; no invented completed work."
+      ],
+      "decision_count": 5,
+      "action_count": 0,
+      "metadata_sha256": "1fcee5d33776d6ece612bb59270f2dfd930e488afe074c6eca0488dd78054cfe",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_latency_budget.xlsx",
+      "document_id": "475beecbcb6e449f8dccad670576682d",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Keeps allocations as planning rather than observed performance and preserves the strict below-2500-millisecond acceptance boundary and verification owner."
+      ],
+      "decision_count": 2,
+      "action_count": 0,
+      "metadata_sha256": "824ecb07e9b672e1a6d7c584f9d086c438bf8d37e13ee3638686a2e1e0bb0d8f",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_release_plan.pptx",
+      "document_id": "24435eab8a0c4380a389d321595835e9",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves planned launch/canary scope, both staged durations, inclusive latency stop, strict error-rate/window stop, immediate unauthorized-retrieval stop and unapproved maintenance window."
+      ],
+      "decision_count": 4,
+      "action_count": 0,
+      "metadata_sha256": "c0eb571f6a53c3de0f7fa50a35fb3f3a2443854cfd63f1505c962c4080aa06c2",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "atlas_security_addendum.docx",
+      "document_id": "a5c08765af4e4167be1312f3c7dec385",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Captures every logging prohibition and permitted field, thirty-day redacted diagnostics in Frankfurt, daily deletion/ownership, all launch gates and lack of external-contract attestation."
+      ],
+      "decision_count": 5,
+      "action_count": 0,
+      "metadata_sha256": "660cae6f45f636a37c51021a728a5b1445494aeb9bc44377e614f9193625c0d5",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_01_discovery.md",
+      "document_id": "88feb7a1946c4ee4a0131ea13e9595c2",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves two-depot batch/manual scope, rejection of forecasts, excluded dispatch/driver data, delivery/input requirements, conditional negotiation and no guessed holiday annotations."
+      ],
+      "decision_count": 5,
+      "action_count": 3,
+      "metadata_sha256": "5978622fdbef4493a1f6e736ef77a641ce41de379bfc284f49b7697dc992ac2e",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_02_data_review.md",
+      "document_id": "e682808f26984c8e8b62ad63bea47323",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves composite-key/latest-update deduplication, Central-only backtest block with North offline continuation, conditional static weather use/no ongoing feed before agreement, and explicit sample/test/calendar/register actions."
+      ],
+      "decision_count": 4,
+      "action_count": 3,
+      "metadata_sha256": "1819db3b97111494d1d349d93cabc3631f2de492656456700300ea8f4fd5138f",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_03_pilot_acceptance.md",
+      "document_id": "4c1917d3bb2e4eaabf49126591b0bef9",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Captures every conjunctive acceptance criterion, frozen holdout exclusion from training, manual planner approval/fallback explanation, workbook deadline and five rehearsals. Standing measurement ownership is retained as ownership, not a newly claimed completed task."
+      ],
+      "decision_count": 5,
+      "action_count": 3,
+      "metadata_sha256": "d48b16185ebcd2ce66b6fe95f4527ae5b0e9fc85270915f3d9d6c240d6444257",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_04_commercial.md",
+      "document_id": "07b4763333ab4f7c92bc49d41c27030a",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves signed two-depot price/payment versus unsigned three-depot estimate, excluded scope/change request, unresolved approved threshold disagreement and owner, scope-summary circulation and separate unresolved vendor SLA."
+      ],
+      "decision_count": 5,
+      "action_count": 4,
+      "metadata_sha256": "ee25ed4175210f4605cf05e9269330cbbf50b8b26ad819900d35d879e00d0e94",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_commercial_terms.docx",
+      "document_id": "b30774497e7b47ffbeecd9280337d090",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves the two-depot reduction requirement specifically within an unsigned/unaccepted proposal, all exclusions and the absence of implied vendor-retention agreement; does not promote draft to approval."
+      ],
+      "decision_count": 2,
+      "action_count": 0,
+      "metadata_sha256": "39ebc4fbfcd21dcb095a1e38d766fb77cb7e2bf1a9dc699732526da109dd2eef",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_dispatch_handoff.xlsx",
+      "document_id": "ba75cc93abdc44319b62a48bee520e46",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Captures all tabular delivery, missing-feed fallback, manual planner, conflicting ten-percent limit and vendor-agreement requirements with owners/conditions, and preserves dispatch exclusion."
+      ],
+      "decision_count": 2,
+      "action_count": 4,
+      "metadata_sha256": "a6bf2a3ecda71ec7ed3eb3fc255b9438ac03d71fbc15adf31a6482b8608cc5fb",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_pilot_review.ppt",
+      "document_id": "f47a9d5362ff403a9bbc6a63116b9890",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Captures the twelve-percent threshold, delivery deadline, warned fallback, human approval, excluded live dispatch and separate approval gates; offline evaluation is not reported as production savings."
+      ],
+      "decision_count": 6,
+      "action_count": 0,
+      "metadata_sha256": "9131aa1ff91e9b2d203014adf89b71adec61706fa954fd304a5ccaeafd955cf5",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "beacon_quality_register.xls",
+      "document_id": "aaf09f29d2b94e97b57d7fec8e71c1ed",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Captures all labeled acceptance rules, composite key, minimum twelve weeks, holiday validation before pilot and signed vendor terms before ongoing feed; no unknown SLA value is invented."
+      ],
+      "decision_count": 3,
+      "action_count": 1,
+      "metadata_sha256": "d578dcb280df1b337d3dc572eb7bcdbcd961a7e0a4c1e8eb196b47fc48b27829",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_01_kickoff.md",
+      "document_id": "5a006d32ab774fe68ec440914866fc8e",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Captures administrative clinic scope, diagnostic/treatment prohibition, redaction/patient-record limits, citations, policy-owner escalation and draft retention status; suggested tests remain phrased as suggestions."
+      ],
+      "decision_count": 7,
+      "action_count": 3,
+      "metadata_sha256": "c2c36a8fa8ecd6a71482195a6d67b487c83f6d0343cafed322d9d8a747bea8b8",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_02_access_review.md",
+      "document_id": "b6f65667a0924d5980da5a8812905c0c",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves authenticated two-claim filtering, forbidden/no-global-fallback behavior, human policy correction review, versioned evaluation evidence, missing/expired/revoked identity tests and absence of guaranteed weekend coverage."
+      ],
+      "decision_count": 5,
+      "action_count": 2,
+      "metadata_sha256": "860d41b8133dc81c1b9b01b1f53ef1507f511d5bd4e877cc8f60d7701133965f",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_03_validation.md",
+      "document_id": "42c2b2b0ad264d409be86fb1531fe2a8",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves final twenty-four-hour raw-prompt deletion versus superseded draft, separate thirty-day redacted counters, all acceptance rules, deletion/monitoring tasks and unresolved contractor eligibility routing."
+      ],
+      "decision_count": 3,
+      "action_count": 3,
+      "metadata_sha256": "ded55f5d118e4ce68bce8ce865aa19d4bf1d9152dc7e43c0b093282089bef11c",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_04_incident_drill.md",
+      "document_id": "4b8241c8aa06471387d63262955dd672",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves actual tabletop scope, P1/containment requirements, redacted evidence, both recovery prerequisites, policy approver and explicit worksheet/cache-evidence/commercial-routing actions without inventing a real breach or data used."
+      ],
+      "decision_count": 5,
+      "action_count": 3,
+      "metadata_sha256": "cdf41dc52196badbb9e9fdaaf3621b87cb6c3131357cfcf5fc518eda0964518b",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_access_design.pptx",
+      "document_id": "c035ce5fdb1c4a588d55de59ca61fcd1",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Captures both authenticated access filters before ranking/context, every failure condition, no global retry, human content approval and review rather than silent source rewriting."
+      ],
+      "decision_count": 4,
+      "action_count": 0,
+      "metadata_sha256": "0ec74349dc63f1e9644784feda192a4e613eb2d5257a70f4e08905755b9c574d",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_eval_scores.xls",
+      "document_id": "8038df8685a84c738a6874ab7388cb52",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Captures all labeled offline evaluation thresholds: at least95% support, all known gaps routed, zero cross-clinic disclosures and80 frozen questions. Does not invent remediation work from observations."
+      ],
+      "decision_count": 4,
+      "action_count": 0,
+      "metadata_sha256": "859eb2e4e5d922042782a5151b1ca035ec8c6ca08de060cc1ef6cf33bb120be4",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_operations.ppt",
+      "document_id": "067946f4b11048348e940f3f2bfde852",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves tabletop containment actions, both recovery conditions, no real-incident description and commercial routing with documented weekend-coverage limitations; no nine-minute guarantee is invented."
+      ],
+      "decision_count": 2,
+      "action_count": 2,
+      "metadata_sha256": "86407365bb290a7c82e8a6bd422db57fc09aac580633aa9ba25cf0253683e1ac",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    },
+    {
+      "filename": "cedar_privacy_review.doc",
+      "document_id": "b489f58151a64877baa79e62dfe725d9",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves unapproved seven-day draft and future decision, patient-record exclusion, pre-model redaction, no raw analytics and unresolved contractor eligibility without invented approval or denial."
+      ],
+      "decision_count": 5,
+      "action_count": 1,
+      "metadata_sha256": "b3f865627a6d549491804d0a793166ef2a8f666ad69108581026f24186f5ea54",
+      "deterministic_checks": {
+        "stored_source_hash_matches_frozen_gold": true,
+        "archived_original_hash_matches_frozen_gold": true,
+        "current_corpus_hash_matches_frozen_gold": true,
+        "stored_chunks_equal_fresh_original_extraction": true,
+        "title_matches_fresh_original_extraction": true,
+        "author_matches_gold_and_fresh_extraction": true,
+        "attendees_match_gold_and_fresh_extraction": true,
+        "date_matches_gold_and_fresh_extraction": true,
+        "priority_matches_frozen_source": true,
+        "metadata_digest_matches": true,
+        "chunk_text_digests_match": true
+      }
+    }
+  ]
+}

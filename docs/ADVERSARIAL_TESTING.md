@@ -1,5 +1,7 @@
 # Adversarial testing record
 
+This preserves the earlier adversarial audit and its original failures. For the later UI/model revision, current test counts, and subsequent verification, read [validation](VALIDATION.md) and [model selection](MODEL_SELECTION.md). Historical model choices and browser counts below describe that earlier stage.
+
 The user requested an independent, serious test of the take-home and a personal UI/CX review queue. All three pages of the original exercise brief were re-read. Testing covered the transcript API, all six Office extensions, provenance/routing, correction and gap persistence, quality monitoring, and the full React experience.
 
 **Read the live semantic findings as well as the automated scores.** An automatic 15/15 result concealed unsupported clauses and incomplete claim citations. Those failures are preserved below. The application has stronger failure boundaries now, but a model's support verdict is not proof of entailment.
@@ -49,4 +51,4 @@ Two live browser workflows passed without network fixtures: answer → evidence 
 
 Run the backend and UI suites through `scripts/run.ps1 test` / `ui-test` on Windows or `scripts/run.sh test` / `ui-test` on Linux. See [evaluation commands](EVALUATION.md#reproduce-the-adversarial-live-audit) for isolated live audits, and [validation](VALIDATION.md) for final executed counts. A Windows symlink privilege skip is reported rather than counted as a pass; the Linux CI environment can exercise that case.
 
-The user's ordered **[UI/CX review queue](UI_REVIEW_QUEUE.md)** has exact questions, actions, expected facts, failure criteria, keyboard/mobile/recovery checks, and an issue template. Start with its P0 flows. In particular, inspect whether each selected passage supports the **whole** claim: visible source IDs and exact quotations alone do not establish semantic correctness.
+The user's ordered **[UI/CX review queue](UI_REVIEW_QUEUE.md)** has exact questions, actions, expected facts, failure criteria, keyboard/mobile/recovery checks, and an issue template. Start with its P0 flows. In particular, inspect whether each claim's selected passages, taken together, support **every clause**: visible source IDs and exact quotations alone do not establish semantic correctness.

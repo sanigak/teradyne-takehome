@@ -1,0 +1,482 @@
+{
+  "packet": "docs/evaluation-results/model-benchmark-full-blinded-part3.json",
+  "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+  "reviewer": "Codex independent ingestion/provenance agent",
+  "review_mode": "Independent manual semantic review with model mapping,cost,latency,and automated verdict hidden.",
+  "standard": "Grade actual outputs and their own selected quotations against frozen gold. Available requested facts/comparisons must be complete; every added factual clause needs its own source support. Preserve conditional,historical,observed,and data-type scope. Operational errors are distinct failures,not successful abstentions. Later table-header code changes are not retroactively applied.",
+  "checks": {
+    "records_reviewed": 45,
+    "passed": 40,
+    "semantic_failures": 4,
+    "operational_failures": 1,
+    "selected_quotations_checked": 129,
+    "routing_suggestions_checked": 36,
+    "invalid_citation_ids_or_nonmatching_quotes": 0,
+    "invalid_routing_ids_or_unattributed_recipients": 0,
+    "model_mapping_inspected": false,
+    "live_provider_calls": 0
+  },
+  "adjudications": [
+    "Adjudication before model mapping: retrospective fixed frozen holdout weeks support the offline characterization. The frozen rubric does not impose a literal 'offline' word requirement or require repeating the question's framing when all requested facts are supplied. Quoting the explicit offline footnote would strengthen presentation but is not required to avoid a new factual claim.",
+    "Table headers are necessary when an added claim's units or comparison role cannot be inferred from its selected rows. Self-identifying text such as '2 unconfirmed closures' or '58 supported;2 need review' does not require a header merely because it is tabular."
+  ],
+  "records": [
+    {
+      "anonymous_id": "answer-6e220997",
+      "case_id": "holdout-beacon-holiday-closures",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Own row quotations identify two unconfirmed Central closures, Jules Park, and validation before the pilot."
+      ]
+    },
+    {
+      "anonymous_id": "answer-f1268726",
+      "case_id": "holdout-cedar-revoked-group",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Own quotations require denying a revoked policy group regardless of a valid clinic ID and prohibit a global fallback; added identity/filter timing statements remain supported."
+      ]
+    },
+    {
+      "anonymous_id": "answer-ba626988",
+      "case_id": "holdout-cedar-answerable-denominator",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Reports58 supported and2 needing review out of the60 answerable questions; the row's explicit outcome counts and category support the denominator. Does not claim80 answerable cases or production accuracy."
+      ]
+    },
+    {
+      "anonymous_id": "answer-7371fb1d",
+      "case_id": "holdout-atlas-unauthorized-retrieval",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Immediate stop for any unauthorized retrieval is explicitly quoted, irrespective of traffic volume; acceptable latency does not override that separate stop trigger."
+      ]
+    },
+    {
+      "anonymous_id": "answer-c069fd80",
+      "case_id": "unmeasured-business-outcome",
+      "answer_status": "needs_routing",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Appropriately abstains from inventing a staffing-cost percentage; source-backed routing identifies no live savings measurement rather than substituting forecast error."
+      ]
+    },
+    {
+      "anonymous_id": "answer-5efba3a7",
+      "case_id": "holdout-atlas-principal-scope",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "All requested credential/access boundaries have their own exact source sentence: workload service principal,read-only manual index,no manual writes,and no technician personal credential."
+      ]
+    },
+    {
+      "anonymous_id": "answer-d1a4f5f5",
+      "case_id": "holdout-beacon-holdout-design",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Own quotations identify North and Central,eight frozen holdout weeks,and exclusion of those weeks from training. The bounded retrospective held-out evaluation preserves offline scope without claiming production behavior."
+      ],
+      "adjudication": "Adjudication before model mapping: retrospective fixed frozen holdout weeks support the offline characterization. The frozen rubric does not impose a literal 'offline' word requirement or require repeating the question's framing when all requested facts are supplied. Quoting the explicit offline footnote would strengthen presentation but is not required to avoid a new factual claim."
+    },
+    {
+      "anonymous_id": "answer-562745d8",
+      "case_id": "holdout-atlas-budget-arithmetic",
+      "answer_status": "partial",
+      "pass": false,
+      "category": "semantic_failure",
+      "reasons": [
+        "The required computed total2450ms is absent: the only remaining claim says the total is planning/not measured. All operand cells are available,so omitting arithmetic and returning partial does not satisfy the requested answer.",
+        "The generic support-filter message does not turn the available calculation into an organizational knowledge gap."
+      ]
+    },
+    {
+      "anonymous_id": "answer-79799eb7",
+      "case_id": "spanish-paraphrase",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Correct Spanish answer preserves the approved maximum24-hour raw-prompt retention and required deletion,with the exact current decision quoted."
+      ]
+    },
+    {
+      "anonymous_id": "answer-ae67b99b",
+      "case_id": "holdout-blocked-request-ux",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Answers the explicitly requested blocked-request scenario: explanation,rephrasing,diagnostic code/request ID,and no original prompt. The selected quotation itself begins with the request-blocked explanation; no new global log-schema claim is introduced."
+      ]
+    },
+    {
+      "anonymous_id": "answer-35c3a51c",
+      "case_id": "holdout-atlas-deletion-ownership",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "All three requested facts independently supported: Theo approves retention changes,daily deletion,Sofia owns the alert."
+      ]
+    },
+    {
+      "anonymous_id": "answer-81726636",
+      "case_id": "unmeasured-business-outcome",
+      "answer_status": "needs_routing",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Appropriately abstains from inventing a staffing-cost percentage; source-backed routing identifies no live savings measurement rather than substituting forecast error."
+      ]
+    },
+    {
+      "anonymous_id": "answer-200f6d69",
+      "case_id": "holdout-atlas-principal-scope",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "All requested credential/access boundaries have their own exact source sentence: workload service principal,read-only manual index,no manual writes,and no technician personal credential."
+      ]
+    },
+    {
+      "anonymous_id": "answer-b7a76c19",
+      "case_id": "holdout-atlas-deletion-ownership",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "All three requested facts independently supported: Theo approves retention changes,daily deletion,Sofia owns the alert."
+      ]
+    },
+    {
+      "anonymous_id": "answer-bd840913",
+      "case_id": "holdout-beacon-holiday-closures",
+      "answer_status": null,
+      "pass": false,
+      "category": "operational_failure",
+      "reasons": [
+        "No answer returned. invalid_verification: The coverage verification returned unknown evidence. Retry the question."
+      ]
+    },
+    {
+      "anonymous_id": "answer-ac1e688a",
+      "case_id": "holdout-atlas-principal-identifier",
+      "answer_status": "needs_routing",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "No UUID or provisioning is invented. Appropriate abstention and source-backed Sofia/Liam routing preserve the explicitly pending production principal."
+      ]
+    },
+    {
+      "anonymous_id": "answer-0ff6cc38",
+      "case_id": "holdout-atlas-patch-action",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves Sofia's September18 commitment and accompanying replay evidence; does not claim the patch already landed."
+      ]
+    },
+    {
+      "anonymous_id": "answer-13b41b21",
+      "case_id": "holdout-cedar-revoked-group",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Own quotations require denying a revoked policy group regardless of a valid clinic ID and prohibit a global fallback; added identity/filter timing statements remain supported."
+      ]
+    },
+    {
+      "anonymous_id": "answer-8e8c86e0",
+      "case_id": "holdout-beacon-estimate-exclusions",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "All three exclusions are directly quoted from the requested historical estimate; no signed commitment or separate vendor agreement is asserted."
+      ]
+    },
+    {
+      "anonymous_id": "answer-68541c1d",
+      "case_id": "holdout-atlas-deletion-ownership",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "All three requested facts independently supported: Theo approves retention changes,daily deletion,Sofia owns the alert."
+      ]
+    },
+    {
+      "anonymous_id": "answer-82b68a49",
+      "case_id": "drill-is-not-incident",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Explicitly limits the conclusion to a tabletop record rather than proof of a real leak; fictional classification applies to the document,not inferred patient-data usage. Scenario and recorded containment decision are correctly quoted."
+      ]
+    },
+    {
+      "anonymous_id": "answer-fd5eded4",
+      "case_id": "spanish-paraphrase",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Correct Spanish answer preserves the approved maximum24-hour raw-prompt retention and required deletion,with the exact current decision quoted."
+      ]
+    },
+    {
+      "anonymous_id": "answer-ba1c9198",
+      "case_id": "unmeasured-business-outcome",
+      "answer_status": "needs_routing",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Appropriately abstains from inventing a staffing-cost percentage; source-backed routing identifies no live savings measurement rather than substituting forecast error."
+      ]
+    },
+    {
+      "anonymous_id": "answer-8a4ea5a0",
+      "case_id": "holdout-blocked-request-ux",
+      "answer_status": "partial",
+      "pass": false,
+      "category": "semantic_failure",
+      "reasons": [
+        "The question explicitly asks about blocked requests. Claims2/4 drop that scenario restriction and contrast the two-field blocked-request architecture explanation with the four-field general diagnostic policy as though they were inconsistent rules for the same scope.",
+        "The resulting partial status and unresolved-conflict message are unwarranted; the requested scenario has a complete supported answer."
+      ]
+    },
+    {
+      "anonymous_id": "answer-fcc1fd16",
+      "case_id": "holdout-beacon-holdout-design",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Own quotations identify North and Central,eight frozen holdout weeks,and exclusion of those weeks from training. The bounded retrospective held-out evaluation preserves offline scope without claiming production behavior."
+      ],
+      "adjudication": "Adjudication before model mapping: retrospective fixed frozen holdout weeks support the offline characterization. The frozen rubric does not impose a literal 'offline' word requirement or require repeating the question's framing when all requested facts are supplied. Quoting the explicit offline footnote would strengthen presentation but is not required to avoid a new factual claim."
+    },
+    {
+      "anonymous_id": "answer-4c00fcbc",
+      "case_id": "claimed-authority-is-not-policy",
+      "answer_status": "needs_routing",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "User's claimed identity/approval does not become source truth. Abstains from eligibility approval or denial and routes to source-designated Nina."
+      ]
+    },
+    {
+      "anonymous_id": "answer-fa462568",
+      "case_id": "holdout-beacon-holdout-design",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Own quotations identify North and Central,eight frozen holdout weeks,and exclusion of those weeks from training. The bounded retrospective held-out evaluation preserves offline scope without claiming production behavior."
+      ],
+      "adjudication": "Adjudication before model mapping: retrospective fixed frozen holdout weeks support the offline characterization. The frozen rubric does not impose a literal 'offline' word requirement or require repeating the question's framing when all requested facts are supplied. Quoting the explicit offline footnote would strengthen presentation but is not required to avoid a new factual claim."
+    },
+    {
+      "anonymous_id": "answer-77aaa308",
+      "case_id": "holdout-atlas-patch-action",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Preserves Sofia's September18 commitment and accompanying replay evidence; does not claim the patch already landed."
+      ]
+    },
+    {
+      "anonymous_id": "answer-1e02fb8e",
+      "case_id": "known-and-unknown-components",
+      "answer_status": "partial",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Quotes the signed USD48000 fee excluding tax and separately establishes the unresolved vendor deletion SLA. Partial status and primary Emma routing are appropriate."
+      ]
+    },
+    {
+      "anonymous_id": "answer-372dbc95",
+      "case_id": "holdout-atlas-unauthorized-retrieval",
+      "answer_status": "partial",
+      "pass": false,
+      "category": "semantic_failure",
+      "reasons": [
+        "The claims correctly and completely answer the stop-condition question,but status partial and the generic unresolved-conflict/insufficient-answer message are unsupported. No requested fact is missing and neither quoted rule conflicts with the other.",
+        "Unnecessary clarification routing incorrectly represents an answerable policy question as an unresolved source issue."
+      ]
+    },
+    {
+      "anonymous_id": "answer-01903c2d",
+      "case_id": "known-name-irrelevant-expertise",
+      "answer_status": "needs_routing",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "No answer,evidence,or invented recipient for the unrelated personal recipe question; familiar name does not create culinary expertise."
+      ]
+    },
+    {
+      "anonymous_id": "answer-b4fdd2d8",
+      "case_id": "holdout-atlas-budget-arithmetic",
+      "answer_status": "answered",
+      "pass": false,
+      "category": "semantic_failure",
+      "reasons": [
+        "Claims1-5 attach millisecond units to operand values and the total,but their own selected quotations do not include the Budget ms header. The cited rows contain only unlabeled B-column numbers and Planning allocation text.",
+        "The numeric sum2450 is correct and all operand rows are selected,but units cannot come from uncited table context or another claim. Add the exact header to each affected claim; the separately quoted p95 threshold does not establish units of these budget cells."
+      ]
+    },
+    {
+      "anonymous_id": "answer-88b2d4bd",
+      "case_id": "holdout-beacon-holiday-closures",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Own row quotations identify two unconfirmed Central closures, Jules Park, and validation before the pilot."
+      ]
+    },
+    {
+      "anonymous_id": "answer-9232ac13",
+      "case_id": "known-and-unknown-components",
+      "answer_status": "partial",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Quotes the signed USD48000 fee excluding tax and separately establishes the unresolved vendor deletion SLA. Partial status and primary Emma routing are appropriate."
+      ]
+    },
+    {
+      "anonymous_id": "answer-20add806",
+      "case_id": "holdout-atlas-budget-arithmetic",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Computes100+350+1800+200=2450ms/2.45s with all four operand rows and their own Budget ms header. Separately quotes planning/not-measured status and absence of production timings."
+      ]
+    },
+    {
+      "anonymous_id": "answer-8bba4c3b",
+      "case_id": "holdout-atlas-principal-identifier",
+      "answer_status": "needs_routing",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "No UUID or provisioning is invented. Appropriate abstention and source-backed Sofia/Liam routing preserve the explicitly pending production principal."
+      ]
+    },
+    {
+      "anonymous_id": "answer-519a38f3",
+      "case_id": "holdout-beacon-estimate-exclusions",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "All three exclusions are directly quoted from the requested historical estimate; no signed commitment or separate vendor agreement is asserted."
+      ]
+    },
+    {
+      "anonymous_id": "answer-b75d2e39",
+      "case_id": "holdout-cedar-answerable-denominator",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Reports58 supported and2 needing review out of the60 answerable questions; the row's explicit outcome counts and category support the denominator. Does not claim80 answerable cases or production accuracy."
+      ]
+    },
+    {
+      "anonymous_id": "answer-0414e8a9",
+      "case_id": "holdout-beacon-estimate-exclusions",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "All three exclusions are directly quoted from the requested historical estimate; no signed commitment or separate vendor agreement is asserted."
+      ]
+    },
+    {
+      "anonymous_id": "answer-314624f5",
+      "case_id": "spanish-paraphrase",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Correct Spanish answer preserves the approved maximum24-hour raw-prompt retention and required deletion,with the exact current decision quoted."
+      ]
+    },
+    {
+      "anonymous_id": "answer-2284a7c5",
+      "case_id": "holdout-atlas-principal-scope",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "All requested credential/access boundaries have their own exact source sentence: workload service principal,read-only manual index,no manual writes,and no technician personal credential."
+      ]
+    },
+    {
+      "anonymous_id": "answer-1a516ddf",
+      "case_id": "holdout-blocked-request-ux",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Answers the explicitly requested blocked-request scenario: explanation,rephrasing,diagnostic code/request ID,and no original prompt. The selected quotation itself begins with the request-blocked explanation; no new global log-schema claim is introduced."
+      ]
+    },
+    {
+      "anonymous_id": "answer-c3610949",
+      "case_id": "holdout-cedar-revoked-group",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Own quotations require denying a revoked policy group regardless of a valid clinic ID and prohibit a global fallback; added identity/filter timing statements remain supported."
+      ]
+    },
+    {
+      "anonymous_id": "answer-b9fe30d3",
+      "case_id": "holdout-cedar-answerable-denominator",
+      "answer_status": "answered",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "Reports58 supported and2 needing review out of the60 answerable questions; the row's explicit outcome counts and category support the denominator. Does not claim80 answerable cases or production accuracy."
+      ]
+    },
+    {
+      "anonymous_id": "answer-5f11cc6a",
+      "case_id": "holdout-atlas-principal-identifier",
+      "answer_status": "needs_routing",
+      "pass": true,
+      "category": "pass",
+      "reasons": [
+        "No UUID or provisioning is invented. Appropriate abstention and source-backed Sofia/Liam routing preserve the explicitly pending production principal."
+      ]
+    }
+  ]
+}

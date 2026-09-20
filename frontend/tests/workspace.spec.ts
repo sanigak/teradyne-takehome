@@ -153,7 +153,7 @@ async function mockWorkspace(
   await expect(
     page
       .getByRole("button", {
-        name: configured ? "Workspace ready" : "Setup needed",
+        name: configured ? "Ready" : "Setup needed",
       })
       .first(),
   ).toBeVisible();
@@ -194,6 +194,7 @@ test("inspect citation, correct an answer, and resolve the preserved review", as
     path: "../tmp/ui/answer-evidence.png",
     fullPage: true,
   });
+  await page.getByRole("button", { name: "Close evidence" }).click();
   await page.getByRole("button", { name: "Correct", exact: true }).click();
   await page
     .getByLabel("What should the answer say?")
@@ -326,8 +327,10 @@ test("mobile layout keeps question and evidence usable without horizontal overfl
   await page
     .getByRole("button", { name: "Ask workspace", exact: true })
     .click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await page.locator(".citation-attributed").first().click();
   await expect(
-    page.getByRole("complementary", { name: "Source evidence" }),
+    page.getByRole("dialog", { name: "Source evidence" }),
   ).toBeVisible();
   expect(
     await page.evaluate(
@@ -408,106 +411,229 @@ test("claim citations visibly attribute attendees when no author is recorded", a
 
 async function askQuestion(page: Page, question = answer.question) {
   await page.getByLabel("What would you like to know?").fill(question);
-  await page.getByRole("button", { name: "Ask workspace", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Ask workspace", exact: true })
+    .click();
 }
 
-test("a late Ask response cannot replace a newer query opened from Outbox", async ({ page }) => {
+test("a late Ask response cannot replace a newer query opened from Outbox", async ({
+  page,
+}) => {
   const state = await mockWorkspace(page);
-  state.outbox.push({ id: "saved", query_id: "stored-query", recipient: "Maya Chen", subject: "Earlier handoff", body: "Check launch readiness.", evidence_ids: ["chunk-1"], status: "simulated", created_at: answer.created_at });
+  state.outbox.push({
+    id: "saved",
+    query_id: "stored-query",
+    recipient: "Maya Chen",
+    subject: "Earlier handoff",
+    body: "Check launch readiness.",
+    evidence_ids: ["chunk-1"],
+    status: "simulated",
+    created_at: answer.created_at,
+  });
   let release!: () => void;
-  const waiting = new Promise<void>((resolve) => { release = resolve; });
+  const waiting = new Promise<void>((resolve) => {
+    release = resolve;
+  });
   await page.route("**/api/query", async (route) => {
     await waiting;
     await route.fulfill({ json: answer });
   });
-  const stored = { ...answer, query_id: "stored-query", question: "What was the earlier launch handoff?" };
-  await page.route("**/api/query/stored-query", (route) => route.fulfill({ json: stored }));
+  const stored = {
+    ...answer,
+    query_id: "stored-query",
+    question: "What was the earlier launch handoff?",
+  };
+  await page.route("**/api/query/stored-query", (route) =>
+    route.fulfill({ json: stored }),
+  );
   await askQuestion(page);
-  await expect(page.getByText("Connecting the dots")).toBeVisible();
-  await page.getByRole("navigation").getByRole("button", { name: /Outbox/ }).click();
+  await expect(page.getByText("Finding and checking evidence")).toBeVisible();
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Outbox/ })
+    .click();
   await page.getByRole("button", { name: "View original question" }).click();
-  await expect(page.getByRole("heading", { name: stored.question })).toBeVisible();
-  const completed = page.waitForResponse((response) => response.url().endsWith("/api/query"));
+  await expect(
+    page.getByRole("heading", { name: stored.question }),
+  ).toBeVisible();
+  const completed = page.waitForResponse((response) =>
+    response.url().endsWith("/api/query"),
+  );
   release();
   await completed;
-  await expect(page.getByRole("heading", { name: stored.question })).toBeVisible();
-  await expect(page.getByLabel("What would you like to know?")).toHaveValue(stored.question);
+  await expect(
+    page.getByRole("heading", { name: stored.question }),
+  ).toBeVisible();
+  await expect(page.getByLabel("What would you like to know?")).toHaveValue(
+    stored.question,
+  );
 });
 
 test("keyboard submit respects unavailable credentials", async ({ page }) => {
   await mockWorkspace(page, answer, false);
   let requests = 0;
-  await page.route("**/api/query", (route) => { requests += 1; return route.fulfill({ json: answer }); });
+  await page.route("**/api/query", (route) => {
+    requests += 1;
+    return route.fulfill({ json: answer });
+  });
   await page.getByLabel("What would you like to know?").fill(answer.question);
   await page.getByLabel("What would you like to know?").press("Control+Enter");
-  await page.getByRole("navigation").getByRole("button", { name: /Review queue/ }).click();
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Review queue/ })
+    .click();
   expect(requests).toBe(0);
 });
 
-test("persisted resolution notes survive navigation and page reload", async ({ page }) => {
+test("persisted resolution notes survive navigation and page reload", async ({
+  page,
+}) => {
   const state = await mockWorkspace(page);
   const note = "Confirmed with the source owner; original source is preserved.";
-  state.reviews.push({ id: "saved-review", kind: "corrected", query_id: answer.query_id, question: answer.question, answer, comment: "Check the launch condition.", status: "resolved", created_at: answer.created_at, resolution_note: note });
-  await page.getByRole("navigation").getByRole("button", { name: /Review queue/ }).click();
+  state.reviews.push({
+    id: "saved-review",
+    kind: "corrected",
+    query_id: answer.query_id,
+    question: answer.question,
+    answer,
+    comment: "Check the launch condition.",
+    status: "resolved",
+    created_at: answer.created_at,
+    resolution_note: note,
+  });
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Review queue/ })
+    .click();
   await page.getByRole("button", { name: /^Resolved/ }).click();
-  await page.getByRole("button", { name: /Correction.*When will Atlas Forge launch/ }).click();
+  await page
+    .getByRole("button", { name: /Correction.*When will Atlas Forge launch/ })
+    .click();
   await expect(page.getByLabel("Resolution note")).toHaveValue(note);
-  await page.getByRole("navigation").getByRole("button", { name: /Outbox/ }).click();
-  await page.getByRole("navigation").getByRole("button", { name: /Review queue/ }).click();
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Outbox/ })
+    .click();
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Review queue/ })
+    .click();
   await expect(page.getByLabel("Resolution note")).toHaveValue(note);
   await page.getByRole("button", { name: "Reopen item" }).click();
   await expect.poll(() => state.reviews[0].status).toBe("open");
   expect(state.reviews[0].resolution_note).toBe(note);
   await page.reload();
-  await page.getByRole("navigation").getByRole("button", { name: /Review queue/ }).click();
-  await page.getByRole("button", { name: /Correction.*When will Atlas Forge launch/ }).click();
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Review queue/ })
+    .click();
+  await page
+    .getByRole("button", { name: /Correction.*When will Atlas Forge launch/ })
+    .click();
   await expect(page.getByLabel("Resolution note")).toHaveValue(note);
 });
 
-test("malformed successful API responses display an error and allow retry", async ({ page }) => {
+test("malformed successful API responses display an error and allow retry", async ({
+  page,
+}) => {
   await mockWorkspace(page);
   let attempts = 0;
-  await page.route("**/api/query", (route) => route.fulfill({ json: ++attempts === 1 ? { unexpected: "not a query response" } : answer }));
+  await page.route("**/api/query", (route) =>
+    route.fulfill({
+      json: ++attempts === 1 ? { unexpected: "not a query response" } : answer,
+    }),
+  );
   await askQuestion(page);
   await expect(page.getByRole("alert")).toContainText(/invalid|unexpected/i);
-  await expect(page.getByLabel("What would you like to know?")).toHaveValue(answer.question);
-  await page.getByRole("button", { name: "Ask workspace", exact: true }).click();
+  await expect(page.getByLabel("What would you like to know?")).toHaveValue(
+    answer.question,
+  );
+  await page
+    .getByRole("button", { name: "Ask workspace", exact: true })
+    .click();
   await expect(page.getByText(answer.claims[0].text)).toBeVisible();
 });
 
-test("failed correction preserves the draft, retries once, and disables duplicate submission", async ({ page }) => {
+test("failed correction preserves the draft, retries once, and disables duplicate submission", async ({
+  page,
+}) => {
   const state = await mockWorkspace(page);
   let attempts = 0;
   let release!: () => void;
-  const waiting = new Promise<void>((resolve) => { release = resolve; });
+  const waiting = new Promise<void>((resolve) => {
+    release = resolve;
+  });
   await page.route("**/api/feedback", async (route) => {
     attempts += 1;
-    if (attempts === 1) return route.fulfill({ status: 503, json: { detail: "Review storage is temporarily unavailable." } });
+    if (attempts === 1)
+      return route.fulfill({
+        status: 503,
+        json: { detail: "Review storage is temporarily unavailable." },
+      });
     await waiting;
     await route.fallback();
   });
   await askQuestion(page);
   await page.getByRole("button", { name: "Correct", exact: true }).click();
-  const comment = "The launch needs the security gate; please verify the condition.";
+  const comment =
+    "The launch needs the security gate; please verify the condition.";
   await page.getByLabel("What should the answer say?").fill(comment);
   await page.getByRole("button", { name: "Submit correction" }).click();
-  await expect(page.getByRole("alert")).toContainText("Review storage is temporarily unavailable.");
-  await expect(page.getByLabel("What should the answer say?")).toHaveValue(comment);
+  await expect(page.getByRole("alert")).toContainText(
+    "Review storage is temporarily unavailable.",
+  );
+  await expect(page.getByLabel("What should the answer say?")).toHaveValue(
+    comment,
+  );
   await page.getByRole("button", { name: "Submit correction" }).click();
-  await expect(page.getByRole("button", { name: "Submit correction" })).toBeDisabled();
-  await expect(page.getByRole("button", { name: "Yes", exact: true })).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Submit correction" }),
+  ).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Yes", exact: true }),
+  ).toBeDisabled();
   release();
-  await expect(page.getByText("Added to the review queue for a team lead.")).toBeVisible();
-  expect(state.feedback).toEqual([{ query_id: answer.query_id, kind: "corrected", comment }]);
+  await expect(
+    page.getByText("Added to the review queue for a team lead."),
+  ).toBeVisible();
+  expect(state.feedback).toEqual([
+    { query_id: answer.query_id, kind: "corrected", comment },
+  ]);
   expect(state.reviews).toHaveLength(1);
   await page.reload();
-  await page.getByRole("navigation").getByRole("button", { name: /Review queue/ }).click();
-  await expect(page.getByRole("button", { name: /Correction.*When will Atlas Forge launch/ })).toContainText(comment);
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Review queue/ })
+    .click();
+  await expect(
+    page.getByRole("button", {
+      name: /Correction.*When will Atlas Forge launch/,
+    }),
+  ).toContainText(comment);
 });
 
-test("switching contact and retrying a failed simulated send preserves edits and correct evidence", async ({ page }) => {
-  const otherEvidence = { ...gap.evidence[0], chunk_id: "chunk-other", filename: "vendor_followup.md", author: "Priya Raman" };
-  const twoContacts = { ...gap, evidence: [...gap.evidence, otherEvidence], routing: [...gap.routing, { recipient: "Priya Raman", reason: "Priya coordinates vendor review.", draft_question: "Please confirm the vendor review.", evidence_ids: ["chunk-other"] }] };
+test("switching contact and retrying a failed simulated send preserves edits and correct evidence", async ({
+  page,
+}) => {
+  const otherEvidence = {
+    ...gap.evidence[0],
+    chunk_id: "chunk-other",
+    filename: "vendor_followup.md",
+    author: "Priya Raman",
+  };
+  const twoContacts = {
+    ...gap,
+    evidence: [...gap.evidence, otherEvidence],
+    routing: [
+      ...gap.routing,
+      {
+        recipient: "Priya Raman",
+        reason: "Priya coordinates vendor review.",
+        draft_question: "Please confirm the vendor review.",
+        evidence_ids: ["chunk-other"],
+      },
+    ],
+  };
   const state = await mockWorkspace(page, twoContacts);
   let attempts = 0;
   await page.route("**/api/outbox", async (route) => {
@@ -517,31 +643,80 @@ test("switching contact and retrying a failed simulated send preserves edits and
   });
   await askQuestion(page, gap.question);
   await page.getByLabel("Suggested contact").selectOption("1");
-  await expect(page.getByRole("textbox", { name: "To", exact: true })).toHaveValue("Priya Raman");
-  await expect(page.getByRole("textbox", { name: "Message", exact: true })).toHaveValue("Please confirm the vendor review.");
-  await page.getByRole("textbox", { name: "To", exact: true }).fill("Priya Raman / delivery lead");
-  await page.getByRole("textbox", { name: "Subject", exact: true }).fill("Edited SLA question");
-  await page.getByRole("textbox", { name: "Message", exact: true }).fill("Please send the signed agreement and its location.");
+  await expect(
+    page.getByRole("textbox", { name: "To", exact: true }),
+  ).toHaveValue("Priya Raman");
+  await expect(
+    page.getByRole("textbox", { name: "Message", exact: true }),
+  ).toHaveValue("Please confirm the vendor review.");
+  await page
+    .getByRole("textbox", { name: "To", exact: true })
+    .fill("Priya Raman / delivery lead");
+  await page
+    .getByRole("textbox", { name: "Subject", exact: true })
+    .fill("Edited SLA question");
+  await page
+    .getByRole("textbox", { name: "Message", exact: true })
+    .fill("Please send the signed agreement and its location.");
   await page.getByRole("button", { name: "Simulate send" }).click();
-  await expect(page.getByRole("alert")).toContainText("Cannot reach the workspace server");
-  await expect(page.getByRole("textbox", { name: "To", exact: true })).toHaveValue("Priya Raman / delivery lead");
+  await expect(page.getByRole("alert")).toContainText(
+    "Cannot reach the workspace server",
+  );
+  await expect(
+    page.getByRole("textbox", { name: "To", exact: true }),
+  ).toHaveValue("Priya Raman / delivery lead");
   await page.getByRole("button", { name: "Simulate send" }).click();
-  await expect(page.getByText("Draft saved to Outbox as a simulated send. No email was delivered.")).toBeVisible();
+  await expect(
+    page.getByText(
+      "Draft saved to Outbox as a simulated send. No email was delivered.",
+    ),
+  ).toBeVisible();
   expect(state.outbox).toHaveLength(1);
-  expect(state.outbox[0]).toMatchObject({ recipient: "Priya Raman / delivery lead", subject: "Edited SLA question", evidence_ids: ["chunk-other"] });
+  expect(state.outbox[0]).toMatchObject({
+    recipient: "Priya Raman / delivery lead",
+    subject: "Edited SLA question",
+    evidence_ids: ["chunk-other"],
+  });
   await page.reload();
-  await page.getByRole("navigation").getByRole("button", { name: /Outbox/ }).click();
-  await expect(page.getByRole("heading", { name: "Edited SLA question", level: 2 })).toBeVisible();
-  await expect(page.getByText("Please send the signed agreement and its location.", { exact: true }).last()).toBeVisible();
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Outbox/ })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Edited SLA question", level: 2 }),
+  ).toBeVisible();
+  await expect(
+    page
+      .getByText("Please send the signed agreement and its location.", {
+        exact: true,
+      })
+      .last(),
+  ).toBeVisible();
 });
 
-test("review resolve failure preserves its note and safely retries", async ({ page }) => {
+test("review resolve failure preserves its note and safely retries", async ({
+  page,
+}) => {
   const state = await mockWorkspace(page, gap);
   await askQuestion(page, gap.question);
-  await page.getByRole("navigation").getByRole("button", { name: /Review queue/ }).click();
-  await page.getByRole("button", { name: /Knowledge gap.*What is the vendor deletion SLA/ }).click();
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Review queue/ })
+    .click();
+  await page
+    .getByRole("button", {
+      name: /Knowledge gap.*What is the vendor deletion SLA/,
+    })
+    .click();
   let attempts = 0;
-  await page.route("**/api/review/review-gap", (route) => ++attempts === 1 ? route.fulfill({ status: 503, json: { detail: "The database is busy. Try again." } }) : route.fallback());
+  await page.route("**/api/review/review-gap", (route) =>
+    ++attempts === 1
+      ? route.fulfill({
+          status: 503,
+          json: { detail: "The database is busy. Try again." },
+        })
+      : route.fallback(),
+  );
   const note = "Requested the missing signed SLA from the documented owner.";
   await page.getByLabel("Resolution note").fill(note);
   await page.getByRole("button", { name: "Resolve item" }).click();
@@ -553,49 +728,102 @@ test("review resolve failure preserves its note and safely retries", async ({ pa
   expect(state.reviews[0].resolution_note).toBe(note);
 });
 
-test("query failure retries without leaving a stale answer or creating a review gap", async ({ page }) => {
+test("query failure retries without leaving a stale answer or creating a review gap", async ({
+  page,
+}) => {
   const state = await mockWorkspace(page);
   await askQuestion(page);
   await expect(page.getByText(answer.claims[0].text)).toBeVisible();
   let attempts = 0;
-  await page.route("**/api/query", (route) => ++attempts === 1 ? route.fulfill({ status: 504, json: { detail: "The model timed out. Try again." } }) : route.fallback());
+  await page.route("**/api/query", (route) =>
+    ++attempts === 1
+      ? route.fulfill({
+          status: 504,
+          json: { detail: "The model timed out. Try again." },
+        })
+      : route.fallback(),
+  );
   await askQuestion(page, "Retry the current launch decision.");
   await expect(page.getByRole("alert")).toContainText("The model timed out");
   await expect(page.getByText(answer.claims[0].text)).toHaveCount(0);
-  await expect(page.getByLabel("What would you like to know?")).toHaveValue("Retry the current launch decision.");
+  await expect(page.getByLabel("What would you like to know?")).toHaveValue(
+    "Retry the current launch decision.",
+  );
   expect(state.reviews).toHaveLength(0);
-  await page.getByRole("button", { name: "Ask workspace", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Ask workspace", exact: true })
+    .click();
   await expect(page.getByText(answer.claims[0].text)).toBeVisible();
 });
 
-test("malicious question, claim, evidence, and feedback markup render only as text", async ({ page }) => {
-  const attack = '<img data-attack="injected" src=x onerror="window.__injected=true">';
-  const malicious = { ...answer, question: `Explain ${attack}`, claims: [{ text: `Literal source text: ${attack}`, citations: [{ chunk_id: "chunk-1", quote: attack }] }], evidence: [{ ...answer.evidence[0], text: attack, author: attack, title: `Unsafe markup ${attack}` }] };
+test("malicious question, claim, evidence, and feedback markup render only as text", async ({
+  page,
+}) => {
+  const attack =
+    '<img data-attack="injected" src=x onerror="window.__injected=true">';
+  const malicious = {
+    ...answer,
+    question: `Explain ${attack}`,
+    claims: [
+      {
+        text: `Literal source text: ${attack}`,
+        citations: [{ chunk_id: "chunk-1", quote: attack }],
+      },
+    ],
+    evidence: [
+      {
+        ...answer.evidence[0],
+        text: attack,
+        author: attack,
+        title: `Unsafe markup ${attack}`,
+      },
+    ],
+  };
   const state = await mockWorkspace(page, malicious);
   await askQuestion(page, malicious.question);
-  await expect(page.getByRole("heading", { name: malicious.question })).toBeVisible();
-  await expect(page.getByText(malicious.claims[0].text, { exact: true })).toBeVisible();
-  await expect(page.getByRole("complementary", { name: "Source evidence" }).getByText(attack, { exact: true }).last()).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: malicious.question }),
+  ).toBeVisible();
+  await expect(
+    page.getByText(malicious.claims[0].text, { exact: true }),
+  ).toBeVisible();
+  await page.locator(".citation-attributed").first().click();
+  await expect(
+    page
+      .getByRole("complementary", { name: "Source evidence" })
+      .getByText(attack, { exact: true })
+      .last(),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Close evidence" }).click();
   await page.getByRole("button", { name: "Correct", exact: true }).click();
   await page.getByLabel("What should the answer say?").fill(attack);
   await page.getByRole("button", { name: "Submit correction" }).click();
   await expect.poll(() => state.reviews.length).toBe(1);
-  await page.getByRole("navigation").getByRole("button", { name: /Review queue/ }).click();
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Review queue/ })
+    .click();
   await page.getByRole("button", { name: /Correction.*Explain/ }).click();
   await expect(page.locator(".review-comment")).toContainText(attack);
-  expect(await page.locator("img[data-attack], script[data-attack]").count()).toBe(0);
+  expect(
+    await page.locator("img[data-attack], script[data-attack]").count(),
+  ).toBe(0);
   expect(await page.evaluate(() => "__injected" in window)).toBe(false);
 });
 
-test("status dialog traps keyboard focus and Escape restores its trigger", async ({ page }) => {
+test("status dialog traps keyboard focus and Escape restores its trigger", async ({
+  page,
+}) => {
   await mockWorkspace(page);
-  const trigger = page.getByRole("button", { name: "Workspace ready" }).first();
+  const trigger = page.getByRole("button", { name: "Ready" }).first();
   await trigger.click();
-  const dialog = page.getByRole("dialog", { name: "Workspace ready" });
+  const dialog = page.getByRole("dialog", { name: "Service details" });
   const close = dialog.getByRole("button", { name: "Close status" });
   await expect(close).toBeFocused();
   await page.keyboard.press("Shift+Tab");
-  await expect(dialog.getByRole("button", { name: "Check again" })).toBeFocused();
+  await expect(
+    dialog.getByRole("button", { name: "Check again" }),
+  ).toBeFocused();
   await page.keyboard.press("Tab");
   await expect(close).toBeFocused();
   await page.keyboard.press("Escape");
@@ -603,13 +831,43 @@ test("status dialog traps keyboard focus and Escape restores its trigger", async
   await expect(trigger).toBeFocused();
 });
 
-test("changing source in a review dialog retains focus and Escape returns to its citation", async ({ page }) => {
-  const twoSources = { ...answer, evidence: [...answer.evidence, { ...answer.evidence[0], chunk_id: "chunk-2", filename: "atlas_security_gate.md", locator: "Paragraph 9" }] };
+test("changing source in a review dialog retains focus and Escape returns to its citation", async ({
+  page,
+}) => {
+  const twoSources = {
+    ...answer,
+    evidence: [
+      ...answer.evidence,
+      {
+        ...answer.evidence[0],
+        chunk_id: "chunk-2",
+        filename: "atlas_security_gate.md",
+        locator: "Paragraph 9",
+      },
+    ],
+  };
   const state = await mockWorkspace(page, twoSources);
-  state.reviews.push({ id: "review", kind: "corrected", query_id: answer.query_id, question: answer.question, answer: twoSources, comment: "Check source conditions.", status: "open", created_at: answer.created_at, resolution_note: "" });
-  await page.getByRole("navigation").getByRole("button", { name: /Review queue/ }).click();
-  await page.getByRole("button", { name: /Correction.*When will Atlas Forge launch/ }).click();
-  const trigger = page.getByRole("button", { name: /1\. atlas_launch_review\.md By Maya Chen/ });
+  state.reviews.push({
+    id: "review",
+    kind: "corrected",
+    query_id: answer.query_id,
+    question: answer.question,
+    answer: twoSources,
+    comment: "Check source conditions.",
+    status: "open",
+    created_at: answer.created_at,
+    resolution_note: "",
+  });
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Review queue/ })
+    .click();
+  await page
+    .getByRole("button", { name: /Correction.*When will Atlas Forge launch/ })
+    .click();
+  const trigger = page.getByRole("button", {
+    name: /1\. atlas_launch_review\.md By Maya Chen/,
+  });
   await trigger.click();
   const dialog = page.getByRole("dialog", { name: "Review source evidence" });
   const select = dialog.getByLabel("Retrieved sources");
@@ -622,40 +880,173 @@ test("changing source in a review dialog retains focus and Escape returns to its
   await expect(trigger).toBeFocused();
 });
 
-test("320px layout tolerates long unbroken source names and questions", async ({ page }) => {
+test("one source link shows each claim's distinct passages and preserves them across source switching", async ({
+  page,
+}) => {
+  const heading = "# Atlas Forge launch review";
+  const launch = "The launch target is now November 2.";
+  const action = "Maya owns the readiness check.";
+  const gate = "Security approval remains required.";
+  const supporting = "The kickoff target was October 15.";
+  const grouped: QueryResult = {
+    ...answer,
+    claims: [
+      {
+        text: answer.claims[0].text,
+        citations: [
+          { chunk_id: "chunk-1", quote: launch },
+          { chunk_id: "chunk-1", quote: heading },
+          { chunk_id: "chunk-2", quote: supporting },
+          { chunk_id: "chunk-1", quote: launch },
+        ],
+      },
+      { text: action, citations: [{ chunk_id: "chunk-1", quote: action }] },
+    ],
+    evidence: [
+      {
+        ...answer.evidence[0],
+        text: `${heading}\n\n${launch}\n\n${action}`,
+        locator: "Lines 1-1; Lines 3-3; Lines 5-5",
+      },
+      {
+        ...answer.evidence[0], chunk_id: "chunk-2", document_id: "kickoff-version",
+        filename: "atlas_kickoff.md", text: supporting,
+      },
+      {
+        ...answer.evidence[0], chunk_id: "chunk-3", document_id: "security-version",
+        filename: "atlas_security.md", text: gate,
+      },
+    ],
+  };
+  await mockWorkspace(page, grouped);
+  await askQuestion(page);
+  const firstClaim = page.locator(".claim").filter({ hasText: grouped.claims[0].text });
+  const source = firstClaim.getByRole("button", { name: /atlas_launch_review\.md/ });
+  await expect(source).toHaveCount(1);
+  await expect(source).toContainText("2 passages");
+  await expect(firstClaim.getByRole("button")).toHaveCount(2);
+  await source.click();
+  const dialog = page.getByRole("dialog", { name: "Source evidence", exact: true });
+  const quotes = dialog.locator(".source-excerpt blockquote");
+  await expect(quotes).toHaveText([launch, heading]);
+  await expect(dialog.getByText("Cited passages (2)", { exact: true })).toBeVisible();
+  const sources = dialog.getByLabel("Retrieved sources");
+  await sources.focus();
+  await sources.selectOption("chunk-2");
+  await expect(sources).toBeFocused();
+  await expect(quotes).toHaveText([supporting]);
+  await expect(dialog.getByRole("link", { name: "Download original" })).toHaveAttribute("href", "/api/sources/kickoff-version/file");
+  await sources.selectOption("chunk-3");
+  await expect(quotes).toHaveText([gate]);
+  await expect(dialog.getByText("Source passage", { exact: true })).toBeVisible();
+  await sources.selectOption("chunk-1");
+  await expect(quotes).toHaveText([launch, heading]);
+  await dialog.getByText("View surrounding context", { exact: true }).click();
+  await expect(dialog.locator(".full-context p")).toHaveText(grouped.evidence[0].text);
+  await page.screenshot({ path: "../tmp/ui/grouped-title-passages.png", fullPage: true });
+  await page.keyboard.press("Escape");
+  await expect(source).toBeFocused();
+
+  const secondClaim = page.locator(".claim").filter({ hasText: action });
+  await secondClaim.getByRole("button", { name: /atlas_launch_review\.md/ }).click();
+  await expect(quotes).toHaveText([action]);
+  await page.keyboard.press("Escape");
+  await page.getByRole("button", { name: "Correct", exact: true }).click();
+  await page.getByLabel("What should the answer say?").fill("Recheck the source scope.");
+  await page.getByRole("button", { name: "Submit correction" }).click();
+  await expect(page.getByText("Added to the review queue for a team lead.")).toBeVisible();
+  await page.getByRole("navigation").getByRole("button", { name: /Review queue/ }).click();
+  await page.getByRole("button", { name: /Correction.*When will Atlas Forge launch/ }).click();
+  await firstClaim.getByRole("button", { name: /atlas_launch_review\.md/ }).click();
+  await expect(page.getByRole("dialog", { name: "Review source evidence" }).locator(".source-excerpt blockquote")).toHaveText([launch, heading]);
+});
+
+test("320px layout tolerates long unbroken source names and questions", async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 320, height: 740 });
   const longText = "A".repeat(300);
-  const narrow = { ...answer, question: `What is ${longText}?`, evidence: [{ ...answer.evidence[0], filename: `${longText}.docx`, author: longText, title: longText }] };
+  const narrow = {
+    ...answer,
+    question: `What is ${longText}?`,
+    evidence: [
+      {
+        ...answer.evidence[0],
+        filename: `${longText}.docx`,
+        author: longText,
+        title: longText,
+      },
+    ],
+  };
   await mockWorkspace(page, narrow);
   await askQuestion(page, narrow.question);
-  await expect(page.getByRole("heading", { name: narrow.question })).toBeVisible();
-  const overflowing = await page.evaluate(() => [...document.querySelectorAll("body *")].filter((element) => element.getBoundingClientRect().right > window.innerWidth + 1).map((element) => `${element.tagName}.${element.className}`));
+  await expect(
+    page.getByRole("heading", { name: narrow.question }),
+  ).toBeVisible();
+  const overflowing = await page.evaluate(() =>
+    [...document.querySelectorAll("body *")]
+      .filter(
+        (element) =>
+          element.getBoundingClientRect().right > window.innerWidth + 1,
+      )
+      .map((element) => `${element.tagName}.${element.className}`),
+  );
   expect(overflowing).toEqual([]);
   await page.getByRole("button", { name: "Correct", exact: true }).click();
   await page.getByLabel("What should the answer say?").fill(longText);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
 });
 
-test("navigation during a pending question keeps the selected page and later restores the answer", async ({ page }) => {
+test("navigation during a pending question keeps the selected page and later restores the answer", async ({
+  page,
+}) => {
   await mockWorkspace(page);
   let release!: () => void;
-  const waiting = new Promise<void>((resolve) => { release = resolve; });
-  await page.route("**/api/query", async (route) => { await waiting; await route.fulfill({ json: answer }); });
+  const waiting = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  await page.route("**/api/query", async (route) => {
+    await waiting;
+    await route.fulfill({ json: answer });
+  });
   await askQuestion(page);
-  await page.getByRole("navigation").getByRole("button", { name: /Review queue/ }).click();
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Review queue/ })
+    .click();
   release();
-  await expect(page.getByRole("heading", { name: "Review queue." })).toBeVisible();
-  await page.getByRole("navigation").getByRole("button", { name: /Ask the workspace/ }).click();
+  await expect(
+    page.getByRole("heading", { name: "Review queue" }),
+  ).toBeVisible();
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /^Ask$/ })
+    .click();
   await expect(page.getByText(answer.claims[0].text)).toBeVisible();
   await expect(page.getByLabel("What would you like to know?")).toBeEnabled();
 });
 
 for (const endpoint of ["review", "outbox"] as const) {
-  test(`malformed ${endpoint} list responses report a recoverable error`, async ({ page }) => {
+  test(`malformed ${endpoint} list responses report a recoverable error`, async ({
+    page,
+  }) => {
     await mockWorkspace(page);
     let fail = true;
-    await page.route(`**/api/${endpoint}`, (route) => fail ? route.fulfill({ json: { items: [{ broken: true }] } }) : route.fallback());
-    await page.getByRole("navigation").getByRole("button", { name: endpoint === "review" ? /Review queue/ : /Outbox/ }).click();
+    await page.route(`**/api/${endpoint}`, (route) =>
+      fail
+        ? route.fulfill({ json: { items: [{ broken: true }] } })
+        : route.fallback(),
+    );
+    await page
+      .getByRole("navigation")
+      .getByRole("button", {
+        name: endpoint === "review" ? /Review queue/ : /Outbox/,
+      })
+      .click();
     await expect(page.getByRole("alert")).toContainText("invalid response");
     fail = false;
     await page.getByRole("button", { name: "Refresh", exact: true }).click();
@@ -663,101 +1054,199 @@ for (const endpoint of ["review", "outbox"] as const) {
   });
 }
 
-test("a malformed health response disables asking until a successful refresh", async ({ page }) => {
+test("a malformed health response disables asking until a successful refresh", async ({
+  page,
+}) => {
   await mockWorkspace(page);
   let fail = true;
-  await page.route("**/api/health", (route) => fail ? route.fulfill({ json: { ready: true } }) : route.fallback());
+  await page.route("**/api/health", (route) =>
+    fail ? route.fulfill({ json: { ready: true } }) : route.fallback(),
+  );
   await page.reload();
-  await expect(page.getByText("The workspace server is unavailable")).toBeVisible();
+  await expect(
+    page.getByText("The workspace server is unavailable"),
+  ).toBeVisible();
   await page.getByLabel("What would you like to know?").fill(answer.question);
-  await expect(page.getByRole("button", { name: "Ask workspace", exact: true })).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Ask workspace", exact: true }),
+  ).toBeDisabled();
   fail = false;
   await page.getByRole("button", { name: "Refresh", exact: true }).click();
-  await expect(page.getByRole("button", { name: "Ask workspace", exact: true })).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Ask workspace", exact: true }),
+  ).toBeEnabled();
 });
 
-test("failed quality reads are visibly different from an evaluation that has never run", async ({ page }) => {
+test("failed quality reads are visibly different from an evaluation that has never run", async ({
+  page,
+}) => {
   await mockWorkspace(page);
-  await page.route("**/api/quality", (route) => route.fulfill({ status: 503, json: { detail: "Evaluation storage unavailable." } }));
+  await page.route("**/api/quality", (route) =>
+    route.fulfill({
+      status: 503,
+      json: { detail: "Evaluation storage unavailable." },
+    }),
+  );
   await page.reload();
-  const badge = page.getByRole("button", { name: "Evaluation unavailable" }).first();
+  const badge = page
+    .getByRole("button", { name: "Answer evaluations unavailable" })
+    .first();
   await expect(badge).toBeVisible();
-  await expect(badge.locator(".status-dot")).toHaveClass(/warning/);
+  await expect(badge).toHaveClass(/quality-warning/);
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await page.getByLabel("What would you like to know?").fill(answer.question);
-  await expect(page.getByRole("button", { name: "Ask workspace", exact: true })).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Ask workspace", exact: true }),
+  ).toBeEnabled();
   await badge.click();
-  await expect(page.getByRole("alert")).toContainText("Evaluation status is unavailable");
+  await expect(page.getByRole("alert")).toContainText(
+    "Evaluation status is unavailable",
+  );
   await expect(page.getByText("No evaluation has run yet")).toHaveCount(0);
-  await expect(page.getByText("Evaluation status unavailable", { exact: true })).toBeVisible();
+  await expect(page.getByRole("alert")).toContainText(
+    "Evaluation storage unavailable",
+  );
 });
 
-test("quality regressions are visible before opening status and recover after a passing refresh", async ({ page }) => {
+test("quality regressions are visible before opening status and recover after a passing refresh", async ({
+  page,
+}) => {
   await mockWorkspace(page);
   let failing = true;
   const warning = "Full regression suite needs review: 11 of 12 cases passed.";
-  await page.route("**/api/quality", (route) => route.fulfill({ json: { latest: { suite: "full", passed: failing ? 11 : 12, total: 12 }, alerts: failing ? [warning] : [] } }));
+  await page.route("**/api/quality", (route) =>
+    route.fulfill({
+      json: {
+        latest: { suite: "full", passed: failing ? 11 : 12, case_count: 12 },
+        alerts: failing ? [warning] : [],
+      },
+    }),
+  );
   await page.reload();
-  const badge = page.getByRole("button", { name: "Quality needs review" }).first();
+  const badge = page
+    .getByRole("button", { name: "Answer evaluations: attention needed" })
+    .first();
   await expect(badge).toBeVisible();
-  await expect(badge.locator(".status-dot")).toHaveClass(/warning/);
-  await expect(page.getByRole("button", { name: "Workspace ready" })).toHaveCount(0);
+  await expect(badge).toHaveClass(/quality-warning/);
+  await expect(
+    page.getByRole("button", { name: "Ready", exact: true }),
+  ).toBeVisible();
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await page.getByLabel("What would you like to know?").fill(answer.question);
-  await expect(page.getByRole("button", { name: "Ask workspace", exact: true })).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Ask workspace", exact: true }),
+  ).toBeEnabled();
   await badge.click();
-  const dialog = page.getByRole("dialog", { name: "Quality needs review" });
+  const dialog = page.getByRole("dialog", { name: "Service details" });
   await expect(dialog).toContainText(warning);
   await dialog.getByText("Latest evaluation details").click();
-  await expect(dialog.locator("pre")).toContainText('"passed": 11');
+  await expect(
+    dialog.getByText("11 of 12 cases", { exact: true }),
+  ).toBeVisible();
   failing = false;
   await dialog.getByRole("button", { name: "Check again" }).click();
-  await expect(page.getByRole("dialog", { name: "Workspace ready" })).toBeVisible();
+  await expect(
+    page.getByRole("dialog", { name: "Service details" }),
+  ).toBeVisible();
   await page.getByRole("button", { name: "Close status" }).click();
-  await expect(page.getByRole("button", { name: "Workspace ready" }).first().locator(".status-dot")).toHaveClass(/ready/);
+  await expect(
+    page.getByRole("button", { name: "Ready" }).first().locator(".status-dot"),
+  ).toHaveClass(/ready/);
 });
 
-test("missing credentials take priority over a quality warning", async ({ page }) => {
+test("missing credentials take priority over a quality warning", async ({
+  page,
+}) => {
   await mockWorkspace(page, answer, false);
-  await page.route("**/api/quality", (route) => route.fulfill({ json: { latest: null, alerts: ["Evaluation needs review."] } }));
+  await page.route("**/api/quality", (route) =>
+    route.fulfill({
+      json: { latest: null, alerts: ["Evaluation needs review."] },
+    }),
+  );
   await page.reload();
-  await expect(page.getByRole("button", { name: "Setup needed" }).first()).toBeVisible();
-  await expect(page.getByRole("button", { name: "Quality needs review" })).toHaveCount(0);
+  await expect(
+    page.getByRole("button", { name: "Setup needed" }).first(),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Ready", exact: true }),
+  ).toHaveCount(0);
   await page.getByLabel("What would you like to know?").fill(answer.question);
-  await expect(page.getByRole("button", { name: "Ask workspace", exact: true })).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Ask workspace", exact: true }),
+  ).toBeDisabled();
 });
 
-test("an older review refresh cannot hide newer persisted feedback", async ({ page }) => {
+test("an older review refresh cannot hide newer persisted feedback", async ({
+  page,
+}) => {
   const state = await mockWorkspace(page);
-  state.reviews.push({ id: "newest-review", kind: "corrected", query_id: answer.query_id, question: answer.question, answer, comment: "Latest saved correction.", status: "open", created_at: answer.created_at, resolution_note: "" });
+  state.reviews.push({
+    id: "newest-review",
+    kind: "corrected",
+    query_id: answer.query_id,
+    question: answer.question,
+    answer,
+    comment: "Latest saved correction.",
+    status: "open",
+    created_at: answer.created_at,
+    resolution_note: "",
+  });
   let calls = 0;
   let release!: () => void;
-  const waiting = new Promise<void>((resolve) => { release = resolve; });
+  const waiting = new Promise<void>((resolve) => {
+    release = resolve;
+  });
   await page.route("**/api/review", async (route) => {
-    if (++calls === 1) { await waiting; return route.fulfill({ json: { items: [] } }); }
+    if (++calls === 1) {
+      await waiting;
+      return route.fulfill({ json: { items: [] } });
+    }
     return route.fallback();
   });
-  await page.getByRole("navigation").getByRole("button", { name: /Review queue/ }).click();
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Review queue/ })
+    .click();
   await expect.poll(() => calls).toBe(1);
-  await page.getByRole("navigation").getByRole("button", { name: /Outbox/ }).click();
-  await page.getByRole("navigation").getByRole("button", { name: /Review queue/ }).click();
-  const latest = page.getByRole("button", { name: /Correction.*When will Atlas Forge launch/ });
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Outbox/ })
+    .click();
+  await page
+    .getByRole("navigation")
+    .getByRole("button", { name: /Review queue/ })
+    .click();
+  const latest = page.getByRole("button", {
+    name: /Correction.*When will Atlas Forge launch/,
+  });
   await expect(latest).toBeVisible();
-  const completed = page.waitForResponse((response) => response.url().endsWith("/api/review"));
+  const completed = page.waitForResponse((response) =>
+    response.url().endsWith("/api/review"),
+  );
   release();
   await completed;
   await expect(latest).toBeVisible();
 });
 
-test("mobile citation opens evidence into view and closing it restores keyboard focus", async ({ page }) => {
+test("mobile citation opens evidence into view and closing it restores keyboard focus", async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await mockWorkspace(page);
   await askQuestion(page);
-  const citation = page.getByRole("button", { name: /1\. atlas_launch_review\.md By Maya Chen/ });
+  const citation = page.getByRole("button", {
+    name: /1\. atlas_launch_review\.md By Maya Chen/,
+  });
   await citation.click();
   const evidence = page.getByRole("complementary", { name: "Source evidence" });
-  await expect(evidence).toBeFocused();
-  await expect(evidence.getByRole("heading", { name: "Source evidence" })).toBeInViewport();
-  await evidence.getByRole("button", { name: "Close evidence" }).click();
+  await expect(evidence).toBeVisible();
+  const dialog = page.getByRole("dialog", { name: "Source evidence" });
+  await expect(
+    dialog.getByRole("button", { name: "Close evidence" }),
+  ).toBeFocused();
+  await expect(
+    dialog.getByRole("heading", { name: "Source evidence" }),
+  ).toBeInViewport();
+  await dialog.getByRole("button", { name: "Close evidence" }).click();
   await expect(citation).toBeFocused();
 });

@@ -1,0 +1,39 @@
+{
+  "recorded_at": "2026-09-20T22:59:00.998191+00:00",
+  "authorized_limit_usd": 40.0,
+  "provider_reported_usd": 34.684228,
+  "conservative_accounted_usd": 35.796194,
+  "attempts": 853,
+  "unknown_billing_bounds": [
+    {
+      "attempt_id": "e1bdf053595a4781bf9fa20b5e2c6f77",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "label": "screen:deepseek/deepseek-v4-pro-0813:threshold-conflict-applied:0",
+      "accounted_usd": 0.109555,
+      "cost_basis": "unknown_cost_reserved_bound"
+    },
+    {
+      "attempt_id": "9226054087ae4dcdaee881095446dff7",
+      "model": "openai/gpt-6-astra",
+      "label": "enrichment:openai/gpt-6-astra:cedar_04_incident_drill.md",
+      "accounted_usd": 0.50004,
+      "cost_basis": "unknown_cost_reserved_bound"
+    },
+    {
+      "attempt_id": "bd7a10d3fe01451f80f3891576b973b4",
+      "model": "openai/gpt-5.6-luna",
+      "label": "enrichment:openai/gpt-5.6-luna:atlas_security_addendum.docx",
+      "accounted_usd": 0.0146316,
+      "cost_basis": "unknown_cost_reserved_bound"
+    },
+    {
+      "attempt_id": "a93e813f3e6942eba8b3c4b6feb995c8",
+      "model": "openai/gpt-6-astra",
+      "label": "enrichment:openai/gpt-6-astra:atlas_security_addendum.docx",
+      "accounted_usd": 0.48774,
+      "cost_basis": "unknown_cost_reserved_bound"
+    }
+  ],
+  "ledger_sha256": "48f110c766ffb720c1da78f1877c2bcd96b5d4c9bfc318392a11d46f7eec3a15",
+  "note": "All earlier charges and conservative unknown-billing bounds remain included. User requested shipment and stopped further validation after adding account credit; no fresh full v3 45-case run was performed."
+}

@@ -59,6 +59,29 @@ async def test_changed_model_and_force_refresh_profile(settings, store, provider
     assert forced["document_id"] != changed["document_id"]
 
 
+async def test_changed_enrichment_prompt_refreshes_metadata_but_reuses_vectors_and_original_bytes(settings, store, provider, source, ingested, monkeypatch):
+    import app.ingestion as ingestion
+    from pathlib import Path
+
+    previous_calls = len(provider.calls)
+    monkeypatch.setattr(ingestion, "ENRICH_PROMPT", ingestion.ENRICH_PROMPT + "\nPreserve explicitly stated exceptions.")
+    refreshed = await ingest_file(source, store=store, provider=provider, settings=settings)
+    assert refreshed["status"] == "ingested"
+    assert refreshed["document_id"] != ingested["document_id"]
+    assert [call[0] for call in provider.calls[previous_calls:]] == ["Enrichment"]
+    with store.connect() as conn:
+        rows = conn.execute("SELECT * FROM documents ORDER BY created_at").fetchall()
+    assert [row["active"] for row in rows] == [0, 1]
+    assert rows[0]["sha256"] == rows[1]["sha256"]
+    assert Path(rows[0]["original_path"]).read_bytes() == Path(rows[1]["original_path"]).read_bytes() == source.read_bytes()
+    assert json.loads(rows[0]["metadata"])["ingestion_profile"] != json.loads(rows[1]["metadata"])["ingestion_profile"]
+    refreshed_calls = len(provider.calls)
+    unchanged = await ingest_file(source, store=store, provider=provider, settings=settings)
+    assert unchanged["document_id"] == refreshed["document_id"]
+    assert unchanged["status"] == "unchanged"
+    assert len(provider.calls) == refreshed_calls
+
+
 async def test_bad_file_does_not_abort_remaining_sources(settings, store, provider, source):
     (settings.corpus_dir / "broken.docx").write_bytes(b"not an office file")
     result = await ingest_directory(settings.corpus_dir, store=store, provider=provider, settings=settings)

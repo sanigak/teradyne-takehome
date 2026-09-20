@@ -1,0 +1,1018 @@
+{
+  "created_at": "2026-09-20T18:39:03.845446+00:00",
+  "environment": "Microsoft Edge, real local FastAPI/React with live OpenRouter; isolated SQLite clone of the independently reviewed main24",
+  "answer_pipeline_version": "native-title-and-sheet-citation-context-v3",
+  "model": "openai/gpt-6-astra",
+  "review_model": "openai/gpt-6-astra",
+  "network_fixtures": false,
+  "canonical_main_documents": 24,
+  "isolated_documents_after_sample": 25,
+  "verified": {
+    "ask_loading_and_navigation_preserved": true,
+    "launch_date_supersession_and_security_conditions": true,
+    "grouped_source_links_with_separate_exact_passages": true,
+    "source_attribution_full_text_and_original_download": true,
+    "correction_original_snapshot_and_resolution_note": true,
+    "resolution_survived_browser_reload": true,
+    "rejection_comment_required_and_saved_separately": true,
+    "gap_without_invented_duration": true,
+    "recipient_switch_updated_draft": true,
+    "edited_simulated_send_fields_persisted": true,
+    "outbox_reload_and_original_question_link": true,
+    "sample_unanswerable_before_upload_without_invented_contact": true,
+    "uploaded_source_metadata_and_answer_citations": true,
+    "sample_answer_after_api_upload": true,
+    "identical_api_reupload_zero_provider_calls": true,
+    "uploaded_document_survived_browser_reload": true,
+    "developer_search_no_query_id_claims_or_query_count_increase": true,
+    "copied_powershell_search_executed_and_returned_same_question": true,
+    "developer_answer_returned_persisted_query_id_and_claims": true,
+    "review_snapshots_equal_original_query_records": true,
+    "all_25_archived_original_hashes_match": true
+  },
+  "browser_picker": {
+    "status": "blocked_by_environment",
+    "detail": "The real file chooser opened, but setFiles returned Not allowed. Browser documentation identifies the Edge extension Allow access to file URLs setting. No browser permission was changed.",
+    "manual_check": "Choose files and drag/drop remain in the personal UI review queue. The real upload below used the documented raw-file API; it is not represented as a successful browser-picker upload."
+  },
+  "harness_notes": [
+    "The original-download event waiter timed out, but the newly downloaded file existed and its bytes matched the original SHA256. Both original and sample downloads were verified from disk.",
+    "An immediate originating-query observation saw the asynchronous loading state; the subsequent completed state showed the original question and saved gap.",
+    "The validation server was intentionally stopped with Ctrl+C after requests completed. It wrote its session report and released the shared lock, then asyncio surfaced KeyboardInterrupt with exit1; no provider request failed during the UI rehearsal."
+  ],
+  "exact_quotations_checked": 27,
+  "download_sha256": {
+    "atlas_04_delivery.md": "9566356ced468f81066d9ec1ad8ef7879b68cb62a600aed8b05a7354c6f7b373",
+    "juniper_kickoff_brief.md": "1edc35194e5730ef4be83892f74ea8bbf668cc3f1a167db18d82aa0f72e0ac02"
+  },
+  "upload": {
+    "upload_method": "documented raw-file API; browser chooser was blocked by extension file-access permission",
+    "http_status": 201,
+    "response": {
+      "filename": "juniper_kickoff_brief.md",
+      "status": "ingested",
+      "document_id": "74c9d08d31894054bed2d559b239154e",
+      "chunks": 1,
+      "warnings": []
+    }
+  },
+  "repeat_upload": {
+    "http_status": 200,
+    "response": {
+      "filename": "juniper_kickoff_brief.md",
+      "status": "unchanged",
+      "document_id": "74c9d08d31894054bed2d559b239154e",
+      "warnings": [],
+      "chunks": 1
+    },
+    "provider_calls": 0
+  },
+  "developer_search_query_count_before_and_after": 4,
+  "queries": [
+    {
+      "query_id": "96cd2289a166412da5340942339a0385",
+      "question": "What is Atlas Forge's current launch date, and did it change from the kickoff assumption?",
+      "status": "answered",
+      "claims": [
+        {
+          "text": "Atlas Forge’s current agreed pilot launch date is November 2, 2026, reaffirmed at the September 14 checkpoint.",
+          "citations": [
+            {
+              "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+              "quote": "Maya Chen: Action: I will tell the Atlas sponsor that November 2 is the agreed launch date, conditional on this gate. We are not accepting extra incident-ticket ingestion in the current pilot."
+            },
+            {
+              "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+              "quote": "# Atlas Forge — security gate and revised launch"
+            },
+            {
+              "chunk_id": "4af9f448f6b246b1bc14c073e5e5e7f1",
+              "quote": "Date: 2026-09-14\nAuthor: Maya Chen\nAttendees: Maya Chen; Sofia Ortiz; Liam Okafor\nClient: Atlas Forge\nDomain: Delivery operations\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material"
+            },
+            {
+              "chunk_id": "4af9f448f6b246b1bc14c073e5e5e7f1",
+              "quote": "# Atlas Forge — delivery checkpoint"
+            },
+            {
+              "chunk_id": "4af9f448f6b246b1bc14c073e5e5e7f1",
+              "quote": "Maya Chen: Checkpoint for Atlas: the pilot remains November 2, 2026 under the revised security decision. Redaction replay evidence and the identity service principal are the two open launch blockers."
+            }
+          ]
+        },
+        {
+          "text": "Launch remains conditional on security sign-off: all redaction tests must pass, the least-privilege role matrix must be approved, and the client security owner must acknowledge the runbook.",
+          "citations": [
+            {
+              "chunk_id": "8b5b35f9e00e4d39bf36886253344e5a",
+              "quote": "Launch target: November 2, 2026 after security sign-off. Start with 5 percent of pilot users for one business day, then 25 percent for one business day, then 100 percent only while release gates pass."
+            },
+            {
+              "chunk_id": "8b5b35f9e00e4d39bf36886253344e5a",
+              "quote": "Atlas Forge — staged release runbook"
+            },
+            {
+              "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+              "quote": "Theo Haddad: Release gate: all redaction test cases must pass, the least-privilege role matrix must be approved, and the client security owner must acknowledge the runbook. I will record sign-off only after all three conditions hold."
+            },
+            {
+              "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+              "quote": "# Atlas Forge — security gate and revised launch"
+            },
+            {
+              "chunk_id": "1a9058a1c1d54987a3bb504f245da119",
+              "quote": "Launch remains conditional on all redaction tests passing, an approved least-privilege role matrix, and client acknowledgment of the runbook. This addendum does not attest that the open provider zero-retention contract is signed."
+            }
+          ]
+        },
+        {
+          "text": "Yes, the date changed: the September 10 decision explicitly superseded the September 1 kickoff target of October 15, 2026 with November 2, 2026. The kickoff target was a planning assumption, not a signed commitment.",
+          "citations": [
+            {
+              "chunk_id": "738acf99adae4fedb7538692e315b2cd",
+              "quote": "Maya Chen: Planning assumption, not a signed commitment: target October 15, 2026 for the pilot launch. The date assumes the security review closes in September. I will update this note if that dependency changes."
+            },
+            {
+              "chunk_id": "738acf99adae4fedb7538692e315b2cd",
+              "quote": "# Atlas Forge — deployment kickoff"
+            },
+            {
+              "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+              "quote": "Date: 2026-09-10\nAuthor: Theo Haddad\nAttendees: Theo Haddad; Maya Chen; Sofia Ortiz\nClient: Atlas Forge\nDomain: Security and release\nPriority: Critical\nClassification: SYNTHETIC — fictional evaluation material"
+            },
+            {
+              "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+              "quote": "# Atlas Forge — security gate and revised launch"
+            },
+            {
+              "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+              "quote": "Maya Chen: Decision: the Atlas pilot launch moves to November 2, 2026. This explicitly supersedes the provisional October 15, 2026 target recorded at kickoff on September 1."
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "chunk_id": "738acf99adae4fedb7538692e315b2cd",
+          "document_id": "404ab6eb1c9b4df295f696f73f07240a",
+          "filename": "atlas_01_kickoff.md",
+          "title": "Atlas Forge — deployment kickoff",
+          "author": "Maya Chen",
+          "attendees": [
+            "Maya Chen",
+            "Theo Haddad",
+            "Sofia Ortiz",
+            "Liam Okafor"
+          ],
+          "date": "2026-09-01",
+          "domain": "Atlas Forge — deployment planning for an internal maintenance-manual assistant for technicians",
+          "priority": "High",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Atlas Forge — deployment kickoff\n\nDate: 2026-09-01\nAuthor: Maya Chen\nAttendees: Maya Chen; Theo Haddad; Sofia Ortiz; Liam Okafor\nClient: Atlas Forge\nDomain: Deployment planning\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nMaya Chen: We are building an internal maintenance-manual assistant for Atlas Forge technicians. This pilot can recommend a cited procedure, but it cannot command a machine or close a work order.\n\nLiam Okafor: The service team has 400 manuals and 22 volunteer technicians. Manuals contain serial numbers but should contain no customer contact details. I own the approved manual list and technician onboarding.\n\nSofia Ortiz: I propose a private gateway in the client's existing VPC. We will use the Frankfurt region and retain tenant identifiers on every indexed chunk. The deployment team still needs permission to create the private endpoint.\n\nMaya Chen: Planning assumption, not a signed commitment: target October 15, 2026 for the pilot launch. The date assumes the security review closes in September. I will update this note if that dependency changes.\n\nTheo Haddad: I own the Atlas security sign-off. Do not send raw telemetry or operator names to the external model provider. We need a written redaction test and an access review before production use."
+        },
+        {
+          "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+          "document_id": "7994c43e97764312933ced3e7faf8948",
+          "filename": "atlas_03_security_gate.md",
+          "title": "Atlas Forge — security gate and revised launch",
+          "author": "Theo Haddad",
+          "attendees": [
+            "Theo Haddad",
+            "Maya Chen",
+            "Sofia Ortiz"
+          ],
+          "date": "2026-09-10",
+          "domain": "Atlas Forge — Security and release",
+          "priority": "Critical",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Atlas Forge — security gate and revised launch\n\nDate: 2026-09-10\nAuthor: Theo Haddad\nAttendees: Theo Haddad; Maya Chen; Sofia Ortiz\nClient: Atlas Forge\nDomain: Security and release\nPriority: Critical\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nTheo Haddad: The security review found that two operator-name formats escaped redaction. We will not approve the October pilot while those cases fail. Sofia owns the fix and I own the approval decision.\n\nMaya Chen: Decision: the Atlas pilot launch moves to November 2, 2026. This explicitly supersedes the provisional October 15, 2026 target recorded at kickoff on September 1.\n\nSofia Ortiz: I can land the redaction patch by September 18 and attach replay evidence. The issue is in normalization before policy evaluation, not the tenant filter.\n\nTheo Haddad: Release gate: all redaction test cases must pass, the least-privilege role matrix must be approved, and the client security owner must acknowledge the runbook. I will record sign-off only after all three conditions hold.\n\nMaya Chen: Action: I will tell the Atlas sponsor that November 2 is the agreed launch date, conditional on this gate. We are not accepting extra incident-ticket ingestion in the current pilot."
+        },
+        {
+          "chunk_id": "4af9f448f6b246b1bc14c073e5e5e7f1",
+          "document_id": "83d34fd7239a459db339570223c2ab2b",
+          "filename": "atlas_04_delivery.md",
+          "title": "Atlas Forge — delivery checkpoint",
+          "author": "Maya Chen",
+          "attendees": [
+            "Maya Chen",
+            "Sofia Ortiz",
+            "Liam Okafor"
+          ],
+          "date": "2026-09-14",
+          "domain": "Atlas Forge — Delivery operations",
+          "priority": "High",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Atlas Forge — delivery checkpoint\n\nDate: 2026-09-14\nAuthor: Maya Chen\nAttendees: Maya Chen; Sofia Ortiz; Liam Okafor\nClient: Atlas Forge\nDomain: Delivery operations\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nMaya Chen: Checkpoint for Atlas: the pilot remains November 2, 2026 under the revised security decision. Redaction replay evidence and the identity service principal are the two open launch blockers.\n\nSofia Ortiz: The service principal ticket is still pending. I can test the gateway locally but cannot run the production private-endpoint verification until Atlas identity engineering grants the scoped role.\n\nLiam Okafor: I will escalate the service principal ticket with Atlas identity engineering by September 16. Sofia remains the owner of the gateway and integration tests.\n\nMaya Chen: Decision: approve a five-percent canary for one business day, then twenty-five percent for one business day, then full pilot traffic only if latency and error budgets pass. The release deck will carry the exact stop conditions.\n\nSofia Ortiz: The latency workbook sets a p95 target below 2.5 seconds. Do not turn an estimated budget into a measured result; end-to-end production timings are not available yet."
+        },
+        {
+          "chunk_id": "8b5b35f9e00e4d39bf36886253344e5a",
+          "document_id": "24435eab8a0c4380a389d321595835e9",
+          "filename": "atlas_release_plan.pptx",
+          "title": "Atlas Forge — staged release runbook",
+          "author": "Maya Chen",
+          "attendees": [
+            "Maya Chen",
+            "Sofia Ortiz",
+            "Liam Okafor"
+          ],
+          "date": "2026-09-14",
+          "domain": "Atlas Forge — Deployment operations",
+          "priority": "High",
+          "locator": "Slide 1, shape 1; Slide 1, shape 2; Slide 1, shape 3; Slide 2, shape 1; Slide 2, shape 2; Slide 2, shape 3; Slide 3, shape 1; Slide 3, shape 2; Slide 3, shape 3; Slide 4, shape 1; Slide 4, shape 2; Slide 4, shape 3; Slide 4, speaker notes",
+          "text": "Atlas Forge — staged release runbook\n\nDate: 2026-09-14\nAuthor: Maya Chen\nAttendees: Maya Chen; Sofia Ortiz; Liam Okafor\nClient: Atlas Forge\nDomain: Deployment operations\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nRELAY AI  /  ATLAS FORGE  /  SYNTHETIC DATA  /  1\n\nRelease sequence\n\nLaunch target: November 2, 2026 after security sign-off. Start with 5 percent of pilot users for one business day, then 25 percent for one business day, then 100 percent only while release gates pass.\n\nRELAY AI  /  ATLAS FORGE  /  SYNTHETIC DATA  /  2\n\nStop conditions\n\nPause rollout when p95 end-to-end latency is 2.5 seconds or greater, request error rate exceeds 1 percent over a 15-minute window, or any unauthorized retrieval is detected. Unauthorized retrieval triggers an immediate stop regardless of traffic volume.\n\nRELAY AI  /  ATLAS FORGE  /  SYNTHETIC DATA  /  3\n\nRollback ownership\n\nSofia Ortiz owns technical rollback to the prior gateway version. Maya Chen owns sponsor communication. Liam Okafor coordinates the factory operating window, which is not yet approved.\n\nRELAY AI  /  ATLAS FORGE  /  SYNTHETIC DATA  /  4\n\nThe canary percentages describe a planned release, not observed production adoption. Do not claim a rollback maintenance window has been agreed."
+        },
+        {
+          "chunk_id": "1a9058a1c1d54987a3bb504f245da119",
+          "document_id": "a5c08765af4e4167be1312f3c7dec385",
+          "filename": "atlas_security_addendum.docx",
+          "title": "Atlas Forge — security logging addendum",
+          "author": "Theo Haddad",
+          "attendees": [
+            "Theo Haddad",
+            "Sofia Ortiz"
+          ],
+          "date": "2026-09-12",
+          "domain": "Atlas Forge — security logging",
+          "priority": "Critical",
+          "locator": "Paragraph 1; Paragraph 2; Paragraph 3; Paragraph 4; Paragraph 5; Paragraph 6; Paragraph 7; Paragraph 8; Paragraph 9; Paragraph 10; Paragraph 11; Paragraph 12; Paragraph 13; Paragraph 14",
+          "text": "Atlas Forge security logging addendum\n\nDate: 2026-09-12\n\nAuthor: Theo Haddad\n\nAttendees: Theo Haddad; Sofia Ortiz\n\nClient: Atlas Forge\n\nDomain: Security\n\nPriority: Critical\n\nClassification: SYNTHETIC — fictional evaluation material\n\nApproved logging boundaries\n\nAtlas diagnostic logs contain request IDs, error codes, duration, and redaction outcome only. Raw prompts, operator names, email addresses, and raw device telemetry must never be written to application logs.\n\nRetention and location\n\nRetain redacted diagnostic logs for 30 days in Frankfurt. Theo Haddad owns approval of any retention change. The deletion job runs daily and Sofia Ortiz owns its operational alert.\n\nSecurity gate\n\nLaunch remains conditional on all redaction tests passing, an approved least-privilege role matrix, and client acknowledgment of the runbook. This addendum does not attest that the open provider zero-retention contract is signed."
+        }
+      ],
+      "routing": [],
+      "message": "The answer is supported by the cited sources.",
+      "created_at": "2026-09-20T18:22:40.885534+00:00"
+    },
+    {
+      "query_id": "3a8e7c8597c8406fbe4fd96faa267908",
+      "question": "What is the weather vendor's signed deletion SLA for Beacon Route?",
+      "status": "needs_routing",
+      "claims": [],
+      "evidence": [
+        {
+          "chunk_id": "7a914da238274811b403eece37678873",
+          "document_id": "07b4763333ab4f7c92bc49d41c27030a",
+          "filename": "beacon_04_commercial.md",
+          "title": "Beacon Route — signed pilot commercial decision",
+          "author": "Emma Laurent",
+          "attendees": [
+            "Emma Laurent",
+            "Priya Raman",
+            "Jules Park"
+          ],
+          "date": "2026-09-15",
+          "domain": "Beacon Route — two-depot pilot commercial decisions",
+          "priority": "High",
+          "locator": "Lines 23-23",
+          "text": "Emma Laurent: Action: I will circulate the signed scope summary today. The weather vendor deletion SLA is still unanswered and should be routed to me for vendor clarification; the signed pilot price does not settle that contract question."
+        },
+        {
+          "chunk_id": "1a198c41f641442f95c1dbcdbe0b8e77",
+          "document_id": "aaf09f29d2b94e97b57d7fec8e71c1ed",
+          "filename": "beacon_quality_register.xls",
+          "title": "Beacon Route — data quality register",
+          "author": "Noah Brooks",
+          "attendees": [
+            "Noah Brooks",
+            "Jules Park",
+            "Priya Raman"
+          ],
+          "date": "2026-09-12",
+          "domain": "Beacon Route — Data quality",
+          "priority": "High",
+          "locator": "Sheet 'Read me', cells A1:A1; Sheet 'Read me', cells A2:A2; Sheet 'Read me', cells A3:A3; Sheet 'Read me', cells A4:A4; Sheet 'Read me', cells A5:A5; Sheet 'Read me', cells A6:A6; Sheet 'Read me', cells A7:A7; Sheet 'Read me', cells A8:A8; Sheet 'Read me', cells A10:A10; Sheet 'Register', cells A1:D1; Sheet 'Register', cells A2:D2; Sheet 'Register', cells A3:D3; Sheet 'Register', cells A4:D4; Sheet 'Register', cells A5:D5",
+          "text": "A1: Title: Beacon Route — data quality register\n\nA2: Date: 2026-09-12\n\nA3: Author: Noah Brooks\n\nA4: Attendees: Noah Brooks; Jules Park; Priya Raman\n\nA5: Client: Beacon Route\n\nA6: Domain: Data quality\n\nA7: Priority: High\n\nA8: Classification: SYNTHETIC — fictional evaluation material\n\nA10: Register interpretation: This register distinguishes measured sample results from acceptance thresholds. Noah Brooks owns the connector and data-quality evidence. Jules Park owns closure calendars.\n\nA1: Check | B1: Observed result | C1: Acceptance rule | D1: Owner\n\nA2: Central duplicate shipment IDs | B2: 0 after cleanup; 37 before | C2: 0 duplicates using shipment ID plus depot | D2: Noah Brooks\n\nA3: History coverage | B3: 12 complete weeks | C3: At least 12 complete weeks | D3: Noah Brooks\n\nA4: Central holiday annotations | B4: 2 unconfirmed closures | C4: Jules validates missing annotations before pilot | D4: Jules Park\n\nA5: Weather vendor deletion SLA | B5: Unknown; vendor response pending | C5: Signed terms required before ongoing feed | D5: Emma Laurent"
+        },
+        {
+          "chunk_id": "a996e8c12f464bda9b96127e94fbb66e",
+          "document_id": "e682808f26984c8e8b62ad63bea47323",
+          "filename": "beacon_02_data_review.md",
+          "title": "Beacon Route — connector and vendor data review",
+          "author": "Noah Brooks",
+          "attendees": [
+            "Noah Brooks",
+            "Priya Raman",
+            "Emma Laurent"
+          ],
+          "date": "2026-09-05",
+          "domain": "Beacon Route — data engineering: shipment connector quality, depot backtests, and weather vendor data review",
+          "priority": "High",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+          "text": "# Beacon Route — connector and vendor data review\n\nDate: 2026-09-05\nAuthor: Noah Brooks\nAttendees: Noah Brooks; Priya Raman; Emma Laurent\nClient: Beacon Route\nDomain: Data engineering\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nNoah Brooks: The shipment connector is healthy for North depot, but Central has duplicate shipment IDs after retries. I counted 37 duplicates in the sample. Deduplicate on shipment ID plus depot, keeping the most recent update timestamp.\n\nPriya Raman: Decision: block the Central backtest until deduplication is verified. North can continue through offline evaluation. This is a data acceptance gate, not a reason to invent missing records.\n\nNoah Brooks: Action: I will add the composite-key test and produce a clean twelve-week sample by September 9. Jules owns the depot closure calendar and will validate the holiday flags.\n\nEmma Laurent: The weather vendor has not answered the retention and data-processing questions. I own the contract request. There is no signed data-processing addendum and no documented deletion SLA yet.\n\nPriya Raman: We can evaluate with a static weather extract while contracts are unresolved. Do not activate the ongoing vendor feed until Emma confirms the agreement."
+        },
+        {
+          "chunk_id": "48d2089711924de395f0e6503a3bfc18",
+          "document_id": "b30774497e7b47ffbeecd9280337d090",
+          "filename": "beacon_commercial_terms.docx",
+          "title": "Beacon Route — unsigned three-depot estimate",
+          "author": "Emma Laurent",
+          "attendees": [
+            "Emma Laurent",
+            "Priya Raman"
+          ],
+          "date": "2026-09-04",
+          "domain": "Beacon Route — commercial proposal for North, Central, and South depots",
+          "priority": "Medium",
+          "locator": "Paragraph 1; Paragraph 2; Paragraph 3; Paragraph 4; Paragraph 5; Paragraph 6; Paragraph 7; Paragraph 8; Paragraph 9; Paragraph 10; Paragraph 11; Paragraph 12; Paragraph 13; Paragraph 14",
+          "text": "Beacon Route unsigned three depot estimate\n\nDate: 2026-09-04\n\nAuthor: Emma Laurent\n\nAttendees: Emma Laurent; Priya Raman\n\nClient: Beacon Route\n\nDomain: Commercial proposal\n\nPriority: Medium\n\nClassification: SYNTHETIC — fictional evaluation material\n\nDraft status\n\nUNSIGNED ESTIMATE. This September 4 proposal assumes North, Central, and South depots. It has not been accepted by Beacon Route and is not a purchase commitment.\n\nProposed fee\n\nThe estimated fixed fee for three depots is USD 62,000 excluding tax. Emma Laurent owns commercial negotiation. Any reduction to two depots requires a revised scope and price.\n\nExclusions\n\nAutomatic vehicle dispatch, weather vendor subscription charges, and weekend incident support are excluded from this estimate. These exclusions are not evidence that separate vendor retention terms have been agreed."
+        },
+        {
+          "chunk_id": "d7e41155717d4c47b16e232767da47d2",
+          "document_id": "ba75cc93abdc44319b62a48bee520e46",
+          "filename": "beacon_dispatch_handoff.xlsx",
+          "title": "Beacon Route — planner handoff checklist",
+          "author": "Jules Park",
+          "attendees": [
+            "Jules Park",
+            "Priya Raman",
+            "Noah Brooks"
+          ],
+          "date": "2026-09-15",
+          "domain": "Beacon Route — Operations: forecast handoff for manual staffing planning at North and Central depots",
+          "priority": "Medium",
+          "locator": "Sheet 'Read me', cells A1:A1; Sheet 'Read me', cells A2:A2; Sheet 'Read me', cells A3:A3; Sheet 'Read me', cells A4:A4; Sheet 'Read me', cells A5:A5; Sheet 'Read me', cells A6:A6; Sheet 'Read me', cells A7:A7; Sheet 'Read me', cells A8:A8; Sheet 'Read me', cells A10:A10; Sheet 'Register', cells A1:D1; Sheet 'Register', cells A2:D2; Sheet 'Register', cells A3:D3; Sheet 'Register', cells A4:D4; Sheet 'Register', cells A5:D5; Sheet 'Register', cells A6:D6",
+          "text": "A1: Title: Beacon Route — planner handoff checklist\n\nA2: Date: 2026-09-15\n\nA3: Author: Jules Park\n\nA4: Attendees: Jules Park; Priya Raman; Noah Brooks\n\nA5: Client: Beacon Route\n\nA6: Domain: Operations\n\nA7: Priority: Medium\n\nA8: Classification: SYNTHETIC — fictional evaluation material\n\nA10: Handoff boundaries: This checklist supports manual staffing planning at North and Central depots. It does not authorize automatic vehicle dispatch. Jules Park coordinates morning rehearsals.\n\nA1: Step | B1: Due or trigger | C1: Required action | D1: Owner\n\nA2: Forecast delivery | B2: 06:00 local depot time | C2: Publish forecast and input freshness | D2: Noah Brooks\n\nA3: Missing input | B3: Any required feed absent | C3: Warn planner and use seasonal baseline | D3: Noah Brooks\n\nA4: Planner decision | B4: Before staffing changes | C4: Approve or reject forecast manually | D4: Jules Park\n\nA5: Holdout acceptance | B5: Approved handoff requirement | C5: Error at most 10 percent; differs from September 11 approval | D5: Priya Raman\n\nA6: Vendor feed activation | B6: After signed terms | C6: Obtain retention agreement | D6: Emma Laurent"
+        },
+        {
+          "chunk_id": "95301061e0e44474af4b63822d57a5c4",
+          "document_id": "88feb7a1946c4ee4a0131ea13e9595c2",
+          "filename": "beacon_01_discovery.md",
+          "title": "Beacon Route — forecasting discovery",
+          "author": "Priya Raman",
+          "attendees": [
+            "Priya Raman",
+            "Noah Brooks",
+            "Emma Laurent",
+            "Jules Park"
+          ],
+          "date": "2026-09-02",
+          "domain": "Beacon Route — product discovery for a next-day depot volume forecasting pilot at the North and Central depots",
+          "priority": "Medium",
+          "locator": "Lines 23-23; Lines 25-25",
+          "text": "Noah Brooks: Action: I will profile the shipment feed by September 5. We have no confirmed retention terms for the external weather vendor yet.\n\nJules Park: I can supply closure calendars, but holiday annotations are incomplete. Mark that as a known data quality issue rather than fill missing holidays with guessed labels."
+        }
+      ],
+      "routing": [
+        {
+          "recipient": "Emma Laurent",
+          "reason": "Named responsibility in beacon_04_commercial.md: Emma Laurent: Action: I will circulate the signed scope summary today. The weather vendor deletion SLA is still unanswered and should be routed to me for vendor clarification; the signed pilot price does not settle that contract question.",
+          "draft_question": "Hi Emma Laurent,\n\nCould you clarify the following question?\n\nWhat is the weather vendor's signed deletion SLA for Beacon Route?\n\nThe current knowledge sources do not fully establish the answer. Please share the decision or source of truth.\n\nThank you.",
+          "evidence_ids": [
+            "7a914da238274811b403eece37678873",
+            "a996e8c12f464bda9b96127e94fbb66e",
+            "48d2089711924de395f0e6503a3bfc18",
+            "95301061e0e44474af4b63822d57a5c4"
+          ]
+        },
+        {
+          "recipient": "Priya Raman",
+          "reason": "Author or attendee; relevant source content in beacon_04_commercial.md: Emma Laurent: Action: I will circulate the signed scope summary today. The weather vendor deletion SLA is still unanswered and should be routed to me for vendor clarification; the signed pilot price does not settle that contract question.",
+          "draft_question": "Hi Priya Raman,\n\nCould you clarify the following question?\n\nWhat is the weather vendor's signed deletion SLA for Beacon Route?\n\nThe current knowledge sources do not fully establish the answer. Please share the decision or source of truth.\n\nThank you.",
+          "evidence_ids": [
+            "7a914da238274811b403eece37678873",
+            "1a198c41f641442f95c1dbcdbe0b8e77",
+            "a996e8c12f464bda9b96127e94fbb66e",
+            "48d2089711924de395f0e6503a3bfc18",
+            "d7e41155717d4c47b16e232767da47d2",
+            "95301061e0e44474af4b63822d57a5c4"
+          ]
+        },
+        {
+          "recipient": "Jules Park",
+          "reason": "Author or attendee; relevant source content in beacon_04_commercial.md: Emma Laurent: Action: I will circulate the signed scope summary today. The weather vendor deletion SLA is still unanswered and should be routed to me for vendor clarification; the signed pilot price does not settle that contract question.",
+          "draft_question": "Hi Jules Park,\n\nCould you clarify the following question?\n\nWhat is the weather vendor's signed deletion SLA for Beacon Route?\n\nThe current knowledge sources do not fully establish the answer. Please share the decision or source of truth.\n\nThank you.",
+          "evidence_ids": [
+            "7a914da238274811b403eece37678873",
+            "1a198c41f641442f95c1dbcdbe0b8e77",
+            "d7e41155717d4c47b16e232767da47d2",
+            "95301061e0e44474af4b63822d57a5c4"
+          ]
+        }
+      ],
+      "message": "The available sources do not establish an answer. Relevant source authors or attendees are suggested for clarification. Not established by available evidence: The weather vendor's signed deletion SLA for Beacon Route.",
+      "created_at": "2026-09-20T18:25:42.584712+00:00"
+    },
+    {
+      "query_id": "e2abddd347204b0aa7bbbaa89d5a381e",
+      "question": "When and where is Juniper Harbor's sandbox review, and who coordinates it?",
+      "status": "needs_routing",
+      "claims": [],
+      "evidence": [],
+      "routing": [],
+      "message": "The available sources do not establish an answer. No relevant source identifies a recipient; choose a team lead manually. Not established by available evidence: When is Juniper Harbor's sandbox review?; Where is Juniper Harbor's sandbox review?; Who coordinates Juniper Harbor's sandbox review?.",
+      "created_at": "2026-09-20T18:28:23.919897+00:00"
+    },
+    {
+      "query_id": "6508b24713b045cea20bac3eb6e15a73",
+      "question": "When and where is Juniper Harbor's sandbox review, and who coordinates it?",
+      "status": "answered",
+      "claims": [
+        {
+          "text": "Juniper Harbor's sandbox review is scheduled for October 8, 2026 at 14:00 UTC.",
+          "citations": [
+            {
+              "chunk_id": "da956f7706ab46a2867b140e606e6755",
+              "quote": "Avery Quinn: Decision: hold the Juniper Harbor sandbox review on October 8, 2026 at 14:00 UTC in the Juniper training room. I coordinate this review and will circulate the agenda."
+            },
+            {
+              "chunk_id": "da956f7706ab46a2867b140e606e6755",
+              "quote": "# Juniper Harbor — support assistant kickoff"
+            }
+          ]
+        },
+        {
+          "text": "The review will take place in the Juniper training room.",
+          "citations": [
+            {
+              "chunk_id": "da956f7706ab46a2867b140e606e6755",
+              "quote": "Avery Quinn: Decision: hold the Juniper Harbor sandbox review on October 8, 2026 at 14:00 UTC in the Juniper training room. I coordinate this review and will circulate the agenda."
+            },
+            {
+              "chunk_id": "da956f7706ab46a2867b140e606e6755",
+              "quote": "# Juniper Harbor — support assistant kickoff"
+            }
+          ]
+        },
+        {
+          "text": "Avery Quinn coordinates the review.",
+          "citations": [
+            {
+              "chunk_id": "da956f7706ab46a2867b140e606e6755",
+              "quote": "Avery Quinn: Decision: hold the Juniper Harbor sandbox review on October 8, 2026 at 14:00 UTC in the Juniper training room. I coordinate this review and will circulate the agenda."
+            },
+            {
+              "chunk_id": "da956f7706ab46a2867b140e606e6755",
+              "quote": "# Juniper Harbor — support assistant kickoff"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "chunk_id": "da956f7706ab46a2867b140e606e6755",
+          "document_id": "74c9d08d31894054bed2d559b239154e",
+          "filename": "juniper_kickoff_brief.md",
+          "title": "Juniper Harbor — support assistant kickoff",
+          "author": "Avery Quinn",
+          "attendees": [
+            "Avery Quinn",
+            "Samira Vale",
+            "Rowan Ellis"
+          ],
+          "date": "2026-09-20",
+          "domain": "Juniper Harbor — support operations; support-assistant pilot for approved returns and warranty procedures",
+          "priority": "Medium",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17",
+          "text": "# Juniper Harbor — support assistant kickoff\n\nDate: 2026-09-20\nAuthor: Avery Quinn\nAttendees: Avery Quinn; Samira Vale; Rowan Ellis\nClient: Juniper Harbor\nDomain: Support operations\nPriority: Medium\nClassification: SYNTHETIC — fictional upload practice material\n\nAvery Quinn: Juniper Harbor is a fictional outdoor-equipment distributor. Our pilot helps its support team find approved returns and warranty procedures. The assistant drafts cited guidance for a support agent to review; it does not approve refunds or change customer records.\n\nSamira Vale: The first sandbox uses invented product names and synthetic support tickets. No actual customer information is included in these practice documents.\n\nAvery Quinn: Decision: hold the Juniper Harbor sandbox review on October 8, 2026 at 14:00 UTC in the Juniper training room. I coordinate this review and will circulate the agenda.\n\nRowan Ellis: Action: I will prepare six fictional warranty-ticket examples by October 5. This note establishes the review schedule; it does not establish a production launch date."
+        }
+      ],
+      "routing": [],
+      "message": "The answer is supported by the cited sources.",
+      "created_at": "2026-09-20T18:32:23.968472+00:00"
+    },
+    {
+      "query_id": "df71ede084604d2c848c05b11fc4cb4a",
+      "question": "When and where is Juniper Harbor's sandbox review, and who coordinates it?",
+      "status": "answered",
+      "claims": [
+        {
+          "text": "Juniper Harbor's sandbox review is scheduled for October 8, 2026 at 14:00 UTC.",
+          "citations": [
+            {
+              "chunk_id": "da956f7706ab46a2867b140e606e6755",
+              "quote": "Avery Quinn: Decision: hold the Juniper Harbor sandbox review on October 8, 2026 at 14:00 UTC in the Juniper training room. I coordinate this review and will circulate the agenda."
+            },
+            {
+              "chunk_id": "da956f7706ab46a2867b140e606e6755",
+              "quote": "# Juniper Harbor — support assistant kickoff"
+            }
+          ]
+        },
+        {
+          "text": "The review will take place in the Juniper training room.",
+          "citations": [
+            {
+              "chunk_id": "da956f7706ab46a2867b140e606e6755",
+              "quote": "Avery Quinn: Decision: hold the Juniper Harbor sandbox review on October 8, 2026 at 14:00 UTC in the Juniper training room. I coordinate this review and will circulate the agenda."
+            },
+            {
+              "chunk_id": "da956f7706ab46a2867b140e606e6755",
+              "quote": "# Juniper Harbor — support assistant kickoff"
+            }
+          ]
+        },
+        {
+          "text": "Avery Quinn coordinates the review.",
+          "citations": [
+            {
+              "chunk_id": "da956f7706ab46a2867b140e606e6755",
+              "quote": "Avery Quinn: Decision: hold the Juniper Harbor sandbox review on October 8, 2026 at 14:00 UTC in the Juniper training room. I coordinate this review and will circulate the agenda."
+            },
+            {
+              "chunk_id": "da956f7706ab46a2867b140e606e6755",
+              "quote": "# Juniper Harbor — support assistant kickoff"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "chunk_id": "da956f7706ab46a2867b140e606e6755",
+          "document_id": "74c9d08d31894054bed2d559b239154e",
+          "filename": "juniper_kickoff_brief.md",
+          "title": "Juniper Harbor — support assistant kickoff",
+          "author": "Avery Quinn",
+          "attendees": [
+            "Avery Quinn",
+            "Samira Vale",
+            "Rowan Ellis"
+          ],
+          "date": "2026-09-20",
+          "domain": "Juniper Harbor — support operations; support-assistant pilot for approved returns and warranty procedures",
+          "priority": "Medium",
+          "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17",
+          "text": "# Juniper Harbor — support assistant kickoff\n\nDate: 2026-09-20\nAuthor: Avery Quinn\nAttendees: Avery Quinn; Samira Vale; Rowan Ellis\nClient: Juniper Harbor\nDomain: Support operations\nPriority: Medium\nClassification: SYNTHETIC — fictional upload practice material\n\nAvery Quinn: Juniper Harbor is a fictional outdoor-equipment distributor. Our pilot helps its support team find approved returns and warranty procedures. The assistant drafts cited guidance for a support agent to review; it does not approve refunds or change customer records.\n\nSamira Vale: The first sandbox uses invented product names and synthetic support tickets. No actual customer information is included in these practice documents.\n\nAvery Quinn: Decision: hold the Juniper Harbor sandbox review on October 8, 2026 at 14:00 UTC in the Juniper training room. I coordinate this review and will circulate the agenda.\n\nRowan Ellis: Action: I will prepare six fictional warranty-ticket examples by October 5. This note establishes the review schedule; it does not establish a production launch date."
+        }
+      ],
+      "routing": [],
+      "message": "The answer is supported by the cited sources.",
+      "created_at": "2026-09-20T18:35:46.332818+00:00"
+    }
+  ],
+  "review": [
+    {
+      "id": "06ab36ffce18490a98b50a835c102d39",
+      "kind": "corrected",
+      "query_id": "96cd2289a166412da5340942339a0385",
+      "answer": {
+        "query_id": "96cd2289a166412da5340942339a0385",
+        "question": "What is Atlas Forge's current launch date, and did it change from the kickoff assumption?",
+        "status": "answered",
+        "claims": [
+          {
+            "text": "Atlas Forge’s current agreed pilot launch date is November 2, 2026, reaffirmed at the September 14 checkpoint.",
+            "citations": [
+              {
+                "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+                "quote": "Maya Chen: Action: I will tell the Atlas sponsor that November 2 is the agreed launch date, conditional on this gate. We are not accepting extra incident-ticket ingestion in the current pilot."
+              },
+              {
+                "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+                "quote": "# Atlas Forge — security gate and revised launch"
+              },
+              {
+                "chunk_id": "4af9f448f6b246b1bc14c073e5e5e7f1",
+                "quote": "Date: 2026-09-14\nAuthor: Maya Chen\nAttendees: Maya Chen; Sofia Ortiz; Liam Okafor\nClient: Atlas Forge\nDomain: Delivery operations\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material"
+              },
+              {
+                "chunk_id": "4af9f448f6b246b1bc14c073e5e5e7f1",
+                "quote": "# Atlas Forge — delivery checkpoint"
+              },
+              {
+                "chunk_id": "4af9f448f6b246b1bc14c073e5e5e7f1",
+                "quote": "Maya Chen: Checkpoint for Atlas: the pilot remains November 2, 2026 under the revised security decision. Redaction replay evidence and the identity service principal are the two open launch blockers."
+              }
+            ]
+          },
+          {
+            "text": "Launch remains conditional on security sign-off: all redaction tests must pass, the least-privilege role matrix must be approved, and the client security owner must acknowledge the runbook.",
+            "citations": [
+              {
+                "chunk_id": "8b5b35f9e00e4d39bf36886253344e5a",
+                "quote": "Launch target: November 2, 2026 after security sign-off. Start with 5 percent of pilot users for one business day, then 25 percent for one business day, then 100 percent only while release gates pass."
+              },
+              {
+                "chunk_id": "8b5b35f9e00e4d39bf36886253344e5a",
+                "quote": "Atlas Forge — staged release runbook"
+              },
+              {
+                "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+                "quote": "Theo Haddad: Release gate: all redaction test cases must pass, the least-privilege role matrix must be approved, and the client security owner must acknowledge the runbook. I will record sign-off only after all three conditions hold."
+              },
+              {
+                "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+                "quote": "# Atlas Forge — security gate and revised launch"
+              },
+              {
+                "chunk_id": "1a9058a1c1d54987a3bb504f245da119",
+                "quote": "Launch remains conditional on all redaction tests passing, an approved least-privilege role matrix, and client acknowledgment of the runbook. This addendum does not attest that the open provider zero-retention contract is signed."
+              }
+            ]
+          },
+          {
+            "text": "Yes, the date changed: the September 10 decision explicitly superseded the September 1 kickoff target of October 15, 2026 with November 2, 2026. The kickoff target was a planning assumption, not a signed commitment.",
+            "citations": [
+              {
+                "chunk_id": "738acf99adae4fedb7538692e315b2cd",
+                "quote": "Maya Chen: Planning assumption, not a signed commitment: target October 15, 2026 for the pilot launch. The date assumes the security review closes in September. I will update this note if that dependency changes."
+              },
+              {
+                "chunk_id": "738acf99adae4fedb7538692e315b2cd",
+                "quote": "# Atlas Forge — deployment kickoff"
+              },
+              {
+                "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+                "quote": "Date: 2026-09-10\nAuthor: Theo Haddad\nAttendees: Theo Haddad; Maya Chen; Sofia Ortiz\nClient: Atlas Forge\nDomain: Security and release\nPriority: Critical\nClassification: SYNTHETIC — fictional evaluation material"
+              },
+              {
+                "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+                "quote": "# Atlas Forge — security gate and revised launch"
+              },
+              {
+                "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+                "quote": "Maya Chen: Decision: the Atlas pilot launch moves to November 2, 2026. This explicitly supersedes the provisional October 15, 2026 target recorded at kickoff on September 1."
+              }
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "738acf99adae4fedb7538692e315b2cd",
+            "document_id": "404ab6eb1c9b4df295f696f73f07240a",
+            "filename": "atlas_01_kickoff.md",
+            "title": "Atlas Forge — deployment kickoff",
+            "author": "Maya Chen",
+            "attendees": [
+              "Maya Chen",
+              "Theo Haddad",
+              "Sofia Ortiz",
+              "Liam Okafor"
+            ],
+            "date": "2026-09-01",
+            "domain": "Atlas Forge — deployment planning for an internal maintenance-manual assistant for technicians",
+            "priority": "High",
+            "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+            "text": "# Atlas Forge — deployment kickoff\n\nDate: 2026-09-01\nAuthor: Maya Chen\nAttendees: Maya Chen; Theo Haddad; Sofia Ortiz; Liam Okafor\nClient: Atlas Forge\nDomain: Deployment planning\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nMaya Chen: We are building an internal maintenance-manual assistant for Atlas Forge technicians. This pilot can recommend a cited procedure, but it cannot command a machine or close a work order.\n\nLiam Okafor: The service team has 400 manuals and 22 volunteer technicians. Manuals contain serial numbers but should contain no customer contact details. I own the approved manual list and technician onboarding.\n\nSofia Ortiz: I propose a private gateway in the client's existing VPC. We will use the Frankfurt region and retain tenant identifiers on every indexed chunk. The deployment team still needs permission to create the private endpoint.\n\nMaya Chen: Planning assumption, not a signed commitment: target October 15, 2026 for the pilot launch. The date assumes the security review closes in September. I will update this note if that dependency changes.\n\nTheo Haddad: I own the Atlas security sign-off. Do not send raw telemetry or operator names to the external model provider. We need a written redaction test and an access review before production use."
+          },
+          {
+            "chunk_id": "dae12b0eb0524ea09960ba420ea1749e",
+            "document_id": "7994c43e97764312933ced3e7faf8948",
+            "filename": "atlas_03_security_gate.md",
+            "title": "Atlas Forge — security gate and revised launch",
+            "author": "Theo Haddad",
+            "attendees": [
+              "Theo Haddad",
+              "Maya Chen",
+              "Sofia Ortiz"
+            ],
+            "date": "2026-09-10",
+            "domain": "Atlas Forge — Security and release",
+            "priority": "Critical",
+            "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+            "text": "# Atlas Forge — security gate and revised launch\n\nDate: 2026-09-10\nAuthor: Theo Haddad\nAttendees: Theo Haddad; Maya Chen; Sofia Ortiz\nClient: Atlas Forge\nDomain: Security and release\nPriority: Critical\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nTheo Haddad: The security review found that two operator-name formats escaped redaction. We will not approve the October pilot while those cases fail. Sofia owns the fix and I own the approval decision.\n\nMaya Chen: Decision: the Atlas pilot launch moves to November 2, 2026. This explicitly supersedes the provisional October 15, 2026 target recorded at kickoff on September 1.\n\nSofia Ortiz: I can land the redaction patch by September 18 and attach replay evidence. The issue is in normalization before policy evaluation, not the tenant filter.\n\nTheo Haddad: Release gate: all redaction test cases must pass, the least-privilege role matrix must be approved, and the client security owner must acknowledge the runbook. I will record sign-off only after all three conditions hold.\n\nMaya Chen: Action: I will tell the Atlas sponsor that November 2 is the agreed launch date, conditional on this gate. We are not accepting extra incident-ticket ingestion in the current pilot."
+          },
+          {
+            "chunk_id": "4af9f448f6b246b1bc14c073e5e5e7f1",
+            "document_id": "83d34fd7239a459db339570223c2ab2b",
+            "filename": "atlas_04_delivery.md",
+            "title": "Atlas Forge — delivery checkpoint",
+            "author": "Maya Chen",
+            "attendees": [
+              "Maya Chen",
+              "Sofia Ortiz",
+              "Liam Okafor"
+            ],
+            "date": "2026-09-14",
+            "domain": "Atlas Forge — Delivery operations",
+            "priority": "High",
+            "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+            "text": "# Atlas Forge — delivery checkpoint\n\nDate: 2026-09-14\nAuthor: Maya Chen\nAttendees: Maya Chen; Sofia Ortiz; Liam Okafor\nClient: Atlas Forge\nDomain: Delivery operations\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nMaya Chen: Checkpoint for Atlas: the pilot remains November 2, 2026 under the revised security decision. Redaction replay evidence and the identity service principal are the two open launch blockers.\n\nSofia Ortiz: The service principal ticket is still pending. I can test the gateway locally but cannot run the production private-endpoint verification until Atlas identity engineering grants the scoped role.\n\nLiam Okafor: I will escalate the service principal ticket with Atlas identity engineering by September 16. Sofia remains the owner of the gateway and integration tests.\n\nMaya Chen: Decision: approve a five-percent canary for one business day, then twenty-five percent for one business day, then full pilot traffic only if latency and error budgets pass. The release deck will carry the exact stop conditions.\n\nSofia Ortiz: The latency workbook sets a p95 target below 2.5 seconds. Do not turn an estimated budget into a measured result; end-to-end production timings are not available yet."
+          },
+          {
+            "chunk_id": "8b5b35f9e00e4d39bf36886253344e5a",
+            "document_id": "24435eab8a0c4380a389d321595835e9",
+            "filename": "atlas_release_plan.pptx",
+            "title": "Atlas Forge — staged release runbook",
+            "author": "Maya Chen",
+            "attendees": [
+              "Maya Chen",
+              "Sofia Ortiz",
+              "Liam Okafor"
+            ],
+            "date": "2026-09-14",
+            "domain": "Atlas Forge — Deployment operations",
+            "priority": "High",
+            "locator": "Slide 1, shape 1; Slide 1, shape 2; Slide 1, shape 3; Slide 2, shape 1; Slide 2, shape 2; Slide 2, shape 3; Slide 3, shape 1; Slide 3, shape 2; Slide 3, shape 3; Slide 4, shape 1; Slide 4, shape 2; Slide 4, shape 3; Slide 4, speaker notes",
+            "text": "Atlas Forge — staged release runbook\n\nDate: 2026-09-14\nAuthor: Maya Chen\nAttendees: Maya Chen; Sofia Ortiz; Liam Okafor\nClient: Atlas Forge\nDomain: Deployment operations\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nRELAY AI  /  ATLAS FORGE  /  SYNTHETIC DATA  /  1\n\nRelease sequence\n\nLaunch target: November 2, 2026 after security sign-off. Start with 5 percent of pilot users for one business day, then 25 percent for one business day, then 100 percent only while release gates pass.\n\nRELAY AI  /  ATLAS FORGE  /  SYNTHETIC DATA  /  2\n\nStop conditions\n\nPause rollout when p95 end-to-end latency is 2.5 seconds or greater, request error rate exceeds 1 percent over a 15-minute window, or any unauthorized retrieval is detected. Unauthorized retrieval triggers an immediate stop regardless of traffic volume.\n\nRELAY AI  /  ATLAS FORGE  /  SYNTHETIC DATA  /  3\n\nRollback ownership\n\nSofia Ortiz owns technical rollback to the prior gateway version. Maya Chen owns sponsor communication. Liam Okafor coordinates the factory operating window, which is not yet approved.\n\nRELAY AI  /  ATLAS FORGE  /  SYNTHETIC DATA  /  4\n\nThe canary percentages describe a planned release, not observed production adoption. Do not claim a rollback maintenance window has been agreed."
+          },
+          {
+            "chunk_id": "1a9058a1c1d54987a3bb504f245da119",
+            "document_id": "a5c08765af4e4167be1312f3c7dec385",
+            "filename": "atlas_security_addendum.docx",
+            "title": "Atlas Forge — security logging addendum",
+            "author": "Theo Haddad",
+            "attendees": [
+              "Theo Haddad",
+              "Sofia Ortiz"
+            ],
+            "date": "2026-09-12",
+            "domain": "Atlas Forge — security logging",
+            "priority": "Critical",
+            "locator": "Paragraph 1; Paragraph 2; Paragraph 3; Paragraph 4; Paragraph 5; Paragraph 6; Paragraph 7; Paragraph 8; Paragraph 9; Paragraph 10; Paragraph 11; Paragraph 12; Paragraph 13; Paragraph 14",
+            "text": "Atlas Forge security logging addendum\n\nDate: 2026-09-12\n\nAuthor: Theo Haddad\n\nAttendees: Theo Haddad; Sofia Ortiz\n\nClient: Atlas Forge\n\nDomain: Security\n\nPriority: Critical\n\nClassification: SYNTHETIC — fictional evaluation material\n\nApproved logging boundaries\n\nAtlas diagnostic logs contain request IDs, error codes, duration, and redaction outcome only. Raw prompts, operator names, email addresses, and raw device telemetry must never be written to application logs.\n\nRetention and location\n\nRetain redacted diagnostic logs for 30 days in Frankfurt. Theo Haddad owns approval of any retention change. The deletion job runs daily and Sofia Ortiz owns its operational alert.\n\nSecurity gate\n\nLaunch remains conditional on all redaction tests passing, an approved least-privilege role matrix, and client acknowledgment of the runbook. This addendum does not attest that the open provider zero-retention contract is signed."
+          }
+        ],
+        "routing": [],
+        "message": "The answer is supported by the cited sources.",
+        "created_at": "2026-09-20T18:22:40.885534+00:00"
+      },
+      "comment": "UI rehearsal: Please verify whether the November 2 launch depends on security approval.",
+      "status": "resolved",
+      "resolution_note": "UI rehearsal: Checked the original security gate; source documents remain unchanged.",
+      "created_at": "2026-09-20T18:24:23.582622+00:00"
+    },
+    {
+      "id": "bd3d78bf58604212bbbbad734e94856e",
+      "kind": "gap",
+      "query_id": "3a8e7c8597c8406fbe4fd96faa267908",
+      "answer": {
+        "query_id": "3a8e7c8597c8406fbe4fd96faa267908",
+        "question": "What is the weather vendor's signed deletion SLA for Beacon Route?",
+        "status": "needs_routing",
+        "claims": [],
+        "evidence": [
+          {
+            "chunk_id": "7a914da238274811b403eece37678873",
+            "document_id": "07b4763333ab4f7c92bc49d41c27030a",
+            "filename": "beacon_04_commercial.md",
+            "title": "Beacon Route — signed pilot commercial decision",
+            "author": "Emma Laurent",
+            "attendees": [
+              "Emma Laurent",
+              "Priya Raman",
+              "Jules Park"
+            ],
+            "date": "2026-09-15",
+            "domain": "Beacon Route — two-depot pilot commercial decisions",
+            "priority": "High",
+            "locator": "Lines 23-23",
+            "text": "Emma Laurent: Action: I will circulate the signed scope summary today. The weather vendor deletion SLA is still unanswered and should be routed to me for vendor clarification; the signed pilot price does not settle that contract question."
+          },
+          {
+            "chunk_id": "1a198c41f641442f95c1dbcdbe0b8e77",
+            "document_id": "aaf09f29d2b94e97b57d7fec8e71c1ed",
+            "filename": "beacon_quality_register.xls",
+            "title": "Beacon Route — data quality register",
+            "author": "Noah Brooks",
+            "attendees": [
+              "Noah Brooks",
+              "Jules Park",
+              "Priya Raman"
+            ],
+            "date": "2026-09-12",
+            "domain": "Beacon Route — Data quality",
+            "priority": "High",
+            "locator": "Sheet 'Read me', cells A1:A1; Sheet 'Read me', cells A2:A2; Sheet 'Read me', cells A3:A3; Sheet 'Read me', cells A4:A4; Sheet 'Read me', cells A5:A5; Sheet 'Read me', cells A6:A6; Sheet 'Read me', cells A7:A7; Sheet 'Read me', cells A8:A8; Sheet 'Read me', cells A10:A10; Sheet 'Register', cells A1:D1; Sheet 'Register', cells A2:D2; Sheet 'Register', cells A3:D3; Sheet 'Register', cells A4:D4; Sheet 'Register', cells A5:D5",
+            "text": "A1: Title: Beacon Route — data quality register\n\nA2: Date: 2026-09-12\n\nA3: Author: Noah Brooks\n\nA4: Attendees: Noah Brooks; Jules Park; Priya Raman\n\nA5: Client: Beacon Route\n\nA6: Domain: Data quality\n\nA7: Priority: High\n\nA8: Classification: SYNTHETIC — fictional evaluation material\n\nA10: Register interpretation: This register distinguishes measured sample results from acceptance thresholds. Noah Brooks owns the connector and data-quality evidence. Jules Park owns closure calendars.\n\nA1: Check | B1: Observed result | C1: Acceptance rule | D1: Owner\n\nA2: Central duplicate shipment IDs | B2: 0 after cleanup; 37 before | C2: 0 duplicates using shipment ID plus depot | D2: Noah Brooks\n\nA3: History coverage | B3: 12 complete weeks | C3: At least 12 complete weeks | D3: Noah Brooks\n\nA4: Central holiday annotations | B4: 2 unconfirmed closures | C4: Jules validates missing annotations before pilot | D4: Jules Park\n\nA5: Weather vendor deletion SLA | B5: Unknown; vendor response pending | C5: Signed terms required before ongoing feed | D5: Emma Laurent"
+          },
+          {
+            "chunk_id": "a996e8c12f464bda9b96127e94fbb66e",
+            "document_id": "e682808f26984c8e8b62ad63bea47323",
+            "filename": "beacon_02_data_review.md",
+            "title": "Beacon Route — connector and vendor data review",
+            "author": "Noah Brooks",
+            "attendees": [
+              "Noah Brooks",
+              "Priya Raman",
+              "Emma Laurent"
+            ],
+            "date": "2026-09-05",
+            "domain": "Beacon Route — data engineering: shipment connector quality, depot backtests, and weather vendor data review",
+            "priority": "High",
+            "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17; Lines 19-19; Lines 21-21",
+            "text": "# Beacon Route — connector and vendor data review\n\nDate: 2026-09-05\nAuthor: Noah Brooks\nAttendees: Noah Brooks; Priya Raman; Emma Laurent\nClient: Beacon Route\nDomain: Data engineering\nPriority: High\nClassification: SYNTHETIC — fictional evaluation material\n\nTranscript — edited for clarity; all people and engagements are fictional.\n\nNoah Brooks: The shipment connector is healthy for North depot, but Central has duplicate shipment IDs after retries. I counted 37 duplicates in the sample. Deduplicate on shipment ID plus depot, keeping the most recent update timestamp.\n\nPriya Raman: Decision: block the Central backtest until deduplication is verified. North can continue through offline evaluation. This is a data acceptance gate, not a reason to invent missing records.\n\nNoah Brooks: Action: I will add the composite-key test and produce a clean twelve-week sample by September 9. Jules owns the depot closure calendar and will validate the holiday flags.\n\nEmma Laurent: The weather vendor has not answered the retention and data-processing questions. I own the contract request. There is no signed data-processing addendum and no documented deletion SLA yet.\n\nPriya Raman: We can evaluate with a static weather extract while contracts are unresolved. Do not activate the ongoing vendor feed until Emma confirms the agreement."
+          },
+          {
+            "chunk_id": "48d2089711924de395f0e6503a3bfc18",
+            "document_id": "b30774497e7b47ffbeecd9280337d090",
+            "filename": "beacon_commercial_terms.docx",
+            "title": "Beacon Route — unsigned three-depot estimate",
+            "author": "Emma Laurent",
+            "attendees": [
+              "Emma Laurent",
+              "Priya Raman"
+            ],
+            "date": "2026-09-04",
+            "domain": "Beacon Route — commercial proposal for North, Central, and South depots",
+            "priority": "Medium",
+            "locator": "Paragraph 1; Paragraph 2; Paragraph 3; Paragraph 4; Paragraph 5; Paragraph 6; Paragraph 7; Paragraph 8; Paragraph 9; Paragraph 10; Paragraph 11; Paragraph 12; Paragraph 13; Paragraph 14",
+            "text": "Beacon Route unsigned three depot estimate\n\nDate: 2026-09-04\n\nAuthor: Emma Laurent\n\nAttendees: Emma Laurent; Priya Raman\n\nClient: Beacon Route\n\nDomain: Commercial proposal\n\nPriority: Medium\n\nClassification: SYNTHETIC — fictional evaluation material\n\nDraft status\n\nUNSIGNED ESTIMATE. This September 4 proposal assumes North, Central, and South depots. It has not been accepted by Beacon Route and is not a purchase commitment.\n\nProposed fee\n\nThe estimated fixed fee for three depots is USD 62,000 excluding tax. Emma Laurent owns commercial negotiation. Any reduction to two depots requires a revised scope and price.\n\nExclusions\n\nAutomatic vehicle dispatch, weather vendor subscription charges, and weekend incident support are excluded from this estimate. These exclusions are not evidence that separate vendor retention terms have been agreed."
+          },
+          {
+            "chunk_id": "d7e41155717d4c47b16e232767da47d2",
+            "document_id": "ba75cc93abdc44319b62a48bee520e46",
+            "filename": "beacon_dispatch_handoff.xlsx",
+            "title": "Beacon Route — planner handoff checklist",
+            "author": "Jules Park",
+            "attendees": [
+              "Jules Park",
+              "Priya Raman",
+              "Noah Brooks"
+            ],
+            "date": "2026-09-15",
+            "domain": "Beacon Route — Operations: forecast handoff for manual staffing planning at North and Central depots",
+            "priority": "Medium",
+            "locator": "Sheet 'Read me', cells A1:A1; Sheet 'Read me', cells A2:A2; Sheet 'Read me', cells A3:A3; Sheet 'Read me', cells A4:A4; Sheet 'Read me', cells A5:A5; Sheet 'Read me', cells A6:A6; Sheet 'Read me', cells A7:A7; Sheet 'Read me', cells A8:A8; Sheet 'Read me', cells A10:A10; Sheet 'Register', cells A1:D1; Sheet 'Register', cells A2:D2; Sheet 'Register', cells A3:D3; Sheet 'Register', cells A4:D4; Sheet 'Register', cells A5:D5; Sheet 'Register', cells A6:D6",
+            "text": "A1: Title: Beacon Route — planner handoff checklist\n\nA2: Date: 2026-09-15\n\nA3: Author: Jules Park\n\nA4: Attendees: Jules Park; Priya Raman; Noah Brooks\n\nA5: Client: Beacon Route\n\nA6: Domain: Operations\n\nA7: Priority: Medium\n\nA8: Classification: SYNTHETIC — fictional evaluation material\n\nA10: Handoff boundaries: This checklist supports manual staffing planning at North and Central depots. It does not authorize automatic vehicle dispatch. Jules Park coordinates morning rehearsals.\n\nA1: Step | B1: Due or trigger | C1: Required action | D1: Owner\n\nA2: Forecast delivery | B2: 06:00 local depot time | C2: Publish forecast and input freshness | D2: Noah Brooks\n\nA3: Missing input | B3: Any required feed absent | C3: Warn planner and use seasonal baseline | D3: Noah Brooks\n\nA4: Planner decision | B4: Before staffing changes | C4: Approve or reject forecast manually | D4: Jules Park\n\nA5: Holdout acceptance | B5: Approved handoff requirement | C5: Error at most 10 percent; differs from September 11 approval | D5: Priya Raman\n\nA6: Vendor feed activation | B6: After signed terms | C6: Obtain retention agreement | D6: Emma Laurent"
+          },
+          {
+            "chunk_id": "95301061e0e44474af4b63822d57a5c4",
+            "document_id": "88feb7a1946c4ee4a0131ea13e9595c2",
+            "filename": "beacon_01_discovery.md",
+            "title": "Beacon Route — forecasting discovery",
+            "author": "Priya Raman",
+            "attendees": [
+              "Priya Raman",
+              "Noah Brooks",
+              "Emma Laurent",
+              "Jules Park"
+            ],
+            "date": "2026-09-02",
+            "domain": "Beacon Route — product discovery for a next-day depot volume forecasting pilot at the North and Central depots",
+            "priority": "Medium",
+            "locator": "Lines 23-23; Lines 25-25",
+            "text": "Noah Brooks: Action: I will profile the shipment feed by September 5. We have no confirmed retention terms for the external weather vendor yet.\n\nJules Park: I can supply closure calendars, but holiday annotations are incomplete. Mark that as a known data quality issue rather than fill missing holidays with guessed labels."
+          }
+        ],
+        "routing": [
+          {
+            "recipient": "Emma Laurent",
+            "reason": "Named responsibility in beacon_04_commercial.md: Emma Laurent: Action: I will circulate the signed scope summary today. The weather vendor deletion SLA is still unanswered and should be routed to me for vendor clarification; the signed pilot price does not settle that contract question.",
+            "draft_question": "Hi Emma Laurent,\n\nCould you clarify the following question?\n\nWhat is the weather vendor's signed deletion SLA for Beacon Route?\n\nThe current knowledge sources do not fully establish the answer. Please share the decision or source of truth.\n\nThank you.",
+            "evidence_ids": [
+              "7a914da238274811b403eece37678873",
+              "a996e8c12f464bda9b96127e94fbb66e",
+              "48d2089711924de395f0e6503a3bfc18",
+              "95301061e0e44474af4b63822d57a5c4"
+            ]
+          },
+          {
+            "recipient": "Priya Raman",
+            "reason": "Author or attendee; relevant source content in beacon_04_commercial.md: Emma Laurent: Action: I will circulate the signed scope summary today. The weather vendor deletion SLA is still unanswered and should be routed to me for vendor clarification; the signed pilot price does not settle that contract question.",
+            "draft_question": "Hi Priya Raman,\n\nCould you clarify the following question?\n\nWhat is the weather vendor's signed deletion SLA for Beacon Route?\n\nThe current knowledge sources do not fully establish the answer. Please share the decision or source of truth.\n\nThank you.",
+            "evidence_ids": [
+              "7a914da238274811b403eece37678873",
+              "1a198c41f641442f95c1dbcdbe0b8e77",
+              "a996e8c12f464bda9b96127e94fbb66e",
+              "48d2089711924de395f0e6503a3bfc18",
+              "d7e41155717d4c47b16e232767da47d2",
+              "95301061e0e44474af4b63822d57a5c4"
+            ]
+          },
+          {
+            "recipient": "Jules Park",
+            "reason": "Author or attendee; relevant source content in beacon_04_commercial.md: Emma Laurent: Action: I will circulate the signed scope summary today. The weather vendor deletion SLA is still unanswered and should be routed to me for vendor clarification; the signed pilot price does not settle that contract question.",
+            "draft_question": "Hi Jules Park,\n\nCould you clarify the following question?\n\nWhat is the weather vendor's signed deletion SLA for Beacon Route?\n\nThe current knowledge sources do not fully establish the answer. Please share the decision or source of truth.\n\nThank you.",
+            "evidence_ids": [
+              "7a914da238274811b403eece37678873",
+              "1a198c41f641442f95c1dbcdbe0b8e77",
+              "d7e41155717d4c47b16e232767da47d2",
+              "95301061e0e44474af4b63822d57a5c4"
+            ]
+          }
+        ],
+        "message": "The available sources do not establish an answer. Relevant source authors or attendees are suggested for clarification. Not established by available evidence: The weather vendor's signed deletion SLA for Beacon Route.",
+        "created_at": "2026-09-20T18:25:42.584712+00:00"
+      },
+      "comment": "The available sources do not establish an answer. Relevant source authors or attendees are suggested for clarification. Not established by available evidence: The weather vendor's signed deletion SLA for Beacon Route.",
+      "status": "open",
+      "resolution_note": "",
+      "created_at": "2026-09-20T18:25:42.586443+00:00"
+    },
+    {
+      "id": "b76380488e0741dfbea139eefd458cde",
+      "kind": "gap",
+      "query_id": "e2abddd347204b0aa7bbbaa89d5a381e",
+      "answer": {
+        "query_id": "e2abddd347204b0aa7bbbaa89d5a381e",
+        "question": "When and where is Juniper Harbor's sandbox review, and who coordinates it?",
+        "status": "needs_routing",
+        "claims": [],
+        "evidence": [],
+        "routing": [],
+        "message": "The available sources do not establish an answer. No relevant source identifies a recipient; choose a team lead manually. Not established by available evidence: When is Juniper Harbor's sandbox review?; Where is Juniper Harbor's sandbox review?; Who coordinates Juniper Harbor's sandbox review?.",
+        "created_at": "2026-09-20T18:28:23.919897+00:00"
+      },
+      "comment": "The available sources do not establish an answer. No relevant source identifies a recipient; choose a team lead manually. Not established by available evidence: When is Juniper Harbor's sandbox review?; Where is Juniper Harbor's sandbox review?; Who coordinates Juniper Harbor's sandbox review?.",
+      "status": "open",
+      "resolution_note": "",
+      "created_at": "2026-09-20T18:28:23.921294+00:00"
+    },
+    {
+      "id": "8c1fe324e3114bca8892dc3798cf8ff7",
+      "kind": "rejected",
+      "query_id": "6508b24713b045cea20bac3eb6e15a73",
+      "answer": {
+        "query_id": "6508b24713b045cea20bac3eb6e15a73",
+        "question": "When and where is Juniper Harbor's sandbox review, and who coordinates it?",
+        "status": "answered",
+        "claims": [
+          {
+            "text": "Juniper Harbor's sandbox review is scheduled for October 8, 2026 at 14:00 UTC.",
+            "citations": [
+              {
+                "chunk_id": "da956f7706ab46a2867b140e606e6755",
+                "quote": "Avery Quinn: Decision: hold the Juniper Harbor sandbox review on October 8, 2026 at 14:00 UTC in the Juniper training room. I coordinate this review and will circulate the agenda."
+              },
+              {
+                "chunk_id": "da956f7706ab46a2867b140e606e6755",
+                "quote": "# Juniper Harbor — support assistant kickoff"
+              }
+            ]
+          },
+          {
+            "text": "The review will take place in the Juniper training room.",
+            "citations": [
+              {
+                "chunk_id": "da956f7706ab46a2867b140e606e6755",
+                "quote": "Avery Quinn: Decision: hold the Juniper Harbor sandbox review on October 8, 2026 at 14:00 UTC in the Juniper training room. I coordinate this review and will circulate the agenda."
+              },
+              {
+                "chunk_id": "da956f7706ab46a2867b140e606e6755",
+                "quote": "# Juniper Harbor — support assistant kickoff"
+              }
+            ]
+          },
+          {
+            "text": "Avery Quinn coordinates the review.",
+            "citations": [
+              {
+                "chunk_id": "da956f7706ab46a2867b140e606e6755",
+                "quote": "Avery Quinn: Decision: hold the Juniper Harbor sandbox review on October 8, 2026 at 14:00 UTC in the Juniper training room. I coordinate this review and will circulate the agenda."
+              },
+              {
+                "chunk_id": "da956f7706ab46a2867b140e606e6755",
+                "quote": "# Juniper Harbor — support assistant kickoff"
+              }
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "chunk_id": "da956f7706ab46a2867b140e606e6755",
+            "document_id": "74c9d08d31894054bed2d559b239154e",
+            "filename": "juniper_kickoff_brief.md",
+            "title": "Juniper Harbor — support assistant kickoff",
+            "author": "Avery Quinn",
+            "attendees": [
+              "Avery Quinn",
+              "Samira Vale",
+              "Rowan Ellis"
+            ],
+            "date": "2026-09-20",
+            "domain": "Juniper Harbor — support operations; support-assistant pilot for approved returns and warranty procedures",
+            "priority": "Medium",
+            "locator": "Lines 1-1; Lines 3-9; Lines 11-11; Lines 13-13; Lines 15-15; Lines 17-17",
+            "text": "# Juniper Harbor — support assistant kickoff\n\nDate: 2026-09-20\nAuthor: Avery Quinn\nAttendees: Avery Quinn; Samira Vale; Rowan Ellis\nClient: Juniper Harbor\nDomain: Support operations\nPriority: Medium\nClassification: SYNTHETIC — fictional upload practice material\n\nAvery Quinn: Juniper Harbor is a fictional outdoor-equipment distributor. Our pilot helps its support team find approved returns and warranty procedures. The assistant drafts cited guidance for a support agent to review; it does not approve refunds or change customer records.\n\nSamira Vale: The first sandbox uses invented product names and synthetic support tickets. No actual customer information is included in these practice documents.\n\nAvery Quinn: Decision: hold the Juniper Harbor sandbox review on October 8, 2026 at 14:00 UTC in the Juniper training room. I coordinate this review and will circulate the agenda.\n\nRowan Ellis: Action: I will prepare six fictional warranty-ticket examples by October 5. This note establishes the review schedule; it does not establish a production launch date."
+          }
+        ],
+        "routing": [],
+        "message": "The answer is supported by the cited sources.",
+        "created_at": "2026-09-20T18:32:23.968472+00:00"
+      },
+      "comment": "UI rehearsal: Testing rejection persistence; this comment does not amend the source.",
+      "status": "open",
+      "resolution_note": "",
+      "created_at": "2026-09-20T18:33:46.881406+00:00"
+    }
+  ],
+  "feedback": [
+    {
+      "id": "06ab36ffce18490a98b50a835c102d39",
+      "query_id": "96cd2289a166412da5340942339a0385",
+      "kind": "corrected",
+      "comment": "UI rehearsal: Please verify whether the November 2 launch depends on security approval.",
+      "created_at": "2026-09-20T18:24:23.582622+00:00"
+    },
+    {
+      "id": "8c1fe324e3114bca8892dc3798cf8ff7",
+      "query_id": "6508b24713b045cea20bac3eb6e15a73",
+      "kind": "rejected",
+      "comment": "UI rehearsal: Testing rejection persistence; this comment does not amend the source.",
+      "created_at": "2026-09-20T18:33:46.881406+00:00"
+    }
+  ],
+  "outbox": [
+    {
+      "id": "0c4372c170db467f8dd80204023961ba",
+      "query_id": "3a8e7c8597c8406fbe4fd96faa267908",
+      "recipient": "Emma Laurent — UI rehearsal",
+      "subject": "UI rehearsal: Beacon vendor SLA",
+      "body": "Hi Emma, please share the signed weather-vendor deletion agreement and its source location. UI rehearsal: keep the contractual SLA separate from the pilot price.",
+      "evidence_ids": [
+        "7a914da238274811b403eece37678873",
+        "a996e8c12f464bda9b96127e94fbb66e",
+        "48d2089711924de395f0e6503a3bfc18",
+        "95301061e0e44474af4b63822d57a5c4"
+      ],
+      "status": "simulated",
+      "created_at": "2026-09-20T18:27:05.453092+00:00"
+    }
+  ],
+  "shared_budget_after_ui": {
+    "limit_usd": 40.0,
+    "accounted_usd": 33.871351,
+    "reserved_for_followup_usd": 0,
+    "reported_cost_usd": 32.759384,
+    "attempts": 823,
+    "unknown_cost_attempts": 4
+  }
+}

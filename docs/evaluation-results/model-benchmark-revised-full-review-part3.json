@@ -1,0 +1,170 @@
+{
+  "created_at": "2026-09-20T18:09:06.053923+00:00",
+  "reviewer": "Independent Codex development agent /root/adversarial_ui",
+  "review_type": "Independent regression adjudication of final pipeline answers",
+  "source_packet": "docs/evaluation-results/model-benchmark-revised-full-blinded-part3.json",
+  "source_packet_sha256": "23ce070c3188548a43804075aa4e684f239bd60b25ccf28efe23a3d9210289cc",
+  "blinding_limitations": "The packet hides model labels, price, timing and automatic grades; no raw model reports or mapping files were read. The selected recipe was already known from coordination, so this is independent regression adjudication rather than fully blind model selection. No provider calls were made.",
+  "method": "Read all 15 frozen questions and gold requirements, all 33 final claims, all 61 own selected exact quotations (including deterministically attached preceding spreadsheet rows), source attribution/locators and 9 routing explanations/drafts. Check scope, every numerical operand and units, completeness, abstention and recipient relevance manually. Match all 27 supplied distinct source contexts to the previously fully read and independently extracted24-document enrichment packet, and verify attribution against its frozen source gold. Exact quotation and routing-identity checks are supplementary mechanical checks, not semantic proof.",
+  "summary": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0,
+    "operational_failures": 0,
+    "claims_reviewed": 33,
+    "selected_quotations_checked": 61,
+    "routing_suggestions_checked": 9,
+    "distinct_source_chunks_checked": 27,
+    "source_formats": [
+      ".doc",
+      ".docx",
+      ".md",
+      ".ppt",
+      ".pptx",
+      ".xls",
+      ".xlsx"
+    ],
+    "mechanical_quote_attribution_or_routing_failures": 0
+  },
+  "limitations": [
+    "This small synthetic regression packet does not establish production accuracy or replace a broader independent human study.",
+    "Previously inspected holdout questions are now regression evidence; this review does not claim an untouched held-out score."
+  ],
+  "records": [
+    {
+      "anonymous_id": "answer-cd6b8a1e",
+      "case_id": "holdout-atlas-unauthorized-retrieval",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "An unauthorized retrieval independently requires immediate stop regardless of traffic or latency. Both the stop conclusion and no-advancement explanation have their own applicable runbook quotations.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-3027eead",
+      "case_id": "holdout-beacon-holdout-design",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "All requested components are present: North and Central, eight frozen holdout weeks, offline scope, and exclusion of those weeks from training. Each claim has its own selected evidence, including offline scope.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-9f6b9ac6",
+      "case_id": "holdout-beacon-estimate-exclusions",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Lists exactly the three source exclusions: automatic vehicle dispatch, weather subscription charges, and weekend incident support. Keeps estimate scope and does not invent a signed commitment or vendor-retention agreement.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-3df8bd38",
+      "case_id": "holdout-atlas-budget-arithmetic",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "All four operand cells and the Budget ms header are quoted in the calculation claim:100+350+1800+200=2450ms=2.45s. The separate interpretation claim identifies a planning budget, not measured latency; the unavailable formula cache is not used as the sole numerical evidence.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-2bd66402",
+      "case_id": "holdout-atlas-deletion-ownership",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Answers all three components with the retention paragraph: Theo approval, daily deletion, and Sofia operational-alert ownership. It does not replace them with merely related security ownership.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-d592a576",
+      "case_id": "holdout-beacon-holiday-closures",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Gives two unconfirmed Central closures and Jules validation before pilot. The selected row and exact preceding table context identify observed result, acceptance rule and owner without swapping columns.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-024ec325",
+      "case_id": "holdout-cedar-answerable-denominator",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves the answerable-only denominator:58 supported and2 requiring review out of60. Each claim contains the data row and observed-outcome/cases header; no80-question denominator or production guarantee is substituted.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-21a0d130",
+      "case_id": "holdout-atlas-patch-action",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Names Sofia, September18,2026 and replay evidence, preserving a commitment rather than asserting completed work. Deadline attribution is supported by the same source date and patch quotation.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-7601b780",
+      "case_id": "known-and-unknown-components",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Provides signed USD48,000 excluding-tax fee with independently cited North/Central scope, while the message explicitly leaves the signed vendor deletion SLA unknown. Emma is the first relevant clarification recipient.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-5a23f2bd",
+      "case_id": "holdout-atlas-principal-identifier",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Correctly abstains from inventing an approved production-principal UUID; supporting routing excerpts preserve pending provisioning, with relevant technical/identity participants.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-3c0333a2",
+      "case_id": "unmeasured-business-outcome",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Correctly abstains on measured live staffing-cost reduction instead of repurposing forecast-error percentages as realized savings. Relevant routing excerpts explicitly state the lack of live measurement.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-4a428f4e",
+      "case_id": "holdout-cedar-revoked-group",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Correctly denies access for a revoked policy group despite a valid clinic ID and forbids global fallback. The explanatory identity-filter ordering is separately supported and relevant to the requested access-design behavior.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-8722a5b5",
+      "case_id": "holdout-atlas-principal-scope",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Includes workload service principal, read-only manual-index scope, no manual editing/write access, and no personal technician credential. Normative role-matrix scope does not become a claim of completed provisioning.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-0a115905",
+      "case_id": "holdout-blocked-request-ux",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Preserves the redaction-blocked-request condition for the explanation/rephrase UX and codes-and-ID-only logging. Each scope-sensitive claim quotes both the preceding blocked-request question and its answer; it does not generalize that restricted logging schema to all application requests.",
+      "findings": []
+    },
+    {
+      "anonymous_id": "answer-b1b731d7",
+      "case_id": "spanish-paraphrase",
+      "gold_sha256": "a16f55d486de1633e2e063d535e15b7c9007a88c745bb5bbe8ae023e813cb8d9",
+      "passed": true,
+      "verdict": "pass",
+      "rationale": "Correctly answers the Spanish paraphrase with maximum24-hour retention and deletion within that limit, from the approved decision superseding the seven-day draft.",
+      "findings": []
+    }
+  ]
+}

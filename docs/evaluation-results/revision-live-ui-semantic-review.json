@@ -1,0 +1,103 @@
+{
+  "created_at": "2026-09-20T18:40:58.889633+00:00",
+  "source_report": "docs/evaluation-results/revision-live-ui.json",
+  "source_report_sha256": "7c0efb90b013ee65f4d8368a5180108b35fe6d143612a7703f8ebbc628e3719c",
+  "reviewer": "Codex independent ingestion/provenance reviewer",
+  "review_mode": "Independent semantic regression read of five actually recorded live UI/API answers. This is not a model-blind comparison or a new live model run. The selected recipe and parent report were visible; verdicts were independently checked against each claim's own returned exact quotations and immutable source evidence.",
+  "answer_pipeline_version": "native-title-and-sheet-citation-context-v3",
+  "checks": {
+    "queries_reviewed": 5,
+    "unique_questions": 3,
+    "passed": 5,
+    "semantic_failures": 0,
+    "operational_failures": 0,
+    "claims_reviewed": 9,
+    "exact_quotations_checked": 27,
+    "invalid_quotations": 0,
+    "routing_suggestions_checked": 3,
+    "routing_identity_references_checked": 14,
+    "invalid_routing_identity_references": 0,
+    "canonical_evidence_matches_reviewed_main24_snapshot": true,
+    "uploaded_evidence_matches_committed_sample_extraction_attribution_and_download_hash": true
+  },
+  "limitations": [
+    "Five answers cover three unique questions, including repeated before/after/Developer Juniper checks; this is targeted live UI smoke coverage, not the held-out 45-case evaluation.",
+    "Quotation counts include exact deterministic source-title context as well as substantive source paragraphs; they are not 27 distinct factual claims.",
+    "Browser file-picker upload was blocked by the extension environment and is not claimed as passing. The parent report documents actual API upload and subsequent UI behavior; this review evaluates saved answers, not new browser interactions.",
+    "No paid calls, runtime database writes, parent UI report edits or source changes were performed."
+  ],
+  "records": [
+    {
+      "query_id": "96cd2289a166412da5340942339a0385",
+      "question": "What is Atlas Forge's current launch date, and did it change from the kickoff assumption?",
+      "status": "answered",
+      "pass": true,
+      "claim_count": 3,
+      "exact_quotations": 15,
+      "routing_suggestions": 0,
+      "routing_identity_references": 0,
+      "reasons": [
+        "Own quotations establish the currently agreed November 2, 2026 pilot date and its September 14 reaffirmation; this is a plan, not a claim of completed production deployment.",
+        "The answer explicitly preserves all three security conditions in a separate supported claim, without asserting sign-off is complete.",
+        "The historical change claim has its own kickoff assumption and dated superseding decision quotations, supporting October 15 to November 2 and the unsigned original planning status."
+      ]
+    },
+    {
+      "query_id": "3a8e7c8597c8406fbe4fd96faa267908",
+      "question": "What is the weather vendor's signed deletion SLA for Beacon Route?",
+      "status": "needs_routing",
+      "pass": true,
+      "claim_count": 0,
+      "exact_quotations": 0,
+      "routing_suggestions": 3,
+      "routing_identity_references": 14,
+      "reasons": [
+        "Appropriately abstains from inventing a signed weather-vendor deletion duration or guarantee.",
+        "Emma Laurent is the primary routing recipient and her quoted source responsibility specifically requests vendor clarification; the signed pilot commercial agreement is not substituted for a vendor SLA.",
+        "All secondary recipients are attributed to every source reference they carry; no external expert or specific expertise is invented."
+      ]
+    },
+    {
+      "query_id": "e2abddd347204b0aa7bbbaa89d5a381e",
+      "question": "When and where is Juniper Harbor's sandbox review, and who coordinates it?",
+      "status": "needs_routing",
+      "pass": true,
+      "claim_count": 0,
+      "exact_quotations": 0,
+      "routing_suggestions": 0,
+      "routing_identity_references": 0,
+      "reasons": [
+        "Before sample upload the answer has no claims, evidence or routing recipient, so it does not infer Juniper information from unrelated seed-client records. All three requested review details remain unestablished."
+      ]
+    },
+    {
+      "query_id": "6508b24713b045cea20bac3eb6e15a73",
+      "question": "When and where is Juniper Harbor's sandbox review, and who coordinates it?",
+      "status": "answered",
+      "pass": true,
+      "claim_count": 3,
+      "exact_quotations": 6,
+      "routing_suggestions": 0,
+      "routing_identity_references": 0,
+      "reasons": [
+        "Each of the three claims has its own exact decision quotation establishing October 8, 2026 at 14:00 UTC, the Juniper training room, and Avery Quinn as coordinator.",
+        "The source date September 20 is not confused with the planned review date October 8. Speaker-attributed first-person coordination is resolved to Avery Quinn correctly.",
+        "The source text, native locator, deterministic attribution and downloaded SHA match the committed upload sample. No completion or production approval is invented."
+      ]
+    },
+    {
+      "query_id": "df71ede084604d2c848c05b11fc4cb4a",
+      "question": "When and where is Juniper Harbor's sandbox review, and who coordinates it?",
+      "status": "answered",
+      "pass": true,
+      "claim_count": 3,
+      "exact_quotations": 6,
+      "routing_suggestions": 0,
+      "routing_identity_references": 0,
+      "reasons": [
+        "The Developer answer has a distinct persisted query ID and independently returns the same three complete source-supported details as the post-upload Ask answer.",
+        "Each claim has its own exact decision quotation and source-title citation; no extra fact or invented routing recipient is added."
+      ]
+    }
+  ]
+}
